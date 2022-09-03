@@ -12,7 +12,7 @@ class CreateCouponsTable extends Migration
             $table->id();
             $table->string('code');
             $table->timestamp('activate_date');
-            $table->timestamp('end_date');
+            $table->timestamp('end_date')->nullable();
             $table->decimal('amount');
             $table->integer('max_used');
             $table->integer('used_times')->default(0);
