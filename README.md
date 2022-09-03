@@ -12,6 +12,8 @@
 
 5- `laravel/ui`
 
+6- `matt-daneshvar/laravel-survey`
+
 ## Theme :
 
 Majestic Admin , Bootstrap 4

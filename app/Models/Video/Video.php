@@ -1,22 +1,21 @@
 <?php
 
-namespace App\Models\Slider;
+namespace App\Models\Video;
 
 use App\Traits\HasAssetsTrait;
 use App\Traits\HasTimestampTrait;
-use Astrotomic\Translatable\Translatable;
+use Astrotomic\Translatable\Contracts\Translatable;
+use Astrotomic\Translatable\Translatable as TranslatableTranslatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 
-
-class Slider extends Model implements TranslatableContract
+class video extends Model implements Translatable
 {
-    use HasFactory, HasAssetsTrait, HasTimestampTrait, Translatable;
+    use HasFactory, TranslatableTranslatable, HasTimestampTrait, HasAssetsTrait;
 
-    public $translatedAttributes = ['title', 'description'];
     protected $guarded = [];
-    public $assets = ['image'];
+    public $translatedAttributes = ['title'];
+    public $assets = ['video'];
 
     public static function boot()
     {

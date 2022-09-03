@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\HasAssetsTrait;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -11,8 +12,9 @@ use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, HasRoles;
+    use HasApiTokens, HasFactory, Notifiable, HasRoles, HasAssetsTrait;
 
+    public $assets = ['image'];
     /**
      * The attributes that are mass assignable.
      *
@@ -45,6 +47,14 @@ class User extends Authenticatable
 
     public function isSuperAdmin(): bool
     {
-        return $this->hasRole('admin');
+        return $this->hasRole('admin') && $this->email == config('permission.admin_user_name');
+    }
+
+    public static function boot()
+    {
+        parent::boot();
+        static::saved(function ($model) {
+            $model->saveAssets($model, request());
+        });
     }
 }

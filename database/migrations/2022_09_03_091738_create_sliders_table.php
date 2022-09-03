@@ -11,6 +11,9 @@ class CreateSlidersTable extends Migration
         Schema::create('sliders', function (Blueprint $table) {
             $table->id();
             $table->boolean('is_active')->default(true);
+            $table->string('link');
+            $table->boolean('is_show_is_app');
+
             $table->timestamps();
         });
 
