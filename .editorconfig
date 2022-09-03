@@ -1,18 +1,37 @@
-root = true
-
 [*]
+root = true
 charset = utf-8
 end_of_line = lf
-insert_final_newline = true
-indent_style = space
-indent_size = 4
+
+line_comment = //
+block_comment = *
+block_comment_end = */
+block_comment_start = /*
+
+quote_type = single
+max_line_length = 100
+wildcard_import_limit = 5
+curly_bracket_next_line = true
 trim_trailing_whitespace = true
+insert_final_newline = true
+
+tab_width = 2
+indent_size = 2
+indent_style = space
+continuation_indent_size = 6
+space_after_anonymous_functions = false
+space_after_control_statements = false
+spaces_around_brackets = outside
+spaces_around_operators = true
+spaces_in_brackets = false
+indent_brace_style = K&R
 
 [*.md]
 trim_trailing_whitespace = false
 
-[*.{yml,yaml}]
-indent_size = 2
-
-[docker-compose.yml]
+[*.php]
 indent_size = 4
+
+[*.blade.php]
+indent_size = 2
+max_line_length = 120
