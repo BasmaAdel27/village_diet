@@ -19,7 +19,7 @@ class CreateContactUsTable extends Migration
             $table->string('phone')->nullable();
             $table->string('whatsapp_phone')->nullable();
 
-            $table->$table->timestamps();
+            $table->timestamps();
         });
     }
 

@@ -11,5 +11,6 @@ class EmailSubscriber extends Model
 
     protected $guarded = [];
 
-    const TEMPLATES = [];
+    const BASIC = 'basic';
+    const TEMPLATES = [self::BASIC];
 }

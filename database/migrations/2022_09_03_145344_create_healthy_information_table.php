@@ -14,7 +14,7 @@ class CreateHealthyInformationTable extends Migration
             $table->integer('sleep_hours');
             $table->integer('daily_cup_count');
             $table->string('weight');
-            $table->foreignId('subsciption_id')->nullable()->constrained('subsciptions')->nullOnDelete();
+            $table->foreignId('subscription_id')->nullable()->constrained('subscriptions')->nullOnDelete();
             $table->foreignId('day_id')->nullable()->constrained('days')->nullOnDelete();
 
             $table->timestamps();
