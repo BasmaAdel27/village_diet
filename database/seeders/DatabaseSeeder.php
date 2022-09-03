@@ -13,8 +13,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\User::factory()->create([
+        $user = \App\Models\User::factory()->create([
             'email' => config('permission.admin_user_name')
-        ]);
+        ])->assignRole('admin');
     }
 }

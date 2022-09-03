@@ -5,9 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Country extends Model
+class EmailSubscriber extends Model
 {
     use HasFactory;
 
     protected $guarded = [];
+
+    const BASIC = 'basic';
+    const TEMPLATES = [self::BASIC];
 }
