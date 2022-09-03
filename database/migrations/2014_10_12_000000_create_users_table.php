@@ -13,10 +13,10 @@ class CreateUsersTable extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->string('email')->unique();
-            $table->integer('user_number')->unique();
+            $table->integer('user_number')->nullable()->unique();
             $table->string('phone')->nullable();
             $table->date('date_of_birth')->nullable();
-            $table->boolean('is_active');
+            $table->boolean('is_active')->default(true);
             $table->string('address')->nullable();
             $table->string('insta_link')->nullable();
             $table->string('twitter_link')->nullable();

@@ -101,6 +101,10 @@ trait HasAssetsTrait
 
     public function images(): MorphMany
     {
-        return $this->morphMany(AppMedia::class, "mediable")->withTrashed();
+        if (in_array(SoftDeletes::class, class_uses(static::class))) {
+            return $this->morphMany(AppMedia::class, "mediable")->withTrashed();
+        }
+
+        return $this->morphMany(AppMedia::class, "mediable");
     }
 }
