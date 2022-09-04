@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Yajra\DataTables\DataTables;
 
 class UserController extends Controller
 {
@@ -17,6 +20,22 @@ class UserController extends Controller
         return view('admin.users.index');
     }
 
+    public function getUsers(Request $request)
+    {
+
+        if ($request->ajax()) {
+            $data = DB::table('users')->get();
+//                        dd($data);
+            return DataTables::of($data)
+                  ->addIndexColumn()
+                  ->addColumn('action', function($row){
+                      $actionBtn = '<a href="javascript:void(0)" class="edit btn btn-success btn-sm">Edit</a> <a href="javascript:void(0)" class="delete btn btn-danger btn-sm">Delete</a>';
+                      return $actionBtn;
+                  })
+                  ->rawColumns(['action'])
+                  ->make(true);
+        }
+    }
     /**
      * Show the form for creating a new resource.
      *
