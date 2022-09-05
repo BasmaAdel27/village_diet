@@ -50,6 +50,11 @@ class User extends Authenticatable
         return $this->hasRole('admin') && $this->email == config('permission.admin_user_name');
     }
 
+    public function isAdmin(): bool
+    {
+        return $this->hasRole('admin');
+    }
+
     public static function boot()
     {
         parent::boot();
