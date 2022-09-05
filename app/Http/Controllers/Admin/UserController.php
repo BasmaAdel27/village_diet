@@ -29,7 +29,7 @@ class UserController extends Controller
             return DataTables::of($data)
                   ->addIndexColumn()
                   ->addColumn('action', function($row){
-                      $actionBtn = '<a href="javascript:void(0)" class="edit btn btn-success btn-sm">Edit</a> <a href="javascript:void(0)" class="delete btn btn-danger btn-sm">Delete</a>';
+                      $actionBtn = '<a href="/en/admin/users/1/edit" class="edit btn btn-success btn-sm">Edit</a> <a href="javascript:void(0)" class="delete btn btn-danger btn-sm">Delete</a>';
                       return $actionBtn;
                   })
                   ->rawColumns(['action'])
@@ -43,7 +43,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.users.create');
     }
 
     /**
@@ -76,7 +76,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('admin.users.edit');
+
     }
 
     /**

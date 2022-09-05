@@ -1,7 +1,8 @@
 @extends('admin.app')
 @section('content')
   <div class="container mt-5">
-    <h2 class="mb-4">Laravel 7|8 Yajra Datatables Example</h2>
+    <h2 class="mb-4 user">Users</h2>
+    <a href="/en/admin/users/create" class="edit btn btn-success btn-sm ">Add User</a>
     <table class="table table-bordered yajra-datatable">
       <thead>
       <tr>
