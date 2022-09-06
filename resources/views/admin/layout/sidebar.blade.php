@@ -23,6 +23,12 @@
 {{--      </div>--}}
     </li>
     <li class="nav-item">
+      <a class="nav-link" href="/admin/permissions">
+        <i class="mdi mdi-arrow-expand-right menu-icon"></i>
+        <span class="menu-title">Permissions</span>
+      </a>
+    </li>
+    <li class="nav-item">
       <a class="nav-link" href="documentation/documentation.html">
         <i class="mdi mdi-file-document-box-outline menu-icon"></i>
         <span class="menu-title">Documentation</span>

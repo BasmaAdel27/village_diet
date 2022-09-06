@@ -17,29 +17,5 @@
 <!-- Custom js for this page-->
 <script src={{ asset('adminPanel/js/file-upload.js')}}></script>
 <!-- End custom js for this page-->
-<script type="text/javascript">
-  $(function () {
 
-    var table = $('.yajra-datatable').DataTable({
-      processing: true,
-      serverSide: true,
-      ajax: "/admin/users/list",
-      columns: [
-        {data: 'id', name: 'id'},
-        {data: 'first_name', name: 'first_name'},
-        {data: 'last_name', name: 'last_name'},
-        {data: 'email', name: 'email'},
-        {data: 'date_of_birth', name: 'date_of_birth'},
-        {data: 'phone', name: 'phone'},
-        {
-          data: 'action',
-          name: 'action',
-          orderable: true,
-          searchable: true
-        },
-      ]
-    });
-
-  });
-</script>
 @yield('scripts')

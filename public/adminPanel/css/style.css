@@ -21899,3 +21899,6 @@ dl li {
 .form-control, .dataTables_wrapper select {
   border: 2px solid #f3f3f3;
 }
+.check{
+  text-align: center;
+}
