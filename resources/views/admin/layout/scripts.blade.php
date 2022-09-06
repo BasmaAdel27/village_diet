@@ -12,5 +12,11 @@
 <script src={{ asset('adminPanel/js/jquery.cookie.js') }} type="text/javascript"></script>
 
 <script src={{ asset('adminPanel/js/file-upload.js')}}></script>
-<script src="{{ asset('js/sweetalert/sweetalert2.all.min.js') }}"></script>
+<script src={{asset('adminPanel/js/select2.min.js')}}></script>
+<!-- End custom js for this page-->
+<script>
+  $(document).ready(function() {
+    $('.js-example-basic-multiple').select2();
+  });
+</script>
 @yield('scripts')

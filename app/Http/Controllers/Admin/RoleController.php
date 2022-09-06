@@ -29,14 +29,11 @@ class RoleController extends Controller
         if ($request->ajax()) {
             $data = DB::table('roles')->whereNotIn('name', ['admin', 'trainer', 'user'])->get();
 
-            // TODO: make this action in view
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
-                    $actionBtn = "<a href=" . route('admin.roles.show', $row->id) . " class='show btn btn-info btn-sm mr-1'>
-                    Show</a><a href='" . route('admin.roles.edit', $row->id) . "' class='edit btn btn-success btn-sm mr-1'>
-                    Edit</a><a href='#' class='delete btn btn-danger btn-sm'>Delete</a>";
-                    return $actionBtn;
+                    $id=$row->id;
+                    return view('admin.admins.datatable.action',compact('id'));
                 })
                 ->rawColumns(['action'])
                 ->make(true);
@@ -92,7 +89,11 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
-        //
+        $role=Role::find($id);
+        $rolePermissions = $role->permissions;
+        $permissions = Permission::get();
+
+        return view('admin.permissions.edit',compact(['role','rolePermissions','permissions']));
     }
 
     /**
@@ -104,7 +105,25 @@ class RoleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+              'role_name' => 'required|',
+              'permission' => 'required',
+        ]);
+
+        $role=Role::find($id);
+        if ($role->name != $request->role_name) {
+            $this->validate($request,[
+                  'role_name' => 'unique:roles,name',
+            ]);
+        }
+            $role->update([
+                  'name' => $request->role_name,
+            ]);
+            $role->syncPermissions($request->input('permission'));
+
+        return redirect()->route('admin.roles.index')->with('success', 'Role updated successfully');
+
+
     }
 
     /**
@@ -115,7 +134,7 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
-        DB::table("roles")->where('id', $id)->delete();
+        Role::find($id)->delete();
 
         return redirect()->route('admin.roles.index')->with('success', 'Role deleted successfully');
     }
