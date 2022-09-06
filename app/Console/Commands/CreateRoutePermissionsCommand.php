@@ -35,19 +35,38 @@ class CreateRoutePermissionsCommand extends Command
      *
      * @return int
      */
-    public function handle(){
-     $routes = Route::getRoutes()->getRoutes();
+    public function handle()
+    {
+        /**
+         *  This array contains all public routes
+         *
+         * @var array
+         */
+        $publicRoutes = [
+            'login',
+            'logout',
+            'register',
+            'password.request',
+            'password.email',
+            'password.reset',
+            'password.update',
+            'password.confirm',
+            'admin.'
+        ];
 
-        foreach ($routes as $route) {
-            if ($route->getName() != '' && $route->getAction()['middleware']['0'] == 'web') {
-                $permission = Permission::where('name', $route->getName())->first();
-
-                if (is_null($permission)) {
-                    permission::create(['name' => $route->getName()]);
-                }
+        foreach (Route::getRoutes() as $route) {
+            if (
+                $route->getName() != ''
+                && $route->getAction()['middleware']['0'] == 'web'
+                && !Permission::where('name', $route->getName())->exists()
+                && !in_array($route->getName(), $publicRoutes)
+                && !str_contains($route->getName(), 'edit')
+                && !str_contains($route->getName(), 'create')
+            ) {
+                permission::create(['name' => $route->getName()]);
             }
         }
 
         $this->info('Permission routes added successfully.');
-        }
+    }
 }
