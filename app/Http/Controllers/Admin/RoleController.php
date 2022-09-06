@@ -27,18 +27,18 @@ class RoleController extends Controller
     {
 
         if ($request->ajax()) {
-            $data = DB::table('roles')->where([['name','!=','admin'],['name','!=','user'],['name','!=','trainer']])->get();
-            return DataTables::of($data)
-                  ->addIndexColumn()
-                  ->addColumn('action', function($row){
 
-                      $actionBtn = "<a href='/en/admin/users/1/edit' class='show btn btn-info btn-sm mr-1'>Show</a>
-                                   <a href='#' class='edit btn btn-success btn-sm mr-1'>Edit</a>
-                                   <a href='#' class='delete btn btn-danger btn-sm'>Delete</a>";
-                      return $actionBtn;
-                  })
-                  ->rawColumns(['action'])
-                  ->make(true);
+            $data = DB::table('roles')->whereNotIn('name', ['admin', 'trainer', 'user'])->get();
+
+            // TODO: make this action in view
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->addColumn('action', function ($row) {
+$id=$row->id;
+                    return view('admin.admins.datatable.action',compact('id'));
+                })
+                ->rawColumns(['action'])
+                ->make(true);
         }
     }
     /**
@@ -48,10 +48,10 @@ class RoleController extends Controller
      */
     public function create()
     {
-        $permissions=Permission::all();
-        return view('admin.permissions.create',compact('permissions'));
+        $permissions = Permission::all();
+        return view('admin.permissions.create', compact('permissions'));
     }
-//
+    //
     /**
      * Store a newly created resource in storage.
      *
@@ -61,15 +61,15 @@ class RoleController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-              'role_name' =>'required|unique:roles,name',
-              'permission' => 'required',
+            'role_name' => 'required|unique:roles,name',
+            'permission' => 'required',
 
-        ]);        $role=Role::create([
-              'name'=>$request->role_name
+        ]);
+        $role = Role::create([
+            'name' => $request->role_name
         ]);
         $role->syncPermissions($request->input('permission'));
-        return redirect()->route('admin.permissions.index')->with('success','Role created successfully');
-
+        return redirect()->route('admin.roles.index')->with('success', 'Role created successfully');
     }
 
     /**
@@ -114,8 +114,8 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
-        DB::table("roles")->where('id',$id)->delete();
+        DB::table("roles")->where('id', $id)->delete();
 
-        return redirect()->route('admin.permissions.index')->with('success','Role deleted successfully');
+        return redirect()->route('admin.roles.index')->with('success', 'Role deleted successfully');
     }
 }

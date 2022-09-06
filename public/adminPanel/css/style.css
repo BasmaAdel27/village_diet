@@ -21902,3 +21902,6 @@ dl li {
 .check{
   text-align: center;
 }
+.role{
+  display: inline-block;
+}

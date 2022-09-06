@@ -2,7 +2,7 @@
 @section('content')
   <div class="container mt-5">
     <h2 class="mb-4 user">Roles</h2>
-    <a href="{{route('admin.permissions.create')}}" class="edit btn btn-success btn-sm ">Create Roll</a>
+    <a href="{{route('admin.roles.create')}}" class="edit btn btn-success btn-sm ">Create Roll</a>
     @if ($message = Session::get('success'))
 
       <div class="alert alert-success">
