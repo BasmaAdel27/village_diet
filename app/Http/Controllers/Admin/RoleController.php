@@ -30,11 +30,10 @@ class RoleController extends Controller
 
             $data = DB::table('roles')->whereNotIn('name', ['admin', 'trainer', 'user'])->get();
 
-            // TODO: make this action in view
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
-$id=$row->id;
+                    $id=$row->id;
                     return view('admin.admins.datatable.action',compact('id'));
                 })
                 ->rawColumns(['action'])
