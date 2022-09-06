@@ -6,10 +6,10 @@ use App\Http\Controllers\Admin\RoleController;
 use Illuminate\Support\Facades\Route;
 
 Route::view('dashboard', 'admin.app')->name('dashboard');
-Route::get('/users/list', [UserController::class, 'getUsers'])->name('users.list');
+Route::get('/users/list', [UserController::class, 'getUsers']);
 
 Route::resource('users', UserController::class);
-Route::get('/roles/list',[RoleController::class,'getRoles'])->name('roles.list');
+Route::get('/roles/list', [RoleController::class, 'getRoles']);
 
-Route::resource('permissions', RoleController::class);
+Route::resource('roles', RoleController::class);
 Route::resource('admins', AdminController::class);
