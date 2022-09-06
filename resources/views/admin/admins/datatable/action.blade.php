@@ -1,13 +1,6 @@
 @extends('admin.layout.styles')
-  {{--show--}}
-  <form method="get" action="#" class="role">
-    <input type="submit" value="Show" class="btn btn-info">
-  </form>
-
   {{--edit--}}
-  <form method="post" action="#" class="role">
-    @csrf
-    @method('PUT')
+  <form method="get" action="{{route('admin.roles.edit',$id)}}" class="role">
     <input type="submit" value="Edit" class="btn btn-success">
   </form>
 

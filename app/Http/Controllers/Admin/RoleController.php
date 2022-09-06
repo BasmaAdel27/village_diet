@@ -91,7 +91,11 @@ $id=$row->id;
      */
     public function edit($id)
     {
-        //
+        $role=Role::find($id);
+        $rolePermissions = $role->permissions;
+        $permissions = Permission::get();
+
+        return view('admin.permissions.edit',compact(['role','rolePermissions','permissions']));
     }
 
     /**
@@ -103,7 +107,25 @@ $id=$row->id;
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+              'role_name' => 'required|',
+              'permission' => 'required',
+        ]);
+
+        $role=Role::find($id);
+        if ($role->name != $request->role_name) {
+            $this->validate($request,[
+                  'role_name' => 'unique:roles,name',
+            ]);
+        }
+            $role->update([
+                  'name' => $request->role_name,
+            ]);
+            $role->syncPermissions($request->input('permission'));
+
+        return redirect()->route('admin.roles.index')->with('success', 'Role updated successfully');
+
+
     }
 
     /**
@@ -114,7 +136,7 @@ $id=$row->id;
      */
     public function destroy($id)
     {
-        DB::table("roles")->where('id', $id)->delete();
+        Role::find($id)->delete();
 
         return redirect()->route('admin.roles.index')->with('success', 'Role deleted successfully');
     }
