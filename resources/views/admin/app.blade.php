@@ -17,6 +17,9 @@
     </div>
   </div>
   @include('admin.layout.scripts')
+  @include('admin.layout.flash.errors')
+  @include('admin.layout.flash.success')
+  @include('admin.layout.helpers.delete_script')
 </body>
 
 </html>

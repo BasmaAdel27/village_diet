@@ -20,5 +20,9 @@
   "trainer": "Trainer",
   "select": "Select",
   "roles": "Roles",
-  "permissions": "Permissions"
+  "permissions": "Permissions",
+  "Are you sure?": "Are you sure?",
+  "You wont be able to revert this!": "You won't be able to revert this!",
+  "Yes, delete it!": "Yes, delete it!",
+  "Deleted!": "Deleted!', 'Your file has been deleted."
 }

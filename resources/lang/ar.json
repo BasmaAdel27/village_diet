@@ -24,5 +24,9 @@
   "success": "تمت العملية بنجاح",
   "created_successfully": "تم الإنشاء بنجاح",
   "updated_successfully": "تم التعديل بنجاح",
-  "deleted_successfully": "تم الحذف بنجاح"
+  "deleted_successfully": "تم الحذف بنجاح",
+  "Are you sure?": "هل متأكد ؟",
+  "You wont be able to revert this!": "لا يمكنك استرجاع ذلك !",
+  "Yes, delete it!": "! نعم ، حذف ",
+  "Deleted!": "تم الحذف بنجاح ."
 }
