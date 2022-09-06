@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Traits\HasAssetsTrait;
+use App\Traits\HasTimestampTrait;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -12,7 +13,7 @@ use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, HasRoles, HasAssetsTrait;
+    use HasApiTokens, HasFactory, Notifiable, HasRoles, HasAssetsTrait, HasTimestampTrait;
 
     public $assets = ['image'];
     /**
@@ -48,6 +49,11 @@ class User extends Authenticatable
     public function isSuperAdmin(): bool
     {
         return $this->hasRole('admin') && $this->email == config('permission.admin_user_name');
+    }
+
+    public function isAdmin(): bool
+    {
+        return $this->hasRole('admin');
     }
 
     public static function boot()
