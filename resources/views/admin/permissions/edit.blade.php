@@ -1,33 +1,30 @@
 @extends('admin.app')
 @section('content')
-<div class="col-10 grid-margin">
-  <div class="card">
-    <div class="card-body">
-      <h4 class="card-title">Create Role</h4>
+  <div class="container">
+    <div class="card mt-5">
+      <div class="card-header d-flex justify-content-between">
+        <h2 class="mb-4">@lang('roles')</h2>
+        <a href="{{ route('admin.roles.index') }}" class="btn btn-outline-dark btn-lg font-weight-bold">@lang('back')</a>
+      </div>
       <form class="form-sample" method="POST" action="{{route('admin.roles.update',$role->id)}}">
         {{ csrf_field() }}
         @method('PUT')
 
-        <div class="row">
-          <div class="col-md-5">
-            <div class="form-group row">
-              <label class="col-sm-3 col-form-label">Role Name</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" name="role_name" value="{{$role->name}}" />
+        <div class="row mt-5 ">
+          <label class="col-2 col-form-label ml-2">@lang('role')</label>
+                <input type="text" class="form-control col-6 mb-3" name="role_name" value="{{$role->name}}" />
                 @include('admin.layout.error', ['input' => 'role_name'])
-
-              </div>
-            </div>
-          </div>
         </div>
-        @include('admin.layout.error', ['input' => 'permission'])
-
-        <select class="js-example-basic-multiple col-12" name="permission[]" multiple="multiple">
+        <div class="row">
+          <label class="col-2 col-form-label ml-2">@lang('permissions')</label>
+        <select class="js-example-basic-multiple col-6" name="permission[]" multiple="multiple">
          @foreach($permissions as $permission)
           <option value="{{$permission->id}}"  @foreach($rolePermissions as $rolePermission) @if($permission->id == $rolePermission->id) selected=selected @endif @endforeach>{{$permission->name}}</option>
           @endforeach
         </select>
-        <input class="btn btn-success mt-3" type="submit" name="submit" value="submit">
+          @include('admin.layout.error', ['input' => 'permission'])
+        </div>
+          <input class="btn btn-success mt-3 ml-2" type="submit" name="submit" value="@lang('submit')">
       </form>
     </div>
   </div>

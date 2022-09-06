@@ -34,7 +34,7 @@ class RoleController extends Controller
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
                     $id=$row->id;
-                    return view('admin.admins.datatable.action',compact('id'));
+                    return view('admin.permissions.datatable.action',compact('id'));
                 })
                 ->rawColumns(['action'])
                 ->make(true);
@@ -60,7 +60,7 @@ class RoleController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'role_name' => 'required|unique:roles,name',
+            'role_name' => 'required|string|unique:roles,name',
             'permission' => 'required',
 
         ]);
@@ -107,7 +107,7 @@ class RoleController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-              'role_name' => 'required|',
+              'role_name' => 'required|string',
               'permission' => 'required',
         ]);
 

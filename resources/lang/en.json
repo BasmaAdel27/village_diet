@@ -6,5 +6,19 @@
   "created_at": "Created At",
   "updated_at": "Updated At",
   "action": "Actions",
-  "role": "Role"
+  "role": "Role",
+  "edit": "Edit",
+  "delete": "Delete",
+  "add": "Add",
+  "back": "Back",
+  "admins": "Admins",
+  "name": "Name",
+  "password": "Password",
+  "password_confirmation": "Password Confirmation",
+  "submit": "Submit",
+  "admin": "Admin",
+  "trainer": "Trainer",
+  "select": "Select",
+  "roles": "Roles",
+  "permissions": "Permissions"
 }

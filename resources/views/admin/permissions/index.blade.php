@@ -1,14 +1,14 @@
 @extends('admin.app')
 @section('content')
   <div class="container mt-5">
-    <h2 class="mb-4 user">Roles</h2>
-    <a href="{{route('admin.roles.create')}}" class="edit btn btn-success btn-sm ">Add</a>
+    <h2 class="mb-4 user">@lang('roles')</h2>
+    <a href="{{route('admin.roles.create')}}" class="edit btn btn-success btn-sm ">@lang('add')</a>
     <table class="table table-bordered yajra-datatable">
       <thead>
       <tr>
-        <th>No</th>
-        <th>Name</th>
-        <th>Action</th>
+        <th>@lang('#')</th>
+        <th>@lang('name')</th>
+        <th>@lang('action')</th>
       </tr>
       </thead>
       <tbody>

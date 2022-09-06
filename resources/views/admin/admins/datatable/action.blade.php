@@ -1,11 +1,6 @@
-  {{--edit--}}
-  <form method="get" action="{{route('admin.roles.edit',$id)}}" class="role">
-    <input type="submit" value="Edit" class="btn btn-success">
-  </form>
 
-  {{--delete--}}
-  <form method="post" action="{{route('admin.roles.destroy',$id)}}" class="role">
-      @csrf
-      @method('DELETE')
-    <input type="submit" value="Delete" class="btn btn-danger">
-  </form>
+<a href="{{ route('admin.admins.edit',$query->id) }}" class="btn btn-outline-success mr-2 p-2">@lang('edit')</a>
+<button type="submit" class="btn btn-outline-danger mr-2 p-2 " form="DeleteForm">@lang('delete')</button>
+<form action="{{ route('admin.admins.destroy',$query->id) }}" id="DeleteForm" method="POST">@method('delete')
+  @csrf
+</form>
