@@ -5,8 +5,6 @@ namespace App\DataTables\Admin;
 use App\Models\User;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
-use Yajra\DataTables\Html\Editor\Editor;
-use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
 class AdminDatatable extends DataTable
@@ -25,7 +23,7 @@ class AdminDatatable extends DataTable
 
     public function query()
     {
-        return User::select('*')->with('roles')->newQuery();
+        return User::select('*')->whereHas('roles', fn ($q) => $q->whereNotIn('name', ['user', 'trainer']))->newQuery();
     }
 
     public function html()
@@ -33,8 +31,9 @@ class AdminDatatable extends DataTable
         return $this->builder()
             ->columns($this->getColumns())
             ->minifiedAjax()
-            ->dom('Bfrtip')
+            ->dom('lBfrtip')
             ->orderBy(1)
+            ->lengthMenu([7, 10, 25, 50, 75, 100])
             ->buttons(
                 Button::make('create'),
                 Button::make('export'),

@@ -10,11 +10,7 @@
 <script src={{ asset('adminPanel/js/jquery.dataTables.js') }}></script>
 <script src={{ asset('adminPanel/js/dataTables.bootstrap4.js') }}></script>
 <script src={{ asset('adminPanel/js/jquery.cookie.js') }} type="text/javascript"></script>
-<!-- endinject -->
 
-<!-- endinject -->
-<!-- Custom js for this page-->
 <script src={{ asset('adminPanel/js/file-upload.js')}}></script>
-<!-- End custom js for this page-->
-
+<script src="{{ asset('js/sweetalert/sweetalert2.all.min.js') }}"></script>
 @yield('scripts')

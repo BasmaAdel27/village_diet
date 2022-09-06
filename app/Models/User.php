@@ -8,6 +8,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 
@@ -22,8 +23,20 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'first_name',
+        'last_name',
         'email',
+        'user_number',
+        'phone',
+        'date_of_birth',
+        'is_active',
+        'address',
+        'insta_link',
+        'twitter_link',
+        'wrong_attemp_count',
+        'country_id',
+        'state_id',
+        'email_verified_at',
         'password',
     ];
 
@@ -62,5 +75,10 @@ class User extends Authenticatable
         static::saved(function ($model) {
             $model->saveAssets($model, request());
         });
+    }
+
+    public function setPasswordAttribute($value)
+    {
+        return $this->attributes['password'] = Hash::needsRehash($value) ? Hash::make($value) : $value;
     }
 }
