@@ -43,14 +43,7 @@ class CreateRoutePermissionsCommand extends Command
          * @var array
          */
         $publicRoutes = [
-            'login',
-            'logout',
-            'register',
-            'password.request',
-            'password.email',
-            'password.reset',
-            'password.update',
-            'password.confirm',
+
             'admin.'
         ];
 
