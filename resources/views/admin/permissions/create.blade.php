@@ -9,22 +9,23 @@
       <form class="form-sample" method="POST" action="/en/admin/roles">
         {{ csrf_field() }}
 
-        <div class="row mt-5">
+        <div class="row mt-5  mb-4">
               <label class="col-2 col-form-label ml-2">@lang('role')</label>
-                <input type="text" class="form-control mb-3 col-6" name="role_name" />
-                @include('admin.layout.error', ['input' => 'role_name'])
+            <input type="text" class="form-control col-6" name="role_name" />
+            @include('admin.layout.error', ['input' => 'role_name'])
 
-        </div>
+          </div>
         <div class="row">
-        <label class="col-2 col-form-label ml-2">@lang('permissions')</label>
-        <select class="js-example-basic-multiple col-6" name="permission[]" multiple="multiple">
+              <label class="col-2 col-form-label ml-2">@lang('permissions')</label>
+          <select class="js-example-basic-multiple col-6" name="permission[]" multiple="multiple">
           @foreach($permissions as $permission)
           <option value="{{$permission->id}}">{{$permission->name}}</option>
           @endforeach
         </select>
-          @include('admin.layout.error', ['input' => 'permission'])
-        </div>
+            @include('admin.layout.error', ['input' => 'permission'])
+          </div>
         <input class="btn btn-success mt-3 ml-2" type="submit" name="submit" value="@lang('submit')">
+
       </form>
     </div>
   </div>

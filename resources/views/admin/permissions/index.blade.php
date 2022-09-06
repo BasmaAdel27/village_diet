@@ -3,6 +3,7 @@
   <div class="container mt-5">
     <h2 class="mb-4 user">@lang('roles')</h2>
     <a href="{{route('admin.roles.create')}}" class="edit btn btn-success btn-sm ">@lang('add')</a>
+
     <table class="table table-bordered yajra-datatable">
       <thead>
       <tr>

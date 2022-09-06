@@ -24,7 +24,7 @@
         </select>
           @include('admin.layout.error', ['input' => 'permission'])
         </div>
-          <input class="btn btn-success mt-3 ml-2" type="submit" name="submit" value="@lang('submit')">
+          <input class="btn btn-success mt-3 ml-2 mb-4" type="submit" name="submit" value="@lang('submit')">
       </form>
     </div>
   </div>
