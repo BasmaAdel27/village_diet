@@ -29,14 +29,11 @@ class RoleController extends Controller
         if ($request->ajax()) {
             $data = DB::table('roles')->whereNotIn('name', ['admin', 'trainer', 'user'])->get();
 
-            // TODO: make this action in view
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
-                    $actionBtn = "<a href=" . route('admin.roles.show', $row->id) . " class='show btn btn-info btn-sm mr-1'>
-                    Show</a><a href='" . route('admin.roles.edit', $row->id) . "' class='edit btn btn-success btn-sm mr-1'>
-                    Edit</a><a href='#' class='delete btn btn-danger btn-sm'>Delete</a>";
-                    return $actionBtn;
+                    $id=$row->id;
+                    return view('admin.admins.datatable.action',compact('id'));
                 })
                 ->rawColumns(['action'])
                 ->make(true);
