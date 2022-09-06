@@ -28,12 +28,13 @@ class RoleController extends Controller
 
         if ($request->ajax()) {
             $data = DB::table('roles')->where([['name','!=','admin'],['name','!=','user'],['name','!=','trainer']])->get();
-//                        dd($data);
             return DataTables::of($data)
                   ->addIndexColumn()
                   ->addColumn('action', function($row){
-                      $value=$row;
-                      $actionBtn = "<a href='/en/admin/users/1/edit' class='show btn btn-info btn-sm mr-1'>Show</a><a href='#' class='edit btn btn-success btn-sm mr-1'>Edit</a><a href='#' class='delete btn btn-danger btn-sm'>Delete</a>";
+
+                      $actionBtn = "<a href='/en/admin/users/1/edit' class='show btn btn-info btn-sm mr-1'>Show</a>
+                                   <a href='#' class='edit btn btn-success btn-sm mr-1'>Edit</a>
+                                   <a href='#' class='delete btn btn-danger btn-sm'>Delete</a>";
                       return $actionBtn;
                   })
                   ->rawColumns(['action'])
