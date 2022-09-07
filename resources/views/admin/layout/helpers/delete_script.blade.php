@@ -1,8 +1,7 @@
 <script>
-  function DeleteElement() {
+  function DeleteElement(elem) {
   event.preventDefault();
-  let form = event.target.form;
-
+  let form = $(elem).next('form');
   Swal.fire({
     title: "@lang('Are you sure?')",
     text: "@lang('You wont be able to revert this!')",
