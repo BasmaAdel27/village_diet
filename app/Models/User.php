@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Society\Society;
 use App\Traits\HasAssetsTrait;
 use App\Traits\HasTimestampTrait;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -80,5 +81,10 @@ class User extends Authenticatable
     public function setPasswordAttribute($value)
     {
         return $this->attributes['password'] = Hash::needsRehash($value) ? Hash::make($value) : $value;
+    }
+
+    public function societies()
+    {
+        return $this->belongsToMany(Society::class, 'user_societies');
     }
 }

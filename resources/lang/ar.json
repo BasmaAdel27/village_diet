@@ -28,5 +28,16 @@
   "Are you sure?": "هل متأكد ؟",
   "You wont be able to revert this!": "لا يمكنك استرجاع ذلك !",
   "Yes, delete it!": "! نعم ، حذف ",
-  "Deleted!": "تم الحذف بنجاح ."
+  "Deleted!": "تم الحذف بنجاح .",
+  "society_name": "اسم المجتمع",
+  "users_count": "عدد المستخدمين",
+  "trainer_name": "اسم المدرب",
+  "status": "الحالة",
+  "societies": "المجتمعات",
+  "name_ar": "الاسم  بالعربي",
+  "name_en": "الاسم  بالانجليزي",
+  "users": "المستخدمين",
+  "active": "مفعل",
+  "inactive": "غير مفعل",
+  "messages": "الرسائل"
 }

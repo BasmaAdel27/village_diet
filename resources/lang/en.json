@@ -24,5 +24,16 @@
   "Are you sure?": "Are you sure?",
   "You wont be able to revert this!": "You won't be able to revert this!",
   "Yes, delete it!": "Yes, delete it!",
-  "Deleted!": "Deleted!', 'Your file has been deleted."
+  "Deleted!": "Deleted!', 'Your file has been deleted.",
+  "society_name": "Society Name",
+  "users_count": "Users Count",
+  "trainer_name": "Trainer Name",
+  "status": "Status",
+  "societies": "Societies",
+  "name_en": "Name in English",
+  "name_ar": "Name in Arabic",
+  "users": " Users",
+  "active": "Active",
+  "inactive": "In Active",
+  "messages": "Messages"
 }

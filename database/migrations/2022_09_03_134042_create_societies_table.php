@@ -13,7 +13,7 @@ class CreateSocietiesTable extends Migration
             $table->boolean('is_active')->default(true);
             $table->timestamp('date_from')->nullable();
 
-            $table->foreignId('trainer_id')->nullable()->constrained('trainers')->nullOnDelete();
+            $table->foreignId('trainer_id')->nullable()->constrained('users')->nullOnDelete();
             $table->timestamps();
         });
 
