@@ -19,7 +19,7 @@
   "admin": "أدمن",
   "trainer": "مدرب",
   "select": "اختر",
-  "roles" : "الوظائف",
+  "roles": "الوظائف",
   "permissions": "الصلاحيات",
   "success": "تمت العملية بنجاح",
   "created_successfully": "تم الإنشاء بنجاح",
@@ -36,8 +36,16 @@
   "societies": "المجتمعات",
   "name_ar": "الاسم  بالعربي",
   "name_en": "الاسم  بالانجليزي",
+  "description_ar": "الوصف  بالعربي",
+  "description_en": "الوصف  بالانجليزي",
   "users": "المستخدمين",
   "active": "مفعل",
   "inactive": "غير مفعل",
-  "messages": "الرسائل"
+  "messages": "الرسائل",
+  "link": "رابط الانتقال",
+  "is_show_is_app": "عرض في التطبيق",
+  "description": "الوصف",
+  "sliders": "السلايدر",
+  "title": "العنوان",
+  "select_image": "اختر صورة"
 }

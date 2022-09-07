@@ -15,7 +15,11 @@ class Slider extends Model implements TranslatableContract
     use HasFactory, HasAssetsTrait, HasTimestampTrait, Translatable;
 
     public $translatedAttributes = ['title', 'description'];
-    protected $guarded = [];
+    protected $fillable = [
+        'is_active',
+        'link',
+        'is_show_is_app',
+    ];
     public $assets = ['image'];
 
     public static function boot()

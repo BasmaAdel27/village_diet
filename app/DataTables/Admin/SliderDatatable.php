@@ -2,12 +2,12 @@
 
 namespace App\DataTables\Admin;
 
-use App\Models\Society\Society;
+use App\Models\Slider\Slider;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Services\DataTable;
 
-class SocietyDatatable extends DataTable
+class SliderDatatable extends DataTable
 {
 
     public function dataTable($query)
@@ -15,27 +15,28 @@ class SocietyDatatable extends DataTable
         return datatables()
             ->eloquent($query)
             ->editColumn('Action', function ($query) {
-
-                return view('admin.society.datatable.action', compact('query'));
-            })
-            ->editColumn('users_count', function ($query) {
-                return  $query->users()->count();
-            })
-            ->editColumn('trainer.first_name', function ($query) {
-                return  $query->trainer?->first_name . ' ' .  $query->trainer?->user?->second_name;
+                return view('admin.sliders.datatable.action', compact('query'));
             })
             ->editColumn('is_active', function ($query) {
                 return ($query->is_active == 1) ?  '<span class="btn btn-success">' . trans('active') . "</span>" : '<span class="btn btn-danger">' .  trans('inactive') . "</span>";
-            })->editColumn('translations.title', function ($query) {
+            })
+            ->editColumn('is_show_is_app', function ($query) {
+                return ($query->is_show_is_app == 1) ?  '<span class="btn btn-success">' . trans('active') . "</span>" : '<span class="btn btn-danger">' .  trans('inactive') . "</span>";
+            })
+            ->editColumn('translations.title', function ($query) {
                 return $query->title;
-            })->rawColumns(['Action', 'is_active']);
+            })
+            ->editColumn('translations.description', function ($query) {
+                return $query->description;
+            })->rawColumns(['is_active', 'is_show_is_app', 'Action']);
     }
 
 
     public function query()
     {
-        return Society::with(['trainer', 'translations'])->withCount('users')->select('*')->newQuery();
+        return Slider::with('translations')->select('*')->newQuery();
     }
+
 
     public function html()
     {
@@ -43,7 +44,7 @@ class SocietyDatatable extends DataTable
             ->columns($this->getColumns())
             ->minifiedAjax()
             ->dom('lBfrtip')
-            ->orderBy(0)
+            ->orderBy(1)
             ->lengthMenu([7, 10, 25, 50, 75, 100])
             ->buttons(
                 Button::make('create'),
@@ -59,10 +60,11 @@ class SocietyDatatable extends DataTable
     {
         return [
             Column::make('id')->title(trans('ID')),
-            Column::make('translations.title')->orderable(true)->title(trans('society_name'))->orderable(false),
-            Column::make('users_count')->orderable(true)->title(trans('users_count'))->orderable(false)->searchable(false),
-            Column::make('trainer.first_name')->orderable(true)->title(trans('trainer_name'))->orderable(false),
             Column::make('is_active')->title(trans('status')),
+            Column::make('link')->title(trans('link')),
+            Column::make('is_show_is_app')->title(trans('is_show_is_app')),
+            Column::make('translations.title')->title(trans('title'))->orderable(false),
+            Column::make('translations.description')->title(trans('description'))->orderable(false),
             Column::make('created_at')->title(trans('created_at')),
             Column::make('Action')->title(trans('action'))->searchable(false)->orderable(false)
         ];
@@ -71,6 +73,6 @@ class SocietyDatatable extends DataTable
 
     protected function filename()
     {
-        return 'Admin/Society_' . date('YmdHis');
+        return 'Admin/Slider_' . date('YmdHis');
     }
 }
