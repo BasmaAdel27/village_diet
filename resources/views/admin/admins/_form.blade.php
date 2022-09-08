@@ -14,6 +14,7 @@
     <input type="text" class="form-control" placeholder="@lang('email')" name="email"
       value="{{ $admin->email ?? old('email')}}">
   </div>
+  @if (!isset($admin))
   <div class="form-group col-6">
     <label>@lang('password')</label>
     <input type="password" class="form-control" placeholder="@lang('password')" name="password">
@@ -23,6 +24,7 @@
     <input type="password" class="form-control" placeholder="@lang('password_confirmation')"
       name="password_confirmation">
   </div>
+  @endif
   <div class="form-group col-12">
     <label>@lang('role')</label>
     <select name="role_id" class="form-control">

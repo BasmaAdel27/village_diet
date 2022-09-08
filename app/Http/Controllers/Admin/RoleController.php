@@ -28,8 +28,8 @@ class RoleController extends Controller
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
-                    $id=$row->id;
-                    return view('admin.permissions.datatable.action',compact('id'));
+                    $id = $row->id;
+                    return view('admin.permissions.datatable.action', compact('id'));
                 })
                 ->rawColumns(['action'])
                 ->make(true);
@@ -39,6 +39,7 @@ class RoleController extends Controller
     public function create()
     {
         $permissions = Permission::all();
+
         return view('admin.permissions.create', compact('permissions'));
     }
 
@@ -53,6 +54,7 @@ class RoleController extends Controller
             'name' => $request->role_name
         ]);
         $role->syncPermissions($request->input('permission'));
+        
         return redirect()->route('admin.roles.index')->with('success', trans('created_successfully'));
     }
 
@@ -63,34 +65,32 @@ class RoleController extends Controller
 
     public function edit($id)
     {
-        $role=Role::find($id);
-        $rolePermissions = $role->permissions;
+        $role = Role::find($id);
+        $rolePermissions = $role->permissions()->pluck('permission_id')->toArray();
         $permissions = Permission::get();
 
-        return view('admin.permissions.edit',compact(['role','rolePermissions','permissions']));
+        return view('admin.permissions.edit', compact(['role', 'rolePermissions', 'permissions']));
     }
 
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-              'role_name' => 'required|string',
-              'permission' => 'required',
+            'role_name' => 'required|string',
+            'permission' => 'required',
         ]);
 
-        $role=Role::find($id);
+        $role = Role::find($id);
         if ($role->name != $request->role_name) {
-            $this->validate($request,[
-                  'role_name' => 'unique:roles,name',
+            $this->validate($request, [
+                'role_name' => 'unique:roles,name',
             ]);
         }
-            $role->update([
-                  'name' => $request->role_name,
-            ]);
-            $role->syncPermissions($request->input('permission'));
+        $role->update([
+            'name' => $request->role_name,
+        ]);
+        $role->syncPermissions($request->input('permission'));
 
-        return redirect()->route('admin.roles.index')->with('success',trans('updated_successfully'));
-
-
+        return redirect()->route('admin.roles.index')->with('success', trans('updated_successfully'));
     }
 
     public function destroy($id)

@@ -6,7 +6,6 @@ use App\DataTables\Admin\AdminDatatable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\AdminRequest;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 
 class AdminController extends Controller
@@ -24,11 +23,11 @@ class AdminController extends Controller
     }
 
 
-    public function store(AdminRequest $request, User $user)
+    public function store(AdminRequest $request, User $admin)
     {
         $data = $request->validated();
-        $user->fill($data)->save();
-        $user->assignRole('admin');
+        $admin->fill($data)->save();
+        $admin->assignRole(Role::findById($data['role_id']));
 
         return redirect()->route('admin.admins.index')->with('success', trans('created_successfully'));
     }
@@ -40,10 +39,11 @@ class AdminController extends Controller
         return view('admin.admins.edit', compact('admin', 'roles'));
     }
 
-    public function update(Request $request, User $admin)
+    public function update(AdminRequest $request, User $admin)
     {
         $data = $request->validated();
         $admin->fill($data)->save();
+        $admin->assignRole(Role::findById($data['role_id']));
 
         return redirect()->route('admin.admins.index')->with('success', trans('updated_successfully'));
     }

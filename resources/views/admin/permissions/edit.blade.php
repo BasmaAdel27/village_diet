@@ -15,7 +15,7 @@
         <label class="col-2 col-form-label ml-2">@lang('permissions')</label>
         <select class="js-example-basic-multiple col-6" name="permission[]" multiple="multiple">
           @foreach($permissions as $permission)
-          <option value="{{$permission->id}}" {{ in_array($permission->id,$rolePermission) ? 'selected' : '' }}>
+          <option value="{{$permission->id}}" {{ in_array($permission->id,$rolePermissions) ? 'selected' : '' }}>
             {{$permission->name}}
           </option>
           @endforeach
