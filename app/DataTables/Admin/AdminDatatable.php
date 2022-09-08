@@ -23,7 +23,7 @@ class AdminDatatable extends DataTable
 
     public function query()
     {
-        return User::select('*')->whereHas('roles', fn ($q) => $q->whereNotIn('name', ['user', 'trainer']))->newQuery();
+        return User::select('users.*')->whereHas('roles', fn ($q) => $q->whereNotIn('name', ['user', 'trainer']))->newQuery();
     }
 
     public function html()
