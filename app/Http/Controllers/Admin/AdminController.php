@@ -10,6 +10,14 @@ use Spatie\Permission\Models\Role;
 
 class AdminController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:admin.admins.index')->only(['index']);
+        $this->middleware('permission:admin.admins.store')->only(['store']);
+        $this->middleware('permission:admin.admins.update')->only(['update']);
+        $this->middleware('permission:admin.admins.destroy')->only(['destroy']);
+    }
+
     public function index(AdminDatatable $adminDatatable)
     {
         return $adminDatatable->render('admin.admins.index');

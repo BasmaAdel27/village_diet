@@ -3,8 +3,11 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Schema;
 use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class CreateRoutePermissionsCommand extends Command
 {
@@ -54,6 +57,8 @@ class CreateRoutePermissionsCommand extends Command
             'admin.'
         ];
 
+        $this->truncateTables();
+
         foreach (Route::getRoutes() as $route) {
             if (
                 $route->getName() != ''
@@ -66,7 +71,28 @@ class CreateRoutePermissionsCommand extends Command
                 permission::create(['name' => $route->getName()]);
             }
         }
+        $this->createRolePermissions();
 
         $this->info('Permission routes added successfully.');
+    }
+
+    private static function createRolePermissions()
+    {
+        $adminPermissionIds = Permission::where('name', 'like', 'admin.%')->orWhere('name', 'home')->pluck('id');
+        $trainerPermissionIds = Permission::where('name', 'like', 'trainer.%')->orWhere('name', 'home')->pluck('id');
+
+        Role::create(['name' => 'admin'])->permissions()->sync($adminPermissionIds);
+        Role::create(['name' => 'trainer'])->permissions()->sync($trainerPermissionIds);
+    }
+
+    private function truncateTables()
+    {
+        Schema::disableForeignKeyConstraints();
+        DB::table('user_has_roles')->truncate();
+        DB::table('user_has_permissions')->truncate();
+        DB::table('role_has_permissions')->truncate();
+        Permission::truncate();
+        Role::truncate();
+        Schema::enableForeignKeyConstraints();
     }
 }

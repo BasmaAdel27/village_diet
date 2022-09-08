@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Video\video;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Permission;
@@ -12,6 +11,14 @@ use Yajra\DataTables\DataTables;
 
 class RoleController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:admin.roles.index')->only(['index']);
+        $this->middleware('permission:admin.roles.store')->only(['store']);
+        $this->middleware('permission:admin.roles.update')->only(['update']);
+        $this->middleware('permission:admin.roles.destroy')->only(['destroy']);
+    }
+
     public function index()
     {
         return view('admin.permissions.index');
@@ -54,7 +61,7 @@ class RoleController extends Controller
             'name' => $request->role_name
         ]);
         $role->syncPermissions($request->input('permission'));
-        
+
         return redirect()->route('admin.roles.index')->with('success', trans('created_successfully'));
     }
 
