@@ -13,7 +13,11 @@
     @include('admin.layout.navbar')
     <div class="container-fluid page-body-wrapper">
       @include('admin.layout.sidebar')
-      @yield('content')
+      <div class="main-panel">
+        <div class="content-wrapper">
+          @yield('content')
+        </div>
+      </div>
     </div>
   </div>
   @include('admin.layout.scripts')

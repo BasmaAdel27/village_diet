@@ -14,7 +14,10 @@ class HomeController extends Controller
     public function index()
     {
         $user = auth()->user();
-        if ($user->isSuperAdmin() || $user->isAdmin()) {
+        if ($user->isSuperAdmin() || empty(array_intersect(
+            $user->roles()->pluck('name')->toArray(),
+            ['user', 'trainer']
+        ))) {
             return redirect()->route('admin.dashboard');
         }
     }

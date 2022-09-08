@@ -1,29 +1,35 @@
 @extends('admin.app')
 @section('content')
-  <div class="container mt-5">
-    <h2 class="mb-4 user">Users</h2>
-    <a href='{{route('admin.users.create')}}' class="edit btn btn-success btn-sm">Add User</a>
+
+<div class="card mt-5">
+  <div class="card-header d-flex justify-content-between">
+    <h2 class="mb-4">@lang('users')</h2>
+    <a href="{{ route('admin.users.create') }}" class="btn btn-outline-primary btn-lg font-weight-bold">@lang('add')</a>
+  </div>
+
+  <div class="card-body table-responsive">
     <table class="table table-bordered yajra-datatable">
       <thead>
-      <tr>
-        <th>No</th>
-        <th>first name</th>
-        <th>last name</th>
-        <th>email</th>
-        <th>Phone</th>
-        <th>date_of_birth</th>
-        <th>Action</th>
-      </tr>
+        <tr>
+          <th>No</th>
+          <th>first name</th>
+          <th>last name</th>
+          <th>email</th>
+          <th>Phone</th>
+          <th>date_of_birth</th>
+          <th>Action</th>
+        </tr>
       </thead>
       <tbody>
       </tbody>
     </table>
   </div>
+</div>
+
 @endsection
 @section('scripts')
 <script type="text/javascript">
   $(function () {
-
     var table = $('.yajra-datatable').DataTable({
       processing: true,
       serverSide: true,
