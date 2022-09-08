@@ -34,7 +34,7 @@ class SliderDatatable extends DataTable
 
     public function query()
     {
-        return Slider::with('translations')->select('*')->newQuery();
+        return Slider::with('translations')->select('sliders.*')->newQuery();
     }
 
 

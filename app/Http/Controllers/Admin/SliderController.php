@@ -10,6 +10,14 @@ use Illuminate\Http\Request;
 
 class SliderController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:admin.sliders.index')->only(['index']);
+        $this->middleware('permission:admin.sliders.store')->only(['store']);
+        $this->middleware('permission:admin.sliders.update')->only(['update']);
+        $this->middleware('permission:admin.sliders.destroy')->only(['destroy']);
+    }
+
     public function index(SliderDatatable $sliderDatatable)
     {
         return $sliderDatatable->render('admin.sliders.index');

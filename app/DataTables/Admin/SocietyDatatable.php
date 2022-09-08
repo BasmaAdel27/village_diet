@@ -34,7 +34,7 @@ class SocietyDatatable extends DataTable
 
     public function query()
     {
-        return Society::with(['trainer', 'translations'])->withCount('users')->select('*')->newQuery();
+        return Society::with(['trainer', 'translations'])->withCount('users')->select('societies.*')->newQuery();
     }
 
     public function html()

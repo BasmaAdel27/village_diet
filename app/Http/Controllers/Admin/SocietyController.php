@@ -10,6 +10,14 @@ use App\Models\User;
 
 class SocietyController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:admin.societies.index')->only(['index']);
+        $this->middleware('permission:admin.societies.store')->only(['store']);
+        $this->middleware('permission:admin.societies.update')->only(['update']);
+        $this->middleware('permission:admin.societies.destroy')->only(['destroy']);
+    }
+
     public function index(SocietyDatatable $societyDatatable)
     {
         return  $societyDatatable->render('admin.society.index');

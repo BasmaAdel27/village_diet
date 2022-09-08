@@ -121,7 +121,6 @@ class CreatePermissionTables extends Migration
             ->store(config('permission.cache.store') != 'default' ? config('permission.cache.store') : null)
             ->forget(config('permission.cache.key'));
 
-        self::createRolePermissions();
     }
 
     /**
@@ -142,24 +141,5 @@ class CreatePermissionTables extends Migration
         Schema::drop($tableNames['model_has_permissions']);
         Schema::drop($tableNames['roles']);
         Schema::drop($tableNames['permissions']);
-    }
-
-    private static function createRolePermissions()
-    {
-        app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
-
-        $rolesPermissions = config('permissions');
-
-        foreach ($rolesPermissions as $role => $permissions) {
-            $role = Role::create(['name' => $role]);
-            foreach ($permissions as $permission) {
-                $permissionId = Permission::firstOrCreate(['name' => $permission])->id;
-
-                DB::table('role_has_permissions')->insert([
-                    'permission_id' => $permissionId,
-                    'role_id' => $role->id
-                ]);
-            }
-        }
     }
 }

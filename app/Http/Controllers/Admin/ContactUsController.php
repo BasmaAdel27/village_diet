@@ -8,6 +8,13 @@ use App\Models\ContactUs;
 
 class ContactUsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:admin.contactUs.index')->only(['index']);
+        $this->middleware('permission:admin.contactUs.show')->only(['show']);
+        $this->middleware('permission:admin.contactUs.destroy')->only(['destroy']);
+    }
+
     public function index(ContactUsDatatable $contactUsDatatable)
     {
         return $contactUsDatatable->render('admin.contact_us.index');
