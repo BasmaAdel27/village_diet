@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\ContactUs;
 use App\Models\User;
 use Carbon\Carbon;
 use Faker\Factory;
@@ -23,5 +24,6 @@ class DatabaseSeeder extends Seeder
         ])->assignRole('admin');
 
         User::factory(100)->create();
+        ContactUs::factory(50)->create();
     }
 }

@@ -13,7 +13,6 @@
         <div class="row mt-5 ">
           <label class="col-2 col-form-label ml-2">@lang('role')</label>
                 <input type="text" class="form-control col-6 mb-3" name="role_name" value="{{$role->name}}" />
-                @include('admin.layout.error', ['input' => 'role_name'])
         </div>
         <div class="row">
           <label class="col-2 col-form-label ml-2">@lang('permissions')</label>
@@ -22,7 +21,6 @@
           <option value="{{$permission->id}}"  @foreach($rolePermissions as $rolePermission) @if($permission->id == $rolePermission->id) selected=selected @endif @endforeach>{{$permission->name}}</option>
           @endforeach
         </select>
-          @include('admin.layout.error', ['input' => 'permission'])
         </div>
           <input class="btn btn-success mt-3 ml-2 mb-4" type="submit" name="submit" value="@lang('submit')">
       </form>

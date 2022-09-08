@@ -4,8 +4,9 @@
 </form>
 
 {{--delete--}}
-<form method="post" action="{{route('admin.roles.destroy',$id)}}" class="role">
+<button type="submit" class="btn btn-danger" form="DeleteForm"
+        onclick="DeleteElement()">@lang('delete')</button>
+<form action="{{ route('admin.roles.destroy',$id) }}" id="DeleteForm" method="POST">@method('delete')
   @csrf
-  @method('DELETE')
-  <input type="submit" value="@lang('delete')" class="btn btn-danger">
+</form>
 </form>

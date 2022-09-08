@@ -12,7 +12,6 @@
         <div class="row mt-5  mb-4">
               <label class="col-2 col-form-label ml-2">@lang('role')</label>
             <input type="text" class="form-control col-6" name="role_name" />
-            @include('admin.layout.error', ['input' => 'role_name'])
 
           </div>
         <div class="row">
@@ -22,7 +21,6 @@
           <option value="{{$permission->id}}">{{$permission->name}}</option>
           @endforeach
         </select>
-            @include('admin.layout.error', ['input' => 'permission'])
           </div>
         <input class="btn btn-success mt-3 ml-2" type="submit" name="submit" value="@lang('submit')">
 
