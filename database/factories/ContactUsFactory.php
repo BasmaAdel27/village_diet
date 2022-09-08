@@ -14,12 +14,11 @@ class ContactUsFactory extends Factory
     public function definition()
     {
         return [
-                   'fullname' => $this->faker->name(),
-                   'eamil' => $this->faker->safeEmail(),
-                    'content'=>$this->faker->text(100),
-                    'phone'=>$this->faker->phoneNumber(),
-                    'whatsapp_phone'=>$this->faker->phoneNumber(),
-
+            'fullname' => $this->faker->name(),
+            'eamil' => $this->faker->safeEmail(),
+            'content' => $this->faker->text(100),
+            'phone' => $this->faker->phoneNumber(),
+            'whatsapp_phone' => $this->faker->phoneNumber(),
         ];
     }
 }

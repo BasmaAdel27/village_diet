@@ -4,11 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\ContactUs;
 use App\Models\User;
-use Carbon\Carbon;
-use Faker\Factory;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {

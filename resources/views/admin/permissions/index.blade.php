@@ -32,8 +32,8 @@
           {
             data: 'action',
             name: 'action',
-            orderable: true,
-            searchable: true
+            orderable: false,
+            searchable: false
           },
         ]
       });
