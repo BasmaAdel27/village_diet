@@ -1,25 +1,28 @@
 @extends('admin.app')
 @section('content')
-  <div class="container mt-5">
+<div class="card mt-5">
+  <div class="card-header d-flex justify-content-between">
     <h2 class="mb-4 user">@lang('roles')</h2>
     <a href="{{route('admin.roles.create')}}" class="edit btn btn-success btn-sm ">@lang('add')</a>
-
+  </div>
+  <div class="card-body table-responsive">
     <table class="table table-bordered yajra-datatable">
       <thead>
-      <tr>
-        <th>@lang('#')</th>
-        <th>@lang('name')</th>
-        <th>@lang('action')</th>
-      </tr>
+        <tr>
+          <th>@lang('#')</th>
+          <th>@lang('name')</th>
+          <th>@lang('action')</th>
+        </tr>
       </thead>
       <tbody>
       </tbody>
     </table>
   </div>
+</div>
 @endsection
 @section('scripts')
-  <script type="text/javascript">
-    $(function () {
+<script type="text/javascript">
+  $(function () {
 
       var table = $('.yajra-datatable').DataTable({
         processing: true,
@@ -40,5 +43,5 @@
 
     });
 
-  </script>
+</script>
 @endsection
