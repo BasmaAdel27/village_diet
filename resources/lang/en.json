@@ -47,9 +47,11 @@
   "inactive": "In Active",
   "messages": "Messages",
   "link": "Link",
-  "is_show_is_app": "Show in app",
+  "is_show_in_app": "Show in app",
   "description": "Description",
   "slider": "Sliders",
   "title": "Title",
-  "select_image": "Select Image"
+  "select_image": "Select Image",
+  "image": "Image",
+  "static_pages": "Static Pages"
 }

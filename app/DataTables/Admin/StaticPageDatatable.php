@@ -2,20 +2,19 @@
 
 namespace App\DataTables\Admin;
 
-use App\Models\Slider\Slider;
+use App\Models\StaticPage\StaticPage;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Services\DataTable;
 
-class SliderDatatable extends DataTable
+class StaticPageDatatable extends DataTable
 {
-
     public function dataTable($query)
     {
         return datatables()
             ->eloquent($query)
             ->editColumn('Action', function ($query) {
-                return view('admin.sliders.datatable.action', compact('query'));
+                return view('admin.static_pages.datatable.action', compact('query'));
             })
             ->editColumn('is_active', function ($query) {
                 return ($query->is_active == 1) ?  '<span class="btn btn-success">' . trans('active') . "</span>" : '<span class="btn btn-danger">' .  trans('inactive') . "</span>";
@@ -23,18 +22,18 @@ class SliderDatatable extends DataTable
             ->editColumn('is_show_in_app', function ($query) {
                 return ($query->is_show_in_app == 1) ?  '<span class="btn btn-success">' . trans('active') . "</span>" : '<span class="btn btn-danger">' .  trans('inactive') . "</span>";
             })
+            ->editColumn('images.image', function ($query) {
+                return "<img src='" . asset($query->images()->first()->media) . "' width=200>";
+            })
             ->editColumn('translations.title', function ($query) {
                 return $query->title;
             })
-            ->editColumn('translations.description', function ($query) {
-                return $query->description;
-            })->rawColumns(['is_active', 'is_show_in_app', 'Action']);
+            ->rawColumns(['is_active', 'is_show_in_app', 'Action', 'images.image']);
     }
-
 
     public function query()
     {
-        return Slider::with('translations')->select('sliders.*')->newQuery();
+        return StaticPage::select('static_pages.*')->with(['translations', 'images'])->newQuery();
     }
 
 
@@ -55,16 +54,14 @@ class SliderDatatable extends DataTable
             );
     }
 
-
     protected function getColumns()
     {
         return [
             Column::make('id')->title(trans('ID')),
             Column::make('is_active')->title(trans('status')),
-            Column::make('link')->title(trans('link')),
             Column::make('is_show_in_app')->title(trans('is_show_in_app')),
+            Column::make('images.image')->title(trans('image'))->orderable(false)->searchable(false),
             Column::make('translations.title')->title(trans('title'))->orderable(false),
-            Column::make('translations.description')->title(trans('description'))->orderable(false),
             Column::make('created_at')->title(trans('created_at')),
             Column::make('Action')->title(trans('action'))->searchable(false)->orderable(false)
         ];
@@ -73,6 +70,6 @@ class SliderDatatable extends DataTable
 
     protected function filename()
     {
-        return 'Admin/Slider_' . date('YmdHis');
+        return 'Admin/StaticPage_' . date('YmdHis');
     }
 }

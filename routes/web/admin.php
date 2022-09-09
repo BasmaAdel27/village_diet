@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\ContactUsController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\SocietyController;
+use App\Http\Controllers\Admin\StaticPageController;
 use Illuminate\Support\Facades\Route;
 
 Route::view('dashboard', 'admin.dashboard')->name('dashboard');
@@ -19,3 +20,4 @@ Route::resource('societies', SocietyController::class)->except('show');
 Route::resource('admins', AdminController::class)->except('show');
 Route::resource('contactUs', ContactUsController::class)->only(['index', 'destroy', 'show']);
 Route::resource('sliders', SliderController::class)->except('show');
+Route::resource('static_pages', StaticPageController::class)->except('show');
