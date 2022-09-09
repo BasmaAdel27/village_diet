@@ -1,5 +1,15 @@
 <?php
 
+if (!function_exists('Setting')) {
+
+    function Setting(string $attr)
+    {
+        if (\Illuminate\Support\Facades\Schema::hasTable('settings')) {
+          return  \App\Models\Setting::select($attr)->value($attr);
+        }
+    }
+}
+
 
 if (!function_exists('successResponse')) {
 
@@ -26,6 +36,9 @@ if (!function_exists('successResponse')) {
 
         return response()->json($json, $status);
     }
+
+
+
 }
 
 if (!function_exists('failedResponse')) {
