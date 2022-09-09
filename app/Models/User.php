@@ -12,10 +12,11 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
+use willvincent\Rateable\Rateable;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, HasRoles, HasAssetsTrait, HasTimestampTrait;
+    use HasApiTokens, HasFactory, Notifiable, HasRoles, HasAssetsTrait, HasTimestampTrait, Rateable;
 
     public $assets = ['image'];
     /**

@@ -72,6 +72,14 @@
       </a>
     </li>
     @endcan
+    @can('admin.ratings.index')
+    <li class="nav-item">
+      <a class="nav-link" href="{{ route('admin.ratings.index') }}">
+        <i class="mdi mdi-star-circle menu-icon"></i>
+        <span class="menu-title">@lang('ratings')</span>
+      </a>
+    </li>
+    @endcan
   </ul>
 </nav>
 
