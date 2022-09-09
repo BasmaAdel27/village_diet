@@ -41,7 +41,7 @@ class SettingRequest extends FormRequest
               'ios_maintenance' => 'required',
               'website_title' => 'required|string|min:5|max:200',
               'website_description' =>'required|string|min:20',
-              'logo' =>'required|image|mimes:png,jpg,jpeg,svg',
+              'logo' =>'nullable|image|mimes:png,jpg,jpeg,svg',
         ];
     }
 }

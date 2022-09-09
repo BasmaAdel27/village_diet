@@ -101,12 +101,12 @@
                 <label class="col-sm-4 col-form-label">@lang('web logo')</label>
 
                 <div class="col-sm-8">
-                  <input type="file" name="logo" class="file-upload-default">
+                  <input type="file" name="logo" class="file-upload-default" value="{{$settings->logo}}" id="image"  >
                   <div class="input-group col-xs-12">
-                    <a href="{{asset('storage/'.$settings->logo)}}" target="_blank"><img src="{{asset('storage/'.$settings->logo)}}" height="100px" width="100px"></a>
-                    <input type="text" class="form-control file-upload-info" value="{{$settings->logo}}" disabled placeholder="Upload Image" style="display: none">
+                    <a href="{{asset('storage/'.$settings->logo)}}" target="_blank"><img src="{{asset('storage/'.$settings->logo)}}" id="preview-image" height="100px" width="100px"></a>
+                    <input type="text" class="form-control file-upload-info"  disabled placeholder="Upload Image" style="display: none">
                     <span class="input-group-append">
-                          <button class="file-upload-browse btn btn-primary" type="button">@lang('upload')</button>
+                          <button class="file-upload-browse btn btn-primary" type="button" >@lang('upload')</button>
                         </span>
                   </div>
                 </div>
@@ -229,4 +229,14 @@
   </div>
   </div>
 @endsection
-
+@section('scripts')
+  <script type="text/javascript">
+    $('#image').change(function(){
+      let reader = new FileReader();
+      reader.onload = (e) => {
+        $('#preview-image').attr('src', e.target.result);
+      }
+      reader.readAsDataURL(this.files[0]);
+    });
+  </script>
+@endsection

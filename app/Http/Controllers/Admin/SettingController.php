@@ -47,14 +47,14 @@ class SettingController extends Controller
     {
         $data=$request->validated();
         $settings=Setting::find($id);
-        $img=$request->file('logo')->getClientOriginalName();
-//        dd($img);
-        $path = $request->file('logo')->storePublicly('settings','public');
-
         $settings->fill($data)->save();
-        $settings->logo=$path;
-        $settings->save();
-         return redirect()->route('admin.settings.index')->with('success',trans('updated_successfully'));
+        if ($request->hasFile('logo')) {
+            $path = $request->file('logo')->storePublicly('settings', 'public');
+            $settings->logo = $path;
+            $settings->save();
+        }
+
+        return redirect()->route('admin.settings.index')->with('success',trans('updated_successfully'));
 
     }
 

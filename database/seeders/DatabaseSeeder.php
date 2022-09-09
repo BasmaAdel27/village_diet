@@ -23,6 +23,6 @@ class DatabaseSeeder extends Seeder
         User::factory(100)->create();
         ContactUs::factory(50)->create();
         $this->call(DaySeeder::class);
-        Setting::factory(1)->create();
+        $this->call(SettingSeeder::class);
     }
 }
