@@ -12,7 +12,7 @@ class CreateSlidersTable extends Migration
             $table->id();
             $table->boolean('is_active')->default(true);
             $table->string('link');
-            $table->boolean('is_show_is_app');
+            $table->boolean('is_show_in_app');
 
             $table->timestamps();
         });

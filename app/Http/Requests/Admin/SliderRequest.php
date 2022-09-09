@@ -16,14 +16,19 @@ class SliderRequest extends FormRequest
         $rules = [
             'is_active' => 'required|in:0,1',
             'link' => 'required|string',
-            'is_show_is_app' => 'required|in:0,1',
-            'image' => 'required|image|max:10000'
+            'is_show_in_app' => 'required|in:0,1',
         ];
 
         foreach (config('translatable.locales') as $locale) {
             $rules["$locale"]       = 'required|array';
-            $rules["$locale.title"] = 'required|string|min:10|max:255';
+            $rules["$locale.title"] = 'required|string|min:5|max:255';
             $rules["$locale.description"] = 'required|string|min:10|max:255';
+        }
+
+        if (!$this->isMethod('PUT')) {
+            $rules['image'] = 'required|image|max:10000';
+        } else {
+            $rules['image'] = 'nullable|image|max:10000';
         }
 
         return $rules;

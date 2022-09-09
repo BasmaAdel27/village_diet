@@ -20,15 +20,15 @@ class SliderDatatable extends DataTable
             ->editColumn('is_active', function ($query) {
                 return ($query->is_active == 1) ?  '<span class="btn btn-success">' . trans('active') . "</span>" : '<span class="btn btn-danger">' .  trans('inactive') . "</span>";
             })
-            ->editColumn('is_show_is_app', function ($query) {
-                return ($query->is_show_is_app == 1) ?  '<span class="btn btn-success">' . trans('active') . "</span>" : '<span class="btn btn-danger">' .  trans('inactive') . "</span>";
+            ->editColumn('is_show_in_app', function ($query) {
+                return ($query->is_show_in_app == 1) ?  '<span class="btn btn-success">' . trans('active') . "</span>" : '<span class="btn btn-danger">' .  trans('inactive') . "</span>";
             })
             ->editColumn('translations.title', function ($query) {
                 return $query->title;
             })
             ->editColumn('translations.description', function ($query) {
                 return $query->description;
-            })->rawColumns(['is_active', 'is_show_is_app', 'Action']);
+            })->rawColumns(['is_active', 'is_show_in_app', 'Action']);
     }
 
 
@@ -62,7 +62,7 @@ class SliderDatatable extends DataTable
             Column::make('id')->title(trans('ID')),
             Column::make('is_active')->title(trans('status')),
             Column::make('link')->title(trans('link')),
-            Column::make('is_show_is_app')->title(trans('is_show_is_app')),
+            Column::make('is_show_in_app')->title(trans('is_show_in_app')),
             Column::make('translations.title')->title(trans('title'))->orderable(false),
             Column::make('translations.description')->title(trans('description'))->orderable(false),
             Column::make('created_at')->title(trans('created_at')),

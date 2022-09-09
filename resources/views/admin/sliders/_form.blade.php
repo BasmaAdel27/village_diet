@@ -3,7 +3,7 @@
   <div class="form-group col-6">
     <label>@lang("name_$locale")</label>
     <input type="text" class="form-control" placeholder='@lang("name_$locale")' name={{ $locale }}[title]
-      value="{{ isset($slider) ? $slider->translate($locale)?->title : old(" $locale.title")}}">
+      value='{{ isset($slider) ? $slider->translate($locale)?->title : old("$locale.title")}}'>
   </div>
   @endforeach
   @foreach ($locales as $locale)
@@ -34,8 +34,8 @@
     </select>
   </div>
   <div class="form-group col-6">
-    <label>@lang('is_show_is_app')</label>
-    <select name="is_show_is_app" class="form-control">
+    <label>@lang('is_show_in_app')</label>
+    <select name="is_show_in_app" class="form-control">
       <option value="">@lang('select')</option>
       <option value="1" {{ isset($slider) && $slider->show_in_app == '1' ? 'selected' : '' }}>@lang('active')</option>
       <option value="0" {{ isset($slider) && $slider->show_in_app == '0' ? 'selected' : '' }}>@lang('inactive')</option>
