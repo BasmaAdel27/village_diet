@@ -56,6 +56,9 @@
   "sliders": "السلايدر",
   "title": "العنوان",
   "select_image": "اختر صورة",
+  "select_video": "اختر فيديو",
   "image": "الصورة",
-  "static_pages": "الصفحات التعريفية"
+  "static_pages": "الصفحات التعريفية",
+  "videos": "الفيديوهات",
+  "show_day": "يوم العرض"
 }

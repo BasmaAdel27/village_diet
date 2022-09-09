@@ -64,6 +64,14 @@
       </a>
     </li>
     @endcan
+    @can('admin.videos.index')
+    <li class="nav-item">
+      <a class="nav-link" href="{{ route('admin.videos.index') }}">
+        <i class="mdi mdi-video menu-icon"></i>
+        <span class="menu-title">@lang('videos')</span>
+      </a>
+    </li>
+    @endcan
   </ul>
 </nav>
 

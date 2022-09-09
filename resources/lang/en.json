@@ -52,6 +52,9 @@
   "slider": "Sliders",
   "title": "Title",
   "select_image": "Select Image",
+  "select_video": "Select Video",
   "image": "Image",
-  "static_pages": "Static Pages"
+  "static_pages": "Static Pages",
+  "videos": "Videos",
+  "show_day": "Show Day"
 }

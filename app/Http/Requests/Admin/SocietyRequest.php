@@ -22,7 +22,7 @@ class SocietyRequest extends FormRequest
 
         foreach (config('translatable.locales') as $locale) {
             $rules["$locale"]       = 'required|array';
-            $rules["$locale.title"] = 'required|string|min:10|max:255';
+            $rules["$locale.title"] = 'required|string|min:10|max:255|unique:society_translations,title,' . @$this->society?->id  . ',society_id';
         }
 
         return $rules;

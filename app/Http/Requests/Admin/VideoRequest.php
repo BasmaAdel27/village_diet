@@ -4,7 +4,7 @@ namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StaticPageRequest extends FormRequest
+class VideoRequest extends FormRequest
 {
     public function authorize()
     {
@@ -13,21 +13,21 @@ class StaticPageRequest extends FormRequest
 
     public function rules()
     {
+
         $rules = [
             'is_active' => 'required|in:0,1',
-            'is_show_in_app' => 'required|in:0,1',
+            'day_id'    => 'required|exists:days,id',
         ];
 
         foreach (config('translatable.locales') as $locale) {
             $rules["$locale"]       = 'required|array';
-            $rules["$locale.title"] = 'required|string|min:5|max:255|unique:static_page_translations,title,' . @$this->static_page?->id  . ',static_page_id';
-            $rules["$locale.content"] = 'required|string|min:10';
+            $rules["$locale.title"] = 'required|string|min:5|max:255|unique:video_translations,title,' . @$this->video?->id  . ',video_id';
         }
 
         if (!$this->isMethod('PUT')) {
-            $rules['image'] = 'required|image|max:10000';
+            $rules['video'] = 'required|max:102400';
         } else {
-            $rules['image'] = 'nullable|image|max:10000';
+            $rules['video'] = 'nullable|max:102400';
         }
 
         return $rules;

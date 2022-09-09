@@ -19,7 +19,7 @@ Route::group(
         Route::group([
             'as' => 'admin.',
             'prefix' => 'admin',
-            'middleware' => 'role:admin',
+            'middleware' => ['auth', 'role:admin'],
         ], function () {
             require('web/admin.php');
         });

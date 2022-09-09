@@ -22,7 +22,7 @@ class SliderRequest extends FormRequest
         foreach (config('translatable.locales') as $locale) {
             $rules["$locale"]       = 'required|array';
             $rules["$locale.title"] = 'required|string|min:5|max:255';
-            $rules["$locale.description"] = 'required|string|min:10|max:255';
+            $rules["$locale.description"] = 'required|string|min:10|max:255|unique:slider_translations,title,' . @$this->slider?->id  . ',slider_id';
         }
 
         if (!$this->isMethod('PUT')) {
