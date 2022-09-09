@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\ContactUsController;
+use App\Http\Controllers\Admin\RatingController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\SocietyController;
 use App\Http\Controllers\Admin\StaticPageController;
@@ -23,3 +24,4 @@ Route::resource('contactUs', ContactUsController::class)->only(['index', 'destro
 Route::resource('sliders', SliderController::class)->except('show');
 Route::resource('static_pages', StaticPageController::class)->except('show');
 Route::resource('videos', VideoController::class)->except('show');
+Route::get('ratings', RatingController::class)->name('ratings.index');

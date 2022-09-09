@@ -56,5 +56,9 @@
   "image": "Image",
   "static_pages": "Static Pages",
   "videos": "Videos",
-  "show_day": "Show Day"
+  "show_day": "Show Day",
+  "ratings": "Comments And Ratings",
+  "user_name": "User Name",
+  "rating": "Rating",
+  "show_comment": "Show Comment"
 }

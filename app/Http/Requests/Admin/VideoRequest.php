@@ -23,7 +23,8 @@ class VideoRequest extends FormRequest
             $rules["$locale"]       = 'required|array';
             $rules["$locale.title"] = 'required|string|min:5|max:255|unique:video_translations,title,' . @$this->video?->id  . ',video_id';
         }
-
+        // TODO: Add Mimetypes for validate videos
+        // TODO: Check post_max_size value on server
         if (!$this->isMethod('PUT')) {
             $rules['video'] = 'required|max:102400';
         } else {
