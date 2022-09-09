@@ -13,8 +13,8 @@
           <div class="row">
             <div class="col-md-5">
               <div class="form-group row">
-                <label class="col-sm-3 col-form-label">@lang('net subscription')</label>
-                <div class="col-sm-9">
+                <label class="col-sm-4 col-form-label">@lang('net subscription')</label>
+                <div class="col-sm-8">
                   <input type="text" name="net_subscription" value="{{$settings->net_subscription}}" class="form-control" />
                 </div>
               </div>
@@ -22,8 +22,8 @@
 
             <div class="col-md-5">
               <div class="form-group row">
-                <label class="col-sm-3 col-form-label">@lang('tax name')</label>
-                <div class="col-sm-9">
+                <label class="col-sm-4 col-form-label">@lang('tax name')</label>
+                <div class="col-sm-8">
                   <input type="text" name="tax_name" value="{{$settings->tax_name}}" class="form-control" />
                 </div>
               </div>
@@ -32,16 +32,16 @@
           <div class="row">
             <div class="col-md-5">
               <div class="form-group row">
-                <label class="col-sm-3 col-form-label">@lang('tax amount')</label>
-                <div class="col-sm-9">
+                <label class="col-sm-4 col-form-label">@lang('tax amount')</label>
+                <div class="col-sm-8">
                   <input type="text" name="tax_amount" value="{{$settings->tax_amount}}" class="form-control" />
                 </div>
               </div>
             </div>
             <div class="col-md-5">
               <div class="form-group row">
-                <label class="col-sm-3 col-form-label">@lang('tax type')</label>
-                <div class="col-sm-9">
+                <label class="col-sm-4 col-form-label">@lang('tax type')</label>
+                <div class="col-sm-8">
                   <select class="form-control" name="tax_type">
                     <option value="fixed" {{$settings->tax_type == 'fixed' ? 'selected' : ''}}>@lang('fixed')</option>
                     <option value="percent" {{$settings->tax_type == 'percent' ? 'selected' : ''}}>@lang('percent')</option>
@@ -57,16 +57,16 @@
           <div class="row">
             <div class="col-md-5">
               <div class="form-group row">
-                <label class="col-sm-3 col-form-label">@lang('web link')</label>
-                <div class="col-sm-9">
+                <label class="col-sm-4 col-form-label">@lang('web link')</label>
+                <div class="col-sm-8">
                   <input type="text" name="website_url" value="{{$settings->website_url}}" class="form-control" />
                 </div>
               </div>
             </div>
             <div class="col-md-5">
               <div class="form-group row">
-                <label class="col-sm-3 col-form-label">@lang('link status')</label>
-                <div class="col-sm-9">
+                <label class="col-sm-4 col-form-label">@lang('link status')</label>
+                <div class="col-sm-8">
                   <select class="form-control" name="link_status">
                     <option value="1" {{$settings->is_link_active == 1 ? 'selected' : ''}}>@lang('active')</option>
                     <option value="0" {{$settings->is_link_active == 0 ? 'selected' : ''}}>@lang('inactive')</option>
@@ -78,16 +78,16 @@
           <div class="row">
             <div class="col-md-5">
               <div class="form-group row">
-                <label class="col-sm-3 col-form-label">@lang('web title')</label>
-                <div class="col-sm-9">
+                <label class="col-sm-4 col-form-label">@lang('web title')</label>
+                <div class="col-sm-8">
                   <input type="text" name="website_title" value="{{$settings->web_title}}" class="form-control" />
                 </div>
               </div>
             </div>
             <div class="col-md-5">
               <div class="form-group row">
-                <label class="col-sm-3 col-form-label">@lang('web description')</label>
-                <div class="col-sm-9">
+                <label class="col-sm-4 col-form-label">@lang('web description')</label>
+                <div class="col-sm-8">
                   <textarea  class="form-control" name="website_description">{{$settings->web_description}}</textarea>
                 </div>
               </div>
@@ -98,9 +98,9 @@
           <div class="row">
             <div class="col-md-5">
               <div class="form-group row">
-                <label class="col-sm-3 col-form-label">@lang('web logo')</label>
+                <label class="col-sm-4 col-form-label">@lang('web logo')</label>
 
-                <div class="col-sm-9">
+                <div class="col-sm-8">
                   <input type="file" name="logo" class="file-upload-default">
                   <div class="input-group col-xs-12">
                     <a href="{{asset('storage/'.$settings->logo)}}" target="_blank"><img src="{{asset('storage/'.$settings->logo)}}" height="100px" width="100px"></a>
@@ -114,8 +114,8 @@
             </div>
             <div class="col-md-5">
               <div class="form-group row">
-                <label class="col-sm-3 col-form-label">@lang('maintenance')</label>
-                <div class="col-sm-9">
+                <label class="col-sm-4 col-form-label">@lang('maintenance')</label>
+                <div class="col-sm-8">
                   <select class="form-control" name="web_maintenance">
                     <option value="1" {{$settings->web_maintenance == 1 ? 'selected' : ''}}>@lang('active')</option>
                     <option value="0" {{$settings->web_maintenance == 0 ? 'selected' : ''}}>@lang('inactive')</option>
@@ -131,8 +131,8 @@
           <div class="row">
             <div class="col-md-5">
               <div class="form-group row">
-                <label class="col-sm-3 col-form-label">@lang('android forced update')</label>
-                <div class="col-sm-9">
+                <label class="col-sm-4 col-form-label">@lang('android forced update')</label>
+                <div class="col-sm-8">
                   <select class="form-control" name="forced_android">
                     <option value="1" {{$settings->forced_android == 1 ? 'selected' : ''}}>@lang('active')</option>
                     <option value="0" {{$settings->forced_android == 0 ? 'selected' : ''}}>@lang('inactive')</option>
@@ -143,8 +143,8 @@
 
             <div class="col-md-5">
               <div class="form-group row">
-                <label class="col-sm-3 col-form-label">@lang('ios forced update')</label>
-                <div class="col-sm-9">
+                <label class="col-sm-4 col-form-label">@lang('ios forced update')</label>
+                <div class="col-sm-8">
                   <select class="form-control" name="forced_ios">
                     <option value="1" {{$settings->forced_ios == 1 ? 'selected' : ''}}>@lang('active')</option>
                     <option value="0" {{$settings->forced_ios == 0 ? 'selected' : ''}}>@lang('inactive')</option>
@@ -156,8 +156,8 @@
           <div class="row">
             <div class="col-md-5">
               <div class="form-group row">
-                <label class="col-sm-3 col-form-label">@lang('android optional update')</label>
-                <div class="col-sm-9">
+                <label class="col-sm-4 col-form-label">@lang('android optional update')</label>
+                <div class="col-sm-8">
                   <select class="form-control" name="optional_android">
                     <option value="1" {{$settings->optional_android == 1 ? 'selected' : ''}}>@lang('active')</option>
                     <option value="0" {{$settings->optional_android == 0 ? 'selected' : ''}}>@lang('inactive')</option>
@@ -168,8 +168,8 @@
 
             <div class="col-md-5">
               <div class="form-group row">
-                <label class="col-sm-3 col-form-label">@lang('ios optional update')</label>
-                <div class="col-sm-9">
+                <label class="col-sm-4 col-form-label">@lang('ios optional update')</label>
+                <div class="col-sm-8">
                   <select class="form-control" name="optional_ios">
                     <option value="1" {{$settings->optional_ios == 1 ? 'selected' : ''}}>@lang('active')</option>
                     <option value="0" {{$settings->optional_ios == 0 ? 'selected' : ''}}>@lang('inactive')</option>
@@ -182,16 +182,16 @@
           <div class="row">
             <div class="col-md-5">
               <div class="form-group row">
-                <label class="col-sm-3 col-form-label">@lang('android version')</label>
-                <div class="col-sm-9">
+                <label class="col-sm-4 col-form-label">@lang('android version')</label>
+                <div class="col-sm-8">
                   <input type="text" name="android_version" value="{{$settings->android_version}}" class="form-control" />
                 </div>
               </div>
             </div>
             <div class="col-md-5">
               <div class="form-group row">
-                <label class="col-sm-3 col-form-label">@lang('ios version')</label>
-                <div class="col-sm-9">
+                <label class="col-sm-4 col-form-label">@lang('ios version')</label>
+                <div class="col-sm-8">
                   <input type="text" name="ios_version" value="{{$settings->ios_version}}" class="form-control" />
                 </div>
               </div>
@@ -200,8 +200,8 @@
           <div class="row">
             <div class="col-md-5">
               <div class="form-group row">
-                <label class="col-sm-3 col-form-label">@lang('android maintenance')</label>
-                <div class="col-sm-9">
+                <label class="col-sm-4 col-form-label">@lang('android maintenance')</label>
+                <div class="col-sm-8">
                   <select class="form-control" name="android_maintenance">
                     <option value="1" {{$settings->android_maintenance == 1 ? 'selected' : ''}}>@lang('active')</option>
                     <option value="0" {{$settings->android_maintenance == 0 ? 'selected' : ''}}>@lang('inactive')</option>
@@ -211,8 +211,8 @@
             </div>
             <div class="col-md-5">
               <div class="form-group row">
-                <label class="col-sm-3 col-form-label">@lang('ios maintenance')</label>
-                <div class="col-sm-9">
+                <label class="col-sm-4 col-form-label">@lang('ios maintenance')</label>
+                <div class="col-sm-8">
                   <select class="form-control" name="ios_maintenance">
                     <option value="1" {{$settings->ios_maintenance == 1 ? 'selected' : ''}}>@lang('active')</option>
                     <option value="0" {{$settings->ios_maintenance == 0 ? 'selected' : ''}}>@lang('inactive')</option>
