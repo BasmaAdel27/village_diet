@@ -1,11 +1,13 @@
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
   <ul class="nav">
+    @can('home')
     <li class="nav-item">
-      <a class="nav-link" href="index.html">
+      <a class="nav-link" href="{{ route('admin.dashboard') }}">
         <i class="mdi mdi-home menu-icon"></i>
         <span class="menu-title">Dashboard</span>
       </a>
     </li>
+    @endcan
     @can('admin.roles.index')
     <li class="nav-item">
       <a class="nav-link" href="{{ route('admin.roles.index') }}">
