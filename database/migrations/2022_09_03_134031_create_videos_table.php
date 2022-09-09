@@ -10,7 +10,6 @@ class CreateVideosTable extends Migration
     {
         Schema::create('videos', function (Blueprint $table) {
             $table->id();
-            $table->string('path');
             $table->boolean('is_active')->default(true);
             $table->foreignId('day_id')->nullable()->constrained('days')->nullOnDelete();
 
