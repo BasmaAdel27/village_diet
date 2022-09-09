@@ -8,7 +8,7 @@ use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\SocietyController;
 use Illuminate\Support\Facades\Route;
 
-Route::view('dashboard', 'admin.app')->name('dashboard');
+Route::view('dashboard', 'admin.dashboard')->name('dashboard');
 Route::get('/users/list', [UserController::class, 'getUsers']);
 
 Route::resource('users', UserController::class);
