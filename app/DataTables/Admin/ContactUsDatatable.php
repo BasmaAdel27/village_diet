@@ -47,11 +47,9 @@ class ContactUsDatatable extends DataTable
         return [
             Column::make('id')->title(trans('ID')),
             Column::make('fullname')->title(trans('name')),
-            Column::make('user_type')->title(trans('user type')),
-            Column::make('eamil')->title(trans('email')),
+              Column::make('eamil')->title(trans('email')),
+              Column::make('user_type')->title(trans('user type')),
             Column::make('message_type')->title(trans('message type')),
-            Column::make('phone')->title(trans('phone')),
-            Column::make('whatsapp_phone')->title(trans('whatsapp phone')),
             Column::make('created_at')->title(trans('created_at')),
             Column::make('Action')->title(trans('action'))->searchable(false)->orderable(false)
         ];
