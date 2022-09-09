@@ -20,7 +20,7 @@ class StaticPageRequest extends FormRequest
 
         foreach (config('translatable.locales') as $locale) {
             $rules["$locale"]       = 'required|array';
-            $rules["$locale.title"] = 'required|string|min:5|max:255';
+            $rules["$locale.title"] = 'required|string|min:5|max:255|unique:static_page_translations,title,' . @$this->static_page?->id  . ',static_page_id';
             $rules["$locale.content"] = 'required|string|min:10';
         }
 
