@@ -1,0 +1,35 @@
+<?php
+
+namespace App\Http\Requests\Admin;
+
+use Illuminate\Foundation\Http\FormRequest;
+
+class StaticPageRequest extends FormRequest
+{
+    public function authorize()
+    {
+        return true;
+    }
+
+    public function rules()
+    {
+        $rules = [
+            'is_active' => 'required|in:0,1',
+            'is_show_in_app' => 'required|in:0,1',
+        ];
+
+        foreach (config('translatable.locales') as $locale) {
+            $rules["$locale"]       = 'required|array';
+            $rules["$locale.title"] = 'required|string|min:5|max:255';
+            $rules["$locale.content"] = 'required|string|min:10';
+        }
+
+        if (!$this->isMethod('PUT')) {
+            $rules['image'] = 'required|image|max:10000';
+        } else {
+            $rules['image'] = 'nullable|image|max:10000';
+        }
+
+        return $rules;
+    }
+}

@@ -56,6 +56,14 @@
       </a>
     </li>
     @endcan
+    @can('admin.static_pages.index')
+    <li class="nav-item">
+      <a class="nav-link" href="{{ route('admin.static_pages.index') }}">
+        <i class="mdi mdi-file-multiple menu-icon"></i>
+        <span class="menu-title">@lang('static_pages')</span>
+      </a>
+    </li>
+    @endcan
   </ul>
 </nav>
 

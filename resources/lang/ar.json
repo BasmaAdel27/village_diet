@@ -51,9 +51,11 @@
   "inactive": "غير مفعل",
   "messages": "الرسائل",
   "link": "رابط الانتقال",
-  "is_show_is_app": "عرض في التطبيق",
+  "is_show_in_app": "عرض في التطبيق",
   "description": "الوصف",
   "sliders": "السلايدر",
   "title": "العنوان",
-  "select_image": "اختر صورة"
+  "select_image": "اختر صورة",
+  "image": "الصورة",
+  "static_pages": "الصفحات التعريفية"
 }
