@@ -19,7 +19,7 @@ class CreateMealsTable extends Migration
         Schema::create('meal_translations', function (Blueprint $table) {
             $table->id();
             $table->string('locale')->index();
-            $table->text('braakfast');
+            $table->text('breakfast');
             $table->text('lunch');
             $table->text('dinner');
 

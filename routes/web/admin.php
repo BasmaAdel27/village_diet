@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\StaticPageController;
 use App\Http\Controllers\Admin\VideoController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Admin\MealController;
 use Illuminate\Support\Facades\Route;
 
 Route::view('dashboard', 'admin.dashboard')->name('dashboard');
@@ -28,6 +29,7 @@ Route::resource('static_pages', StaticPageController::class)->except('show');
 Route::resource('videos', VideoController::class)->except('show');
 Route::get('ratings', RatingController::class)->name('ratings.index');
 Route::resource('settings', SettingController::class)->only('index', 'update');
+Route::resource('meals', MealController::class)->except('show');
 
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
 Route::post('/profile', [ProfileController::class, 'store'])->name('profile.store');

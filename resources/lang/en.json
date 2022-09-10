@@ -90,5 +90,12 @@
   "ar": "اللغة العربية",
   "en": "English",
   "change-password": "Change Password",
-  "dashboard": "Admin Panel"
+  "dashboard": "Admin Panel",
+  "breakfast_meal_ar": "Breakfast in Arabic",
+  "breakfast_meal_en": "Breakfast in English",
+  "lunch_meal_ar": "Lunch in Arabic",
+  "lunch_meal_en": "Lunch in English",
+  "dinner_meal_ar": "Dinner in Arabic",
+  "dinner_meal_en": "Dinner in English",
+  "meals": "Meals"
 }

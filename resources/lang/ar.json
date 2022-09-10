@@ -94,5 +94,12 @@
   "ar": "اللغة العربية",
   "en": "English",
   "change-password": "تغيير كلمة المرور",
-  "dashboard": "لوحة التحكم"
+  "dashboard": "لوحة التحكم",
+  "breakfast_meal_ar": "وجبه الافطار بالعربي",
+  "breakfast_meal_en": "وجبه الافطار بالانجليزي",
+  "lunch_meal_ar": "وجبه الغذاء بالعربي",
+  "lunch_meal_en": "وجبه الغذاء بالانجليزي",
+  "dinner_meal_ar": "وجبه العشاء باللغه بالعربي",
+  "dinner_meal_en": "وجبه العشاء باللغه بالانجليزي",
+  "meals": "الوجبات"
 }

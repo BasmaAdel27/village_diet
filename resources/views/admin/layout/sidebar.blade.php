@@ -88,6 +88,14 @@
       </a>
     </li>
     @endcan
+    @can('admin.meals.index')
+    <li class="nav-item">
+      <a class="nav-link" href="{{ route('admin.meals.index') }}">
+        <i class="mdi mdi-food menu-icon"></i>
+        <span class="menu-title">@lang('meals')</span>
+      </a>
+    </li>
+    @endcan
   </ul>
 </nav>
 

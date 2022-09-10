@@ -2,6 +2,7 @@
 
 namespace App\Models\Meal;
 
+use App\Models\Day\Day;
 use App\Traits\HasTimestampTrait;
 use Astrotomic\Translatable\Contracts\Translatable;
 use Astrotomic\Translatable\Translatable as TranslatableTranslatable;
@@ -13,6 +14,11 @@ class Meal extends Model implements Translatable
     use HasFactory, TranslatableTranslatable, HasTimestampTrait;
 
 
-    public $translatedAttributes = ['braakfast', 'lunch', 'dinner'];
+    public $translatedAttributes = ['breakfast', 'lunch', 'dinner'];
     protected $guarded = [];
+
+    public function day()
+    {
+        return $this->belongsTo(Day::class);
+    }
 }
