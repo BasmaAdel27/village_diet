@@ -93,5 +93,6 @@
   "Logout": "تسجيل الخروج",
   "ar": "اللغة العربية",
   "en": "English",
-  "change-password" : "تغيير كلمة المرور"
+  "change-password": "تغيير كلمة المرور",
+  "dashboard": "لوحة التحكم"
 }
