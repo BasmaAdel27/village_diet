@@ -40,7 +40,7 @@ class MealController extends Controller
     {
         $data=$request->validated();
         $meal->fill($data)->save();
-        return view('admin.meals.index')->with('success',trans('created_successfully'));
+        return redirect()->route('admin.meals.index')->with('success',trans('created_successfully'));
     }
 
 
