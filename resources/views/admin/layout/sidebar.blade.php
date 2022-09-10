@@ -96,16 +96,38 @@
       </a>
     </li>
     @endcan
+    @canAny(['admin.reports.subscriptions','admin.reports.users','admin.reports.trainers','admin.reports.copouns'])
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="collapse" href="#reports" aria-expanded="false" aria-controls="reports">
+        <i class="mdi mdi-file-document menu-icon"></i>
+        <span class="menu-title">@lang('reports')</span>
+        <i class="menu-arrow"></i>
+      </a>
+      <div class="collapse" id="reports">
+        <ul class="nav flex-column sub-menu">
+          @can('admin.reports.subscriptions')
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('admin.reports.subscriptions') }}">@lang('subscriptions')</a>
+          </li>
+          @endcan
+          @can('admin.reports.users')
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('admin.reports.users') }}"> @lang('users')</a>
+          </li>
+          @endcan
+          @can('admin.reports.trainers')
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('admin.reports.trainers') }}">@lang('trainers')</a>
+          </li>
+          @endcan
+          @can('admin.reports.copouns')
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('admin.reports.copouns') }}"> @lang('copouns')</a>
+          </li>
+          @endcan
+        </ul>
+      </div>
+    </li>
+    @endcanany
   </ul>
 </nav>
-
-
-{{-- <div class="collapse" id="auth">
-  <ul class="nav flex-column sub-menu">
-    <li class="nav-item"> <a class="nav-link" href="pages/samples/login.html"> Login </a></li>
-    <li class="nav-item"> <a class="nav-link" href="pages/samples/login-2.html"> Login 2 </a></li>
-    <li class="nav-item"> <a class="nav-link" href="pages/samples/register.html"> Register </a></li>
-    <li class="nav-item"> <a class="nav-link" href="pages/samples/register-2.html"> Register 2 </a></li>
-    <li class="nav-item"> <a class="nav-link" href="pages/samples/lock-screen.html"> Lockscreen </a></li>
-  </ul>
-</div> --}}

@@ -13,9 +13,8 @@ class CreateSubscriptionsTable extends Migration
             $table->id();
             $table->enum('status', Subscription::STATUSES);
             $table->decimal('amount');
-            $table->decimal('total_amount');
             $table->decimal('tax_amount')->default(0);
-            $table->decimal('total');
+            $table->decimal('total_amount');
             $table->string('payment_method');
             $table->timestamp('end_date')->comment('add one month from created_at');
 

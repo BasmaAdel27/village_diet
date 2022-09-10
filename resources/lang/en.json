@@ -97,5 +97,12 @@
   "lunch_meal_en": "Lunch in English",
   "dinner_meal_ar": "Dinner in Arabic",
   "dinner_meal_en": "Dinner in English",
-  "meals": "Meals"
+  "meals": "Meals",
+  "reports": "Reports",
+  "trainers": "Trainers",
+  "copouns": "Copouns",
+  "subscriptions": "Subscriptions",
+  "date_from": "Date From :",
+  "date_to": "Date To :",
+  "search": "Search "
 }

@@ -8,10 +8,9 @@ $(document).ready(function () {
   });
 
   //change language of dashboard
-  window.addEventListener('load', () => {
-    const select = document.querySelector('#change-locale');
-    select.addEventListener('change', (e) => {
-      window.location.href = e.target.value;
-    });
+  const select = document.querySelector('#change-locale');
+  select.addEventListener('change', (e) => {
+    console.log(e.target.value);
+    window.location = e.target.value;
   });
 });
