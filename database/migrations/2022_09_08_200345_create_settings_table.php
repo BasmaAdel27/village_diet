@@ -19,7 +19,7 @@ class CreateSettingsTable extends Migration
             $table->decimal('net_subscription');
             $table->string('tax_name')->nullable();
             $table->decimal('tax_amount')->nullable();
-            $table->enum('tax_type',Setting::STATUSES)->nullable();
+            $table->enum('tax_type', Setting::TAX_TYPES)->nullable();
             $table->string('website_url')->nullable();
             $table->boolean('is_link_active')->default(true);
             $table->boolean('forced_android')->default(false);
