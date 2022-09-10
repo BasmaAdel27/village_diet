@@ -88,4 +88,13 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Society::class, 'user_societies');
     }
+
+    public function getImageAttribute()
+    {
+        if ($this->images()->whereOption('image')->value('media')) {
+            return asset($this->images()->whereOption('image')->value('media'));
+        }
+
+        return asset('adminPanel/images/faces/face5.jpg');
+    }
 }

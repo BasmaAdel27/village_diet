@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en" dir="{{ LaravelLocalization::getCurrentLocaleDirection() }}">
 
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>@lang('site.admin-panel') - @yield('title')</title>
+  <title>@lang('admin-panel') - @yield('title')</title>
   @include('admin.layout.styles')
 </head>
 
@@ -16,6 +16,12 @@
       <div class="main-panel">
         <div class="content-wrapper">
           @yield('content')
+          <div class="row">
+            <footer class="footer" style="margin: 0 auto">
+              <span class="text-muted d-block text-center">
+                Copyright © village Diet 2022</span>
+            </footer>
+          </div>
         </div>
       </div>
     </div>

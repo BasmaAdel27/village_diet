@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <title>@lang('site.admin-panel')</title>
+  <title>@lang('admin-panel')</title>
   <link rel="stylesheet" href="{{ asset('adminPanel/vendors/mdi/css/materialdesignicons.min.css') }}" />
   <link rel="stylesheet" href="{{ asset('adminPanel/vendors/base/vendor.bundle.base.css') }}" />
   <link rel="stylesheet" href="{{ asset('adminPanel/css/style.css') }}" />
