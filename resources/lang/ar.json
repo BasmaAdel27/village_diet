@@ -90,7 +90,8 @@
   "show_comment": "التعليق",
   "admin-panel": "لوحة تحكم الأدمن",
   "profile": "الملف الشخصي",
-  "logout": "تسجيل الخروج",
+  "Logout": "تسجيل الخروج",
   "ar": "اللغة العربية",
-  "en": "English"
+  "en": "English",
+  "change-password" : "تغيير كلمة المرور"
 }

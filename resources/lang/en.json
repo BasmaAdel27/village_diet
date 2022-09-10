@@ -86,7 +86,8 @@
   "show_comment": "Show Comment",
   "admin-panel": "Admin Panel",
   "profile": "Profile",
-  "logout": "Logout",
+  "Logout": "Logout",
   "ar": "اللغة العربية",
-  "en": "English"
+  "en": "English",
+  "change-password": "Change Password"
 }
