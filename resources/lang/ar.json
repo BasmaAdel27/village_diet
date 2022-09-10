@@ -87,5 +87,11 @@
   "ratings": "التقييمات و التعليقات",
   "user_name": "اسم المستخدم",
   "rating": "التقييم",
-  "show_comment": "التعليق"
+  "show_comment": "التعليق",
+  "admin-panel": "لوحة تحكم الأدمن",
+  "profile": "الملف الشخصي",
+  "Logout": "تسجيل الخروج",
+  "ar": "اللغة العربية",
+  "en": "English",
+  "change-password" : "تغيير كلمة المرور"
 }

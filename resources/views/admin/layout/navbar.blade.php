@@ -10,40 +10,41 @@
       </button>
     </div>
   </div>
-  <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
-    <ul class="navbar-nav mr-lg-4 w-100">
-      <li class="nav-item nav-search d-none d-lg-block w-100">
-        <div class="input-group">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="search">
-              <i class="mdi mdi-magnify"></i>
-            </span>
-          </div>
-          <input type="text" class="form-control" placeholder="Search now" aria-label="search"
-            aria-describedby="search">
-        </div>
-      </li>
+  <div class="navbar-menu-wrapper d-flex align-items-center justify-content-between">
+    <ul class="navbar-nav">
+      <select name="locale" class="form-control" id="change-locale">
+        @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+        <option value="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}" {{ app()->getLocale() ==
+          $localeCode ? 'selected' : '' }}>@lang($localeCode)
+        </option>
+        @endforeach
+      </select>
     </ul>
-    <ul class="navbar-nav navbar-nav-right">
-      @include('admin.layout.navbar.messages')
-      @include('admin.layout.navbar.notifications')
+    {{-- @include('admin.layout.navbar.search') --}}
+    <ul class="navbar-nav">
+      {{-- @include('admin.layout.navbar.messages')
+      @include('admin.layout.navbar.notifications') --}}
       <li class="nav-item nav-profile dropdown">
         <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-          <img src="{{ asset('adminPanel/images/faces/face5.jpg') }}" alt="profile" />
-          <span class="nav-profile-name">Louis Barnett</span>
+          <img src="{{ auth()->user()->image }}" alt="profile" />
+          <span class="nav-profile-name">{{ auth()->user()->first_name . ' ' . auth()->user()->last_name }}</span>
         </a>
         <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-          <a class="dropdown-item">
+          <a class="dropdown-item" href="{{ route('admin.profile.index') }}">
             <i class="mdi mdi-settings text-primary"></i>
-            Settings
+            @lang('profile')
           </a>
-          <a class="dropdown-item">
+          <a class="dropdown-item" href="{{ route('logout') }}"
+            onclick="event.preventDefault();document.getElementById('logout-form').submit();">
             <i class="mdi mdi-logout text-primary"></i>
-            Logout
+            @lang('Logout')
           </a>
         </div>
       </li>
     </ul>
+    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+      @csrf
+    </form>
     <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
       data-toggle="offcanvas">
       <span class="mdi mdi-menu"></span>

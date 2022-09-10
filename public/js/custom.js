@@ -6,4 +6,12 @@ $(document).ready(function () {
     height: 250,
     fontSize: 20,
   });
+
+  //change language of dashboard
+  window.addEventListener('load', () => {
+    const select = document.querySelector('#change-locale');
+    select.addEventListener('change', (e) => {
+      window.location.href = e.target.value;
+    });
+  });
 });

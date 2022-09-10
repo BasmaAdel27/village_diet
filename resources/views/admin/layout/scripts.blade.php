@@ -14,5 +14,8 @@
 <script src={{ asset('adminPanel/js/select2.min.js') }}></script>
 <script src={{ asset('js/sweetalert/sweetalert2.all.min.js') }}></script>
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+@if (app()->getLocale() == 'ar')
+<script src="{{ asset('adminPanel/vendors/bootstrap-rtl/bootstrap.js') }}"></script>
+@endif
 <script src="{{ asset('js/custom.js') }}"></script>
 @yield('scripts')
