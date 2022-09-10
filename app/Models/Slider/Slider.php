@@ -18,7 +18,7 @@ class Slider extends Model implements TranslatableContract
     protected $fillable = [
         'is_active',
         'link',
-        'is_show_is_app',
+        'is_show_in_app',
     ];
     public $assets = ['image'];
 

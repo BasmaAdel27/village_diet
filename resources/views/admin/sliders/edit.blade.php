@@ -9,7 +9,7 @@
         class="btn btn-outline-dark btn-lg font-weight-bold">@lang('back')</a>
     </div>
     <div class="card-body table-responsive">
-      <form action="{{ route('admin.sliders.update',$society) }}" method="post" enctype="multipart/form-data">@csrf
+      <form action="{{ route('admin.sliders.update',$slider) }}" method="post" enctype="multipart/form-data">@csrf
         @method('PUT')
         @include('admin.sliders._form')
       </form>

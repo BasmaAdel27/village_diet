@@ -89,5 +89,6 @@
   "Logout": "Logout",
   "ar": "اللغة العربية",
   "en": "English",
-  "change-password": "Change Password"
+  "change-password": "Change Password",
+  "dashboard": "Admin Panel"
 }
