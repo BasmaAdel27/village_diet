@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\VideoController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\MealController;
+use App\Http\Controllers\Admin\ReportController;
 use Illuminate\Support\Facades\Route;
 
 Route::view('dashboard', 'admin.dashboard')->name('dashboard');
@@ -33,3 +34,10 @@ Route::resource('meals', MealController::class)->except('show');
 
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
 Route::post('/profile', [ProfileController::class, 'store'])->name('profile.store');
+
+#region reports
+Route::get('subscriptions_report', [ReportController::class, 'subscriptionsReport'])->name('reports.subscriptions');
+Route::get('users_report', [ReportController::class, 'usersReport'])->name('reports.users');
+Route::get('trainers_report', [ReportController::class, 'trainersReport'])->name('reports.trainers');
+Route::get('copouns_report', [ReportController::class, 'copounsReport'])->name('reports.copouns');
+#endregion reports

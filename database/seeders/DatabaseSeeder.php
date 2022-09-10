@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\ContactUs;
 use App\Models\Setting;
+use App\Models\Subscription;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -25,5 +26,6 @@ class DatabaseSeeder extends Seeder
         ContactUs::factory(50)->create();
         $this->call(DaySeeder::class);
         $this->call(SettingSeeder::class);
+        Subscription::factory(50)->create();
     }
 }
