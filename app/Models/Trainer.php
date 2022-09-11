@@ -2,13 +2,15 @@
 
 namespace App\Models;
 
+use App\Models\Society\Society;
 use App\Traits\HasAssetsTrait;
+use App\Traits\HasTimestampTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Trainer extends Model
 {
-    use HasFactory, HasAssetsTrait;
+    use HasFactory, HasAssetsTrait ,HasTimestampTrait;
 
     public $assets = ['confidental_image'];
     public $files = ['cv'];
@@ -25,4 +27,10 @@ class Trainer extends Model
             $model->saveAssets($model, request());
         });
     }
+
+    public function societies(){
+        return $this->hasMany(Society::class);
+    }
+
+
 }

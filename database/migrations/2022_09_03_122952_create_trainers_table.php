@@ -17,6 +17,7 @@ class CreateTrainersTable extends Migration
             $table->boolean('is_certified');
             $table->text('join_request_reason');
             $table->enum('statue', Trainer::STATUSES);
+            $table->boolean('show_inPage')->default(false);
 
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->timestamps();
