@@ -8,12 +8,16 @@
   <div class="card-body table-responsive">
     <table class="table table-striped table-hover Main-List">
       <thead>
-        <th></th>
-        <th></th>
+        <th>@lang('activeTrainers')</th>
+        <th>@lang('inactiveTrainers')</th>
+        <th>@lang('societyCount')</th>
+        <th>@lang('totalOfTrainers')</th>
       </thead>
       <tbody>
-        <td></td>
-        <td></td>
+        <td>{{ $data['activeTrainers'] ?? 0 }}</td>
+        <td>{{ $data['inactiveTrainers'] ?? 0 }}</td>
+        <td>{{ $data['societyCount'] ?? 0 }}</td>
+        <td>{{ $data['totalOfTrainers'] ?? 0 }}</td>
       </tbody>
     </table>
   </div>

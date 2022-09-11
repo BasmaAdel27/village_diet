@@ -108,5 +108,19 @@
   "subscriptions": "الاشتركات",
   "date_from": "تاربخ من :",
   "date_to": "تاربخ إلي :",
-  "search": "بحث "
+  "search": "بحث ",
+  "countOfUsers": "عدد المشتركين",
+  "sumOfSubscriptions": "اجمالي صافي الاشتراكات",
+  "sumOftaxs": "اجمالي قيم الضرائب",
+  "sumOfCoupons": "اجمالي الخصومات",
+  "total": "الاجمالي العام",
+  "print": "طباعة",
+  "activeSubscripersCount": "عدد المشتركين",
+  "finishedSubscripersCount": "عدد المنتهيين",
+  "inactiveSubscripersCount": "عدد المعطلين",
+  "totalSubscripers": "إجمالي المشتركين",
+  "activeTrainers": "المدربين المفعلين",
+  "inactiveTrainers": "المدربين المعطلين",
+  "societyCount": "عدد المجتمعات",
+  "totalOfTrainers": "إجمالي المدربين"
 }

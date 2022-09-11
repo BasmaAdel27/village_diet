@@ -6,14 +6,18 @@
     @include('admin.reports._date_search')
   </div>
   <div class="card-body table-responsive">
-    <table class="table table-striped table-hover Main-List">
+    <table class="table table-striped table-hover Main-List" id="print_this">
       <thead>
-        <th></th>
-        <th></th>
+        <th>@lang('activeSubscripersCount')</th>
+        <th>@lang('finishedSubscripersCount')</th>
+        <th>@lang('inactiveSubscripersCount')</th>
+        <th>@lang('totalSubscripers')</th>
       </thead>
       <tbody>
-        <td></td>
-        <td></td>
+        <td>{{ $data['activeSubscripersCount'] ?? 0 }}</td>
+        <td>{{ $data['finishedSubscripersCount'] ?? 0 }}</td>
+        <td>{{ $data['inactiveSubscripersCount'] ?? 0 }}</td>
+        <td>{{ $data['total'] ?? 0 }}</td>
       </tbody>
     </table>
   </div>
