@@ -16,7 +16,7 @@ class CreateTrainersTable extends Migration
             $table->string('body_shape');
             $table->boolean('is_certified');
             $table->text('join_request_reason');
-            $table->enum('statue', Trainer::STATUSES);
+            $table->enum('status', Trainer::STATUSES);
 
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->timestamps();

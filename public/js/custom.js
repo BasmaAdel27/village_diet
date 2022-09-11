@@ -13,4 +13,7 @@ $(document).ready(function () {
     console.log(e.target.value);
     window.location = e.target.value;
   });
+  $('#print').on('click', function () {
+    $('#print_this').printThis();
+  });
 });

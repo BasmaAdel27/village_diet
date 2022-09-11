@@ -97,4 +97,14 @@ class User extends Authenticatable
 
         return asset('adminPanel/images/faces/face5.jpg');
     }
+
+    public function subscriptions()
+    {
+        return $this->hasMany(Subscription::class);
+    }
+
+    public function trainer()
+    {
+        return $this->hasOne(Trainer::class);
+    }
 }
