@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\DataTables\Admin\ReportCouponDatatable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ReportRequest;
 use App\Models\Society\Society;
@@ -77,8 +78,8 @@ class ReportController extends Controller
         return view('admin.reports.trainers', compact('data'));
     }
 
-    public function copounsReport(ReportRequest $request)
+    public function copounsReport(ReportRequest $request, ReportCouponDatatable $reportCouponDatatable)
     {
-        return view('admin.reports.copouns');
+        return $reportCouponDatatable->render('admin.reports.copouns');
     }
 }

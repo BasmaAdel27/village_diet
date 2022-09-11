@@ -122,5 +122,9 @@
   "activeTrainers": "المدربين المفعلين",
   "inactiveTrainers": "المدربين المعطلين",
   "societyCount": "عدد المجتمعات",
-  "totalOfTrainers": "إجمالي المدربين"
+  "totalOfTrainers": "إجمالي المدربين",
+  "code": "كود الكوبون",
+  "amount": "قيمة الخصم",
+  "max_used": "الحد الأقصي للاستخدام",
+  "used_times": "عدد مرات الاستخدام"
 }
