@@ -20,6 +20,9 @@ class CountrySeeder extends Seeder
                 "phone_code" => $country["phone"],
                 'ar' => [
                     'name' => $country['name_ar'],
+                ],
+                'en' => [
+                    'name' => $country['name_en'],
                 ]
             ]);
         }

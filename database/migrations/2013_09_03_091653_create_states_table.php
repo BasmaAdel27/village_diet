@@ -6,26 +6,28 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateStatesTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('states', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('country_id')->constrained('countries')->cascadeOnDelete();
+
             $table->timestamps();
+        });
+
+        Schema::create('state_translations', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('state_id')->constrained('states')->cascadeOnDelete();
+            $table->string('name');
+
+            $table->string('locale')->index();
+            $table->unique(['state_id', 'locale']);
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
+        Schema::dropIfExists('state_translations');
         Schema::dropIfExists('states');
     }
 }

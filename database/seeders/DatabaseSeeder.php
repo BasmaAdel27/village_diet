@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call(CountrySeeder::class);
+        $this->call(StateSeeder::class);
         $this->call(PermissionSeeder::class);
         $user = \App\Models\User::factory()->create([
             'email' => config('permission.admin_user_name')
