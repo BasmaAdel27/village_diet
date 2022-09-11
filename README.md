@@ -14,14 +14,6 @@
 
 6- `matt-daneshvar/laravel-survey`
 
-## How To Run Migrations On Server
-
-`php artisan migrate`
-
-`php artisan permission:create-permission-routes`
-
-`php artisan db:seed`
-
 ## Theme :
 
 Majestic Admin , Bootstrap 4
