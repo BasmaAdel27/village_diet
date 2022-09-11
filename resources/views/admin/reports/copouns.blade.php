@@ -6,17 +6,15 @@
     @include('admin.reports._date_search')
   </div>
   <div class="card-body table-responsive">
-    <table class="table table-striped table-hover Main-List">
-      <thead>
-        <th></th>
-        <th></th>
-      </thead>
-      <tbody>
-        <td></td>
-        <td></td>
-      </tbody>
-    </table>
+    {!! $dataTable->table([
+    'class' => 'table table-striped table-hover Main-List',
+    'id' => 'print_this'
+    ],true) !!}
   </div>
 </div>
 
+@endsection
+
+@section('scripts')
+{!! $dataTable->scripts() !!}
 @endsection

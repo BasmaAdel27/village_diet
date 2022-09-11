@@ -118,5 +118,9 @@
   "activeTrainers": "Active Trainers",
   "inactiveTrainers": "Inactive Trainers",
   "societyCount": "Society Count",
-  "totalOfTrainers": "Total Of Trainers"
+  "totalOfTrainers": "Total Of Trainers",
+  "code": "Code ",
+  "amount": "Amount",
+  "max_used": "Maxed Used",
+  "used_times": "Used Times"
 }
