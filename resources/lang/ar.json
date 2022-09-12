@@ -126,5 +126,11 @@
   "code": "كود الكوبون",
   "amount": "قيمة الخصم",
   "max_used": "الحد الأقصي للاستخدام",
-  "used_times": "عدد مرات الاستخدام"
+  "used_times": "عدد مرات الاستخدام",
+  "user_number": "رقم المستخدم",
+  "subscription_date": "تاريخ الاشتراك",
+  "subscription_status": "حالة الاشتراك",
+  "in_active": "غير مفعل",
+  "request_cancel": "طلب إلغاء",
+  "finished": "منتهي"
 }

@@ -122,5 +122,11 @@
   "code": "Code ",
   "amount": "Amount",
   "max_used": "Maxed Used",
-  "used_times": "Used Times"
+  "used_times": "Used Times",
+  "user_number": "User Number",
+  "subscription_date": "Subscription Date",
+  "subscription_status": "Subscription Status",
+  "in_active": "In Active",
+  "request_cancel": "Request Cancel",
+  "finished": "Finished"
 }
