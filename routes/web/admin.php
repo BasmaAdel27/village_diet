@@ -19,7 +19,6 @@ Route::view('dashboard', 'admin.dashboard')->name('dashboard');
 Route::get('/users/list', [UserController::class, 'getUsers']);
 
 Route::resource('users', UserController::class);
-Route::get('/roles/list', [RoleController::class, 'getRoles']);
 
 Route::resource('roles', RoleController::class)->except('show');
 Route::resource('societies', SocietyController::class)->except('show');
