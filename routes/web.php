@@ -25,3 +25,6 @@ Route::group(
         });
     }
 );
+
+Route::post('/states',[\App\Http\Controllers\Admin\TrainerController::class,'fetchState'])->name('states');
+
