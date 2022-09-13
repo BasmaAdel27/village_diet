@@ -88,6 +88,14 @@
       </a>
     </li>
     @endcan
+    @can('admin.notifications.index')
+    <li class="nav-item">
+      <a class="nav-link" href="{{ route('admin.notifications.index') }}">
+        <i class="mdi mdi-bell menu-icon"></i>
+        <span class="menu-title">@lang('notifications')</span>
+      </a>
+    </li>
+    @endcan
     @can('admin.settings.index')
     <li class="nav-item">
       <a class="nav-link" href="{{ route('admin.settings.index') }}">

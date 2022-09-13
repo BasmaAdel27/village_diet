@@ -143,7 +143,7 @@
   "twitter": "Twitter",
   "current job": "Current Job",
   "body shape": "Body Shape",
-  "reason to join us":"Reason To Join Us",
+  "reason to join us": "Reason To Join Us",
   "bio": "BIO",
   "is licensed?": "Is Licensed?",
   "licensed_image": "Licensed Image",
@@ -155,5 +155,10 @@
   "personal image": "Personal Image",
   "activate_date": "Activate Date",
   "end_date": "End Date",
-  "coupons": "Coupons"
+  "coupons": "Coupons",
+  "notifications": "Notifications",
+  "type": "Type",
+  "send-notify": "Send Notification",
+  "all": "All",
+  "send": "Send"
 }
