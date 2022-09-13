@@ -156,6 +156,9 @@
   "my resume": "السيره الذاتيه",
   "decline": "رفض",
   "pending trainers": "مدربين بانتظار التفعيل",
-  "personal image": "الصوره الشخصيه"
+  "personal image": "الصوره الشخصيه",
+  "activate_date": "تاريخ التفعيل",
+  "end_date": "تاريخ الانتهاء",
+  "coupons": "الكوبونات"
 
 }

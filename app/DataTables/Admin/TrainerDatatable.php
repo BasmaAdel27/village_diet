@@ -9,12 +9,7 @@ use Yajra\DataTables\Services\DataTable;
 
 class TrainerDatatable extends DataTable
 {
-    /**
-     * Build DataTable class.
-     *
-     * @param mixed $query Results from query() method.
-     * @return \Yajra\DataTables\DataTableAbstract
-     */
+
     public function dataTable($query)
     {
         return datatables()
@@ -58,11 +53,6 @@ class TrainerDatatable extends DataTable
               );
     }
 
-    /**
-     * Get columns.
-     *
-     * @return array
-     */
     protected function getColumns()
     {
         return [
@@ -77,11 +67,7 @@ class TrainerDatatable extends DataTable
         ];
     }
 
-    /**
-     * Get filename for export.
-     *
-     * @return string
-     */
+
     protected function filename()
     {
         return 'Trainer_' . date('YmdHis');

@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\MealController;
 use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\TrainerController;
 use App\Http\Controllers\Admin\PendingTrainerController;
+use \App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -34,6 +35,7 @@ Route::resource('settings', SettingController::class)->only('index', 'update');
 Route::resource('meals', MealController::class)->except('show');
 Route::resource('trainers', TrainerController::class)->except('show');
 Route::resource('pendingTrainers', PendingTrainerController::class)->except('show','destroy','store');
+Route::resource('coupons', CouponController::class)->except('show');
 
 
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
