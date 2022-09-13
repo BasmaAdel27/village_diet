@@ -15,11 +15,11 @@
         <form action="{{ route('admin.trainers.store') }}" method="post" enctype="multipart/form-data">@csrf
           <div class="row">
           <div class="form-group col-6">
-            <label>@lang("first name")</label>
+            <label>@lang("first_name")</label>
             <input type="text" class="form-control" name='first_name'>
           </div>
           <div class="form-group col-6">
-            <label>@lang("last name")</label>
+            <label>@lang("last_name")</label>
             <input type="text" class="form-control" name='last_name'>
           </div>
           <div class="form-group col-6">
@@ -98,7 +98,7 @@
               </select>
             </div>
             <div class="form-group col-6">
-              <label>@lang(" reason to join us")</label>
+              <label>@lang("reason to join us")</label>
               <textarea class="form-control" name='join_request_reason'></textarea>
             </div>
             <div class="form-group col-6">

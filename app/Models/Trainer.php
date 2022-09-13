@@ -37,4 +37,21 @@ class Trainer extends Model
         return $this->belongsTo(User::class,'user_id','id');
     }
 
+    public function getImageAttribute()
+    {
+        if ($this->images()->whereOption('confidental_image')->value('media')) {
+            return asset($this->images()->whereOption('confidental_image')->value('media'));
+        }
+
+        return asset('adminPanel/images/faces/face5.jpg');
+    }
+
+    public function getCvAttribute()
+    {
+        if ($this->images()->whereOption('cv')->value('media')) {
+            return asset($this->images()->whereOption('cv')->value('media'));
+        }
+
+    }
 }
+

@@ -8,5 +8,6 @@
       value="{{ (request()->date_to) ? date('Y-m-d', strtotime(request('date_to'))): '' }}">
   </div>
   <button type=" submit" class="btn btn-primary mb-2 mt-2">@lang('search')</button>
-  <button type="button" class="btn btn-success m-2" id="print" style="position:absolute;left:0">@lang('print')</button>
+  <button type="button" class="btn btn-success m-2" id="print"
+    style="{{ (app()->getLocale() =='ar') ? 'left:0;' : 'right:0;' }} position:absolute;">@lang('print')</button>
 </form>

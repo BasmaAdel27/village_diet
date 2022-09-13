@@ -12,6 +12,11 @@ use Illuminate\Http\Request;
 class PendingTrainerController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('permission:admin.pendingTrainers.index')->only(['index']);
+        $this->middleware('permission:admin.pendingTrainers.update')->only(['update']);
+    }
     public function index(PendingTrainerDatatable $pendingTrainerDatatable)
     {
         return $pendingTrainerDatatable->render('admin.pendingTrainers.index');
@@ -48,7 +53,7 @@ class PendingTrainerController extends Controller
               ->where('locale', app()->getLocale())
               ->select('name', 'states.id')
               ->pluck('name', 'id');;
-
+//dd($trainer->getImageAttribute());
         return view('admin.pendingTrainers.edit',compact('trainer','states','locales','countries'));
     }
 

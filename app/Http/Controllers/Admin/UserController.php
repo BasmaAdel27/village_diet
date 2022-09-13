@@ -2,104 +2,69 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\DataTables\Admin\UserDatatable;
 use App\Http\Controllers\Controller;
+use App\Models\HealthyInformation;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Yajra\DataTables\DataTables;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function __construct()
     {
-        return view('admin.users.index');
+        $this->middleware('permission:admin.users.index')->only(['index']);
+        $this->middleware('permission:admin.users.statistics')->only(['statistics']);
+        $this->middleware('permission:admin.users.store')->only(['store']);
+        $this->middleware('permission:admin.users.update')->only(['update']);
+        $this->middleware('permission:admin.users.destroy')->only(['destroy']);
     }
 
-    public function getUsers(Request $request)
+    public function index(UserDatatable $userDatatable)
     {
-
-        if ($request->ajax()) {
-            $data = DB::table('users')->get();
-//                        dd($data);
-            return DataTables::of($data)
-                  ->addIndexColumn()
-                  ->addColumn('action', function($row){
-                      $actionBtn = '<a href="/en/admin/users/1/edit" class="edit btn btn-success btn-sm">Edit</a> <a href="javascript:void(0)" class="delete btn btn-danger btn-sm">Delete</a>';
-                      return $actionBtn;
-                  })
-                  ->rawColumns(['action'])
-                  ->make(true);
-        }
+        return $userDatatable->render('admin.users.index');
     }
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
         return view('admin.users.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         return view('admin.users.edit');
-
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //
+    }
+
+    public function statistics(User $user)
+    {
+        $data = HealthyInformation::select(['weight', 'sleep_hours', 'daily_cup_count', 'day_translations.title'])
+            ->join('day_translations', 'healthy_information.day_id', 'day_translations.day_id')
+            ->where('locale', app()->getLocale())
+            ->where('user_id', $user->id)
+            ->where('healthy_information.created_at', '>=', today()->startOfMonth())
+            ->where('healthy_information.created_at', '<=', today()->endOfMonth())
+            ->get();
+        $cahrts['weights'] = $data->pluck('weight')->toArray();
+        $cahrts['daily_cup_count'] = $data->pluck('daily_cup_count')->toArray();
+        $cahrts['walk_duration'] = $data->pluck('walk_duration')->toArray();
+        $cahrts['sleepHours'] = $data->pluck('sleep_hours')->toArray();
+        $cahrts['days'] = $data->pluck('title')->toArray();
+
+        return view('admin.users.statistics', compact('cahrts'));
     }
 }

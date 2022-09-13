@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\DataTables\Admin\RoleDatatable;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
-use Yajra\DataTables\DataTables;
 
 class RoleController extends Controller
 {
@@ -19,35 +18,16 @@ class RoleController extends Controller
         $this->middleware('permission:admin.roles.destroy')->only(['destroy']);
     }
 
-    public function index()
+    public function index(RoleDatatable $roleDatatable)
     {
-        return view('admin.permissions.index');
-    }
-
-
-    public function getRoles(Request $request)
-    {
-
-        if ($request->ajax()) {
-
-            $data = DB::table('roles')->whereNotIn('name', ['admin', 'trainer', 'user'])->get();
-
-            return DataTables::of($data)
-                ->addIndexColumn()
-                ->addColumn('action', function ($row) {
-                    $id = $row->id;
-                    return view('admin.permissions.datatable.action', compact('id'));
-                })
-                ->rawColumns(['action'])
-                ->make(true);
-        }
+        return $roleDatatable->render('admin.roles.index');
     }
 
     public function create()
     {
         $permissions = Permission::all();
 
-        return view('admin.permissions.create', compact('permissions'));
+        return view('admin.roles.create', compact('permissions'));
     }
 
     public function store(Request $request)
@@ -76,7 +56,7 @@ class RoleController extends Controller
         $rolePermissions = $role->permissions()->pluck('permission_id')->toArray();
         $permissions = Permission::get();
 
-        return view('admin.permissions.edit', compact(['role', 'rolePermissions', 'permissions']));
+        return view('admin.roles.edit', compact(['role', 'rolePermissions', 'permissions']));
     }
 
     public function update(Request $request, $id)

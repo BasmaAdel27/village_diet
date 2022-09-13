@@ -15,11 +15,11 @@
          @method('PUT')
           <div class="row">
             <div class="form-group col-6">
-              <label>@lang("first name")</label>
+              <label>@lang("first_name")</label>
               <input type="text" class="form-control" name='first_name' value="{{$trainer->user->first_name}}">
             </div>
             <div class="form-group col-6">
-              <label>@lang("last name")</label>
+              <label>@lang("last_name")</label>
               <input type="text" class="form-control" name='last_name' value="{{$trainer->user->last_name}}">
             </div>
             <div class="form-group col-6">
@@ -93,7 +93,7 @@
               </select>
             </div>
             <div class="form-group col-6">
-              <label>@lang(" reason to join us")</label>
+              <label>@lang("reason to join us")</label>
               <textarea class="form-control" name='join_request_reason' >{{$trainer->join_request_reason}}</textarea>
             </div>
             <div class="form-group col-6">

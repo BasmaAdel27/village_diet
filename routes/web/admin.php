@@ -20,10 +20,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('dashboard', [HomeController::class,'home'])->name('dashboard');
 Route::get('/users/list', [UserController::class, 'getUsers']);
-
+Route::get('users-charts/{user}', [UserController::class, 'statistics'])->name('users.statistics');
 Route::resource('users', UserController::class);
-Route::get('/roles/list', [RoleController::class, 'getRoles']);
-
 Route::resource('roles', RoleController::class)->except('show');
 Route::resource('societies', SocietyController::class)->except('show');
 Route::resource('admins', AdminController::class)->except('show');
@@ -35,7 +33,7 @@ Route::get('ratings', RatingController::class)->name('ratings.index');
 Route::resource('settings', SettingController::class)->only('index', 'update');
 Route::resource('meals', MealController::class)->except('show');
 Route::resource('trainers', TrainerController::class)->except('show');
-Route::resource('pendingTrainers', PendingTrainerController::class)->except('show');
+Route::resource('pendingTrainers', PendingTrainerController::class)->except('show','destroy','store');
 
 
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');

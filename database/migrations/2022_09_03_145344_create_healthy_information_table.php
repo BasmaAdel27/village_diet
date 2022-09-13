@@ -11,9 +11,10 @@ class CreateHealthyInformationTable extends Migration
         Schema::create('healthy_information', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
-            $table->integer('sleep_hours');
-            $table->integer('daily_cup_count');
-            $table->string('weight');
+            $table->string('sleep_hours')->nullable();
+            $table->string('daily_cup_count')->nullable();
+            $table->string('walk_duration')->nullable();
+            $table->string('weight')->nullable();
             $table->foreignId('subscription_id')->nullable()->constrained('subscriptions')->nullOnDelete();
             $table->foreignId('day_id')->nullable()->constrained('days')->nullOnDelete();
 

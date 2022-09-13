@@ -84,6 +84,7 @@ class User extends Authenticatable
         return $this->attributes['password'] = Hash::needsRehash($value) ? Hash::make($value) : $value;
     }
 
+    #region relationships
     public function societies()
     {
         return $this->belongsToMany(Society::class, 'user_societies');
@@ -107,4 +108,11 @@ class User extends Authenticatable
     {
         return $this->hasOne(Trainer::class);
     }
+
+    public function healthyInformation()
+    {
+        return $this->hasMany(HealthyInformation::class);
+    }
+    #endregion relationships
+
 }

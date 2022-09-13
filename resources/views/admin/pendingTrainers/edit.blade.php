@@ -13,11 +13,11 @@
       <div class="card-body table-responsive">
           <div class="row">
             <div class="form-group col-6">
-              <label>@lang("first name")</label>
+              <label>@lang("first_name")</label>
               <input type="text" class="form-control" name='first_name' value="{{$trainer->user->first_name}}" disabled>
             </div>
             <div class="form-group col-6">
-              <label>@lang("last name")</label>
+              <label>@lang("last_name")</label>
               <input type="text" class="form-control" name='last_name' value="{{$trainer->user->last_name}}" disabled>
             </div>
             <div class="form-group col-6">
@@ -29,14 +29,8 @@
               <input type="email" class="form-control" name='email' value="{{$trainer->user->email}}" disabled>
             </div>
             <div class="form-group col-6">
-              <label>@lang('select_image')</label>
-              <input type="file" name="image" class="file-upload-default" id="image"  >
-              <div class="input-group col-xs-12">
-                <input type="text" class="form-control file-upload-info"  disabled placeholder="Upload Image" >
-                <span class="input-group-append">
-                  <button class="file-upload-browse btn btn-primary" type="button" >@lang('upload')</button>
-                </span>
-              </div>
+              <label>@lang('personal image')</label>
+            <img src="{{$trainer->user->getImageAttribute()}}" height="100px" width="100px">
             </div>
             <div class="form-group col-6">
               <label>@lang('countries')</label>
@@ -91,7 +85,7 @@
               </select>
             </div>
             <div class="form-group col-6">
-              <label>@lang(" reason to join us")</label>
+              <label>@lang("reason to join us")</label>
               <textarea class="form-control" name='join_request_reason' disabled>{{$trainer->join_request_reason}}</textarea>
             </div>
             <div class="form-group col-6">
@@ -108,25 +102,7 @@
             </div>
             <div class="form-group col-6">
               <label>@lang('licensed_image')</label>
-              <label>@lang('select_image')</label>
-              <input type="file" name="confidental_image" class="file-upload-default" id="image"  >
-              <div class="input-group col-xs-12">
-                <input type="text" class="form-control file-upload-info"  disabled placeholder="Upload Image" >
-                <span class="input-group-append">
-                  <button class="file-upload-browse btn btn-primary" type="button" >@lang('upload')</button>
-                </span>
-              </div>
-            </div>
-
-            <div class="form-group col-6">
-              <label>@lang('cv')</label>
-              <input type="file" name="cv" class="file-upload-default" id="image"  >
-              <div class="input-group col-xs-12">
-                <input type="text" class="form-control file-upload-info"  disabled placeholder="Upload Image" >
-                <span class="input-group-append">
-                  <button class="file-upload-browse btn btn-primary" type="button" >@lang('upload')</button>
-                </span>
-              </div>
+               <a href="{{$trainer->getImageAttribute()}}" target="_blank"><img src="{{$trainer->getImageAttribute()}}" height="100px" width="100px"></a>
             </div>
 
             <div class="form-group col-6">
@@ -145,7 +121,9 @@
                 <option value="PENDING" {{ $trainer->status == 'PENDING' ?'selected': '' }}>@lang('in active')</option>
               </select>
             </div>
-
+            <div class="form-group col-6">
+              <a href="{{$trainer->getCvAttribute()}}">@lang('my resume')</a>
+            </div>
           </div>
           <div class="row">
             <div class="form-group col-6">
