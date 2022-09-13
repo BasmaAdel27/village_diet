@@ -132,5 +132,10 @@
   "subscription_status": "حالة الاشتراك",
   "in_active": "غير مفعل",
   "request_cancel": "طلب إلغاء",
-  "finished": "منتهي"
+  "finished": "منتهي",
+  "weight_days": "وزن المستخدم / الأيام",
+  "cup_days": "عدد كاسات الماء / الأيام",
+  "walk_days": "مدة المشي / الأيام",
+  "sleep_days": "عدد ساعات النوم /الأيام",
+  "statistics": "الإحصائيات"
 }

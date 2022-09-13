@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\ReportController;
 use Illuminate\Support\Facades\Route;
 
 Route::view('dashboard', 'admin.dashboard')->name('dashboard');
+Route::get('users-charts/{user}', [UserController::class, 'statistics'])->name('users.statistics');
 Route::resource('users', UserController::class);
 Route::resource('roles', RoleController::class)->except('show');
 Route::resource('societies', SocietyController::class)->except('show');

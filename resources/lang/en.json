@@ -128,5 +128,10 @@
   "subscription_status": "Subscription Status",
   "in_active": "In Active",
   "request_cancel": "Request Cancel",
-  "finished": "Finished"
+  "finished": "Finished",
+  "weight_days": "User Weight / Days",
+  "cup_days": "User Daily Cups Of Water / Days",
+  "walk_days": "User Walk Duration / Days",
+  "sleep_days": "User Sleep Hours / Days",
+  "statistics": "Statistics"
 }
