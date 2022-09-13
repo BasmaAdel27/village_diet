@@ -4,82 +4,140 @@ namespace App\Http\Controllers\Admin;
 
 use App\DataTables\Admin\TrainerDatatable;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\TrainerRequest;
+use App\Models\Country\Country;
+use App\Models\State\State;
 use App\Models\Trainer;
+use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class TrainerController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->middleware('permission:admin.trainers.index')->only(['index']);
+        $this->middleware('permission:admin.trainers.store')->only(['store']);
+        $this->middleware('permission:admin.trainer.update')->only(['update']);
+        $this->middleware('permission:admin.trainers.destroy')->only(['destroy']);
+    }
     public function index(TrainerDatatable $trainerDatatable)
     {
         return $trainerDatatable->render('admin.trainers.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        $locales = config('translatable.locales');
+        $countries = Country::join('country_translations', 'countries.id', 'country_translations.country_id')
+              ->where('locale', app()->getLocale())
+              ->select('name', 'countries.id')
+              ->pluck('name', 'id');
+        $states=State::join('state_translations', 'states.id', 'state_translations.state_id')
+              ->where('locale', app()->getLocale())
+              ->select('name', 'states.id')
+              ->pluck('name', 'id');
+        return view('admin.trainers.create',compact('locales','countries','states'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function fetchState(Request $request)
+
     {
-        //
+        $data['states'] = State::where('country_id',$request->country_id)->join('state_translations', 'states.id', 'state_translations.state_id')
+          ->where('locale', app()->getLocale())
+          ->select('name', 'states.id')
+          ->pluck('name', 'id');
+        return response()->json($data['states']);
+
+    }
+    public function store(TrainerRequest $request)
+    {
+//        dd($request->all());
+        $data = $request->validated();
+        $personal_data=User::create([
+              'first_name'=>$request->first_name,
+              'last_name'=>$request->last_name,
+              'phone'=>$request->phone,
+              'email'=>$request->email,
+              'instgram'=>$request->instagram,
+              'twitter'=>$request->twitter,
+              'country_id'=>$request->countries,
+              'state_id'=>$request->states,
+            'address'=>$request->address,
+            'password'=>$request->password,
+            'email_verified_at'=>Carbon::now()
+        ]);
+//        dd($personal_data);
+        $trainer=Trainer::create([
+              'bio'=>$request->bio,
+              'current_job'=>$request->current_job,
+              'body_shape'=>$request->body_shape,
+              'join_request_reason'=>$request->join_request_reason,
+              'is_certified'=>$request->is_certified,
+              'show_inPage'=>$request->show_inPage,
+              'status'=>$request->status,
+            'user_id'=>$personal_data->id
+        ]);
+        return redirect()->route('admin.trainers.index')->with('success', trans('created_successfully'));
+
+
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($id)
     {
-        //
+        $trainer=Trainer::find($id);
+//        dd($trainer->user->address);
+        $locales = config('translatable.locales');
+        $countries = Country::join('country_translations', 'countries.id', 'country_translations.country_id')
+              ->where('locale', app()->getLocale())
+              ->select('name', 'countries.id')
+              ->pluck('name', 'id');
+        $states=State::where('country_id',$trainer->user->country_id)->join('state_translations', 'states.id', 'state_translations.state_id')
+              ->where('locale', app()->getLocale())
+              ->select('name', 'states.id')
+              ->pluck('name', 'id');;
+
+        return view('admin.trainers.edit',compact('trainer','states','locales','countries'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+
+    public function update(TrainerRequest $request, Trainer $trainer)
     {
-        //
+        $data=$request->validated();
+
+        $trainer->user->update([
+              'first_name'=>$request->first_name,
+              'last_name'=>$request->last_name,
+              'phone'=>$request->phone,
+              'email'=>$request->email,
+              'instgram'=>$request->instagram,
+              'twitter'=>$request->twitter,
+              'country_id'=>$request->countries,
+              'state_id'=>$request->states,
+              'address'=>$request->address,
+              'password'=>$request->password,
+        ]);
+//        dd($personal_data);
+        $trainer->update([
+              'bio'=>$request->bio,
+              'current_job'=>$request->current_job,
+              'body_shape'=>$request->body_shape,
+              'join_request_reason'=>$request->join_request_reason,
+              'is_certified'=>$request->is_certified,
+              'show_inPage'=>$request->show_inPage,
+              'status'=>$request->status,
+        ]);
+        return redirect()->route('admin.trainers.index')->with('success', trans('updated_successfully'));
+
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         Trainer::find($id)->delete();

@@ -14,9 +14,11 @@ use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\MealController;
 use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\TrainerController;
+use App\Http\Controllers\Admin\PendingTrainerController;
+use App\Http\Controllers\Admin\HomeController;
 use Illuminate\Support\Facades\Route;
 
-Route::view('dashboard', 'admin.dashboard')->name('dashboard');
+Route::get('dashboard', [HomeController::class,'home'])->name('dashboard');
 Route::get('/users/list', [UserController::class, 'getUsers']);
 
 Route::resource('users', UserController::class);
@@ -33,6 +35,8 @@ Route::get('ratings', RatingController::class)->name('ratings.index');
 Route::resource('settings', SettingController::class)->only('index', 'update');
 Route::resource('meals', MealController::class)->except('show');
 Route::resource('trainers', TrainerController::class)->except('show');
+Route::resource('pendingTrainers', PendingTrainerController::class)->except('show');
+
 
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
 Route::post('/profile', [ProfileController::class, 'store'])->name('profile.store');

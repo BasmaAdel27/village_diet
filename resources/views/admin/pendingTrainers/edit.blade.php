@@ -6,29 +6,27 @@
   <div class="container">
     <div class="card mt-5">
       <div class="card-header d-flex justify-content-between">
-        <h2 class="mb-4">@lang('trainers')</h2>
-        <a href="{{ route('admin.trainers.index') }}"
+        <h2 class="mb-4">@lang('pending trainers')</h2>
+        <a href="{{ route('admin.pendingTrainers.index') }}"
            class="btn btn-outline-dark btn-lg font-weight-bold">@lang('back')</a>
       </div>
       <div class="card-body table-responsive">
-        <form action="{{ route('admin.trainers.update',$trainer->id) }}" method="post" enctype="multipart/form-data">@csrf
-         @method('PUT')
           <div class="row">
             <div class="form-group col-6">
               <label>@lang("first name")</label>
-              <input type="text" class="form-control" name='first_name' value="{{$trainer->user->first_name}}">
+              <input type="text" class="form-control" name='first_name' value="{{$trainer->user->first_name}}" disabled>
             </div>
             <div class="form-group col-6">
               <label>@lang("last name")</label>
-              <input type="text" class="form-control" name='last_name' value="{{$trainer->user->last_name}}">
+              <input type="text" class="form-control" name='last_name' value="{{$trainer->user->last_name}}" disabled>
             </div>
             <div class="form-group col-6">
               <label>@lang("phone")</label>
-              <input type="text" class="form-control" name='phone' value="{{$trainer->user->phone}}">
+              <input type="text" class="form-control" name='phone' value="{{$trainer->user->phone}}" disabled>
             </div>
             <div class="form-group col-6">
               <label>@lang("email")</label>
-              <input type="email" class="form-control" name='email' value="{{$trainer->user->email}}" >
+              <input type="email" class="form-control" name='email' value="{{$trainer->user->email}}" disabled>
             </div>
             <div class="form-group col-6">
               <label>@lang('select_image')</label>
@@ -42,7 +40,7 @@
             </div>
             <div class="form-group col-6">
               <label>@lang('countries')</label>
-              <select name="countries" id="country" class="form-control">
+              <select name="countries" id="country" class="form-control" disabled>
                 <option value="">@lang('select')</option>
                 @foreach ($countries as $id => $name)
                   <option value="{{$id}}" {{$id == $trainer->user->country_id ?'selected': '' }}>{{trans($name)}}</option>
@@ -52,9 +50,9 @@
 
             <div class="form-group col-6">
               <label>@lang('states')</label>
-              <select name="states" id='state' class="form-control">
+              <select name="states" id='state' class="form-control" disabled>
                 @foreach ($states as $id => $name)
-                    <option value="{{$id}}" {{$id == $trainer->user->state_id ?'selected': '' }}>{{trans($name)}}</option>
+                  <option value="{{$id}}" {{$id == $trainer->user->state_id ?'selected': '' }}>{{trans($name)}}</option>
 
                 @endforeach
               </select>
@@ -62,27 +60,27 @@
 
             <div class="form-group col-6">
               <label>@lang("address")</label>
-              <input type="text" class="form-control" name='address' value="{{$trainer->user->address}}">
+              <input type="text" class="form-control" name='address' value="{{$trainer->user->address}}" disabled>
             </div>
 
             <div class="form-group col-6">
               <label>@lang("instagram")</label>
-              <input type="text" class="form-control" name='instagram' value="{{$trainer->user->instagram}}">
+              <input type="text" class="form-control" name='instagram' value="{{$trainer->user->instagram}}" disabled>
             </div>
 
             <div class="form-group col-6">
               <label>@lang("twitter")</label>
-              <input type="text" class="form-control" name='twitter' value="{{$trainer->user->twitter}}">
+              <input type="text" class="form-control" name='twitter' value="{{$trainer->user->twitter}}" disabled>
             </div>
 
             <div class="form-group col-6">
               <label>@lang("current job")</label>
-              <input type="text" class="form-control" name='current_job' value="{{$trainer->current_job}}">
+              <input type="text" class="form-control" name='current_job' value="{{$trainer->current_job}}" disabled>
             </div>
 
             <div class="form-group col-6">
               <label>@lang('body shape')</label>
-              <select name="body_shape" class="form-control" name="body_shape">
+              <select name="body_shape" class="form-control" name="body_shape" disabled>
                 <option value="">@lang('select')</option>
                 <option value="slim" {{'slim' == $trainer->body_shape ?'selected': '' }} >@lang('slim')</option>
                 <option value="sportsman" {{'sportsman' == $trainer->body_shape ?'selected': '' }}>@lang('sportsman')</option>
@@ -94,15 +92,15 @@
             </div>
             <div class="form-group col-6">
               <label>@lang(" reason to join us")</label>
-              <textarea class="form-control" name='join_request_reason' >{{$trainer->join_request_reason}}</textarea>
+              <textarea class="form-control" name='join_request_reason' disabled>{{$trainer->join_request_reason}}</textarea>
             </div>
             <div class="form-group col-6">
               <label>@lang("bio")</label>
-              <textarea class="form-control" name='bio'>{{$trainer->bio}}</textarea>
+              <textarea class="form-control" name='bio' disabled>{{$trainer->bio}}</textarea>
             </div>
             <div class="form-group col-6">
               <label>@lang('is licensed?')</label>
-              <select name="is_certified" class="form-control">
+              <select name="is_certified" class="form-control" disabled>
                 <option value="">@lang('select')</option>
                 <option value="1" {{$trainer->is_certified == 1 ?'selected':''}} >@lang('yes')</option>
                 <option value="0" {{$trainer->is_certified == 0 ?'selected':''}}>@lang('no')</option>
@@ -133,7 +131,7 @@
 
             <div class="form-group col-6">
               <label>@lang('show in our trainer page')</label>
-              <select name="show_inPage" class="form-control">
+              <select name="show_inPage" class="form-control" disabled>
                 <option value="">@lang('select')</option>
                 <option value="1" {{ $trainer->show_inPage == 1 ?'selected': '' }} >@lang('active')</option>
                 <option value="0"  {{ $trainer->show_inPage == 0 ?'selected': '' }}>@lang('in active')</option>
@@ -141,7 +139,7 @@
             </div>
             <div class="form-group col-6">
               <label>@lang('status')</label>
-              <select name="status" class="form-control">
+              <select name="status" class="form-control" disabled>
                 <option value="">@lang('select')</option>
                 <option value="DONE" {{ $trainer->status == 'DONE' ?'selected': '' }}>@lang('active')</option>
                 <option value="PENDING" {{ $trainer->status == 'PENDING' ?'selected': '' }}>@lang('in active')</option>
@@ -153,8 +151,10 @@
             <div class="form-group col-6">
               <input type="submit" class="btn btn-dark" value="@lang('submit')">
             </div>
+            <div class="form-group col-6">
+              <input type="submit" class="btn btn-dark" value="@lang('decline')">
+            </div>
           </div>
-        </form>
       </div>
     </div>
   </div>

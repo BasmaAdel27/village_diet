@@ -18,7 +18,8 @@ class Trainer extends Model
 
     const PENDING  = 'PENDING';
     const DONE     = 'DONE';
-    const STATUSES = [self::PENDING, self::DONE];
+    const DECLINED ='DECLINED';
+    const STATUSES = [self::PENDING, self::DONE, self::DECLINED];
 
     public static function boot()
     {
@@ -32,5 +33,8 @@ class Trainer extends Model
         return $this->hasMany(Society::class);
     }
 
+    public function user(){
+        return $this->belongsTo(User::class,'user_id','id');
+    }
 
 }

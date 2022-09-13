@@ -7,7 +7,7 @@ use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Services\DataTable;
 
-class TrainerDatatable extends DataTable
+class PendingTrainerDatatable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -19,23 +19,17 @@ class TrainerDatatable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-              ->editColumn('societies_count',function ($query){
-                  return $query->societies()->count();
-              })
-              ->editColumn('show_inPage', function ($query) {
-                  return ($query->show_inPage == 1) ? '<span class="btn btn-success">' . trans('active') . "</span>" : '<span class="btn btn-danger">' . trans('inactive') . "</span>";
-              })
               ->editColumn('status', function ($query) {
                   return ($query->status == 'DONE') ? '<span class="btn btn-success">' . trans('active') . "</span>" : '<span class="btn btn-danger">' . trans('inactive') . "</span>";
               })->editColumn('Action', function ($query) {
-                  return view('admin.trainers.datatable.action', compact('query'));
-              })->rawColumns(['societies_count','show_inPage','status','Active']);
+                  return view('admin.pendingTrainers.datatable.action', compact('query'));
+              })->rawColumns(['status','Active']);
     }
-
 
     public function query()
     {
         return Trainer::select('trainers.*', 'users.first_name as trainer_name','users.phone as phone')
+             ->where('status','PENDING')
               ->join('users', 'users.id', 'trainers.user_id')
               ->newQuery();
     }
@@ -58,22 +52,16 @@ class TrainerDatatable extends DataTable
               );
     }
 
-    /**
-     * Get columns.
-     *
-     * @return array
-     */
+
     protected function getColumns()
     {
         return [
-        Column::make('id')->title(trans('ID')),
-            Column::make('trainer_name')->name('users.first_name')->title(trans('name'))->orderable(false),
-            Column::make('phone')->name('users.phone')->title(trans('phone'))->orderable(false),
-            Column::make('societies_count')->title(trans('societies count')),
-            Column::make('show_inPage')->title(trans('our trainer page')),
+              Column::make('id')->title(trans('ID')),
+              Column::make('trainer_name')->name('users.first_name')->title(trans('name'))->orderable(false),
+              Column::make('phone')->name('users.phone')->title(trans('phone'))->orderable(false),
               Column::make('status')->title(trans('status')),
               Column::make('created_at')->title(trans('created_at')),
-            Column::make('Action')->title(trans('action'))->searchable(false)->orderable(false),
+              Column::make('Action')->title(trans('action'))->searchable(false)->orderable(false),
         ];
     }
 
@@ -84,6 +72,6 @@ class TrainerDatatable extends DataTable
      */
     protected function filename()
     {
-        return 'Trainer_' . date('YmdHis');
+        return 'PendingTrainer_' . date('YmdHis');
     }
 }
