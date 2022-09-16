@@ -147,7 +147,7 @@
   "twitter": "تويتر",
   "current job": "الوظيفه الحاليه",
   "body shape": "شكل الجسم",
-  "reason to join us":"سبب الانضمام الينا",
+  "reason to join us": "سبب الانضمام الينا",
   "bio": "نبذه عنك",
   "is licensed?": "هل لديك ترخيص؟",
   "licensed_image": "صوره الترخيص",
@@ -159,6 +159,20 @@
   "personal image": "الصوره الشخصيه",
   "activate_date": "تاريخ التفعيل",
   "end_date": "تاريخ الانتهاء",
-  "coupons": "الكوبونات"
-
+  "coupons": "الكوبونات",
+  "notifications": "الاشعارات",
+  "type": "النوع",
+  "send-notify": "إرسال إشعار",
+  "all": "الجميع",
+  "send": "أرسال",
+  "date_of_birth": "تاريخ الميلاد",
+  "insta_link": "حساب الانستجرام",
+  "subscribe_email": "الانضمام للقائمة البريدية",
+  "subscrioption_status": "حالة الاشتراك",
+  "add_users": "المستخدمين",
+  "health_info": "النموذج الصحي",
+  "subscription_end_date": "تاريخ انتهاء الاشتراك",
+  "details": "التفاصيل",
+  "1": "مفعل",
+  "0": "غير مفعل"
 }

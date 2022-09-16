@@ -61,6 +61,7 @@ class PermissionSeeder extends Seeder
 
         Role::create(['name' => 'admin'])->permissions()->sync($adminPermissionIds);
         Role::create(['name' => 'trainer'])->permissions()->sync($trainerPermissionIds);
+        Role::create(['name' => 'user']);
     }
 
         private function truncateTables()
@@ -74,4 +75,3 @@ class PermissionSeeder extends Seeder
         Schema::enableForeignKeyConstraints();
     }
 }
-

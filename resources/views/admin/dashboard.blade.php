@@ -6,7 +6,6 @@
     <div class="d-flex justify-content-between flex-wrap">
       <div class="d-flex align-items-end flex-wrap">
         <div class="mr-md-3 mr-xl-5">
-          <h2>Welcome back,</h2>
         </div>
         <div class="d-flex">
           <i class="mdi mdi-home text-muted hover-cursor"></i>

@@ -5,11 +5,28 @@ if (!function_exists('Setting')) {
     function Setting(string $attr)
     {
         if (\Illuminate\Support\Facades\Schema::hasTable('settings')) {
-          return  \App\Models\Setting::select($attr)->value($attr);
+            return  \App\Models\Setting::select($attr)->value($attr);
         }
     }
 }
 
+if (!function_exists('generateUniqueCode')) {
+    function generateUniqueCode($model, $column, $length)
+    {
+        $columnArr = $model::pluck($column)->toArray();
+        $code = '';
+
+        for ($i = 0; $i < $length; $i++) {
+            $code .= mt_rand(0, 9);
+        }
+
+        if (in_array($code, $columnArr)) {
+            generateUniqueCode($model, $column, $length);
+        }
+
+        return $code;
+    }
+}
 
 if (!function_exists('successResponse')) {
 
@@ -36,9 +53,6 @@ if (!function_exists('successResponse')) {
 
         return response()->json($json, $status);
     }
-
-
-
 }
 
 if (!function_exists('failedResponse')) {

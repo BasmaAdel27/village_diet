@@ -30,57 +30,55 @@ class TrainerController extends Controller
     {
         $locales = config('translatable.locales');
         $countries = Country::join('country_translations', 'countries.id', 'country_translations.country_id')
-              ->where('locale', app()->getLocale())
-              ->select('name', 'countries.id')
-              ->pluck('name', 'id');
-        $states=State::join('state_translations', 'states.id', 'state_translations.state_id')
-              ->where('locale', app()->getLocale())
-              ->select('name', 'states.id')
-              ->pluck('name', 'id');
-        return view('admin.trainers.create',compact('locales','countries','states'));
+            ->where('locale', app()->getLocale())
+            ->select('name', 'countries.id')
+            ->pluck('name', 'id');
+        $states = State::join('state_translations', 'states.id', 'state_translations.state_id')
+            ->where('locale', app()->getLocale())
+            ->select('name', 'states.id')
+            ->pluck('name', 'id');
+        return view('admin.trainers.create', compact('locales', 'countries', 'states'));
     }
 
     public function fetchState(Request $request)
 
     {
-        $data['states'] = State::where('country_id',$request->country_id)->join('state_translations', 'states.id', 'state_translations.state_id')
-          ->where('locale', app()->getLocale())
-          ->select('name', 'states.id')
-          ->pluck('name', 'id');
+        $data['states'] = State::where('country_id', $request->country_id)->join('state_translations', 'states.id', 'state_translations.state_id')
+            ->where('locale', app()->getLocale())
+            ->select('name', 'states.id')
+            ->pluck('name', 'id');
         return response()->json($data['states']);
-
     }
     public function store(TrainerRequest $request)
     {
-//        dd($request->all());
         $data = $request->validated();
-        $personal_data=User::create([
-              'first_name'=>$request->first_name,
-              'last_name'=>$request->last_name,
-              'phone'=>$request->phone,
-              'email'=>$request->email,
-              'instgram'=>$request->instagram,
-              'twitter'=>$request->twitter,
-              'country_id'=>$request->countries,
-              'state_id'=>$request->states,
-            'address'=>$request->address,
-            'password'=>$request->password,
-            'email_verified_at'=>Carbon::now()
+        $user = User::create([
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'phone' => $request->phone,
+            'email' => $request->email,
+            'instgram' => $request->instagram,
+            'twitter' => $request->twitter,
+            'country_id' => $request->countries,
+            'state_id' => $request->states,
+            'address' => $request->address,
+            'password' => $request->password,
+            'email_verified_at' => Carbon::now()
         ]);
-//        dd($personal_data);
-        $trainer=Trainer::create([
-              'bio'=>$request->bio,
-              'current_job'=>$request->current_job,
-              'body_shape'=>$request->body_shape,
-              'join_request_reason'=>$request->join_request_reason,
-              'is_certified'=>$request->is_certified,
-              'show_inPage'=>$request->show_inPage,
-              'status'=>$request->status,
-            'user_id'=>$personal_data->id
+
+        $user->assignRole('trainer');
+        $trainer = Trainer::create([
+            'bio' => $request->bio,
+            'current_job' => $request->current_job,
+            'body_shape' => $request->body_shape,
+            'join_request_reason' => $request->join_request_reason,
+            'is_certified' => $request->is_certified,
+            'show_inPage' => $request->show_inPage,
+            'status' => $request->status,
+            'user_id' => $user->id
         ]);
+
         return redirect()->route('admin.trainers.index')->with('success', trans('created_successfully'));
-
-
     }
 
 
@@ -92,55 +90,54 @@ class TrainerController extends Controller
 
     public function edit($id)
     {
-        $trainer=Trainer::find($id);
-//        dd($trainer->user->address);
+        $trainer = Trainer::find($id);
+        //        dd($trainer->user->address);
         $locales = config('translatable.locales');
         $countries = Country::join('country_translations', 'countries.id', 'country_translations.country_id')
-              ->where('locale', app()->getLocale())
-              ->select('name', 'countries.id')
-              ->pluck('name', 'id');
-        $states=State::where('country_id',$trainer->user->country_id)->join('state_translations', 'states.id', 'state_translations.state_id')
-              ->where('locale', app()->getLocale())
-              ->select('name', 'states.id')
-              ->pluck('name', 'id');;
+            ->where('locale', app()->getLocale())
+            ->select('name', 'countries.id')
+            ->pluck('name', 'id');
+        $states = State::where('country_id', $trainer->user->country_id)->join('state_translations', 'states.id', 'state_translations.state_id')
+            ->where('locale', app()->getLocale())
+            ->select('name', 'states.id')
+            ->pluck('name', 'id');;
 
-        return view('admin.trainers.edit',compact('trainer','states','locales','countries'));
+        return view('admin.trainers.edit', compact('trainer', 'states', 'locales', 'countries'));
     }
 
 
     public function update(TrainerRequest $request, Trainer $trainer)
     {
-        $data=$request->validated();
-
+        $data = $request->validated();
         $trainer->user->update([
-              'first_name'=>$request->first_name,
-              'last_name'=>$request->last_name,
-              'phone'=>$request->phone,
-              'email'=>$request->email,
-              'instgram'=>$request->instagram,
-              'twitter'=>$request->twitter,
-              'country_id'=>$request->countries,
-              'state_id'=>$request->states,
-              'address'=>$request->address,
-              'password'=>$request->password,
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'phone' => $request->phone,
+            'email' => $request->email,
+            'instgram' => $request->instagram,
+            'twitter' => $request->twitter,
+            'country_id' => $request->countries,
+            'state_id' => $request->states,
+            'address' => $request->address,
+            'password' => $request->password,
         ]);
-//        dd($personal_data);
-        $trainer->update([
-              'bio'=>$request->bio,
-              'current_job'=>$request->current_job,
-              'body_shape'=>$request->body_shape,
-              'join_request_reason'=>$request->join_request_reason,
-              'is_certified'=>$request->is_certified,
-              'show_inPage'=>$request->show_inPage,
-              'status'=>$request->status,
-        ]);
-        return redirect()->route('admin.trainers.index')->with('success', trans('updated_successfully'));
 
+        $trainer->update([
+            'bio' => $request->bio,
+            'current_job' => $request->current_job,
+            'body_shape' => $request->body_shape,
+            'join_request_reason' => $request->join_request_reason,
+            'is_certified' => $request->is_certified,
+            'show_inPage' => $request->show_inPage,
+            'status' => $request->status,
+        ]);
+
+        return redirect()->route('admin.trainers.index')->with('success', trans('updated_successfully'));
     }
 
     public function destroy($id)
     {
         Trainer::find($id)->delete();
-        return redirect()->route('admin.trainers.index')->with('success',trans('deleted_successfully'));
+        return redirect()->route('admin.trainers.index')->with('success', trans('deleted_successfully'));
     }
 }

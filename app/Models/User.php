@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use App\Models\Country\Country;
 use App\Models\Society\Society;
+use App\Models\State\State;
 use App\Traits\HasAssetsTrait;
 use App\Traits\HasTimestampTrait;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -11,6 +13,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\HasApiTokens;
+use MattDaneshvar\Survey\Models\Entry;
 use Spatie\Permission\Traits\HasRoles;
 use willvincent\Rateable\Rateable;
 
@@ -113,6 +116,21 @@ class User extends Authenticatable
     {
         return $this->hasMany(HealthyInformation::class);
     }
-    #endregion relationships
 
+    public function entry()
+    {
+        return $this->hasOne(Entry::class, 'participant_id')
+            ->whereHas('survey', fn ($q) => $q->where('name', (app()->getLocale() == 'ar' ? 'النموذج الصحي' : 'Health Model')));
+    }
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
+    }
+
+    public function state()
+    {
+        return $this->belongsTo(State::class);
+    }
+    #endregion relationship
 }
