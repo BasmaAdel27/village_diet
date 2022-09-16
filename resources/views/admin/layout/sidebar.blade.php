@@ -76,9 +76,6 @@
       </div>
     </li>
     @endcanany
-
-
-
     @can('admin.trainers.index')
     <li class="nav-item">
       <a class="nav-link" href="{{ route('admin.trainers.index') }}">
@@ -87,11 +84,10 @@
       </a>
     </li>
     @endcan
-
     @can('admin.coupons.index')
     <li class="nav-item">
       <a class="nav-link" href="{{ route('admin.coupons.index') }}">
-        <i class=" menu-icon"></i>
+        <i class="mdi mdi-sale menu-icon"></i>
         <span class="menu-title">@lang('coupons')</span>
       </a>
     </li>
@@ -126,14 +122,6 @@
       <a class="nav-link" href="{{ route('admin.notifications.index') }}">
         <i class="mdi mdi-bell menu-icon"></i>
         <span class="menu-title">@lang('notifications')</span>
-      </a>
-    </li>
-    @endcan
-    @can('admin.settings.index')
-    <li class="nav-item">
-      <a class="nav-link" href="{{ route('admin.settings.index') }}">
-        <i class="mdi mdi-settings menu-icon"></i>
-        <span class="menu-title">@lang('settings')</span>
       </a>
     </li>
     @endcan
@@ -178,5 +166,13 @@
       </div>
     </li>
     @endcanany
+    @can('admin.settings.index')
+    <li class="nav-item">
+      <a class="nav-link" href="{{ route('admin.settings.index') }}">
+        <i class="mdi mdi-settings menu-icon"></i>
+        <span class="menu-title">@lang('settings')</span>
+      </a>
+    </li>
+    @endcan
   </ul>
 </nav>
