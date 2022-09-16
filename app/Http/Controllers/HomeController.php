@@ -19,6 +19,8 @@ class HomeController extends Controller
             ['user', 'trainer']
         ))) {
             return redirect()->route('admin.dashboard');
+        } elseif (in_array('trainer', $user->roles()->pluck('name')->toArray())) {
+            return redirect()->route('trainer.dashboard');
         }
     }
 }

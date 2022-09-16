@@ -170,5 +170,9 @@
   "subscribe_email": "الانضمام للقائمة البريدية",
   "subscrioption_status": "حالة الاشتراك",
   "add_users": "المستخدمين",
-  "health_info": "النموذج الصحي"
+  "health_info": "النموذج الصحي",
+  "subscription_end_date": "تاريخ انتهاء الاشتراك",
+  "details": "التفاصيل",
+  "1": "مفعل",
+  "0": "غير مفعل"
 }

@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use App\Models\Country\Country;
 use App\Models\Society\Society;
+use App\Models\State\State;
 use App\Traits\HasAssetsTrait;
 use App\Traits\HasTimestampTrait;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -117,8 +119,18 @@ class User extends Authenticatable
 
     public function entry()
     {
-        return $this->hasOne(Entry::class, 'participant_id');
+        return $this->hasOne(Entry::class, 'participant_id')
+            ->whereHas('survey', fn ($q) => $q->where('name', (app()->getLocale() == 'ar' ? 'النموذج الصحي' : 'Health Model')));
     }
-    #endregion relationships
 
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
+    }
+
+    public function state()
+    {
+        return $this->belongsTo(State::class);
+    }
+    #endregion relationship
 }
