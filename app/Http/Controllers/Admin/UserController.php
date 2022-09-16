@@ -50,7 +50,8 @@ class UserController extends Controller
 
     public function store(UserRequest $request)
     {
-        $user = User::make()->fill($request->validated());
+        $userNumber = generateUniqueCode(User::class, 'user_number', 6);
+        $user = User::make()->fill($request->validated() + ['user_number' => $userNumber]);
         $user->assignRole('user');
         $user->save();
 
@@ -81,7 +82,8 @@ class UserController extends Controller
 
     public function update(UserRequest $request, User $user)
     {
-        $user->fill($request->validated());
+        $userNumber = generateUniqueCode(User::class, 'user_number', 6);
+        $user->fill($request->validated() + ['user_number' => $userNumber]);
         $user->save();
 
         if ($request->subscribe && !in_array($user->email, Subscriber::pluck('email')->all())) {
