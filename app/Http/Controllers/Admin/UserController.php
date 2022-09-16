@@ -4,9 +4,16 @@ namespace App\Http\Controllers\Admin;
 
 use App\DataTables\Admin\UserDatatable;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\UserRequest;
+use App\Models\Country\Country;
 use App\Models\HealthyInformation;
+use App\Models\State\State;
+use App\Models\Subscriber;
+use App\Models\Subscription;
 use App\Models\User;
 use Illuminate\Http\Request;
+use MattDaneshvar\Survey\Models\Entry;
+use MattDaneshvar\Survey\Models\Survey;
 
 class UserController extends Controller
 {
@@ -26,28 +33,71 @@ class UserController extends Controller
 
     public function create()
     {
-        return view('admin.users.create');
+        $countries = Country::join('country_translations', 'countries.id', 'country_translations.country_id')
+            ->where('locale', app()->getLocale())
+            ->select('name', 'countries.id')
+            ->pluck('name', 'id');
+
+        $states = State::join('state_translations', 'states.id', 'state_translations.state_id')
+            ->where('locale', app()->getLocale())
+            ->select('name', 'states.id')
+            ->pluck('name', 'id');
+        $subscriptionStatus = Subscription::STATUSES;
+
+        return view('admin.users.create', compact('countries', 'states', 'subscriptionStatus'));
     }
 
 
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
-        //
+        $user = User::make()->fill($request->validated());
+        $user->assignRole('user');
+        $user->save();
+
+        if ($request->subscribe) {
+            Subscriber::create([
+                'email' => $user->email
+            ]);
+        }
+
+        return redirect()->route('admin.users.index')->with('success', trans('created_successfully'));
     }
 
-    public function edit($id)
+    public function edit(User $user)
     {
-        return view('admin.users.edit');
+        $countries = Country::join('country_translations', 'countries.id', 'country_translations.country_id')
+            ->where('locale', app()->getLocale())
+            ->select('name', 'countries.id')
+            ->pluck('name', 'id');
+
+        $states = State::join('state_translations', 'states.id', 'state_translations.state_id')
+            ->where('locale', app()->getLocale())
+            ->select('name', 'states.id')
+            ->pluck('name', 'id');
+        $subscriptionStatus = Subscription::STATUSES;
+
+        return view('admin.users.edit', compact('countries', 'states', 'subscriptionStatus', 'user'));
     }
 
-    public function update(Request $request, $id)
+    public function update(UserRequest $request, User $user)
     {
-        //
+        $user->fill($request->validated());
+        $user->save();
+
+        if ($request->subscribe && !in_array($user->email, Subscriber::pluck('email')->all())) {
+            Subscriber::create([
+                'email' => $user->email
+            ]);
+        }
+
+        return redirect()->route('admin.users.index')->with('success', trans('updated_successfully'));
     }
 
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        $user->delete();
+
+        return redirect()->route('admin.users.index')->with('success', trans('deleted_successfully'));
     }
 
     public function statistics(User $user)
@@ -66,5 +116,32 @@ class UserController extends Controller
         $cahrts['days'] = $data->pluck('title')->toArray();
 
         return view('admin.users.statistics', compact('cahrts'));
+    }
+
+    public function getFormData()
+    {
+        $users = User::whereHas('roles', fn ($q) => $q->where('name', 'user'))
+            ->doesntHave('entry')->pluck('first_name', 'id');
+        $survey = Survey::where(
+            'name',
+            (app()->getLocale() == 'ar') ?
+                'النموذج الصحي' :
+                'Health Model'
+        )
+            ->first();
+
+        return view('admin.users.form_data', compact('survey', 'users'));
+    }
+
+    public function postFormData(Request $request, Survey $survey)
+    {
+        $answers = $this->validate($request, $survey->rules + [
+            'user_id' => 'required|exists:users,id'
+        ]);
+
+        $user = User::find($request->user_id);
+        (new Entry())->for($survey)->by($user)->fromArray(collect($answers)->except('user_id')->all())->push();
+
+        return redirect()->route('admin.users.index')->with('success', trans('created_successfully'));
     }
 }

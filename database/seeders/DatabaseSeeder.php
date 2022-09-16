@@ -29,5 +29,6 @@ class DatabaseSeeder extends Seeder
         $this->call(DaySeeder::class);
         $this->call(SettingSeeder::class);
         Subscription::factory(50)->create();
+        $this->call(SurveySeeder::class);
     }
 }

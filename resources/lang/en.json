@@ -160,5 +160,11 @@
   "type": "Type",
   "send-notify": "Send Notification",
   "all": "All",
-  "send": "Send"
+  "send": "Send",
+  "date_of_birth": "Date Of Birth",
+  "insta_link": "Instagram Link",
+  "subscribe_email": "Join Email List",
+  "subscrioption_status": "Subscription Status",
+  "add_users": "Users",
+  "health_info": "Healthy Information"
 }
