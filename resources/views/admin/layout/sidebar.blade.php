@@ -111,6 +111,14 @@
       </a>
     </li>
     @endcan
+    @can('admin.pendingTrainers.index')
+    <li class="nav-item">
+      <a class="nav-link" href="{{ route('admin.pendingTrainers.index') }}">
+        <i class="mdi mdi-account-multiple menu-icon"></i>
+        <span class="menu-title">@lang('pending trainers')</span>
+      </a>
+    </li>
+    @endcan
     @can('admin.coupons.index')
     <li class="nav-item">
       <a class="nav-link" href="{{ route('admin.coupons.index') }}">

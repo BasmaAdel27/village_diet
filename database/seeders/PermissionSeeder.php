@@ -17,7 +17,7 @@ class PermissionSeeder extends Seeder
      * @return void
      */
 
-        public function run()
+    public function run()
     {
         /**
          *  This array contains all public routes
@@ -25,36 +25,37 @@ class PermissionSeeder extends Seeder
          * @var array
          */
         $publicRoutes = [
-              'login',
-              'logout',
-              'register',
-              'password.request',
-              'password.email',
-              'password.reset',
-              'password.update',
-              'password.confirm',
-              'admin.'
+            'login',
+            'logout',
+            'register',
+            'password.request',
+            'password.email',
+            'password.reset',
+            'password.update',
+            'password.confirm',
+            'admin.',
+            'admin.profile.index',
+            'admin.profile.store',
         ];
 
         $this->truncateTables();
 
         foreach (Route::getRoutes() as $route) {
             if (
-                  $route->getName() != ''
-                  && $route->getAction()['middleware']['0'] == 'web'
-                  && !Permission::where('name', $route->getName())->exists()
-                  && !in_array($route->getName(), $publicRoutes)
-                  && !str_contains($route->getName(), 'edit')
-                  && !str_contains($route->getName(), 'create')
+                $route->getName() != ''
+                && $route->getAction()['middleware']['0'] == 'web'
+                && !Permission::where('name', $route->getName())->exists()
+                && !in_array($route->getName(), $publicRoutes)
+                && !str_contains($route->getName(), 'edit')
+                && !str_contains($route->getName(), 'create')
             ) {
                 permission::create(['name' => $route->getName()]);
             }
         }
         $this->createRolePermissions();
-
     }
 
-        private static function createRolePermissions()
+    private static function createRolePermissions()
     {
         $adminPermissionIds = Permission::where('name', 'like', 'admin.%')->orWhere('name', 'home')->pluck('id');
         $trainerPermissionIds = Permission::where('name', 'like', 'trainer.%')->orWhere('name', 'home')->pluck('id');
@@ -64,7 +65,7 @@ class PermissionSeeder extends Seeder
         Role::create(['name' => 'user']);
     }
 
-        private function truncateTables()
+    private function truncateTables()
     {
         Schema::disableForeignKeyConstraints();
         DB::table('user_has_roles')->truncate();

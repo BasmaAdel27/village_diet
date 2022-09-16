@@ -16,7 +16,7 @@
         <label class="col-2 col-form-label ml-2">@lang('permissions')</label>
         <select class="js-example-basic-multiple col-6" name="permission[]" multiple="multiple">
           @foreach($permissions as $permission)
-          <option value="{{$permission->id}}">{{$permission->name}}</option>
+          <option value="{{$permission->id}}">{{ trans('site.' . $permission->name) }}</option>
           @endforeach
         </select>
       </div>

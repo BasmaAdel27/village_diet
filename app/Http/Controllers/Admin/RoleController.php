@@ -25,7 +25,7 @@ class RoleController extends Controller
 
     public function create()
     {
-        $permissions = Permission::all();
+        $permissions = Permission::where('name', 'like', 'admin.%')->get();
 
         return view('admin.roles.create', compact('permissions'));
     }
@@ -54,7 +54,7 @@ class RoleController extends Controller
     {
         $role = Role::find($id);
         $rolePermissions = $role->permissions()->pluck('permission_id')->toArray();
-        $permissions = Permission::get();
+        $permissions = Permission::where('name', 'like', 'admin.%')->get();
 
         return view('admin.roles.edit', compact(['role', 'rolePermissions', 'permissions']));
     }
