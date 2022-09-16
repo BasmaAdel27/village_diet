@@ -48,15 +48,38 @@
       </a>
     </li>
     @endcan
-    @can('admin.users.index')
+
+    @canAny(['admin.users.index'])
     <li class="nav-item">
-      <a class="nav-link" href="{{ route('admin.users.index') }}">
+      <a class="nav-link" data-toggle="collapse" href="#add_users" aria-expanded="false" aria-controls="add_users">
         <i class="mdi mdi-account-multiple menu-icon"></i>
-        <span class="menu-title">@lang('users')</span>
+        <span class="menu-title">@lang('add_users')</span>
+        <i class="menu-arrow"></i>
       </a>
+      <div class="collapse" id="add_users">
+        <ul class="nav flex-column sub-menu">
+          @can('admin.users.index')
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('admin.users.index') }}">
+              @lang('add_users')
+            </a>
+          </li>
+          @endcan
+          @can('admin.users.form_data')
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('admin.users.form_data') }}">
+              @lang('health_info')
+            </a>
+          </li>
+          @endcan
+        </ul>
+      </div>
     </li>
-    @endcan
-      @can('admin.trainers.index')
+    @endcanany
+
+
+
+    @can('admin.trainers.index')
     <li class="nav-item">
       <a class="nav-link" href="{{ route('admin.trainers.index') }}">
         <i class="mdi mdi-account-multiple menu-icon"></i>

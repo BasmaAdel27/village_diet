@@ -11,6 +11,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\HasApiTokens;
+use MattDaneshvar\Survey\Models\Entry;
 use Spatie\Permission\Traits\HasRoles;
 use willvincent\Rateable\Rateable;
 
@@ -112,6 +113,11 @@ class User extends Authenticatable
     public function healthyInformation()
     {
         return $this->hasMany(HealthyInformation::class);
+    }
+
+    public function entry()
+    {
+        return $this->hasOne(Entry::class, 'participant_id');
     }
     #endregion relationships
 

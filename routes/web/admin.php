@@ -20,8 +20,9 @@ use \App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\HomeController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('dashboard', [HomeController::class,'home'])->name('dashboard');
-Route::get('/users/list', [UserController::class, 'getUsers']);
+Route::get('dashboard', [HomeController::class, 'home'])->name('dashboard');
+Route::get('users-form-data', [UserController::class, 'getFormData'])->name('users.form_data');
+Route::post('users-form-data/{survey}', [UserController::class, 'postFormData'])->name('users.post_data');
 Route::get('users-charts/{user}', [UserController::class, 'statistics'])->name('users.statistics');
 Route::resource('users', UserController::class);
 Route::resource('notifications', NotiifcationController::class)->except(['edit', 'update', 'show']);
@@ -36,7 +37,7 @@ Route::get('ratings', RatingController::class)->name('ratings.index');
 Route::resource('settings', SettingController::class)->only('index', 'update');
 Route::resource('meals', MealController::class)->except('show');
 Route::resource('trainers', TrainerController::class)->except('show');
-Route::resource('pendingTrainers', PendingTrainerController::class)->except('show','destroy','store');
+Route::resource('pendingTrainers', PendingTrainerController::class)->except('show', 'destroy', 'store');
 Route::resource('coupons', CouponController::class)->except('show');
 
 

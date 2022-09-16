@@ -17,7 +17,7 @@ class Subscription extends Model
     const REQUEST_CANCEL = 'request_cancel';
     const FINISHED = 'finished';
 
-    const STATUSES = [self::ACTIVE, self::IN_ACTIVE, self::REQUEST_CANCEL];
+    const STATUSES = [self::ACTIVE, self::IN_ACTIVE, self::REQUEST_CANCEL, self::FINISHED];
 
     public function coupon()
     {

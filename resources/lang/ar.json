@@ -164,5 +164,11 @@
   "type": "النوع",
   "send-notify": "إرسال إشعار",
   "all": "الجميع",
-  "send": "أرسال"
+  "send": "أرسال",
+  "date_of_birth": "تاريخ الميلاد",
+  "insta_link": "حساب الانستجرام",
+  "subscribe_email": "الانضمام للقائمة البريدية",
+  "subscrioption_status": "حالة الاشتراك",
+  "add_users": "المستخدمين",
+  "health_info": "النموذج الصحي"
 }
