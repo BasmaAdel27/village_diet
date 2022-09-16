@@ -23,8 +23,15 @@ Route::group(
         ], function () {
             require('web/admin.php');
         });
+
+        Route::group([
+            'as' => 'trainer.',
+            'prefix' => 'trainer',
+            'middleware' => ['auth'],
+        ], function () {
+            require('web/trainer.php');
+        });
     }
 );
 
-Route::post('/states',[\App\Http\Controllers\Admin\TrainerController::class,'fetchState'])->name('states');
-
+Route::post('/states', [\App\Http\Controllers\Admin\TrainerController::class, 'fetchState'])->name('states');

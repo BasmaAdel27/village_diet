@@ -1,6 +1,33 @@
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
   <ul class="nav">
-    @can('home')
+    @role('trainer')
+    @can('trainer.dashboard')
+    <li class="nav-item">
+      <a class="nav-link" href="{{ route('trainer.dashboard') }}">
+        <i class="mdi mdi-home menu-icon"></i>
+        <span class="menu-title">@lang('dashboard')</span>
+      </a>
+    </li>
+    @endcan
+    @can('trainer.users.index')
+    <li class="nav-item">
+      <a class="nav-link" href="{{ route('trainer.users.index') }}">
+        <i class="mdi mdi-home menu-icon"></i>
+        <span class="menu-title">@lang('users')</span>
+      </a>
+    </li>
+    @endcan
+    @can('trainer.societies.index')
+    <li class="nav-item">
+      <a class="nav-link" href="{{ route('trainer.societies.index') }}">
+        <i class="mdi mdi-home menu-icon"></i>
+        <span class="menu-title">@lang('societies')</span>
+      </a>
+    </li>
+    @endcan
+    @endrole
+
+    @can('admin.home')
     <li class="nav-item">
       <a class="nav-link" href="{{ route('admin.dashboard') }}">
         <i class="mdi mdi-home menu-icon"></i>
@@ -49,7 +76,7 @@
     </li>
     @endcan
 
-    @canAny(['admin.users.index'])
+    @canAny(['admin.users.index','dmin.users.form_data'])
     <li class="nav-item">
       <a class="nav-link" data-toggle="collapse" href="#add_users" aria-expanded="false" aria-controls="add_users">
         <i class="mdi mdi-account-multiple menu-icon"></i>

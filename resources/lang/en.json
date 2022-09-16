@@ -166,5 +166,9 @@
   "subscribe_email": "Join Email List",
   "subscrioption_status": "Subscription Status",
   "add_users": "Users",
-  "health_info": "Healthy Information"
+  "health_info": "Healthy Information",
+  "subscription_end_date": "Subscription End Date",
+  "details": "Details",
+  "1": "Active",
+  "0": "In Active"
 }
