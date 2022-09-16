@@ -87,6 +87,16 @@
       </a>
     </li>
     @endcan
+
+    @can('admin.coupons.index')
+    <li class="nav-item">
+      <a class="nav-link" href="{{ route('admin.coupons.index') }}">
+        <i class=" menu-icon"></i>
+        <span class="menu-title">@lang('coupons')</span>
+      </a>
+    </li>
+    @endcan
+
     @can('admin.static_pages.index')
     <li class="nav-item">
       <a class="nav-link" href="{{ route('admin.static_pages.index') }}">
