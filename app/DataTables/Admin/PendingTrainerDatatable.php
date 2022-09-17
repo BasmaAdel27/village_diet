@@ -22,7 +22,7 @@ class PendingTrainerDatatable extends DataTable
             ->editColumn('status', function ($query) {
                 return ($query->status == 'DONE') ? '<span class="btn btn-success">' . trans('active') . "</span>" : '<span class="btn btn-danger">' . trans('inactive') . "</span>";
             })->editColumn('Action', function ($query) {
-                return view('admin.pending-trainers.datatable.action', compact('query'));
+                return view('admin.pending_trainers.datatable.action', compact('query'));
             })->rawColumns(['status', 'Active']);
     }
 

@@ -19,7 +19,7 @@ class PendingTrainerController extends Controller
     }
     public function index(PendingTrainerDatatable $pendingTrainerDatatable)
     {
-        return $pendingTrainerDatatable->render('admin.pending-trainers.index');
+        return $pendingTrainerDatatable->render('admin.pending_trainers.index');
     }
 
 
@@ -54,7 +54,7 @@ class PendingTrainerController extends Controller
             ->select('name', 'states.id')
             ->pluck('name', 'id');;
         //dd($trainer->getImageAttribute());
-        return view('admin.pending-trainers.edit', compact('trainer', 'states', 'locales', 'countries'));
+        return view('admin.pending_trainers.edit', compact('trainer', 'states', 'locales', 'countries'));
     }
 
 
