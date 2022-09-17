@@ -61,4 +61,7 @@ return [
     'admin.reports.users' => 'Users (Reports)',
     'admin.reports.trainers' => 'Trainers (Reports)',
     'admin.reports.copouns' => 'Copouns (Reports)',
+    'admin.postel_news.index' => 'Index (Postel News)',
+    'admin.postel_news.store' => 'Store (Postel News)',
+    'admin.postel_news.destroy' => 'Destroy (Postel News)'
 ];
