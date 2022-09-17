@@ -68,7 +68,6 @@
       var generate = document.getElementById('generate');
       var text = "";
       var possible = "AB0123456789CDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-
       for (var i = 0; i < 6; i++)
         text += possible.charAt(Math.floor(Math.random() * possible.length));
       document.getElementById('code').value=text;

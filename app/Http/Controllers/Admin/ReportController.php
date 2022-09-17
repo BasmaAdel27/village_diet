@@ -20,7 +20,7 @@ class ReportController extends Controller
         $this->middleware('permission:admin.reports.trainers')->only(['trainersReport']);
         $this->middleware('permission:admin.reports.copouns')->only(['copounsReport']);
 
-        $this->date_from = Carbon::parse(request('date_from'))->format('Y-m-d');
+        $this->date_from = Carbon::parse(request('date_from'))->format('Y-m-d H-m-s');
         $this->date_to   = Carbon::parse(request('date_to'))->format('Y-m-d');
     }
 
