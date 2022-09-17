@@ -51,22 +51,6 @@
       </a>
     </li>
     @endcan
-    @can('admin.contactUs.index')
-    <li class="nav-item">
-      <a class="nav-link" href="{{ route('admin.contactUs.index') }}">
-        <i class="mdi mdi-phone-classic menu-icon"></i>
-        <span class="menu-title">@lang('contact us')</span>
-      </a>
-    </li>
-    @endcan
-    @can('admin.sliders.index')
-    <li class="nav-item">
-      <a class="nav-link" href="{{ route('admin.sliders.index') }}">
-        <i class="mdi mdi-image-multiple menu-icon"></i>
-        <span class="menu-title">@lang('sliders')</span>
-      </a>
-    </li>
-    @endcan
     @can('admin.societies.index')
     <li class="nav-item">
       <a class="nav-link" href="{{ route('admin.societies.index') }}">
@@ -75,7 +59,6 @@
       </a>
     </li>
     @endcan
-
     @canAny(['admin.users.index','dmin.users.form_data'])
     <li class="nav-item">
       <a class="nav-link" data-toggle="collapse" href="#add_users" aria-expanded="false" aria-controls="add_users">
@@ -103,11 +86,39 @@
       </div>
     </li>
     @endcanany
-    @can('admin.trainers.index')
+    @canAny(['admin.trainers.index','admin.pendingTrainers.index'])
     <li class="nav-item">
-      <a class="nav-link" href="{{ route('admin.trainers.index') }}">
+      <a class="nav-link" data-toggle="collapse" href="#add_trainers" aria-expanded="false"
+        aria-controls="add_trainers">
         <i class="mdi mdi-account-multiple menu-icon"></i>
         <span class="menu-title">@lang('trainers')</span>
+        <i class="menu-arrow"></i>
+      </a>
+      <div class="collapse" id="add_trainers">
+        <ul class="nav flex-column sub-menu">
+          @can('admin.trainers.index')
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('admin.trainers.index') }}">
+              @lang('trainers')
+            </a>
+          </li>
+          @endcan
+          @can('admin.pendingTrainers.index')
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('admin.pendingTrainers.index') }}">
+              @lang('pending trainers')
+            </a>
+          </li>
+          @endcan
+        </ul>
+      </div>
+    </li>
+    @endcanany
+    @can('admin.sliders.index')
+    <li class="nav-item">
+      <a class="nav-link" href="{{ route('admin.sliders.index') }}">
+        <i class="mdi mdi-image-multiple menu-icon"></i>
+        <span class="menu-title">@lang('sliders')</span>
       </a>
     </li>
     @endcan
@@ -136,6 +147,14 @@
       </a>
     </li>
     @endcan
+    @can('admin.meals.index')
+    <li class="nav-item">
+      <a class="nav-link" href="{{ route('admin.meals.index') }}">
+        <i class="mdi mdi-food menu-icon"></i>
+        <span class="menu-title">@lang('meals')</span>
+      </a>
+    </li>
+    @endcan
     @can('admin.ratings.index')
     <li class="nav-item">
       <a class="nav-link" href="{{ route('admin.ratings.index') }}">
@@ -149,14 +168,6 @@
       <a class="nav-link" href="{{ route('admin.notifications.index') }}">
         <i class="mdi mdi-bell menu-icon"></i>
         <span class="menu-title">@lang('notifications')</span>
-      </a>
-    </li>
-    @endcan
-    @can('admin.meals.index')
-    <li class="nav-item">
-      <a class="nav-link" href="{{ route('admin.meals.index') }}">
-        <i class="mdi mdi-food menu-icon"></i>
-        <span class="menu-title">@lang('meals')</span>
       </a>
     </li>
     @endcan
@@ -193,6 +204,14 @@
       </div>
     </li>
     @endcanany
+    @can('admin.contactUs.index')
+    <li class="nav-item">
+      <a class="nav-link" href="{{ route('admin.contactUs.index') }}">
+        <i class="mdi mdi-phone-classic menu-icon"></i>
+        <span class="menu-title">@lang('contact us')</span>
+      </a>
+    </li>
+    @endcan
     @can('admin.settings.index')
     <li class="nav-item">
       <a class="nav-link" href="{{ route('admin.settings.index') }}">
