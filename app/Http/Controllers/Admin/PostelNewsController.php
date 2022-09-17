@@ -5,48 +5,29 @@ namespace App\Http\Controllers\Admin;
 use App\DataTables\Admin\PostelNewsDatatable;
 use App\Http\Controllers\Controller;
 use App\Models\Subscriber;
-use Illuminate\Http\Request;
 
 class PostelNewsController extends Controller
 {
 
     public function index(PostelNewsDatatable $postelNewsDatatable)
     {
-        return $postelNewsDatatable->render('admin.postelNews.index');
+        return $postelNewsDatatable->render('admin.postel_news.index');
     }
 
     public function create()
     {
-        //
+        # code...
     }
 
-
-    public function store(Request $request)
+    public function store()
     {
-        //
-    }
-
-
-    public function show($id)
-    {
-        //
-    }
-
-
-    public function edit($id)
-    {
-        //
-    }
-
-
-    public function update(Request $request, $id)
-    {
-        //
+        # code...
     }
 
     public function destroy($id)
     {
         Subscriber::find($id)->delete();
-        return redirect()->route('admin.PostelNews.index')->with('success',trans('deleted_successfully'));
+
+        return redirect()->route('admin.postel_news.index')->with('success', trans('deleted_successfully'));
     }
 }
