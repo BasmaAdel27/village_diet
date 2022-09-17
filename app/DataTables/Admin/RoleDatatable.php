@@ -15,6 +15,8 @@ class RoleDatatable extends DataTable
             ->eloquent($query)
             ->editColumn('Action', function ($query) {
                 return view('admin.roles.datatable.action', compact('query'));
+            })->editColumn('created_at', function ($q) {
+                return $q->created_at->diffForHumans();
             })->rawColumns(['Action']);
     }
 
