@@ -18,6 +18,7 @@ use App\Http\Controllers\Admin\TrainerController;
 use App\Http\Controllers\Admin\PendingTrainerController;
 use \App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Admin\PostelNewsController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('dashboard', [HomeController::class, 'home'])->name('dashboard');
@@ -37,16 +38,17 @@ Route::get('ratings', RatingController::class)->name('ratings.index');
 Route::resource('settings', SettingController::class)->only('index', 'update');
 Route::resource('meals', MealController::class)->except('show');
 Route::resource('trainers', TrainerController::class)->except('show');
-Route::resource('pendingTrainers', PendingTrainerController::class)->except('show', 'destroy', 'store');
+Route::resource('pending-trainers', PendingTrainerController::class)->except('show', 'destroy', 'store');
 Route::resource('coupons', CouponController::class)->except('show');
+Route::resource('postel_news', PostelNewsController::class)->except(['show', 'update', 'edit']);
 
 
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
 Route::post('/profile', [ProfileController::class, 'store'])->name('profile.store');
 
 #region reports
-Route::get('subscriptions_report', [ReportController::class, 'subscriptionsReport'])->name('reports.subscriptions');
-Route::get('users_report', [ReportController::class, 'usersReport'])->name('reports.users');
-Route::get('trainers_report', [ReportController::class, 'trainersReport'])->name('reports.trainers');
-Route::get('copouns_report', [ReportController::class, 'copounsReport'])->name('reports.copouns');
+Route::get('subscriptions-report', [ReportController::class, 'subscriptionsReport'])->name('reports.subscriptions');
+Route::get('users-report', [ReportController::class, 'usersReport'])->name('reports.users');
+Route::get('trainers-report', [ReportController::class, 'trainersReport'])->name('reports.trainers');
+Route::get('copouns-report', [ReportController::class, 'copounsReport'])->name('reports.copouns');
 #endregion reports

@@ -86,7 +86,7 @@
       </div>
     </li>
     @endcanany
-    @canAny(['admin.trainers.index','admin.pendingTrainers.index'])
+    @canAny(['admin.trainers.index','admin.pending-trainers.index'])
     <li class="nav-item">
       <a class="nav-link" data-toggle="collapse" href="#add_trainers" aria-expanded="false"
         aria-controls="add_trainers">
@@ -103,9 +103,9 @@
             </a>
           </li>
           @endcan
-          @can('admin.pendingTrainers.index')
+          @can('admin.pending-trainers.index')
           <li class="nav-item">
-            <a class="nav-link" href="{{ route('admin.pendingTrainers.index') }}">
+            <a class="nav-link" href="{{ route('admin.pending-trainers.index') }}">
               @lang('pending trainers')
             </a>
           </li>
@@ -212,6 +212,14 @@
       </a>
     </li>
     @endcan
+    @can('admin.postel_news.index')
+    <li class="nav-item">
+      <a class="nav-link" href="{{ route('admin.postel_news.index') }}">
+        <i class="mdi mdi-email menu-icon"></i>
+        <span class="menu-title">@lang('postel_news')</span>
+      </a>
+    </li>
+    @endcan
     @can('admin.settings.index')
     <li class="nav-item">
       <a class="nav-link" href="{{ route('admin.settings.index') }}">
@@ -220,5 +228,6 @@
       </a>
     </li>
     @endcan
+
   </ul>
 </nav>

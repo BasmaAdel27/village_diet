@@ -19,18 +19,25 @@
               <input type="text" class="form-control" name='code' id="code">
             </div>
             <div class="form-group col-6">
-              <sapan id="generate" onclick="code()"  class="btn btn-success" name='generate_code' style="margin: 32px;">generate code</sapan>
+              <span id="generate" onclick="code()"  class="btn btn-success" name='generate_code' style="margin: 32px;">generate code</span>
+            </div>
+            <div class="form-group col-6">
+              <label>@lang('coupon_type')</label>
+                <select class="form-control" name="coupon_type">
+                  <option value="fixed">@lang('fixed')</option>
+                  <option value="percent">@lang('percent')</option>
+                </select>
             </div>
             <div class="form-group col-6">
               <label for="date_from">@lang('activate_date')</label>
               <input type="date" class="form-control" id="date_from" name="activate_date"
-                     value="{{ (request()->date_from) ? date('Y-m-d',strtotime(request('date_from'))): '' }}">
+                     value="{{ (request()->date_from) ? date('Y-m-d H:i:s',strtotime(request('date_from'))): '' }}">
             </div>
             <div class="form-group col-6">
               <label for=" date_to">@lang('end_date')</label>
               <div class="input-group">
                 <input type="date" class="form-control" id="date_to" name="end_date"
-                       value="{{ (request()->date_to) ? date('Y-m-d', strtotime(request('date_to'))): '' }}">
+                       value="{{ (request()->date_to) ? date('Y-m-d H:i:s', strtotime(request('date_to'))): '' }}">
               </div>
             </div>
 
@@ -68,7 +75,6 @@
       var generate = document.getElementById('generate');
       var text = "";
       var possible = "AB0123456789CDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-
       for (var i = 0; i < 6; i++)
         text += possible.charAt(Math.floor(Math.random() * possible.length));
       document.getElementById('code').value=text;
@@ -76,4 +82,3 @@
     }
   </script>
 @endsection
-

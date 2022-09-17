@@ -23,6 +23,15 @@
               <input type="submit" value="generate code" class="btn btn-success" name='generate_code' style="margin: 32px;">
             </div>
             <div class="form-group col-6">
+              <label class="col-sm-4 col-form-label">@lang('coupon_type')</label>
+              <div class="col-sm-8">
+                <select class="form-control" name="coupon_type">
+                  <option value="fixed" {{$coupon->coupon_type == 'fixed' ? 'selected' : ''}}>@lang('fixed')</option>
+                  <option value="percent" {{$coupon->coupon_type == 'percent' ? 'selected' : ''}}>@lang('percent')</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group col-6">
               <label for="date_from">@lang('activate_date')</label>
               <input type="date" class="form-control" id="date_from" name="activate_date"
                      value="{{ date('Y-m-d', strtotime($coupon->activate_date))}}">

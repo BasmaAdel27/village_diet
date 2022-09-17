@@ -8,7 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Coupon extends Model
 {
-    use HasFactory,HasTimestampTrait;
+    use HasFactory, HasTimestampTrait;
 
     protected $guarded = [];
+    const FIXED = 'fixed';
+    const  PERCENT = 'percent';
+    const COUPON_TYPES = [self::FIXED, self::PERCENT];
 }
