@@ -19,7 +19,7 @@
               <input type="text" class="form-control" name='code' id="code">
             </div>
             <div class="form-group col-6">
-              <sapan id="generate" onclick="code()"  class="btn btn-success" name='generate_code' style="margin: 32px;">generate code</sapan>
+              <span id="generate" onclick="code()"  class="btn btn-success" name='generate_code' style="margin: 32px;">generate code</span>
             </div>
             <div class="form-group col-6">
               <label>@lang('coupon_type')</label>
@@ -82,4 +82,3 @@
     }
   </script>
 @endsection
-
