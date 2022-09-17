@@ -61,4 +61,7 @@ return [
     'admin.reports.users' => 'المستخدمين (التقارير)',
     'admin.reports.trainers' => 'المدربين (التقارير)',
     'admin.reports.copouns' => 'الكوبونات (التقارير)',
+    'admin.postel_news.index' => 'السجل (النشرة البريدية)',
+    'admin.postel_news.store' => 'حفظ (النشرة البريدية)',
+    'admin.postel_news.destroy' => 'حذف (النشرة البريدية)'
 ];
