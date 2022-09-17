@@ -193,6 +193,14 @@
       </div>
     </li>
     @endcanany
+    @can('admin.PostelNews.index')
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('admin.PostelNews.index') }}">
+          <i class="mdi mdi-email menu-icon"></i>
+          <span class="menu-title">@lang('postel_news')</span>
+        </a>
+      </li>
+    @endcan
     @can('admin.settings.index')
     <li class="nav-item">
       <a class="nav-link" href="{{ route('admin.settings.index') }}">
@@ -201,5 +209,6 @@
       </a>
     </li>
     @endcan
+
   </ul>
 </nav>
