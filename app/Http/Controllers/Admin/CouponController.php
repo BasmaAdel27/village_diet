@@ -13,9 +13,8 @@ class CouponController extends Controller
 {
     public function __construct()
     {
-
-        $this->activate_date = Carbon::parse(request('activate_date'))->format('Y-m-d H:i:s');
-        $this->end_date   = Carbon::parse(request('end_date'))->format('Y-m-d H:i:s');
+        $this->activate_date = Carbon::parse(request('activate_date'))->format('Y-m-d H:m:s');
+        $this->end_date   = Carbon::parse(request('end_date'))->format('Y-m-d H:m:s');
     }
     public function index(CouponsDatatable $couponsDatatable)
     {
@@ -32,6 +31,7 @@ class CouponController extends Controller
     {
         $data=$request->validated();
         $coupon->fill($data)->save();
+
         return redirect()->route('admin.coupons.index')->with('success',trans('created_successfully'));
     }
 

@@ -172,5 +172,8 @@
   "1": "Active",
   "0": "In Active",
   "write email": "Write Email",
-  "postel_news": "Postel News"
+  "postel_news": "Postel News",
+  "Subscriptions_months": "Subscriptions / months",
+  "dashboard": "Dashboard",
+  "analytics": "Analytics"
 }

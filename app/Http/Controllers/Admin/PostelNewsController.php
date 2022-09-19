@@ -17,7 +17,7 @@ class PostelNewsController extends Controller
 
     public function create()
     {
-        //
+        return view('admin.postelNews.create');
     }
 
 
