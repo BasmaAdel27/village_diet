@@ -26,7 +26,7 @@ class StaticPageDatatable extends DataTable
                 return "<img src='" . asset($query->images()->first()->media) . "' width=200>";
             })
             ->editColumn('translations.title', function ($query) {
-                return $query->title;
+                return $query->translate(app()->getLocale())->title;
             })
             ->rawColumns(['is_active', 'is_show_in_app', 'Action', 'images.image']);
     }

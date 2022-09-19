@@ -24,10 +24,10 @@ class SliderDatatable extends DataTable
                 return ($query->is_show_in_app == 1) ?  '<span class="btn btn-success">' . trans('active') . "</span>" : '<span class="btn btn-danger">' .  trans('inactive') . "</span>";
             })
             ->editColumn('translations.title', function ($query) {
-                return $query->title;
+                return $query->translate(app()->getLocale())->title;
             })
             ->editColumn('translations.description', function ($query) {
-                return $query->description;
+                return $query->translate(app()->getLocale())->description;
             })->rawColumns(['is_active', 'is_show_in_app', 'Action']);
     }
 

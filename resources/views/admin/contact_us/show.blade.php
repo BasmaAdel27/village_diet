@@ -1,58 +1,45 @@
 @extends('admin.app')
 @section('content')
-<div class="container">
 
-  <div class="card mt-5">
-    <div class="card-header d-flex justify-content-between">
-      <h2 class="mb-4">@lang('contact us')</h2>
-    </div>
-    <div class="col-lg-12 grid-margin stretch-card">
-      <div class="card-body">
-        <div class="table-responsive pt-3">
-          <table class="table table-dark" style="width:75%;margin: auto;text-align: center">
-            <thead>
-              <tr>
-                <td colspan="4">@lang('contact us details')</td>
-              </tr>
-              <tr>
-                <td class="col-2">@lang('#')</td>
-                <td>{{$contactUs->id}}</td>
-              </tr>
-              <tr>
-                <td class="col-2">@lang('name')</td>
-                <td>{{$contactUs->fullname}}</td>
-              </tr>
-              <tr>
-                <td class="col-2">@lang('user type')</td>
-                <td>{{$contactUs->user_type}}</td>
-              </tr>
-              <tr>
-                <td class="col-2">@lang('email')</td>
-                <td>{{$contactUs->eamil}}</td>
-              </tr>
-              <tr>
-                <td class="col-2">@lang('message type')</td>
-                <td>{{$contactUs->message_type}}</td>
-              </tr>
-              <tr>
-                <td class="col-2">@lang('content')</td>
-                <td>{{$contactUs->content}}</td>
-              </tr>
-              <tr>
-                <td class="col-2">@lang('phone')</td>
-                <td>{{$contactUs->phone}}</td>
-              </tr>
-              <tr>
-                <td class="col-2">@lang('whatsapp phone')</td>
-                <td>{{$contactUs->whatsapp_phone}}</td>
-              </tr>
-              <tr>
-                <td class="col-2">@lang('created_at')</td>
-                <td>{{$contactUs->created_at}}</td>
-              </tr>
-            </thead>
-          </table>
-        </div>
+<div class="card mt-5">
+  <div class="card-header d-flex justify-content-between">
+    <h2 class="mb-4">@lang('contact us details')</h2>
+    <a href="{{ route('admin.contactUs.index') }}"
+      class="btn btn-outline-dark btn-lg font-weight-bold">@lang('back')</a>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-6">
+        <label><strong>@lang('name') : </strong></label>
+        {{$contactUs->fullname}}
+      </div>
+      <div class="col-6">
+        <label><strong>@lang('user type') : </strong></label>
+        {{$contactUs->user_type}}
+      </div>
+      <div class="col-6 mt-4">
+        <label><strong>@lang('email') : </strong></label>
+        {{$contactUs->eamil}}
+      </div>
+      <div class="col-6 mt-4">
+        <label><strong>@lang('message type') : </strong></label>
+        {{$contactUs->message_type}}
+      </div>
+      <div class="col-6  mt-4">
+        <label><strong>@lang('content') : </strong></label>
+        {{$contactUs->content}}
+      </div>
+      <div class="col-6  mt-4">
+        <label><strong>@lang('phone') : </strong></label>
+        {{$contactUs->phone}}
+      </div>
+      <div class="col-6 mt-4">
+        <label><strong>@lang('whatsapp phone') : </strong></label>
+        {{$contactUs->whatsapp_phone}}
+      </div>
+      <div class="col-6 mt-4">
+        <label><strong>@lang('created_at') : </strong></label>
+        {{$contactUs->created_at}}
       </div>
     </div>
   </div>
