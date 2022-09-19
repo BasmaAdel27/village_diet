@@ -13,6 +13,7 @@ class PostelNewsController extends Controller
     public function index(PostelNewsDatatable $postelNewsDatatable)
     {
         return $postelNewsDatatable->render('admin.postelNews.index');
+
     }
 
     public function create()
@@ -42,7 +43,10 @@ class PostelNewsController extends Controller
     public function update(Request $request, $id)
     {
         //
+        # code...
     }
+
+
 
     public function destroy($id)
     {

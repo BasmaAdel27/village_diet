@@ -14,9 +14,10 @@ class PostelNewsDatatable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-              ->editColumn('Action', function ($query) {
-                  return view('admin.postelNews.datatable.action', compact('query'));
-              });
+
+            ->editColumn('Action', function ($query) {
+                return view('admin.postel_news.datatable.action', compact('query'));
+            });
     }
 
 
@@ -28,36 +29,32 @@ class PostelNewsDatatable extends DataTable
     public function html()
     {
         return $this->builder()
-              ->columns($this->getColumns())
-              ->minifiedAjax()
-              ->dom('lBfrtip')
-              ->orderBy(1)
-              ->lengthMenu([7, 10, 25, 50, 75, 100])
-              ->buttons(
-                    Button::make('create'),
-                    Button::make('export'),
-                    Button::make('print'),
-                    Button::make('reset'),
-                    Button::make('reload')
-              );
+            ->columns($this->getColumns())
+            ->minifiedAjax()
+            ->dom('lBfrtip')
+            ->orderBy(0)
+            ->lengthMenu([7, 10, 25, 50, 75, 100])
+            ->buttons(
+                Button::make('create'),
+                Button::make('export'),
+                Button::make('print'),
+                Button::make('reset'),
+                Button::make('reload')
+            );
     }
 
 
     protected function getColumns()
     {
         return [
-              Column::make('id')->title(trans('ID')),
-              Column::make('email')->title(trans('email'))->orderable(false),
-              Column::make('created_at')->title(trans('created_at')),
-              Column::make('Action')->title(trans('action'))->searchable(false)->orderable(false),
+
+            Column::make('id')->title(trans('ID')),
+            Column::make('email')->title(trans('email')),
+            Column::make('created_at')->title(trans('created_at')),
+            Column::make('Action')->title(trans('action'))->searchable(false)->orderable(false),
         ];
     }
 
-    /**
-     * Get filename for export.
-     *
-     * @return string
-     */
     protected function filename()
     {
         return 'PostelNews_' . date('YmdHis');

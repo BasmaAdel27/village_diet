@@ -19,49 +19,49 @@ class PendingTrainerDatatable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-              ->editColumn('status', function ($query) {
-                  return ($query->status == 'DONE') ? '<span class="btn btn-success">' . trans('active') . "</span>" : '<span class="btn btn-danger">' . trans('inactive') . "</span>";
-              })->editColumn('Action', function ($query) {
-                  return view('admin.pendingTrainers.datatable.action', compact('query'));
-              })->rawColumns(['status','Active']);
+            ->editColumn('status', function ($query) {
+                return ($query->status == 'DONE') ? '<span class="btn btn-success">' . trans('active') . "</span>" : '<span class="btn btn-danger">' . trans('inactive') . "</span>";
+            })->editColumn('Action', function ($query) {
+                return view('admin.pending_trainers.datatable.action', compact('query'));
+            })->rawColumns(['status', 'Active']);
     }
 
     public function query()
     {
-        return Trainer::select('trainers.*', 'users.first_name as trainer_name','users.phone as phone')
-             ->where('status','PENDING')
-              ->join('users', 'users.id', 'trainers.user_id')
-              ->newQuery();
+        return Trainer::select('trainers.*', 'users.first_name as trainer_name', 'users.phone as phone')
+            ->where('status', 'PENDING')
+            ->join('users', 'users.id', 'trainers.user_id')
+            ->newQuery();
     }
 
 
     public function html()
     {
         return $this->builder()
-              ->columns($this->getColumns())
-              ->minifiedAjax()
-              ->dom('lBfrtip')
-              ->orderBy(1)
-              ->lengthMenu([7, 10, 25, 50, 75, 100])
-              ->buttons(
-                    Button::make('create'),
-                    Button::make('export'),
-                    Button::make('print'),
-                    Button::make('reset'),
-                    Button::make('reload')
-              );
+            ->columns($this->getColumns())
+            ->minifiedAjax()
+            ->dom('lBfrtip')
+            ->orderBy(1)
+            ->lengthMenu([7, 10, 25, 50, 75, 100])
+            ->buttons(
+                Button::make('create'),
+                Button::make('export'),
+                Button::make('print'),
+                Button::make('reset'),
+                Button::make('reload')
+            );
     }
 
 
     protected function getColumns()
     {
         return [
-              Column::make('id')->title(trans('ID')),
-              Column::make('trainer_name')->name('users.first_name')->title(trans('name'))->orderable(false),
-              Column::make('phone')->name('users.phone')->title(trans('phone'))->orderable(false),
-              Column::make('status')->title(trans('status')),
-              Column::make('created_at')->title(trans('created_at')),
-              Column::make('Action')->title(trans('action'))->searchable(false)->orderable(false),
+            Column::make('id')->title(trans('ID')),
+            Column::make('trainer_name')->name('users.first_name')->title(trans('name'))->orderable(false),
+            Column::make('phone')->name('users.phone')->title(trans('phone'))->orderable(false),
+            Column::make('status')->title(trans('status')),
+            Column::make('created_at')->title(trans('created_at')),
+            Column::make('Action')->title(trans('action'))->searchable(false)->orderable(false),
         ];
     }
 

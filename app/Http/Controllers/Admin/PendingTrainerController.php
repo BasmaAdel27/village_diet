@@ -14,12 +14,12 @@ class PendingTrainerController extends Controller
 
     public function __construct()
     {
-        $this->middleware('permission:admin.pendingTrainers.index')->only(['index']);
-        $this->middleware('permission:admin.pendingTrainers.update')->only(['update']);
+        $this->middleware('permission:admin.pending-trainers.index')->only(['index']);
+        $this->middleware('permission:admin.pending-trainers.update')->only(['update']);
     }
     public function index(PendingTrainerDatatable $pendingTrainerDatatable)
     {
-        return $pendingTrainerDatatable->render('admin.pendingTrainers.index');
+        return $pendingTrainerDatatable->render('admin.pending_trainers.index');
     }
 
 
@@ -42,19 +42,19 @@ class PendingTrainerController extends Controller
 
     public function edit($id)
     {
-        $trainer=Trainer::find($id);
-//        dd($trainer->user->address);
+        $trainer = Trainer::find($id);
+        //        dd($trainer->user->address);
         $locales = config('translatable.locales');
         $countries = Country::join('country_translations', 'countries.id', 'country_translations.country_id')
-              ->where('locale', app()->getLocale())
-              ->select('name', 'countries.id')
-              ->pluck('name', 'id');
-        $states=State::where('country_id',$trainer->user->country_id)->join('state_translations', 'states.id', 'state_translations.state_id')
-              ->where('locale', app()->getLocale())
-              ->select('name', 'states.id')
-              ->pluck('name', 'id');;
-//dd($trainer->getImageAttribute());
-        return view('admin.pendingTrainers.edit',compact('trainer','states','locales','countries'));
+            ->where('locale', app()->getLocale())
+            ->select('name', 'countries.id')
+            ->pluck('name', 'id');
+        $states = State::where('country_id', $trainer->user->country_id)->join('state_translations', 'states.id', 'state_translations.state_id')
+            ->where('locale', app()->getLocale())
+            ->select('name', 'states.id')
+            ->pluck('name', 'id');;
+        //dd($trainer->getImageAttribute());
+        return view('admin.pending_trainers.edit', compact('trainer', 'states', 'locales', 'countries'));
     }
 
 

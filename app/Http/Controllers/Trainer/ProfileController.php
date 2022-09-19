@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\trainer;
+namespace App\Http\Controllers\Trainer;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ProfileRequest;

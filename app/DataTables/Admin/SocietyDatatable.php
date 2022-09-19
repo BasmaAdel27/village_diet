@@ -27,7 +27,7 @@ class SocietyDatatable extends DataTable
             ->editColumn('is_active', function ($query) {
                 return ($query->is_active == 1) ?  '<span class="btn btn-success">' . trans('active') . "</span>" : '<span class="btn btn-danger">' .  trans('inactive') . "</span>";
             })->editColumn('translations.title', function ($query) {
-                return $query->title;
+                return $query->translate(app()->getLocale())->title;
             })->rawColumns(['Action', 'is_active']);
     }
 

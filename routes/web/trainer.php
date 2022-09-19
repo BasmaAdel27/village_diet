@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Trainer\HomeController;
+use App\Http\Controllers\Trainer\ProfileController;
 use App\Http\Controllers\Trainer\SocietyController;
 use App\Http\Controllers\Trainer\UserController;
 use Illuminate\Support\Facades\Route;
