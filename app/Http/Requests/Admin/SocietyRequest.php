@@ -16,6 +16,7 @@ class SocietyRequest extends FormRequest
         $rules = [
             'trainer_id' => 'required|exists:users,id',
             'is_active' => 'required|in:0,1',
+            'date_from' => 'required|date',
             'user_id' => 'required|array|min:1',
             'user_id.*' => 'exists:users,id'
         ];

@@ -56,6 +56,7 @@
   "created_successfully": "تم الإنشاء بنجاح",
   "updated_successfully": "تم التعديل بنجاح",
   "deleted_successfully": "تم الحذف بنجاح",
+  "send_successfully": "تم الإرسال بنجاح",
   "Are you sure?": "هل متأكد ؟",
   "You wont be able to revert this!": "لا يمكنك استرجاع ذلك !",
   "Yes, delete it!": "! نعم ، حذف ",
@@ -177,13 +178,15 @@
   "0": "غير مفعل",
   "write email": "كتابه بريد الكتروني",
   "postel_news": "النشره البريديه",
-  "Subscriptions_months": "عدد الاشتراكات / الشهور",
-  "dashboard": "لوحه التحكم",
-  "analytics": "الاحصائيات",
   "slim": "رفيع",
   "sportsman": "رياضي",
   "Stretchy_muscles": "عصلات مفتولة",
   "Medium_build": "متوسط البنية",
   "Slightly_overweight": "وزن زائد قليلا",
-  "overweight": "وزن زائد"
+  "overweight": "وزن زائد",
+  "Subscriptions_months": "عدد الاشتراكات / الشهور",
+  "analytics": "الاحصائيات",
+  "template": "نموذج",
+  "simple": "بسيط",
+  "complex": "معقد"
 }

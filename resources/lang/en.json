@@ -174,12 +174,18 @@
   "write email": "Write Email",
   "postel_news": "Postel News",
   "Subscriptions_months": "Subscriptions / months",
-  "dashboard": "Dashboard",
   "analytics": "Analytics",
     "slim": "Slim",
   "sportsman": "Sportsman",
   "Stretchy_muscles": "Stretchy Muscles",
   "Medium_build": "Medium Build",
   "Slightly_overweight": "Slightly Overweight",
-  "overweight": "Overweight"
+  "overweight": "Overweight",
+  "template": "Template",
+  "simple": "Simple",
+  "complex": "Complex",
+  "send_successfully": "Send Successfully",
+  "created_successfully": "Created Successfully",
+  "updated_successfully": "Updated Successfully",
+  "deleted_successfully": "Deleted Successfully"
 }

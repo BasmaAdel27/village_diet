@@ -4,53 +4,42 @@ namespace App\Http\Controllers\Admin;
 
 use App\DataTables\Admin\PostelNewsDatatable;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\PostalNewsRequest;
+use App\Mail\SubscriberMail;
 use App\Models\Subscriber;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class PostelNewsController extends Controller
 {
 
     public function index(PostelNewsDatatable $postelNewsDatatable)
     {
-        return $postelNewsDatatable->render('admin.postelNews.index');
-
+        return $postelNewsDatatable->render('admin.postel_news.index');
     }
 
     public function create()
     {
-        return view('admin.postelNews.create');
+        $users = Subscriber::pluck('email');
+        $templates = ['simple', 'complex'];
+
+        return view('admin.postel_news.create', compact('users', 'templates'));
     }
 
-
-    public function store(Request $request)
+    public function store(PostalNewsRequest $request)
     {
-        //
+        $data = $request->validated();
+
+        foreach ($data['emails'] as $email) {
+            Mail::to($email)->send(new SubscriberMail($data['template'], $email));
+        }
+
+        return redirect()->route('admin.postel_news.index')->with('success', trans('send_successfully'));
     }
-
-
-    public function show($id)
-    {
-        //
-    }
-
-
-    public function edit($id)
-    {
-        //
-    }
-
-
-    public function update(Request $request, $id)
-    {
-        //
-        # code...
-    }
-
-
 
     public function destroy($id)
     {
         Subscriber::find($id)->delete();
-        return redirect()->route('admin.PostelNews.index')->with('success',trans('deleted_successfully'));
+
+        return redirect()->route('admin.postel_news.index')->with('success', trans('deleted_successfully'));
     }
 }

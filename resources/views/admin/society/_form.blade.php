@@ -19,6 +19,11 @@
     </select>
   </div>
   <div class="form-group col-6">
+    <label>@lang('date_from')</label>
+    <input type="date" name="date_from" class="form-control"
+      value="{{ isset($society) || old('date_from') ? date('Y-m-d', strtotime(@$society->date_from ?? old('date_from'))): '' }}">
+  </div>
+  <div class="form-group col-12">
     <label>@lang('status')</label>
     <select name="is_active" class="form-control">
       <option value="">@lang('select')</option>

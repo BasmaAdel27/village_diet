@@ -16,7 +16,6 @@ class CouponController extends Controller
         $this->activate_date = Carbon::parse(request('activate_date'))->format('Y-m-d H:m:s');
         $this->end_date   = Carbon::parse(request('end_date'))->format('Y-m-d H:m:s');
 
-
     }
     public function index(CouponsDatatable $couponsDatatable)
     {

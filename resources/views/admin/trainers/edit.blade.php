@@ -3,7 +3,7 @@
 <meta name="csrf-token" content="{{ csrf_token() }}">
 @endsection
 @section('content')
-<div class="container">
+
   <div class="card mt-5">
     <div class="card-header d-flex justify-content-between">
       <h2 class="mb-4">@lang('trainers')</h2>
@@ -162,7 +162,7 @@
       </form>
     </div>
   </div>
-</div>
+
 
 @endsection
 @section('scripts')
