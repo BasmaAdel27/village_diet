@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\DataTables\Admin\UserDatatable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\UserRequest;
+use App\Mail\UserNumber;
 use App\Models\Country\Country;
 use App\Models\HealthyInformation;
 use App\Models\State\State;
@@ -12,6 +13,8 @@ use App\Models\Subscriber;
 use App\Models\Subscription;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use MattDaneshvar\Survey\Models\Entry;
 use MattDaneshvar\Survey\Models\Survey;
 
@@ -50,16 +53,20 @@ class UserController extends Controller
 
     public function store(UserRequest $request)
     {
+        DB::beginTransaction();
         $userNumber = generateUniqueCode(User::class, 'user_number', 6);
         $user = User::make()->fill($request->validated() + ['user_number' => $userNumber]);
         $user->assignRole('user');
         $user->save();
+
+        Mail::to($user->email)->send(new UserNumber($user));
 
         if ($request->subscribe) {
             Subscriber::create([
                 'email' => $user->email
             ]);
         }
+        DB::commit();
 
         return redirect()->route('admin.users.index')->with('success', trans('created_successfully'));
     }
