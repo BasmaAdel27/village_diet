@@ -1,7 +1,7 @@
 @extends('admin.app')
 @section('content')
 
-<div class="container">
+
   <div class="card mt-5">
     <div class="card-header d-flex justify-content-between">
       <h2 class="mb-4">@lang('roles')</h2>
@@ -13,6 +13,6 @@
       </form>
     </div>
   </div>
-</div>
+
 
 @endsection
