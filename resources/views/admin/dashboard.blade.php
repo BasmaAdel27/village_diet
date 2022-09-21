@@ -1,4 +1,5 @@
 @extends('admin.app')
+@section('title') @lang('dashboard') @endsection
 @section('content')
 
 <div class="row">
