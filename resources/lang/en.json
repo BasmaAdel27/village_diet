@@ -180,5 +180,12 @@
   "Slightly_overweight": "Slightly Overweight",
   "overweight": "Overweight",
   "Subscriptions_months": "Subscriptions / months",
-  "analytics": "Analytics"
+  "analytics": "Analytics",
+  "template": "Template",
+  "simple": "Simple",
+  "complex": "Complex",
+  "send_successfully": "Send Successfully",
+  "created_successfully": "Created Successfully",
+  "updated_successfully": "Updated Successfully",
+  "deleted_successfully": "Deleted Successfully"
 }
