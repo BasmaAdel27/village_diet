@@ -148,4 +148,37 @@
     </div>
   </div>
 </div>
-@endsection
+<div class="card mt-5">
+  <div class="m-3 text-center row">
+    <div class="form-group col-6">
+      <label>@lang('Subscriptions_months')</label>
+      <canvas id="SubscriptionsChart" style="width:100%;max-width:1000px"></canvas>
+    </div>
+  </div>
+  @endsection
+  @section('scripts')
+  <script>
+    var Subscriptions_xValues = @json($charts['months']);
+    var Subscriptions_yValues = @json($charts['Subscriptions'])
+
+    new Chart("SubscriptionsChart", {
+      type: "line",
+      data: {
+        labels: Subscriptions_xValues,
+        datasets: [{
+          fill: false,
+          lineTension: 0,
+          backgroundColor: "rgba(0,0,255,1.0)",
+          borderColor: "rgba(0,0,255,0.1)",
+          data: Subscriptions_yValues
+        }]
+      },
+      options: {
+        legend: {display: false},
+        scales: {
+
+        }
+      }
+    });
+  </script>
+  @endsection

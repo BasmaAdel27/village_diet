@@ -29,6 +29,13 @@
                 </select>
             </div>
             <div class="form-group col-6">
+              <label>@lang('coupon_type')</label>
+                <select class="form-control" name="coupon_type">
+                  <option value="fixed">@lang('fixed')</option>
+                  <option value="percent">@lang('percent')</option>
+                </select>
+            </div>
+            <div class="form-group col-6">
               <label for="date_from">@lang('activate_date')</label>
               <input type="date" class="form-control" id="date_from" name="activate_date"
                      value="{{ (request()->date_from) ? date('Y-m-d H:i:s',strtotime(request('date_from'))): '' }}">

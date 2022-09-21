@@ -173,10 +173,12 @@
   "0": "In Active",
   "write email": "Write Email",
   "postel_news": "Postel News",
-    "slim": "Slim",
+  "slim": "Slim",
   "sportsman": "Sportsman",
   "Stretchy_muscles": "Stretchy Muscles",
   "Medium_build": "Medium Build",
   "Slightly_overweight": "Slightly Overweight",
-  "overweight": "Overweight"
+  "overweight": "Overweight",
+  "Subscriptions_months": "Subscriptions / months",
+  "analytics": "Analytics"
 }
