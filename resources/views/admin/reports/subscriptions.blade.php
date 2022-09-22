@@ -1,4 +1,5 @@
 @extends('admin.app')
+@section('title')@lang('reports_subscriptions')@endsection
 @section('content')
 
 <div class="card mt-5">

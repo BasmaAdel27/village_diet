@@ -1,4 +1,5 @@
 @extends('admin.app')
+@section('title')@lang('static_pages')@endsection
 @section('content')
 
 

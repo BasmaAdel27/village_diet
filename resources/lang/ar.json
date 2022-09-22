@@ -188,5 +188,14 @@
   "analytics": "الاحصائيات",
   "template": "نموذج",
   "simple": "بسيط",
-  "complex": "معقد"
+  "complex": "معقد",
+  "generate code": "توليد الكود",
+  "coupon_type": "نوع الخصم",
+  "fixed": "ثابت",
+  "percent": "مئوي",
+  "reports_users": "تقارير المستخدمين",
+  "reports_trainers": "تقارير المدربين",
+  "reports_subscriptions": "تقارير الاشتراكات",
+  "reports_coupons": "تقارير الكوبونات"
+
 }

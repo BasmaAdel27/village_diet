@@ -2,8 +2,9 @@
 @section('styles')
   <meta name="csrf-token" content="{{ csrf_token() }}">
 @endsection
+@section('title')@lang('coupons')@endsection
 @section('content')
-  
+
 
     <div class="card mt-5">
       <div class="card-header d-flex justify-content-between">
@@ -19,21 +20,7 @@
               <input type="text" class="form-control" name='code' id="code">
             </div>
             <div class="form-group col-6">
-              <span id="generate" onclick="code()"  class="btn btn-success" name='generate_code' style="margin: 32px;">generate code</span>
-            </div>
-            <div class="form-group col-6">
-              <label>@lang('coupon_type')</label>
-                <select class="form-control" name="coupon_type">
-                  <option value="fixed">@lang('fixed')</option>
-                  <option value="percent">@lang('percent')</option>
-                </select>
-            </div>
-            <div class="form-group col-6">
-              <label>@lang('coupon_type')</label>
-                <select class="form-control" name="coupon_type">
-                  <option value="fixed">@lang('fixed')</option>
-                  <option value="percent">@lang('percent')</option>
-                </select>
+              <span id="generate" onclick="code()"  class="btn btn-success" name='generate_code' style="margin: 32px;">@lang('generate code')</span>
             </div>
             <div class="form-group col-6">
               <label for="date_from">@lang('activate_date')</label>
@@ -52,7 +39,13 @@
               <label>@lang("amount")</label>
               <input type="text" class="form-control" name='amount'>
             </div>
-
+            <div class="form-group col-6">
+              <label>@lang('coupon_type')</label>
+              <select class="form-control" name="coupon_type">
+                <option value="fixed">@lang('fixed')</option>
+                <option value="percent">@lang('percent')</option>
+              </select>
+            </div>
             <div class="form-group col-6">
               <label>@lang("max_used")</label>
               <input type="text" class="form-control" name='max_used'>

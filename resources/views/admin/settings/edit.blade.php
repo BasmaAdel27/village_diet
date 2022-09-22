@@ -1,4 +1,5 @@
 @extends('admin.app')
+@section('title')@lang('settings')@endsection
 @section('content')
   <div class="col-12 grid-margin">
     <div class="card">

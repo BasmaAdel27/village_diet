@@ -187,5 +187,14 @@
   "send_successfully": "Send Successfully",
   "created_successfully": "Created Successfully",
   "updated_successfully": "Updated Successfully",
-  "deleted_successfully": "Deleted Successfully"
+  "deleted_successfully": "Deleted Successfully",
+  "generate code": "Generate Code",
+  "coupon_type": "Coupon Type",
+  "fixed": "Fixed",
+  "percent": "Percent",
+  "reports_users": "Users Reports",
+  "reports_trainers": "Trainers Reports",
+  "reports_subscriptions": "Subscriptions Reports",
+  "reports_coupons": "Coupons Reports"
+
 }
