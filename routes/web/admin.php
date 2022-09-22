@@ -52,3 +52,5 @@ Route::get('users-report', [ReportController::class, 'usersReport'])->name('repo
 Route::get('trainers-report', [ReportController::class, 'trainersReport'])->name('reports.trainers');
 Route::get('copouns-report', [ReportController::class, 'copounsReport'])->name('reports.copouns');
 #endregion reports
+
+Route::post('pending-trainers/submit/{id}',[PendingTrainerController::class,'submit'])->name('pending-trainers.submit');

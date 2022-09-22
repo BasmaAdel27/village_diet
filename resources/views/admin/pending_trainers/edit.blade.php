@@ -35,7 +35,7 @@
         </div>
         <div class="form-group col-6">
           <label>@lang('countries')</label>
-          <select name="countries" id="country" class="form-control" disabled>
+          <select name="countries" id="country2" class="form-control" disabled>
             <option value="">@lang('select')</option>
             @foreach ($countries as $id => $name)
             <option value="{{$id}}" {{$id==$trainer->user->country_id ?'selected': '' }}>{{trans($name)}}</option>
@@ -45,7 +45,7 @@
 
         <div class="form-group col-6">
           <label>@lang('states')</label>
-          <select name="states" id='state' class="form-control" disabled>
+          <select name="states" id='state2' class="form-control" disabled>
             @foreach ($states as $id => $name)
             <option value="{{$id}}" {{$id==$trainer->user->state_id ?'selected': '' }}>{{trans($name)}}</option>
 
@@ -60,12 +60,12 @@
 
         <div class="form-group col-6">
           <label>@lang("instagram")</label>
-          <input type="text" class="form-control" name='instagram' value="{{$trainer->user->instagram}}" disabled>
+          <input type="text" class="form-control" name='instagram' value="{{$trainer->user->insta_link}}" disabled>
         </div>
 
         <div class="form-group col-6">
           <label>@lang("twitter")</label>
-          <input type="text" class="form-control" name='twitter' value="{{$trainer->user->twitter}}" disabled>
+          <input type="text" class="form-control" name='twitter' value="{{$trainer->user->twitter_link}}" disabled>
         </div>
 
         <div class="form-group col-6">
@@ -117,7 +117,7 @@
           <select name="show_inPage" class="form-control" disabled>
             <option value="">@lang('select')</option>
             <option value="1" {{ $trainer->show_inPage == 1 ?'selected': '' }} >@lang('active')</option>
-            <option value="0" {{ $trainer->show_inPage == 0 ?'selected': '' }}>@lang('in active')</option>
+            <option value="0" {{ $trainer->show_inPage == 0 ?'selected': '' }}>@lang('inactive')</option>
           </select>
         </div>
         <div class="form-group col-6">
@@ -125,7 +125,7 @@
           <select name="status" class="form-control" disabled>
             <option value="">@lang('select')</option>
             <option value="DONE" {{ $trainer->status == 'DONE' ?'selected': '' }}>@lang('active')</option>
-            <option value="PENDING" {{ $trainer->status == 'PENDING' ?'selected': '' }}>@lang('in active')</option>
+            <option value="PENDING" {{ $trainer->status == 'PENDING' ?'selected': '' }}>@lang('inactive')</option>
           </select>
         </div>
         <div class="form-group col-6">
@@ -134,7 +134,46 @@
       </div>
       <div class="row">
         <div class="form-group col-6">
-          <input type="submit" class="btn btn-dark" value="@lang('submit')">
+          <!-- Button trigger modal -->
+          <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">
+              @lang('ok')
+          </button>
+
+          <!-- Modal -->
+          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <form method="post" action="{{route('admin.pending-trainers.submit',$trainer->id)}}">
+                  @csrf
+                <div class="modal-body">
+
+                  <div class="row">
+                    <div class="form-group col-12">
+                      <label>@lang('email')</label>
+                      <input type="email" name="email" class="form-control">
+                    </div>
+                    <div class="form-group col-12">
+                      <label>@lang('password')</label>
+                      <input type="password" name="password" class="form-control">
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">@lang('close')</button>
+
+                  <input type="submit" class="btn btn-dark"  value="@lang('submit')">
+                </div>
+                </form>
+
+              </div>
+            </div>
+          </div>
         </div>
         <div class="form-group col-6">
           <input type="submit" class="btn btn-dark" value="@lang('decline')">
@@ -147,10 +186,10 @@
 @section('scripts')
 <script>
   $(document).ready(function () {
-      $('#country').on('change', function () {
+      $('#country2').on('change', function () {
         var country_id = this.value;
         // console.log(idCountry);
-        $("#state").html('');
+        $("#state2").html('');
         $.ajax({
           url: "{{url('http://127.0.0.1:8000/states')}}",
           method: "POST",
@@ -161,10 +200,10 @@
           dataType: 'json',
           success: function (result) {
             // console.log(result);
-            $('#state').html('<option value="">-- Select State --</option>');
+            $('#state2').html('<option value="">-- Select State --</option>');
             $.each(result, function (key, value) {
               console.log(key,value)
-              $("#state").append('<option value="' + key + '">' + value + '</option>');
+              $("#state2").append('<option value="' + key + '">' + value + '</option>');
 
             });
 

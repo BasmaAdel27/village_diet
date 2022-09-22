@@ -43,7 +43,7 @@
           </div>
           <div class="form-group col-6">
             <label>@lang('countries')</label>
-            <select name="countries" id="country" class="form-control">
+            <select name="countries" id="country1" class="form-control">
               <option value="">@lang('select')</option>
               @foreach ($countries as $id => $name)
               <option value="{{$id}}" {{$id==$trainer->user->country_id ?'selected': '' }}>{{trans($name)}}</option>
@@ -53,7 +53,7 @@
 
           <div class="form-group col-6">
             <label>@lang('states')</label>
-            <select name="states" id='state' class="form-control">
+            <select name="states" id='state1' class="form-control">
               @foreach ($states as $id => $name)
               <option value="{{$id}}" {{$id==$trainer->user->state_id ?'selected': '' }}>{{trans($name)}}</option>
 
@@ -68,12 +68,12 @@
 
           <div class="form-group col-6">
             <label>@lang("instagram")</label>
-            <input type="text" class="form-control" name='instagram' value="{{$trainer->user->instagram}}">
+            <input type="text" class="form-control" name='instagram' value="{{$trainer->user->insta_link}}">
           </div>
 
           <div class="form-group col-6">
             <label>@lang("twitter")</label>
-            <input type="text" class="form-control" name='twitter' value="{{$trainer->user->twitter}}">
+            <input type="text" class="form-control" name='twitter' value="{{$trainer->user->twitter_link}}">
           </div>
 
           <div class="form-group col-6">
@@ -142,7 +142,7 @@
             <select name="show_inPage" class="form-control">
               <option value="">@lang('select')</option>
               <option value="1" {{ $trainer->show_inPage == 1 ?'selected': '' }} >@lang('active')</option>
-              <option value="0" {{ $trainer->show_inPage == 0 ?'selected': '' }}>@lang('in_active')</option>
+              <option value="0" {{ $trainer->show_inPage == 0 ?'selected': '' }}>@lang('inactive')</option>
             </select>
           </div>
           <div class="form-group col-6">
@@ -150,7 +150,7 @@
             <select name="status" class="form-control">
               <option value="">@lang('select')</option>
               <option value="DONE" {{ $trainer->status == 'DONE' ?'selected': '' }}>@lang('active')</option>
-              <option value="PENDING" {{ $trainer->status == 'PENDING' ?'selected': '' }}>@lang('in active')</option>
+              <option value="PENDING" {{ $trainer->status == 'PENDING' ?'selected': '' }}>@lang('inactive')</option>
             </select>
           </div>
 
@@ -169,10 +169,10 @@
 @section('scripts')
 <script>
   $(document).ready(function () {
-      $('#country').on('change', function () {
+      $('#country1').on('change', function () {
         var country_id = this.value;
         // console.log(idCountry);
-        $("#state").html('');
+        $("#state1").html('');
         $.ajax({
           url: "{{url('http://127.0.0.1:8000/states')}}",
           method: "POST",
@@ -183,10 +183,10 @@
           dataType: 'json',
           success: function (result) {
             // console.log(result);
-            $('#state').html('<option value="">-- Select State --</option>');
+            $('#state1').html('<option value="">-- Select State --</option>');
             $.each(result, function (key, value) {
               console.log(key,value)
-              $("#state").append('<option value="' + key + '">' + value + '</option>');
+              $("#state1").append('<option value="' + key + '">' + value + '</option>');
 
             });
 

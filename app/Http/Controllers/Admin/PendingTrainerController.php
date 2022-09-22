@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\DataTables\Admin\PendingTrainerDatatable;
 use App\Http\Controllers\Controller;
+use App\Mail\SubmitPendingTrainer;
 use App\Models\Country\Country;
 use App\Models\State\State;
 use App\Models\Trainer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class PendingTrainerController extends Controller
 {
@@ -49,14 +51,31 @@ class PendingTrainerController extends Controller
             ->where('locale', app()->getLocale())
             ->select('name', 'countries.id')
             ->pluck('name', 'id');
-        $states = State::where('country_id', $trainer->user->country_id)->join('state_translations', 'states.id', 'state_translations.state_id')
-            ->where('locale', app()->getLocale())
+        $states = State::where('country_id', $trainer->user->country_id)
+              ->join('state_translations', 'states.id', 'state_translations.state_id')
             ->select('name', 'states.id')
             ->pluck('name', 'id');;
         //dd($trainer->getImageAttribute());
+
         return view('admin.pending_trainers.edit', compact('trainer', 'states', 'locales', 'countries'));
     }
 
+
+    public function submit(Request $request,$id){
+       $data= $this->validate($request,
+              [
+                    'email' => 'required|email',
+                    'password' => 'required|min:8',
+            ]);
+       $trainer=Trainer::find($id);
+       $email=$request->email;
+       $password=$request->password;
+        Mail::to($trainer->user->email)->send(new SubmitPendingTrainer($trainer,$email,$password));
+        $trainer->status="DONE";
+        $trainer->save();
+        return redirect()->route('admin.pending-trainers.index')->with('success', trans('submitted_successfully'));
+
+    }
 
     public function update(Request $request, $id)
     {
