@@ -62,6 +62,7 @@ class SocietyDatatable extends DataTable
             Column::make('translations.title')->orderable(true)->title(trans('society_name'))->orderable(false),
             Column::make('users_count')->orderable(true)->title(trans('users_count'))->orderable(false)->searchable(false),
             Column::make('trainer.first_name')->orderable(true)->title(trans('trainer_name'))->orderable(false),
+            Column::make('date from')->orderable(true)->title(trans('date from'))->orderable(false),
             Column::make('is_active')->title(trans('status')),
             Column::make('created_at')->title(trans('created_at')),
             Column::make('Action')->title(trans('action'))->searchable(false)->orderable(false)

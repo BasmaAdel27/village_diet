@@ -195,6 +195,7 @@
   "reports_users": "Users Reports",
   "reports_trainers": "Trainers Reports",
   "reports_subscriptions": "Subscriptions Reports",
-  "reports_coupons": "Coupons Reports"
+  "reports_coupons": "Coupons Reports",
+  "date from": "Date From"
 
 }
