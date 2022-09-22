@@ -34,6 +34,7 @@ class CreateSettingsTable extends Migration
             $table->string('logo')->nullable();
             $table->string('web_title')->nullable();
             $table->text('web_description')->nullable();
+            $table->text('footer')->nullable();
             $table->timestamps();
         });
     }

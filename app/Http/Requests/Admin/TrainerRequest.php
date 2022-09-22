@@ -32,7 +32,6 @@ class TrainerRequest extends FormRequest
             'current_job'=>'required|string',
             'body_shape'=>'required',
             'show_inPage'=>'required',
-            'status'=>'required'
 
         ];
 
@@ -42,11 +41,14 @@ class TrainerRequest extends FormRequest
             $rules['confidental_image']='required|image|max:10000';
             $rules['email'] = 'required|min:2|max:255|unique:users,email';
             $rules['cv']='required|max:10000';
+
         } else {
             $rules['image'] = 'nullable|image|max:10000';
             $rules['confidental_image']='nullable|image|max:10000';
             $rules['email'] = 'required|min:2|max:255|unique:users,email,'.$this->trainer->user->id;
             $rules['cv']='nullable|max:10000';
+            $rules['status']='required';
+
         }
     return $rules;
     }

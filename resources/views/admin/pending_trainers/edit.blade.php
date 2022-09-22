@@ -7,7 +7,7 @@
 
   <div class="card mt-5">
     <div class="card-header d-flex justify-content-between">
-      <h2 class="mb-4">@lang('pending trainers')</h2>
+      <h2 class="mb-4">@lang('pending_trainers')</h2>
       <a href="{{ route('admin.pending-trainers.index') }}"
         class="btn btn-outline-dark btn-lg font-weight-bold">@lang('back')</a>
     </div>
@@ -144,8 +144,7 @@
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="close">
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
@@ -156,12 +155,16 @@
                   <div class="row">
                     <div class="form-group col-12">
                       <label>@lang('email')</label>
-                      <input type="email" name="email" class="form-control">
+                      <input type="email" name="email" class="form-control" value="{{$trainer->user->email}}">
                     </div>
-                    <div class="form-group col-12">
-                      <label>@lang('password')</label>
-                      <input type="password" name="password" class="form-control">
+                    <div class="form-group col-6">
+                      <label>@lang("password")</label>
+                      <input type="password" class="form-control" name='password' id="password">
                     </div>
+                    <div class="form-group col-6">
+                      <span id="generatePass" onclick="password()"  class="btn btn-success" name='generate_password' style="margin: 32px;">@lang('generate code')</span>
+                    </div>
+
                   </div>
                 </div>
                 <div class="modal-footer">
@@ -175,8 +178,42 @@
             </div>
           </div>
         </div>
+
         <div class="form-group col-6">
-          <input type="submit" class="btn btn-dark" value="@lang('decline')">
+          <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#decline">
+            @lang('decline')
+          </button>
+          <div class="modal fade" id="decline" tabindex="-1" aria-labelledby="exampleLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <form method="post" action="{{route('admin.pending-trainers.declined',$trainer->id)}}">
+                  @csrf
+                  <div class="modal-body">
+
+                    <div class="row">
+                      <div class="form-group col-12">
+                        <label>@lang('decline_reason')</label>
+                        <textarea class="form-control" name="reason"></textarea>
+                      </div>
+
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">@lang('close')</button>
+
+                    <input type="submit" class="btn btn-dark"  value="@lang('decline')">
+                  </div>
+                </form>
+
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
@@ -213,6 +250,15 @@
       });
     });
 
+  function password() {
+    var generate = document.getElementById('generatePass');
+    var text = "";
+    var possible = "AB0123456789CDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    for (var i = 0; i < 8; i++)
+    text += possible.charAt(Math.floor(Math.random() * possible.length));
+    document.getElementById('password').value=text;
+
+  }
 
 </script>
 @endsection

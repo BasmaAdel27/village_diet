@@ -106,7 +106,7 @@
             @can('admin.pending-trainers.index')
               <li class="nav-item">
                 <a class="nav-link" href="{{ route('admin.pending-trainers.index') }}">
-                  @lang('pending trainers')
+                  @lang('pending_trainers')
                 </a>
               </li>
             @endcan

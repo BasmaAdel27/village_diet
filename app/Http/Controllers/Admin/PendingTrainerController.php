@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\DataTables\Admin\PendingTrainerDatatable;
 use App\Http\Controllers\Controller;
+use App\Mail\DeclinePendingTrainer;
 use App\Mail\SubmitPendingTrainer;
 use App\Models\Country\Country;
 use App\Models\State\State;
@@ -76,6 +77,22 @@ class PendingTrainerController extends Controller
         return redirect()->route('admin.pending-trainers.index')->with('success', trans('submitted_successfully'));
 
     }
+
+
+    public function declined(Request $request,$id){
+        $data= $this->validate($request,
+              [
+                    'reason' => 'required|string',
+              ]);
+        $trainer=Trainer::find($id);
+        $reason=$request->reason;
+        Mail::to($trainer->user->email)->send(new DeclinePendingTrainer($trainer,$reason));
+        $trainer->status="DECLINED";
+        $trainer->save();
+        return redirect()->route('admin.pending-trainers.index')->with('success', trans('submitted_successfully'));
+
+    }
+
 
     public function update(Request $request, $id)
     {
