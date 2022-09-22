@@ -1,4 +1,5 @@
 @extends('admin.app')
+@section('title')@lang('notifications')@endsection
 @section('content')
 
 

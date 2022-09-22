@@ -14,6 +14,7 @@ class PostelNewsDatatable extends DataTable
     {
         return datatables()
             ->eloquent($query)
+
             ->editColumn('Action', function ($query) {
                 return view('admin.postel_news.datatable.action', compact('query'));
             });
@@ -46,6 +47,7 @@ class PostelNewsDatatable extends DataTable
     protected function getColumns()
     {
         return [
+
             Column::make('id')->title(trans('ID')),
             Column::make('email')->title(trans('email')),
             Column::make('created_at')->title(trans('created_at')),

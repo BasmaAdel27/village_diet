@@ -12,6 +12,7 @@ class Coupon extends Model
     use HasFactory, HasTimestampTrait;
 
     protected $guarded = [];
+
     const FIXED = 'fixed';
     const  PERCENT = 'percent';
     const COUPON_TYPES = [self::FIXED, self::PERCENT];

@@ -2,6 +2,7 @@
 @section('styles')
 <meta name="csrf-token" content="{{ csrf_token() }}">
 @endsection
+@section('title')@lang('trainers')@endsection
 @section('content')
 <div class="container">
 
@@ -140,15 +141,15 @@
             <select name="show_inPage" class="form-control">
               <option value="">@lang('select')</option>
               <option value="1">@lang('active')</option>
-              <option value="0">@lang('in_active')</option>
+              <option value="0">@lang('inactive')</option>
             </select>
           </div>
           <div class="form-group col-6">
             <label>@lang('status')</label>
             <select name="status" class="form-control">
               <option value="">@lang('select')</option>
-              <option value="1">@lang('active')</option>
-              <option value="0">@lang('in_active')</option>
+              <option value="DONE">@lang('active')</option>
+              <option value="PENDING">@lang('inactive')</option>
             </select>
           </div>
 

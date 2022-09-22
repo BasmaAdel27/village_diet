@@ -1,4 +1,5 @@
 @extends('admin.app')
+@section('title')@lang('sliders')@endsection
 @section('content')
 
 

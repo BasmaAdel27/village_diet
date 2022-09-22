@@ -1,4 +1,6 @@
 @extends('admin.app')
+@section('title')@lang('contact us details')@endsection
+
 @section('content')
 
 <div class="card mt-5">

@@ -2,9 +2,9 @@
   <div class="navbar-brand-wrapper d-flex justify-content-center">
     <div class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">
       <a class="navbar-brand brand-logo" href="{{ route('admin.dashboard') }}"><img
-          src="{{ asset('adminPanel/images/logo.svg') }}" alt="logo" /></a>
+          src="{{asset('storage/'.$setting->logo)}}" alt="logo" /></a>
       <a class="navbar-brand brand-logo-mini" href="{{ route('admin.dashboard') }}"><img
-          src="{{ asset('adminPanel/images/logo-mini.svg') }}" alt="logo" /></a>
+          src="{{asset('storage/'.$setting->logo)}}" alt="logo" /></a>
       <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
         <span class="mdi mdi-sort-variant"></span>
       </button>

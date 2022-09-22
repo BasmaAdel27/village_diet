@@ -57,8 +57,8 @@ class TrainerController extends Controller
             'last_name' => $request->last_name,
             'phone' => $request->phone,
             'email' => $request->email,
-            'instgram' => $request->instagram,
-            'twitter' => $request->twitter,
+            'insta_link' => $request->instagram,
+            'twitter_link' => $request->twitter,
             'country_id' => $request->countries,
             'state_id' => $request->states,
             'address' => $request->address,
@@ -98,7 +98,6 @@ class TrainerController extends Controller
             ->select('name', 'countries.id')
             ->pluck('name', 'id');
         $states = State::where('country_id', $trainer->user->country_id)->join('state_translations', 'states.id', 'state_translations.state_id')
-            ->where('locale', app()->getLocale())
             ->select('name', 'states.id')
             ->pluck('name', 'id');;
 
@@ -114,8 +113,8 @@ class TrainerController extends Controller
             'last_name' => $request->last_name,
             'phone' => $request->phone,
             'email' => $request->email,
-            'instgram' => $request->instagram,
-            'twitter' => $request->twitter,
+            'insta_link' => $request->instagram,
+            'twitter_link' => $request->twitter,
             'country_id' => $request->countries,
             'state_id' => $request->states,
             'address' => $request->address,
