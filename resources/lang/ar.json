@@ -156,7 +156,7 @@
   "show in our trainer page": "اظهار في صفحه مدربينا",
   "my resume": "السيره الذاتيه",
   "decline": "رفض",
-  "pending trainers": "مدربين بانتظار التفعيل",
+  "pending_trainers": "مدربين بانتظار التفعيل",
   "personal image": "الصوره الشخصيه",
   "activate_date": "تاريخ التفعيل",
   "end_date": "تاريخ الانتهاء",
@@ -197,7 +197,14 @@
   "reports_trainers": "تقارير المدربين",
   "reports_subscriptions": "تقارير الاشتراكات",
   "reports_coupons": "تقارير الكوبونات",
-  "date from": "تاريخ البدايه",
-  "submitted_successfully": "تمت الموافقه بنجاح"
+  "date-from": "تاريخ البدايه",
+  "submitted_successfully": "تمت الموافقه بنجاح",
+  "breakfast": "وجبه الافطار",
+  "lunch": "وجبه الغداء",
+  "dinner": "وجبه العشاء",
+  "footer": "الفوتر",
+  "decline_reason": "سبب الرفض",
+  "close": "الغاء",
+  "ok": "موافق"
 
 }

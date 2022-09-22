@@ -31,6 +31,7 @@ class TrainerDatatable extends DataTable
     public function query()
     {
         return Trainer::select('trainers.*', 'users.first_name as trainer_name','users.phone as phone')
+              ->where('trainers.status','DONE')
               ->join('users', 'users.id', 'trainers.user_id')
               ->newQuery();
     }

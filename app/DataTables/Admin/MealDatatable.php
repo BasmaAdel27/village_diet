@@ -67,7 +67,7 @@ class MealDatatable extends DataTable
             Column::make('translations.dinner')->title(trans('dinner'))->orderable(false),
             Column::make('day.translations.title')->title(trans('show_day'))->orderable(false),
             Column::make('is_active')->title(trans('status')),
-            Column::make('created_at'),
+            Column::make('created_at')->title(trans('created_at')),
             Column::make('Action')->title(trans('action'))->searchable(false)->orderable(false),
         ];
     }

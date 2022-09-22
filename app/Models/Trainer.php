@@ -43,7 +43,6 @@ class Trainer extends Model
             return asset($this->images()->whereOption('confidental_image')->value('media'));
         }
 
-        return asset('adminPanel/images/faces/face5.jpg');
     }
 
     public function getCvAttribute()

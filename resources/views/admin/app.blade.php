@@ -20,7 +20,7 @@
           <div class="row">
             <footer class="footer" style="margin: 0 auto">
               <span class="text-muted d-block text-center">
-                Copyright © village Diet 2022</span>
+                Copyright © {{$setting->footer}}</span>
             </footer>
           </div>
         </div>

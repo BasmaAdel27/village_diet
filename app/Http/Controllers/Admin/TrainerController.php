@@ -74,7 +74,7 @@ class TrainerController extends Controller
             'join_request_reason' => $request->join_request_reason,
             'is_certified' => $request->is_certified,
             'show_inPage' => $request->show_inPage,
-            'status' => $request->status,
+            'status' => 'DONE',
             'user_id' => $user->id
         ]);
 
@@ -136,7 +136,9 @@ class TrainerController extends Controller
 
     public function destroy($id)
     {
-        Trainer::find($id)->delete();
+
+        $trainer=Trainer::find($id);
+        $user=User::find($trainer->user_id)->delete();
         return redirect()->route('admin.trainers.index')->with('success', trans('deleted_successfully'));
     }
 }

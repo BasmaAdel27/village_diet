@@ -35,7 +35,7 @@
                 <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
                   <i class="mdi mdi-timer mr-3 icon-lg text-warning"></i>
                   <div class="d-flex flex-column justify-content-around">
-                    <small class="mb-1 text-muted">@lang('trainers pending')</small>
+                    <small class="mb-1 text-muted">@lang('pending_trainers')</small>
                     <h5 class="mr-2 mb-0">{{$trainers_pending}}</h5>
                   </div>
                 </div>

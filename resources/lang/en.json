@@ -196,7 +196,14 @@
   "reports_trainers": "Trainers Reports",
   "reports_subscriptions": "Subscriptions Reports",
   "reports_coupons": "Coupons Reports",
-  "date from": "Date From",
-  "submitted_successfully": "Submitted Successfully"
+  "date-from": "Date From",
+  "submitted_successfully": "Submitted Successfully",
+  "breakfast": "Breakfast",
+  "lunch": "Lunch",
+  "dinner": "Dinner",
+  "footer": "Footer",
+  "decline_reason": "Decline Reason",
+  "close": "Close",
+  "ok": "Ok"
 
 }

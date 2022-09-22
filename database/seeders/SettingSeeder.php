@@ -26,6 +26,7 @@ class SettingSeeder extends Seeder
             'web_title' => Str::random(10),
             'web_description' => Str::random(100),
             'logo' => 'settings/unnamed.png',
+            'footer'=>'village Diet 2022'
 
         ]);
     }

@@ -222,6 +222,16 @@
               </div>
             </div>
           </div>
+          <div class="row">
+            <div class="col-md-5">
+              <div class="form-group row">
+                <label class="col-sm-4 col-form-label">@lang('footer')</label>
+                <div class="col-sm-8">
+                  <input type="text" name="footer" value="{{$settings->footer}}" class="form-control" />
+                </div>
+              </div>
+            </div>
+          </div>
           <button type="submit" class="btn btn-success mb-2" name="submit">@lang('submit')</button>
 
         </form>

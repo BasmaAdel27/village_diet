@@ -4,7 +4,7 @@
 
   <div class="card mt-5">
     <div class="card-header d-flex justify-content-between">
-      <h2 class="mb-4">@lang('pending trainers')</h2>
+      <h2 class="mb-4">@lang('pending_trainers')</h2>
 
     </div>
     <div class="card-body table-responsive">
