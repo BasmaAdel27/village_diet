@@ -12,7 +12,16 @@ class StateSeeder extends Seeder
     {
         $satets = include database_path('init_data/state.php');
         foreach ($satets as $state) {
-            State::create($state);
+            State::create([
+                  'country_id'=>$state['country_id'],
+                      'ar' => [
+                            'name' => $state['name_ar'],
+                      ],
+                      'en' => [
+                            'name' => $state['name_en'],
+                      ]
+                ]);
+            }
         }
-    }
+
 }

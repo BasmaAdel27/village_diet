@@ -108,13 +108,13 @@
           </div>
           <div class="form-group col-6">
             <label>@lang('is licensed?')</label>
-            <select name="is_certified" class="form-control">
+            <select name="is_certified" class="form-control" id="license">
               <option value="">@lang('select')</option>
               <option value="1">@lang('yes')</option>
               <option value="0">@lang('no')</option>
             </select>
           </div>
-          <div class="form-group col-6">
+          <div class="form-group col-6" id="license_img">
             <label>@lang('licensed_image')</label>
             <input type="file" name="confidental_image" class="file-upload-default" id="image">
             <div class="input-group col-xs-12">
@@ -176,7 +176,6 @@
           // console.log(result);
           $('#state').html('<option value="">-- Select State --</option>');
           $.each(result, function (key, value) {
-            console.log(key,value)
             $("#state").append('<option value="' + key + '">' + value + '</option>');
 
           });
@@ -186,7 +185,15 @@
       })
     });
   });
-
-
+  $("#license_img").hide();
+  $("#license").change(function () {
+    var selected_option = $('#license').val();
+    if (selected_option == 1) {
+      $('#license_img').show();
+    }
+    if (selected_option != 1) {
+      $("#license_img").hide();
+    }
+  })
 </script>
 @endsection
