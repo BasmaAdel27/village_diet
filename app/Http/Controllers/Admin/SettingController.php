@@ -19,8 +19,7 @@ class SettingController extends Controller
     {
         $data = $request->validated();
         $setting->fill($data)->save();
-        $setting->footer=$data['footer'];
-        $setting->save();
+
         if ($request->hasFile('logo')) {
             $path = $request->file('logo')->storePublicly('settings', 'public');
             $setting->logo = $path;

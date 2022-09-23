@@ -19,8 +19,7 @@
           @yield('content')
           <div class="row">
             <footer class="footer" style="margin: 0 auto">
-              <span class="text-muted d-block text-center">
-                Copyright © {{$setting->footer}}</span>
+              <span class="text-muted d-block text-center"> {{ $setting->footer }}</span>
             </footer>
           </div>
         </div>
