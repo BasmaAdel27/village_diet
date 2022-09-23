@@ -108,15 +108,14 @@
           </div>
           <div class="form-group col-6">
             <label>@lang('is licensed?')</label>
-            <select name="is_certified" class="form-control">
+            <select name="is_certified" class="form-control" id="certificate">
               <option value="">@lang('select')</option>
               <option value="1" {{$trainer->is_certified == 1 ?'selected':''}} >@lang('yes')</option>
               <option value="0" {{$trainer->is_certified == 0 ?'selected':''}}>@lang('no')</option>
             </select>
           </div>
-          <div class="form-group col-6">
+          <div class="form-group col-6" id="licenseImg">
             <label>@lang('licensed_image')</label>
-            <label>@lang('select_image')</label>
             <input type="file" name="confidental_image" class="file-upload-default" id="image">
             <div class="input-group col-xs-12">
               <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
@@ -147,10 +146,9 @@
           </div>
           <div class="form-group col-6">
             <label>@lang('status')</label>
-            <select name="status" class="form-control">
+            <select name="status" class="form-control" disabled>
               <option value="">@lang('select')</option>
               <option value="DONE" {{ $trainer->status == 'DONE' ?'selected': '' }}>@lang('active')</option>
-              <option value="PENDING" {{ $trainer->status == 'PENDING' ?'selected': '' }}>@lang('inactive')</option>
             </select>
           </div>
 
@@ -195,7 +193,15 @@
         })
       });
     });
-
+  $("#certificate").change(function () {
+    var selected_option = $('#certificate').val();
+    if (selected_option == 1) {
+      $('#licenseImg').show();
+    }
+    if (selected_option != 1) {
+      $("#licenseImg").hide();
+    }
+  })
 
 </script>
 @endsection

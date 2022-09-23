@@ -54,7 +54,8 @@ class PendingTrainerController extends Controller
             ->pluck('name', 'id');
         $states = State::where('country_id', $trainer->user->country_id)
               ->join('state_translations', 'states.id', 'state_translations.state_id')
-            ->select('name', 'states.id')
+              ->where('locale', app()->getLocale())
+              ->select('name', 'states.id')
             ->pluck('name', 'id');;
         //dd($trainer->getImageAttribute());
 
