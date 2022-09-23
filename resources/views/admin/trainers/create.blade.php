@@ -165,7 +165,7 @@
       // console.log(idCountry);
       $("#state").html('');
       $.ajax({
-        url: "{{url('http://127.0.0.1:8000/states')}}",
+        url: "{{ route('states') }}",
         method: "POST",
         data: {
           country_id: country_id,
