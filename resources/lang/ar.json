@@ -205,6 +205,9 @@
   "footer": "الفوتر",
   "decline_reason": "سبب الرفض",
   "close": "الغاء",
-  "ok": "موافق"
-
+  "ok": "موافق",
+  "user_not_found": "المستخدم غير موجود",
+  "user_is_inactive": "هذا المستخدم معطل ",
+  "user_number_not_correct": "هذا الرقم غير صحيح",
+  "connect_with_support": "برجاء التواصل مع خدمة العملاء"
 }
