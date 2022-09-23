@@ -40,15 +40,6 @@ class TrainerController extends Controller
         return view('admin.trainers.create', compact('locales', 'countries', 'states'));
     }
 
-    public function fetchState(Request $request)
-
-    {
-        $data['states'] = State::where('country_id', $request->country_id)->join('state_translations', 'states.id', 'state_translations.state_id')
-            ->where('locale', app()->getLocale())
-            ->select('name', 'states.id')
-            ->pluck('name', 'id');
-        return response()->json($data['states']);
-    }
     public function store(TrainerRequest $request)
     {
         $data = $request->validated();

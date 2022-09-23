@@ -36,6 +36,7 @@ class PermissionSeeder extends Seeder
             'admin.',
             'admin.profile.index',
             'admin.profile.store',
+            'admin.states'
         ];
 
         $this->truncateTables();

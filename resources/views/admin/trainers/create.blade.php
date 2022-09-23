@@ -162,18 +162,14 @@
   $(document).ready(function () {
     $('#country').on('change', function () {
       var country_id = this.value;
-      // console.log(idCountry);
       $("#state").html('');
       $.ajax({
-        url: "{{ route('states') }}",
-        method: "POST",
-        data: {
-          country_id: country_id,
-          "_token": $('#token').val()
+        url: "{{ route('admin.states') }}",
+        type : "get",
+        data : {
+          'country_id' : country_id
         },
-        dataType: 'json',
         success: function (result) {
-          // console.log(result);
           $('#state').html('<option value="">-- Select State --</option>');
           $.each(result, function (key, value) {
             $("#state").append('<option value="' + key + '">' + value + '</option>');

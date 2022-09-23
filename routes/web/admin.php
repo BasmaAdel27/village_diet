@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\AjaxController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\ContactUsController;
@@ -53,5 +54,7 @@ Route::get('trainers-report', [ReportController::class, 'trainersReport'])->name
 Route::get('copouns-report', [ReportController::class, 'copounsReport'])->name('reports.copouns');
 #endregion reports
 
-Route::post('pending-trainers/submit/{id}',[PendingTrainerController::class,'submit'])->name('pending-trainers.submit');
-Route::post('pending-trainers/declined/{id}',[PendingTrainerController::class,'declined'])->name('pending-trainers.declined');
+Route::post('pending-trainers/submit/{id}', [PendingTrainerController::class, 'submit'])->name('pending-trainers.submit');
+Route::post('pending-trainers/declined/{id}', [PendingTrainerController::class, 'declined'])->name('pending-trainers.declined');
+
+Route::get('/states', [AjaxController::class, 'fetchState'])->name('states');
