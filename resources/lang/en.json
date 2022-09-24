@@ -208,5 +208,9 @@
   "user_not_found": "User Not Found",
   "user_is_inactive": "User Is Not Active",
   "user_number_not_correct": "User Number Is Not Correct",
-  "connect_with_support": "Please, Connect Wtih Supprt"
+  "connect_with_support": "Please, Connect Wtih Supprt",
+  "longitude": "Longitude",
+  "latitude": "Latitude",
+  " contact_information ":"Contact Information",
+  "whatsapp_number": "Whatsapp Number"
 }

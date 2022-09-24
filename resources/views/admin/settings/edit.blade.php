@@ -232,6 +232,63 @@
               </div>
             </div>
           </div>
+
+          <p class="card-description">
+            @lang('contact_information')
+          </p>
+          <div class="row">
+            <div class="col-md-5">
+              <div class="form-group row">
+                <label class="col-sm-4 col-form-label">@lang('latitude')</label>
+                <div class="col-sm-8">
+                 <input type="text" name="latitude" value="{{$settings->latitude}}" class="form-control">
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-5">
+              <div class="form-group row">
+                <label class="col-sm-4 col-form-label">@lang('longitude')</label>
+                <div class="col-sm-8">
+                 <input type="text" name="longitude" value="{{$settings->longitude}}" class="form-control">
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+          <div class="row">
+
+            <div class="col-md-5">
+              <div class="form-group row">
+                <label class="col-sm-4 col-form-label">@lang('address')</label>
+                <div class="col-sm-8">
+                  <input type="text" name="address" value="{{$settings->address}}" class="form-control">
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-5">
+              <div class="form-group row">
+                <label class="col-sm-4 col-form-label">@lang('phone')</label>
+                <div class="col-sm-8">
+                  <input type="text" name="phone" value="{{$settings->phone}}" class="form-control">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-5">
+              <div class="form-group row">
+                <label class="col-sm-4 col-form-label">@lang('whatsapp_number')</label>
+                <div class="col-sm-8">
+                  <input type="text" name="whatsapp_number" value="{{$settings->whatsapp_number}}" class="form-control" />
+                </div>
+              </div>
+            </div>
+          </div>
+
           <button type="submit" class="btn btn-success mb-2" name="submit">@lang('submit')</button>
 
         </form>

@@ -209,5 +209,9 @@
   "user_not_found": "المستخدم غير موجود",
   "user_is_inactive": "هذا المستخدم معطل ",
   "user_number_not_correct": "هذا الرقم غير صحيح",
-  "connect_with_support": "برجاء التواصل مع خدمة العملاء"
+  "connect_with_support": "برجاء التواصل مع خدمة العملاء",
+  "longitude": "خط الطول",
+  "latitude": "خط العرض",
+  " contact_information ":"معلومات التواصل",
+  "whatsapp_number": "رقم الواتساب"
 }

@@ -35,6 +35,12 @@ class CreateSettingsTable extends Migration
             $table->string('web_title')->nullable();
             $table->text('web_description')->nullable();
             $table->text('footer')->nullable();
+            $table->string('latitude')->nullable();
+            $table->string('longitude')->nullable();
+            $table->string('address')->nullable();
+            $table->string('email')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('whatsapp_number')->nullable();
             $table->timestamps();
         });
     }

@@ -26,7 +26,12 @@ class Setting extends Model
         'web_maintenance',
         'android_maintenance',
         'ios_maintenance',
-        'footer'
+        'footer',
+        'latitude',
+        'longitude',
+        'address',
+        'phone',
+        'whatsapp_number',
     ];
     const FIXED = 'fixed';
     const PERCENT = 'percent';
