@@ -18,6 +18,7 @@ class ContactUsController extends Controller
                 'user_type'=>'user'
           ]);
 
+
           return successResponse(ContactUsResource::make($contactUs));
     }
 }
