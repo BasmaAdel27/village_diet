@@ -212,5 +212,6 @@
   "longitude": "Longitude",
   "latitude": "Latitude",
   " contact_information ":"Contact Information",
-  "whatsapp_number": "Whatsapp Number"
+  "whatsapp_number": "Whatsapp Number",
+  "message_has_been_sent_successfully": "Message Has Been Sent Successfully"
 }

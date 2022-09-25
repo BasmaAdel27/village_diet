@@ -15,4 +15,5 @@ class ContactUsResource extends JsonResource
               'user_type'=>$this->user_type,
         ];
     }
+
 }
