@@ -26,7 +26,12 @@ class SettingSeeder extends Seeder
             'web_title' => Str::random(10),
             'web_description' => Str::random(100),
             'logo' => 'settings/unnamed.png',
-            'footer' => 'Copyright © village Diet 2022'
+            'footer' => 'Copyright © village Diet 2022',
+            'latitude' => '24.7253981',
+            'longitude' => '47.3830547',
+            'address' => 'الرياض السعوديه',
+            'phone' => '00966982662678',
+            'whatsapp_number' => '00966982662678',
 
         ]);
     }

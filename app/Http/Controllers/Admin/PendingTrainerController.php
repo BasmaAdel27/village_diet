@@ -74,6 +74,7 @@ class PendingTrainerController extends Controller
        $password=$request->password;
         Mail::to($trainer->user->email)->send(new SubmitPendingTrainer($trainer,$email,$password));
         $trainer->status="DONE";
+        $trainer->user->password=$password;
         $trainer->save();
         return redirect()->route('admin.pending-trainers.index')->with('success', trans('submitted_successfully'));
 
