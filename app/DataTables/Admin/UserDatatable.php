@@ -20,24 +20,24 @@ class UserDatatable extends DataTable
             ->editColumn('societies', function ($query) {
                 return $query->societies()?->latest()?->first()?->title;
             })
-            ->editColumn('subscriptions.created_at', function ($query) {
-                return $query->subscriptions()?->latest()?->first()?->created_at?->diffForHumans();
+            ->editColumn('subscription.created_at', function ($query) {
+                return $query->subscription()?->latest()?->first()?->created_at?->diffForHumans();
             })
-            ->editColumn('subscriptions.status', function ($query) {
-                $status = $query->subscriptions()?->latest()?->first()?->status;
+            ->editColumn('subscription.status', function ($query) {
+                $status = $query->subscription()?->latest()?->first()?->status;
                 if (!$status) return '';
 
                 return $status == Subscription::ACTIVE ? '<span class="btn btn-success">' . trans('active') . "</span>" : '<span class="btn btn-danger">' .  trans($status) . "</span>";
             })
             ->editColumn('Action', function ($query) {
                 return view('admin.users.datatable.action', compact('query'));
-            })->rawColumns(['subscriptions.status', 'Action']);
+            })->rawColumns(['subscription.status', 'Action']);
     }
 
     public function query()
     {
         return User::whereHas('roles', fn ($q) => $q->where('name', 'user'))
-            ->select('users.*')->with(['societies', 'subscriptions'])->newQuery();
+            ->select('users.*')->with(['societies', 'subscription'])->newQuery();
     }
 
     public function html()
@@ -65,8 +65,8 @@ class UserDatatable extends DataTable
             Column::make('user_number')->title(trans('user_number')),
             Column::make('phone')->title(trans('phone')),
             Column::make('societies')->title(trans('society_name'))->orderable(false)->searchable(false),
-            Column::make('subscriptions.created_at')->title(trans('subscription_date'))->orderable(false)->searchable(false),
-            Column::make('subscriptions.status')->title(trans('subscription_status'))->orderable(false)->searchable(false),
+            Column::make('subscription.created_at')->title(trans('subscription_date'))->orderable(false)->searchable(false),
+            Column::make('subscription.status')->title(trans('subscription_status'))->orderable(false)->searchable(false),
             Column::make('created_at')->title(trans('created_at')),
             Column::make('Action')->title(trans('action'))->searchable(false)->orderable(false)
         ];

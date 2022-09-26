@@ -10,6 +10,7 @@ use App\Models\Country\Country;
 use App\Models\State\State;
 use App\Models\Trainer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 
 class PendingTrainerController extends Controller
@@ -74,7 +75,7 @@ class PendingTrainerController extends Controller
        $password=$request->password;
         Mail::to($trainer->user->email)->send(new SubmitPendingTrainer($trainer,$email,$password));
         $trainer->status="DONE";
-        $trainer->user->password=$password;
+        $trainer->user->password=Hash::make($password);
         $trainer->save();
         return redirect()->route('admin.pending-trainers.index')->with('success', trans('submitted_successfully'));
 

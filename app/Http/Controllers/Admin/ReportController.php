@@ -49,9 +49,9 @@ class ReportController extends Controller
 
     public function usersReport(ReportRequest $request)
     {
-        $data['activeSubscripersCount'] = User::whereHas('subscriptions', fn ($q) => $q->where('status', Subscription::ACTIVE))->count();
-        $data['finishedSubscripersCount'] = User::whereHas('subscriptions', fn ($q) => $q->where('status', Subscription::FINISHED))->count();
-        $data['inactiveSubscripersCount'] = User::whereHas('subscriptions', fn ($q) => $q->where('status', Subscription::IN_ACTIVE))->count();
+        $data['activeSubscripersCount'] = User::whereHas('subscription', fn ($q) => $q->where('status', Subscription::ACTIVE))->count();
+        $data['finishedSubscripersCount'] = User::whereHas('subscription', fn ($q) => $q->where('status', Subscription::FINISHED))->count();
+        $data['inactiveSubscripersCount'] = User::whereHas('subscription', fn ($q) => $q->where('status', Subscription::IN_ACTIVE))->count();
         $data['total'] = $data['activeSubscripersCount'] +
             $data['finishedSubscripersCount'] +
             $data['inactiveSubscripersCount'];

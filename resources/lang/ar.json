@@ -215,5 +215,7 @@
   " contact_information ":"معلومات التواصل",
   "whatsapp_number": "رقم الواتساب",
   "message_has_been_sent_successfully": "تم ارسال الرساله بنجاح",
-  "unauthorized": "غير مصرح لك بالدخول"
+  "unauthorized": "غير مصرح لك بالدخول",
+  "You_cannot_unsubscribe": "لا يمكنك الغاء هذا الاشتراك",
+  "operation_accomplished_successfully": "تمت العمليه بنجاح"
 }
