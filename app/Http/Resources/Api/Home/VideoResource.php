@@ -1,0 +1,18 @@
+<?php
+
+namespace App\Http\Resources\Api\Home;
+
+use Illuminate\Http\Resources\Json\JsonResource;
+
+class VideoResource extends JsonResource
+{
+    public function toArray($request)
+    {
+        return [
+            'id' => $this->id,
+            'title' => $this->title,
+            'video' => url($this->video_path),
+            'created_at' => $this->created_at
+        ];
+    }
+}
