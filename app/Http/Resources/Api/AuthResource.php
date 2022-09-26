@@ -2,12 +2,16 @@
 
 namespace App\Http\Resources\Api;
 
+use App\Models\Day\Day;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class AuthResource extends JsonResource
 {
     public function toArray($request)
     {
+        $dayNumber = now()->diffInDays($this->subscription->created_at);
+        $day = Day::where('number', $dayNumber)->first();
+
         return [
             "first_name" => $this->first_name,
             "last_name" => $this->last_name,
@@ -23,7 +27,7 @@ class AuthResource extends JsonResource
             "state" => $this->state?->name,
             'created_at' => $this->created_at,
             'image' => $this->image,
-            'subscription_day' => now()->diffInDays($this->subscription->created_at)
+            'subscription_day' => DayResource::make($day)
         ];
     }
 }

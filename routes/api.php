@@ -18,4 +18,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('cancel_subscription/{id}', [SubscriptionsController::class, 'cancelSubscription']);
     Route::resource('notifications', NotificationController::class)->only(['index', 'show']);
     Route::get('home', [HomeController::class, 'index']);
+    Route::post('user_info', [HomeController::class, 'store']);
 });

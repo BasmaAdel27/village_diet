@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\HomeRequest;
+use App\Http\Resources\Api\Home\UserInfoResource;
 use App\Http\Resources\Api\HomeResource;
 use App\Models\Day\Day;
 use App\Models\Meal\Meal;
@@ -41,5 +43,17 @@ class HomeController extends Controller
             ->first();
 
         return successResponse(HomeResource::make($obj));
+    }
+
+    public function store(HomeRequest $request)
+    {
+        $user = auth()->user();
+        $healthData = $user->healthyInformation()
+            ->updateOrCreate(
+                ['day_id' => $request->day_id],
+                $request->validated() + ['subscription_id' => $user->subscription->id]
+            );
+
+        return successResponse(UserInfoResource::make($healthData), message: __('created_successfully'));
     }
 }
