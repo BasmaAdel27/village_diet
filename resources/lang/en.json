@@ -214,5 +214,7 @@
   " contact_information ":"Contact Information",
   "whatsapp_number": "Whatsapp Number",
   "message_has_been_sent_successfully": "Message Has Been Sent Successfully",
-  "unauthorized": "Unauthorized"
+  "unauthorized": "Unauthorized",
+  "You_cannot_unsubscribe": "You Cannot Unsubscribe",
+  "operation_accomplished_successfully": "Operation Accomplished Successfully"
 }

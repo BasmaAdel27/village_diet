@@ -16,7 +16,7 @@ class CreateSubscriptionsTable extends Migration
             $table->decimal('tax_amount')->default(0);
             $table->decimal('total_amount');
             $table->string('payment_method');
-            $table->timestamp('end_date')->comment('add one month from created_at');
+            $table->timestamp('end_date')->comment('add one month from created_at')->nullable();
 
             $table->foreignId('coupon_id')->nullable()->constrained('coupons')->nullOnDelete();
             $table->foreignId('user_id')->nullable()->constrained('users')->nullOnDelete();

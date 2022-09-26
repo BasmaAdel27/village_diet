@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use App\Traits\HasTimestampTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Subscription extends Model
 {
-    use HasFactory;
+    use HasFactory,HasTimestampTrait;
 
     protected $guarded = [];
 

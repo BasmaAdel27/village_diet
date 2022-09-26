@@ -25,7 +25,7 @@ class SubscriptionFactory extends Factory
             'tax_amount' => $tax_amount,
             'total_amount' => $total,
             'payment_method' => 'cache',
-            'end_date' => now(),
+            'end_date' => now()->addDays(30),
             'user_id' => User::factory()->create(),
         ];
     }
