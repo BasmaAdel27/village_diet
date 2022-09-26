@@ -30,4 +30,9 @@ class Video extends Model implements Translatable
     {
         return $this->belongsTo(Day::class);
     }
+
+    public function getVideoPathAttribute()
+    {
+        return $this->images()->where('option', 'video')->value('media');
+    }
 }

@@ -29,4 +29,9 @@ class Slider extends Model implements TranslatableContract
             $model->saveAssets($model, request());
         });
     }
+
+    public function getImageAttribute()
+    {
+        return $this->images()->where('option', 'image')->value('media');
+    }
 }

@@ -21,7 +21,7 @@ class UserDatatable extends DataTable
                 return $query->societies()?->latest()?->first()?->title;
             })
             ->editColumn('subscription.created_at', function ($query) {
-                return $query->subscription()?->latest()?->first()?->created_at?->diffForHumans();
+                return $query->subscription()?->latest()?->first()?->created_at;
             })
             ->editColumn('subscription.status', function ($query) {
                 $status = $query->subscription()?->latest()?->first()?->status;

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\ContactUsController;
+use App\Http\Controllers\Api\HomeController;
 use App\Http\Controllers\Api\PersonalInfoController;
 use App\Http\Controllers\Api\SubscriptionsController;
 use App\Http\Controllers\Api\NotificationController;
@@ -16,4 +17,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('subscriptions', [SubscriptionsController::class, 'subscriptions']);
     Route::post('cancel_subscription/{id}', [SubscriptionsController::class, 'cancelSubscription']);
     Route::resource('notifications', NotificationController::class)->only(['index', 'show']);
+    Route::get('home', [HomeController::class, 'index']);
 });
