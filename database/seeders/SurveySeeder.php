@@ -146,7 +146,7 @@ class SurveySeeder extends Seeder
         ]);
 
         $info_en->questions()->create([
-            'content' => 'Gneder',
+            'content' => 'gender',
             'type' => 'radio',
             'options' => [
                 'Male',

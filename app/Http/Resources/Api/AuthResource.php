@@ -21,6 +21,9 @@ class AuthResource extends JsonResource
             "twitter_link" => $this->twitter_link,
             "country" => $this->country?->name,
             "state" => $this->state?->name,
+            'created_at' => $this->created_at,
+            'image' => $this->image,
+            'subscription_day' => now()->diffInDays($this->subscription->created_at)
         ];
     }
 }

@@ -99,12 +99,14 @@ class User extends Authenticatable
             return asset($this->images()->whereOption('image')->value('media'));
         }
 
-        return asset('adminPanel/images/faces/face5.jpg');
+        return in_array($this->entry?->gender, ['Male', 'ذكر', null]) ?
+            asset('adminPanel/images/faces/male.webp') :
+            asset('adminPanel/images/faces/female');
     }
 
-    public function subscriptions()
+    public function subscription()
     {
-        return $this->hasMany(Subscription::class);
+        return $this->hasOne(Subscription::class, 'user_id');
     }
 
     public function trainer()
