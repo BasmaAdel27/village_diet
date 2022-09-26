@@ -111,7 +111,7 @@ class UserController extends Controller
 
     public function statistics(User $user)
     {
-        $data = HealthyInformation::select(['weight', 'sleep_hours', 'daily_cup_count', 'day_translations.title'])
+        $data = HealthyInformation::select(['weight', 'sleep_hours', 'walk_duration', 'daily_cup_count', 'day_translations.title'])
             ->join('day_translations', 'healthy_information.day_id', 'day_translations.day_id')
             ->where('locale', app()->getLocale())
             ->where('user_id', $user->id)
