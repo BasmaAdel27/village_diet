@@ -36,4 +36,8 @@ class Subscription extends Model
                 fn ($q) => $q->where('created_at', '<=', $date_to)
             );
     }
+
+    public function user(){
+        return $this->hasMany(User::class,'');
+    }
 }
