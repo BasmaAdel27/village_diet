@@ -17,6 +17,7 @@ class CreateUsersTable extends Migration
             $table->string('phone')->nullable();
             $table->date('date_of_birth')->nullable();
             $table->boolean('is_active')->default(true);
+            $table->integer('subscription_count')->default(0);
             $table->string('address')->nullable();
             $table->string('insta_link')->nullable();
             $table->string('twitter_link')->nullable();

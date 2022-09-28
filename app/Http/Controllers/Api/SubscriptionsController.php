@@ -3,16 +3,23 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Api\subscriptions\LogsResource;
 use App\Http\Resources\Api\SubscriptionsResource;
 use App\Models\Subscription;
-use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Lang;
+use stdClass;
 
 class SubscriptionsController extends Controller
 {
     public function subscriptions(){
-        $subscriptions=Subscription::where('user_id',auth()->user()->id)->get();
-            return successResponse(SubscriptionsResource::collection($subscriptions));
+        $data=new stdClass();
+        $subscriptions=Auth::user()->subscriptions;
+        $data->logs=collect($subscriptions)->where('status','!=','active');
+        $data->active_subscription=collect($subscriptions)->where('status','==','active');
+        $data->subscription_count=User::find(\auth()->user()->id);
+            return successResponse(SubscriptionsResource::make($data));
 
 
     }
@@ -22,7 +29,7 @@ class SubscriptionsController extends Controller
         if($subscription->status == 'active') {
             $subscription->status = 'request_cancel';
             $subscription->save();
-            return successResponse(SubscriptionsResource::make($subscription), extra: ['message' => 'operation_accomplished_successfully']);
+            return successResponse(LogsResource::make($subscription), extra: ['message' => 'operation_accomplished_successfully']);
         }else{
             return failedResponse(Lang::get('You_cannot_unsubscribe'));
         }

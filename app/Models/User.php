@@ -108,6 +108,10 @@ class User extends Authenticatable
     {
         return $this->hasOne(Subscription::class, 'user_id');
     }
+    public function subscriptions()
+    {
+        return $this->hasMany(Subscription::class, 'user_id');
+    }
 
     public function trainer()
     {
