@@ -104,10 +104,11 @@ class User extends Authenticatable
             asset('adminPanel/images/faces/female');
     }
 
-    public function subscription()
+    public function currentSubscription()
     {
-        return $this->hasOne(Subscription::class, 'user_id');
+        return $this->hasOne(Subscription::class)->latest()->where('status', Subscription::ACTIVE);
     }
+
     public function subscriptions()
     {
         return $this->hasMany(Subscription::class, 'user_id');
