@@ -9,9 +9,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Subscription extends Model
 {
-    use HasFactory,HasTimestampTrait;
+    use HasFactory, HasTimestampTrait;
 
     protected $guarded = [];
+    protected $dates = ['end_date'];
 
     const ACTIVE = 'active';
     const IN_ACTIVE = 'in_active';
@@ -35,9 +36,5 @@ class Subscription extends Model
                 request()->has('date_to'),
                 fn ($q) => $q->where('created_at', '<=', $date_to)
             );
-    }
-
-    public function user(){
-        return $this->hasMany(User::class,'');
     }
 }

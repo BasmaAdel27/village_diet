@@ -16,7 +16,7 @@ Route::get('contact_info', [ContactUsController::class, 'contactInfo']);
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('personal_info', [PersonalInfoController::class, 'personalInfo']);
     Route::get('subscriptions', [SubscriptionsController::class, 'subscriptions']);
-    Route::post('cancel_subscription/{id}', [SubscriptionsController::class, 'cancelSubscription']);
+    Route::post('cancel_subscription', [SubscriptionsController::class, 'cancelSubscription']);
     Route::resource('notifications', NotificationController::class)->only(['index', 'show']);
     Route::get('home', [HomeController::class, 'index']);
     Route::post('user_info', [HomeController::class, 'store']);

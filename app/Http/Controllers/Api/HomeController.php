@@ -17,7 +17,7 @@ class HomeController extends Controller
     public function index()
     {
         $user = auth()->user();
-        $day = now()->diffInDays($user->subscription->created_at);
+        $day = now()->diffInDays($user->currentSubscription->created_at);
         $dayId = Day::select('id')->where('number', $day)->value('id');
         $obj = new stdClass;
 
@@ -51,7 +51,7 @@ class HomeController extends Controller
         $healthData = $user->healthyInformation()
             ->updateOrCreate(
                 ['day_id' => $request->day_id],
-                $request->validated() + ['subscription_id' => $user->subscription->id]
+                $request->validated() + ['subscription_id' => $user->currentSubscription->id]
             );
 
         return successResponse(UserInfoResource::make($healthData), message: __('created_successfully'));

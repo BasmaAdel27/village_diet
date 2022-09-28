@@ -9,10 +9,11 @@ class AuthResource extends JsonResource
 {
     public function toArray($request)
     {
-        $dayNumber = now()->diffInDays($this->subscription->created_at);
+        $dayNumber = now()->diffInDays($this->currentSubscription?->created_at) + 1;
         $day = Day::where('number', $dayNumber)->first();
 
         return [
+            'id' => $this->id,
             "first_name" => $this->first_name,
             "last_name" => $this->last_name,
             "email" => $this->email,
