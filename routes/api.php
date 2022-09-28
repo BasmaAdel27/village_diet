@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\MenuController;
 use App\Http\Controllers\Api\PersonalInfoController;
 use App\Http\Controllers\Api\SubscriptionsController;
 use App\Http\Controllers\Api\NotificationController;
+use App\Http\Controllers\Api\RateController;
 use Illuminate\Support\Facades\Route;
 
 Route::post('login', [AuthController::class, 'login']);
@@ -23,4 +24,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('user_info', [HomeController::class, 'store']);
     Route::get('healthy_information', [HealthDataController::class, 'index']);
     Route::get('menu', [MenuController::class, 'index']);
+
+    Route::controller(RateController::class)->group(function () {
+        Route::get('get_rate', 'index');
+        Route::post('rate', 'store');
+    });
 });

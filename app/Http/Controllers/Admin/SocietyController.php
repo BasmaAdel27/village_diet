@@ -27,7 +27,7 @@ class SocietyController extends Controller
     {
         $locales = config('translatable.locales');
         $trainers = User::whereHas('roles', fn ($q) => $q->where('name', 'trainer'))->pluck('first_name', 'id');
-        $users = User::doesntHave('societies')->whereHas(
+        $users = User::doesntHave('society')->whereHas(
             'roles',
             fn ($q) => $q->where('name', 'user')
         )->pluck('first_name', 'id');
@@ -39,7 +39,9 @@ class SocietyController extends Controller
     {
         $data = $request->validated();
         $society->fill($data)->save();
-        $society->users()->sync($data['user_id']);
+        $users = User::find($data['user_id']);
+        $users->map->update(['society_id' => $society->id]);
+
         if ($data['is_active'] == 1) {
             $society->update(['date_from' => now()]);
         }
@@ -51,10 +53,10 @@ class SocietyController extends Controller
     {
         $locales = config('translatable.locales');
         $trainers = User::whereHas('roles', fn ($q) => $q->where('name', 'trainer'))->pluck('first_name', 'id');
-        $users = User::doesntHave('societies')->whereHas(
+        $users = User::doesntHave('society')->whereHas(
             'roles',
             fn ($q) => $q->where('name', 'user')
-        )->orWhereHas('societies', fn ($q) => $q->where('society_id', $society->id))->pluck('first_name', 'id');
+        )->orWhereHas('society', fn ($q) => $q->where('society_id', $society->id))->pluck('first_name', 'id');
 
         return view('admin.society.edit', compact('society', 'locales', 'trainers', 'users'));
     }
@@ -63,7 +65,9 @@ class SocietyController extends Controller
     {
         $data = $request->validated();
         $society->fill($data)->save();
-        $society->users()->sync($data['user_id']);
+        $users = User::find($data['user_id']);
+        $users->map->update(['society_id' => $society->id]);
+
         if ($data['is_active'] == 1 && $society->is_active == 0) {
             $society->update(['date_from' => now()]);
         }

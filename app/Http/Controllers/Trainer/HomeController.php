@@ -16,7 +16,7 @@ class HomeController extends Controller
     public function home()
     {
         $users = User::whereHas('roles', fn ($q) => $q->where('name', 'user'))
-            ->whereHas('societies', fn ($q) => $q->where('trainer_id', auth()->id()))
+            ->whereHas('society', fn ($q) => $q->where('trainer_id', auth()->id()))
             ->count();
         $societies = Society::where('trainer_id', auth()->id())->count();
 

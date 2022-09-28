@@ -27,23 +27,7 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'first_name',
-        'last_name',
-        'email',
-        'user_number',
-        'phone',
-        'date_of_birth',
-        'is_active',
-        'address',
-        'insta_link',
-        'twitter_link',
-        'wrong_attemp_count',
-        'country_id',
-        'state_id',
-        'email_verified_at',
-        'password',
-    ];
+    protected $guarded = [];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -88,9 +72,9 @@ class User extends Authenticatable
     }
 
     #region relationships
-    public function societies()
+    public function society()
     {
-        return $this->belongsToMany(Society::class, 'user_societies');
+        return $this->belongsTo(Society::class);
     }
 
     public function getImageAttribute()

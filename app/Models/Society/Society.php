@@ -2,7 +2,6 @@
 
 namespace App\Models\Society;
 
-use App\Models\Trainer;
 use App\Models\User;
 use App\Traits\HasTimestampTrait;
 use Astrotomic\Translatable\Contracts\Translatable;
@@ -19,7 +18,7 @@ class Society extends Model implements Translatable
 
     public function users()
     {
-        return $this->belongsToMany(User::class, 'user_societies');
+        return $this->hasMany(User::class);
     }
 
     public function trainer()
