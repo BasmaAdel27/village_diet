@@ -32,7 +32,12 @@ class SettingSeeder extends Seeder
             'address' => 'الرياض السعوديه',
             'phone' => '00966982662678',
             'whatsapp_number' => '00966982662678',
-
+            'facebook' => 'https//www.facebook.com',
+            'twitter' => 'https//www.twitter.com',
+            'youtube' => 'https//www.youtube.com',
+            'snapchat' => 'https//www.snapchat.com',
+            'tiktok' => 'https//www.tiktok.com',
+            'instagram' => 'https//www.instagram.com',
         ]);
     }
 }

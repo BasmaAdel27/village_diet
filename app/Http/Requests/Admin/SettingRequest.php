@@ -33,11 +33,17 @@ class SettingRequest extends FormRequest
             'website_title' => 'required|string|min:5|max:200',
             'website_description' => 'required|string|min:20',
             'logo' => 'nullable|image|mimes:png,jpg,jpeg,svg',
-            'latitude'=>'required',
-            'longitude'=>'required',
-            'address'=>'required',
-            'phone'=>'required',
-            'whatsapp_number'=>'required',
+            'latitude' => 'required',
+            'longitude' => 'required',
+            'address' => 'required',
+            'phone' => 'required',
+            'whatsapp_number' => 'required',
+            'facebook' => 'nullable|string',
+            'twitter' => 'nullable|string',
+            'youtube' => 'nullable|string',
+            'snapchat' => 'nullable|string',
+            'tiktok' => 'nullable|string',
+            'instagram' => 'nullable|string',
         ];
     }
 }

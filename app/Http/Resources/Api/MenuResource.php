@@ -11,7 +11,9 @@ class MenuResource extends JsonResource
         return [
             'name' => auth()->user()->first_name . ' ' . auth()->user()->last_name,
             'image' => auth()->user()->image,
-            'subscription_end_date' => auth()->user()->currentSubscription->end_date->diffForHumans()
+            'static_pages' => StaticPageResource::collection($this->staticPages),
+            'settings' => SettingResource::collection($this->settings),
+            'subscription_end_date' => auth()->user()->currentSubscription?->end_date?->diffForHumans()
         ];
     }
 }

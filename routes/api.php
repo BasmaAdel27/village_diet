@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\ContactUsController;
 use App\Http\Controllers\Api\HealthDataController;
 use App\Http\Controllers\Api\HomeController;
+use App\Http\Controllers\Api\MenuController;
 use App\Http\Controllers\Api\PersonalInfoController;
 use App\Http\Controllers\Api\SubscriptionsController;
 use App\Http\Controllers\Api\NotificationController;
@@ -21,4 +22,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('home', [HomeController::class, 'index']);
     Route::post('user_info', [HomeController::class, 'store']);
     Route::get('healthy_information', [HealthDataController::class, 'index']);
+    Route::get('menu', [MenuController::class, 'index']);
 });

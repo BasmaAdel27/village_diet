@@ -24,4 +24,9 @@ class StaticPage extends Model implements Translatable
             $model->saveAssets($model, request());
         });
     }
+
+    public function getImageAttribute()
+    {
+        return asset($this->images()->whereOption('image')->value('media'));
+    }
 }
