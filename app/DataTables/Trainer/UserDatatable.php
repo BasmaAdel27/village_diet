@@ -17,8 +17,8 @@ class UserDatatable extends DataTable
             ->editColumn('is_active', function ($query) {
                 return ($query->is_active == 1) ?  '<span class="btn btn-success">' . trans('active') . "</span>" : '<span class="btn btn-danger">' .  trans('inactive') . "</span>";
             })
-            ->editColumn('societies', function ($query) {
-                return $query->societies()?->latest()?->first()?->title;
+            ->editColumn('society', function ($query) {
+                return $query->society?->title;
             })
             ->editColumn('currentSubscription.created_at', function ($query) {
                 return $query->currentSubscription->created_at?->diffForHumans();
@@ -41,7 +41,7 @@ class UserDatatable extends DataTable
     {
         return User::whereHas('roles', fn ($q) => $q->where('name', 'user'))
             ->select('users.*')->with([
-                'societies' => fn ($q) => $q->where('trainer_id', auth()->id()),
+                'society' => fn ($q) => $q->where('trainer_id', auth()->id()),
                 'currentSubscription'
             ])->newQuery();
     }
@@ -68,7 +68,7 @@ class UserDatatable extends DataTable
         return [
             Column::make('id')->title(trans('ID')),
             Column::make('first_name')->title(trans('name'))->orderable(false),
-            Column::make('societies')->title(trans('society_name'))->orderable(false)->searchable(false),
+            Column::make('society')->title(trans('society_name'))->orderable(false)->searchable(false),
             Column::make('currentSubscription.created_at')->title(trans('subscription_date'))->searchable(false),
             Column::make('currentSubscription.end_date')->title(trans('subscription_end_date'))->searchable(false),
             Column::make('currentSubscription.status')->title(trans('subscription_status'))->searchable(false),
