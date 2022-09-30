@@ -18,7 +18,7 @@ class CreateChatsTable extends Migration
             $table->id();
             $table->foreignId('chat_id')->constrained()->cascadeOnDelete();
             $table->foreignId('sender_id')->constrained('users')->cascadeOnDelete();
-            $table->string('type')->default('Text')->comment('TEXT , IMAGE');
+            $table->string('type')->default('Text')->comment('TEXT , IMAGE', 'AUDIO');
             $table->text('message');
             $table->timestamp('read_at')->nullable();
             $table->timestamps();
@@ -34,7 +34,18 @@ class CreateChatsTable extends Migration
             $table->id();
             $table->foreignId('admin_chat_id')->constrained()->cascadeOnDelete();
             $table->foreignId('sender_id')->constrained('users')->cascadeOnDelete();
-            $table->string('type')->default('Text')->comment('TEXT , IMAGE');
+            $table->string('type')->default('Text')->comment('TEXT , IMAGE', 'AUDIO');
+            $table->text('message');
+            $table->timestamp('read_at')->nullable();
+            $table->timestamps();
+        });
+
+
+        Schema::create('society_messages', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('society_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('sender_id')->constrained('users')->cascadeOnDelete();
+            $table->string('type')->default('Text')->comment('TEXT , IMAGE', 'AUDIO');
             $table->text('message');
             $table->timestamp('read_at')->nullable();
             $table->timestamps();
@@ -47,5 +58,6 @@ class CreateChatsTable extends Migration
         Schema::dropIfExists('chat_messages');
         Schema::dropIfExists('admin_chats');
         Schema::dropIfExists('admin_chat_messages');
+        Schema::dropIfExists('society_messages');
     }
 }

@@ -10,14 +10,14 @@ class Chat extends Model
 {
     public $guarded = [];
 
-    public function teacher()
+    public function trainer()
     {
-        return $this->belongsTo(User::class, 'teacher_id');
+        return $this->belongsTo(User::class, 'trainer_id');
     }
 
-    public function student()
+    public function citizen()
     {
-        return $this->belongsTo(User::class, 'student_id');
+        return $this->belongsTo(User::class, 'citizen_id');
     }
 
     public function messages()
