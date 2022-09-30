@@ -2,6 +2,7 @@
 
 namespace App\Models\Society;
 
+use App\Models\Chat\SocietyChat;
 use App\Models\User;
 use App\Traits\HasTimestampTrait;
 use Astrotomic\Translatable\Contracts\Translatable;
@@ -24,5 +25,10 @@ class Society extends Model implements Translatable
     public function trainer()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function messages()
+    {
+        return $this->hasMany(SocietyChat::class, 'society_id');
     }
 }
