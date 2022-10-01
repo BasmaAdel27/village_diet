@@ -23,7 +23,6 @@ class UserRequest extends FormRequest
             'state_id' => 'required',
             'address' => 'required',
             'insta_link' => 'required',
-            'subscrioption_status' => 'required',
         ];
     }
 }
