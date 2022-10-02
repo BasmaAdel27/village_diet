@@ -10,7 +10,6 @@ use App\Models\State\State;
 use App\Models\Trainer;
 use App\Models\User;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 
 class TrainerController extends Controller
 {
@@ -42,7 +41,6 @@ class TrainerController extends Controller
 
     public function store(TrainerRequest $request)
     {
-        $data = $request->validated();
         $user = User::create([
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
@@ -58,8 +56,7 @@ class TrainerController extends Controller
         ]);
 
         $user->assignRole('trainer');
-        $user->save();
-        $trainer = Trainer::create([
+        Trainer::create([
             'bio' => $request->bio,
             'current_job' => $request->current_job,
             'body_shape' => $request->body_shape,
@@ -90,8 +87,8 @@ class TrainerController extends Controller
             ->select('name', 'countries.id')
             ->pluck('name', 'id');
         $states = State::where('country_id', $trainer->user->country_id)->join('state_translations', 'states.id', 'state_translations.state_id')
-              ->where('locale', app()->getLocale())
-              ->select('name', 'states.id')
+            ->where('locale', app()->getLocale())
+            ->select('name', 'states.id')
             ->pluck('name', 'id');;
 
         return view('admin.trainers.edit', compact('trainer', 'states', 'locales', 'countries'));
@@ -100,7 +97,6 @@ class TrainerController extends Controller
 
     public function update(TrainerRequest $request, Trainer $trainer)
     {
-        $data = $request->validated();
         $trainer->user->update([
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
@@ -130,8 +126,9 @@ class TrainerController extends Controller
     public function destroy($id)
     {
 
-        $trainer=Trainer::find($id);
-        $user=User::find($trainer->user_id)->delete();
+        $trainer = Trainer::find($id);
+        User::find($trainer->user_id)->delete();
+
         return redirect()->route('admin.trainers.index')->with('success', trans('deleted_successfully'));
     }
 }
