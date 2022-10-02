@@ -29,6 +29,12 @@ class AgendaController extends Controller
 
             $data[$index]['day_id'] = $day->id;
             $data[$index]['date'] = @$dates[$day->number]?->toDateString();
+            if ($data[$index]['date'] <= Carbon::now()->toDateString()){
+                $data[$index]['status']=true;
+            }else{
+                $data[$index]['status']=false;
+
+            }
             $data[$index]['day']  = $day->title;
         }
 
