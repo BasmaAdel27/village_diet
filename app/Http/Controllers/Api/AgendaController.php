@@ -29,6 +29,7 @@ class AgendaController extends Controller
 
             $data[$index]['day_id'] = $day->id;
             $data[$index]['date'] = @$dates[$day->number]?->toDateString();
+            $data[$index]['status']=(bool) now()->gt($data[$index]['date']);
             $data[$index]['day']  = $day->title;
         }
 
