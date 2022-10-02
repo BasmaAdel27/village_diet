@@ -58,6 +58,7 @@ class TrainerController extends Controller
         ]);
 
         $user->assignRole('trainer');
+        $user->save();
         $trainer = Trainer::create([
             'bio' => $request->bio,
             'current_job' => $request->current_job,
