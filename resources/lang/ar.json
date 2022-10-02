@@ -218,5 +218,7 @@
   "message_has_been_sent_successfully": "تم ارسال الرساله بنجاح",
   "unauthorized": "غير مصرح لك بالدخول",
   "You_cannot_unsubscribe": "لا يمكنك الغاء هذا الاشتراك",
-  "operation_accomplished_successfully": "تمت العمليه بنجاح"
+  "operation_accomplished_successfully": "تمت العمليه بنجاح",
+  "nothing_data": "لا توجد بيانات",
+  "date_wrong": "لا يمكنك الحصول على بيانات هذا التاريخ "
 }

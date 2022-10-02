@@ -25,7 +25,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('user_info', [HomeController::class, 'store']);
     Route::get('healthy_information', [HealthDataController::class, 'index']);
     Route::get('menu', [MenuController::class, 'index']);
-    Route::get('agenda', [AgendaController::class, 'agenda']);
+    Route::get('agendaDate', [AgendaController::class, 'agendaDate']);
+    Route::get('agenda/{day_id}', [AgendaController::class, 'agenda']);
 
     Route::controller(RateController::class)->group(function () {
         Route::get('get_rate', 'index');
