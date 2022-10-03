@@ -8,16 +8,10 @@ class CreateChatsTable extends Migration
 {
     public function up()
     {
-        Schema::create('chats', function (Blueprint $table) {
+        Schema::create('trainer_messages', function (Blueprint $table) {
             $table->id();
             $table->foreignId('trainer_id')->constrained('users')->cascadeOnDelete();
             $table->foreignId('citizen_id')->constrained('users')->cascadeOnDelete();
-            $table->timestamps();
-        });
-        Schema::create('chat_messages', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('chat_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('sender_id')->constrained('users')->cascadeOnDelete();
             $table->string('type')->default('Text')->comment('TEXT , IMAGE', 'AUDIO');
             $table->text('message');
             $table->timestamp('read_at')->nullable();

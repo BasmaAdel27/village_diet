@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\SubscriptionsController;
 use App\Http\Controllers\Api\NotificationController;
 use App\Http\Controllers\Api\RateController;
 use App\Http\Controllers\Api\AgendaController;
+use App\Http\Controllers\Api\ChatController;
 use Illuminate\Support\Facades\Route;
 
 Route::post('login', [AuthController::class, 'login']);
@@ -31,5 +32,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::controller(RateController::class)->group(function () {
         Route::get('get_rate', 'index');
         Route::post('rate', 'store');
+    });
+
+    Route::controller(ChatController::class)->group(function () {
+        Route::get('get_trainer_messages', 'getTrainerMessages');
     });
 });

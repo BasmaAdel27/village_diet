@@ -3,10 +3,9 @@
 namespace App\Models\Chat;
 
 use App\Models\User;
-use App\Models\Chat\ChatMessage;
 use Illuminate\Database\Eloquent\Model;
 
-class Chat extends Model
+class TrainerMessage extends Model
 {
     public $guarded = [];
 
@@ -18,15 +17,5 @@ class Chat extends Model
     public function citizen()
     {
         return $this->belongsTo(User::class, 'citizen_id');
-    }
-
-    public function messages()
-    {
-        return $this->hasMany(ChatMessage::class);
-    }
-
-    public function lastMessage()
-    {
-        return $this->hasOne(ChatMessage::class)->latestOfMany();
     }
 }
