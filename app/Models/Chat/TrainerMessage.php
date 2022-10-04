@@ -3,18 +3,15 @@
 namespace App\Models\Chat;
 
 use App\Models\User;
-use App\Models\Chat\AdminChat;
 use Illuminate\Database\Eloquent\Model;
 
-class AdminChatMessage extends Model
+class TrainerMessage extends Model
 {
     public $guarded = [];
 
-    public $touches = ['chat'];
-
-    public function chat()
+    public function receiver()
     {
-        return $this->belongsTo(AdminChat::class);
+        return $this->belongsTo(User::class, 'receiver_id');
     }
 
     public function sender()

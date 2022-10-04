@@ -220,5 +220,7 @@
   "You_cannot_unsubscribe": "لا يمكنك الغاء هذا الاشتراك",
   "operation_accomplished_successfully": "تمت العمليه بنجاح",
   "nothing_data": "لا توجد بيانات",
-  "date_wrong": "لا يمكنك الحصول على بيانات هذا التاريخ "
+  "date_wrong": "لا يمكنك الحصول على بيانات هذا التاريخ ",
+  "no_messages": "لا توجد رسائل",
+  "not_in_society": "لا يوجد لديك مجتمع"
 }

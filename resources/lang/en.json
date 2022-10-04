@@ -216,5 +216,9 @@
   "message_has_been_sent_successfully": "Message Has Been Sent Successfully",
   "unauthorized": "Unauthorized",
   "You_cannot_unsubscribe": "You Cannot Unsubscribe",
-  "operation_accomplished_successfully": "Operation Accomplished Successfully"
+  "operation_accomplished_successfully": "Operation Accomplished Successfully",
+  "nothing_data": "Nothing Data",
+  "date_wrong": "Date Wrong ",
+  "no_messages": "No Messages",
+  "not_in_society": "Not In Society"
 }
