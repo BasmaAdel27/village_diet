@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\SubscriptionsController;
 use App\Http\Controllers\Api\NotificationController;
 use App\Http\Controllers\Api\RateController;
 use App\Http\Controllers\Api\AgendaController;
+use App\Http\Controllers\Api\ListMessagesController;
 use Illuminate\Support\Facades\Route;
 
 Route::post('login', [AuthController::class, 'login']);
@@ -27,6 +28,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('menu', [MenuController::class, 'index']);
     Route::get('agendaDate', [AgendaController::class, 'agendaDate']);
     Route::get('agenda/{day_id}', [AgendaController::class, 'agenda']);
+    Route::get('list_admin_msgs', [ListMessagesController::class, 'listAdminMsg']);
 
     Route::controller(RateController::class)->group(function () {
         Route::get('get_rate', 'index');
