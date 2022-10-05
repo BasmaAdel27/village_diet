@@ -13,7 +13,7 @@ class HomeResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'slides' => SlideResource::collection($this->slides),
+            // 'slides' => SlideResource::collection($this->slides),
             'health_info' => UserInfoResource::make($this->userInfo),
             'meal'  => MealResource::make($this->meal),
             'video'    => VideoResource::make($this->video)
