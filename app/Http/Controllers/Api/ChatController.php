@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\StoreMessageRequest;
 use App\Http\Resources\Api\Chat\MessageResource;
 use App\Http\Resources\Api\Chat\SocietyMessageResource;
 use App\Http\Resources\Api\Chat\TrainerMessageResource;
@@ -59,5 +60,25 @@ class ChatController extends Controller
             return failedResponse(Lang::get('no_messages'));
 
         }
+    }
+
+    public function storeTrainerMessages(StoreMessageRequest $storeMessageRequest,TrainerMessage $trainerMessage){
+        $data=$storeMessageRequest->validated();
+        $trainerMessage->sender_id=Auth::user()->id;
+
+        $trainerMessage->fill($data)->save();
+        if ($storeMessageRequest->type == 'AUDIO'){
+            $path = $storeMessageRequest->file("message")->storePublicly('chats/audios', "public");
+            $audio =  "/storage/" . $path;
+            $trainerMessage->message=$audio;
+            $trainerMessage->save();
+        }elseif ($storeMessageRequest->type == 'IMAGE'){
+            $path = $storeMessageRequest->file("message")->storePublicly('chats/images', "public");
+            $image =  "/storage/" . $path;
+            $trainerMessage->message=$image;
+            $trainerMessage->save();
+        }
+        return successResponse(MessageResource::make($trainerMessage),message: trans('message_sent_successfully'));
+
     }
 }
