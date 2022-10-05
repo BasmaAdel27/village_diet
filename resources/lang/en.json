@@ -211,7 +211,7 @@
   "connect_with_support": "Please, Connect Wtih Supprt",
   "longitude": "Longitude",
   "latitude": "Latitude",
-  " contact_information ":"Contact Information",
+  " contact_information ": "Contact Information",
   "whatsapp_number": "Whatsapp Number",
   "message_has_been_sent_successfully": "Message Has Been Sent Successfully",
   "unauthorized": "Unauthorized",
@@ -221,5 +221,6 @@
   "date_wrong": "Date Wrong ",
   "no_messages": "No Messages",
   "not_in_society": "Not In Society",
-  "message_sent_successfully": "Message Sent Successfully"
+  "message_sent_successfully": "Message Sent Successfully",
+  "number_is_not_correct_please_connect_with_support": "Number Is Not Correct Please Connect With Support"
 }

@@ -10,7 +10,7 @@ class VideoResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'title' => $this->title,
+            'title' => $this->translate(app()->getLocale())->title,
             'video' => url($this->video_path),
             'created_at' => $this->created_at
         ];

@@ -9,7 +9,7 @@ class StaticPageResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'title' => $this->title,
+            'title' => $this->translate(app()->getLocale())->title,
             'content' => $this->content,
             'image' => $this->image
         ];

@@ -47,11 +47,11 @@ class Handler extends ExceptionHandler
     {
         if ($request->wantsJson()) {
             if ($throwable instanceof ModelNotFoundException || $throwable instanceof NotFoundHttpException) {
-                return response()->json([
-                    'status' => false,
-                    'message' => __('page_not_found'),
-                    'data' => null
-                ], 404);
+                return failedResponse(__('page_not_found'));
+            }
+
+            if ($throwable instanceof \Symfony\Component\HttpKernel\Exception\TooManyRequestsHttpException) {
+                return failedResponse(trans('number_is_not_correct_please_connect_with_support'), 429);
             }
         }
         return parent::render($request, $throwable);

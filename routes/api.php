@@ -13,11 +13,15 @@ use App\Http\Controllers\Api\AgendaController;
 use App\Http\Controllers\Api\ChatController;
 use Illuminate\Support\Facades\Route;
 
-Route::post('login', [AuthController::class, 'login']);
+Route::middleware('GrahamCampbell\Throttle\Http\Middleware\ThrottleMiddleware:3,1')->group(function () {
+    Route::post('login', [AuthController::class, 'login']);
+});
+
 Route::post('contact_us', [ContactUsController::class, 'contactUs']);
 Route::get('contact_info', [ContactUsController::class, 'contactInfo']);
 
-Route::middleware('auth:sanctum')->group(function () {
+Route::middleware(['auth:sanctum', 'appLocale'])->group(function () {
+    Route::post('update_profile', [AuthController::class, 'updateProfile']);
     Route::get('personal_info', [PersonalInfoController::class, 'personalInfo']);
     Route::get('subscriptions', [SubscriptionsController::class, 'subscriptions']);
     Route::post('cancel_subscription', [SubscriptionsController::class, 'cancelSubscription']);
