@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\AuthRequest;
+use App\Http\Requests\Api\UpdateProfileRequest;
 use App\Http\Resources\Api\AuthResource;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -30,5 +31,12 @@ class AuthController extends Controller
         $token = $user->createToken('village_diet')->plainTextToken;
 
         return successResponse(AuthResource::make($user), extra: ['token' => $token]);
+    }
+
+    public function updateProfile(UpdateProfileRequest $request)
+    {
+        auth()->user()->fill($request->validated())->save();
+
+        return successResponse(AuthResource::make(auth()->user()), message: trans('updated_successfully'));
     }
 }

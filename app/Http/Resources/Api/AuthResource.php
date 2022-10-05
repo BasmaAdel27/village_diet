@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Api;
 
+use App\Http\Resources\Api\subscriptions\LogsResource;
 use App\Models\Day\Day;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -28,7 +29,8 @@ class AuthResource extends JsonResource
             "state" => $this->state?->name,
             'created_at' => $this->created_at,
             'image' => $this->image,
-            'subscription_day' => DayResource::make($day)
+            'subscription_day' => DayResource::make($day),
+            'current_subscription' => LogsResource::make($this->currentSubscription)
         ];
     }
 }

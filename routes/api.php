@@ -18,6 +18,7 @@ Route::post('contact_us', [ContactUsController::class, 'contactUs']);
 Route::get('contact_info', [ContactUsController::class, 'contactInfo']);
 
 Route::middleware('auth:sanctum')->group(function () {
+    Route::post('update_profile', [AuthController::class, 'updateProfile']);
     Route::get('personal_info', [PersonalInfoController::class, 'personalInfo']);
     Route::get('subscriptions', [SubscriptionsController::class, 'subscriptions']);
     Route::post('cancel_subscription', [SubscriptionsController::class, 'cancelSubscription']);
