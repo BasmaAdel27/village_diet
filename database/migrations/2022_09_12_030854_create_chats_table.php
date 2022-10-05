@@ -10,8 +10,8 @@ class CreateChatsTable extends Migration
     {
         Schema::create('trainer_messages', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('trainer_id')->constrained('users')->cascadeOnDelete();
-            $table->foreignId('citizen_id')->constrained('users')->cascadeOnDelete();
+            $table->foreignId('receiver_id')->constrained('users')->cascadeOnDelete();
+            $table->foreignId('sender_id')->constrained('users')->cascadeOnDelete();
             $table->string('type')->default('Text')->comment('TEXT , IMAGE', 'AUDIO');
             $table->text('message');
             $table->timestamp('read_at')->nullable();
@@ -19,14 +19,10 @@ class CreateChatsTable extends Migration
         });
 
 
-        Schema::create('admin_chats', function (Blueprint $table) {
+
+        Schema::create('admin_messages', function (Blueprint $table) {
             $table->id();
             $table->foreignId('receiver_id')->constrained('users')->cascadeOnDelete();
-            $table->timestamps();
-        });
-        Schema::create('admin_chat_messages', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('admin_chat_id')->constrained()->cascadeOnDelete();
             $table->foreignId('sender_id')->constrained('users')->cascadeOnDelete();
             $table->string('type')->default('Text')->comment('TEXT , IMAGE', 'AUDIO');
             $table->text('message');
@@ -48,10 +44,8 @@ class CreateChatsTable extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('chats');
-        Schema::dropIfExists('chat_messages');
-        Schema::dropIfExists('admin_chats');
-        Schema::dropIfExists('admin_chat_messages');
+        Schema::dropIfExists('trainer_messages');
+        Schema::dropIfExists('admin_messages');
         Schema::dropIfExists('society_messages');
     }
 }

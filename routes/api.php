@@ -28,7 +28,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('menu', [MenuController::class, 'index']);
     Route::get('agendaDate', [AgendaController::class, 'agendaDate']);
     Route::get('agenda/{day_id}', [AgendaController::class, 'agenda']);
-
     Route::controller(RateController::class)->group(function () {
         Route::get('get_rate', 'index');
         Route::post('rate', 'store');
@@ -36,5 +35,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::controller(ChatController::class)->group(function () {
         Route::get('get_trainer_messages', 'getTrainerMessages');
+        Route::get('get_admin_messages', 'getAdminMessages');
+        Route::get('get_society_messages', 'getSocietyMessages');
     });
 });

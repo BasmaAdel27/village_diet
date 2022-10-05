@@ -3,7 +3,7 @@
 namespace App\Models\Chat;
 
 use App\Models\User;
-use App\Models\Chat\AdminChatMessage;
+use App\Models\Chat\AdminMessage;
 use Illuminate\Database\Eloquent\Model;
 
 class AdminChat extends Model
@@ -17,11 +17,11 @@ class AdminChat extends Model
 
     public function messages()
     {
-        return $this->hasMany(AdminChatMessage::class);
+        return $this->hasMany(AdminMessage::class);
     }
 
     public function lastMessage()
     {
-        return $this->hasOne(AdminChatMessage::class)->latestOfMany();
+        return $this->hasOne(AdminMessage::class)->latestOfMany();
     }
 }

@@ -15,7 +15,7 @@ class HealthDataController extends Controller
             ->join('day_translations', 'healthy_information.day_id', 'day_translations.day_id')
             ->where('locale', app()->getLocale())
             ->where('user_id', $user->id)
-            ->where('subscription_id', $user->subscription->id)
+            ->where('subscription_id', $user->currentSubscription->id)
             ->get();
 
         $cahrts['weights'] = $data->pluck('weight')->toArray();

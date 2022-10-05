@@ -10,7 +10,7 @@ class LogsResource extends JsonResource
     {
         return [
             'start_date' => $this->created_at,
-            'end_date' => $this->end_date,
+            'end_date' => date('Y-m-d',strtotime($this->end_date)),
             'status' => $this->status,
         ];
     }
