@@ -13,7 +13,10 @@ use App\Http\Controllers\Api\AgendaController;
 use App\Http\Controllers\Api\ChatController;
 use Illuminate\Support\Facades\Route;
 
-Route::post('login', [AuthController::class, 'login']);
+Route::middleware('GrahamCampbell\Throttle\Http\Middleware\ThrottleMiddleware:3,1')->group(function () {
+    Route::post('login', [AuthController::class, 'login']);
+});
+
 Route::post('contact_us', [ContactUsController::class, 'contactUs']);
 Route::get('contact_info', [ContactUsController::class, 'contactInfo']);
 
