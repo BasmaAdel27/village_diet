@@ -51,7 +51,8 @@ class ChatController extends Controller
 
 
     public function getSocietyMessages(){
-        $messages=SocietyChat::where('society_id',Auth::user()->society->id)->with('sender')->get();
+        $messages=SocietyChat::where('society_id',Auth::user()->society->id)->with('sender.Roles')->get();
+//      dd($messages);
         if ($messages->isNotEmpty()) {
             return successResponse(SocietyMessageResource::collection($messages));
         }else{
