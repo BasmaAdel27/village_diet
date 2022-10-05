@@ -13,8 +13,8 @@ class SlideResource extends JsonResource
             'image' => url($this->image),
             "is_active" => (bool) $this->is_active,
             "link" => $this->link,
-            "title" => $this->title,
-            "description" => $this->description,
+            "title" => $this->translate(app()->getLocale())->title,
+            "description" => $this->translate(app()->getLocale())->description,
             "is_show_in_app" => (bool) $this->is_show_in_app,
             "created_at" => $this->created_at,
         ];

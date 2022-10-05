@@ -10,9 +10,9 @@ class MealResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'breakfast' => $this->breakfast,
-            'lunch' => $this->lunch,
-            'dinner' => $this->dinner,
+            'breakfast' => $this->translate(app()->getLocale())->breakfast,
+            'lunch' => $this->translate(app()->getLocale())->lunch,
+            'dinner' => $this->translate(app()->getLocale())->dinner,
             'created_at' => $this->created_at
         ];
     }

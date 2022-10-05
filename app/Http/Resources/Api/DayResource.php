@@ -11,7 +11,7 @@ class DayResource extends JsonResource
         return [
             'id' => $this->id,
             'number' => $this->number,
-            'title' => $this->title,
+            'title' => $this->translate(app()->getLocale())->title,
         ];
     }
 }
