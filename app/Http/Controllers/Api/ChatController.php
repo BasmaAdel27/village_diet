@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\SocietyMessageRequest;
 use App\Http\Requests\Api\StoreMessageRequest;
 use App\Http\Resources\Api\Chat\MessageResource;
 use App\Http\Resources\Api\Chat\SocietyMessageResource;
@@ -64,7 +65,7 @@ class ChatController extends Controller
 
     public function storeTrainerMessages(StoreMessageRequest $storeMessageRequest,TrainerMessage $trainerMessage){
         $data=$storeMessageRequest->validated();
-        $trainerMessage->sender_id=Auth::user()->id;
+        $trainerMessage->sender_id=\auth()->id();
 
         $trainerMessage->fill($data)->save();
         if ($storeMessageRequest->type == 'AUDIO'){
@@ -81,4 +82,50 @@ class ChatController extends Controller
         return successResponse(MessageResource::make($trainerMessage),message: trans('message_sent_successfully'));
 
     }
+
+
+    public function storeAdminMessages(StoreMessageRequest $storeMessageRequest,AdminMessage $adminMessage){
+        $data=$storeMessageRequest->validated();
+        $adminMessage->sender_id=\auth()->id();
+
+        $adminMessage->fill($data)->save();
+
+        if ($storeMessageRequest->type == 'AUDIO'){
+            $path = $storeMessageRequest->file("message")->storePublicly('chats/audios', "public");
+            $audio =  "/storage/" . $path;
+            $adminMessage->message=$audio;
+            $adminMessage->save();
+        }elseif ($storeMessageRequest->type == 'IMAGE'){
+            $path = $storeMessageRequest->file("message")->storePublicly('chats/images', "public");
+            $image =  "/storage/" . $path;
+            $adminMessage->message=$image;
+            $adminMessage->save();
+        }
+        return successResponse(MessageResource::make($adminMessage),message: trans('message_sent_successfully'));
+
+    }
+
+    public function storeSocietyMessages(SocietyMessageRequest $societyMessageRequest,SocietyChat $societyChat){
+        $societyMessageRequest->validated();
+        $societyChat->sender_id=\auth()->id();
+        $societyChat->society_id=\auth()->user()->society_id;
+        $societyChat->type=$societyMessageRequest->type;
+
+
+        if ($societyMessageRequest->type == 'AUDIO'){
+            $path = $societyMessageRequest->file("message")->storePublicly('chats/audios', "public");
+            $audio =  "/storage/" . $path;
+            $societyChat->message=$audio;
+            $societyChat->save();
+        }elseif ($societyMessageRequest->type == 'IMAGE'){
+            $path = $societyMessageRequest->file("message")->storePublicly('chats/images', "public");
+            $image =  "/storage/" . $path;
+            $societyChat->message=$image;
+            $societyChat->save();
+        }
+        return successResponse(SocietyMessageResource::make($societyChat),message: trans('message_sent_successfully'));
+
+    }
+
+
 }
