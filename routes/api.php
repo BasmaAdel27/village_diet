@@ -41,5 +41,6 @@ Route::middleware(['auth:sanctum', 'appLocale'])->group(function () {
         Route::get('get_trainer_messages', 'getTrainerMessages');
         Route::get('get_admin_messages', 'getAdminMessages');
         Route::get('get_society_messages', 'getSocietyMessages');
+        Route::post('store_messages', 'storeTrainerMessages');
     });
 });
