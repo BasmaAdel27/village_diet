@@ -19,6 +19,8 @@ class AgendaController extends Controller
     public function agendaDate()
     {
         $currentSubscription = auth()->user()->currentSubscription;
+        if (!$currentSubscription) return failedResponse(trans('not_subscription'));
+
         $startDate = Carbon::parse($currentSubscription->created_at)->format('Y-m-d');
         $endDate = Carbon::parse($currentSubscription->end_date)->format('Y-m-d');
         $dates = CarbonPeriod::create($startDate, $endDate)->toArray();
@@ -29,7 +31,7 @@ class AgendaController extends Controller
 
             $data[$index]['day_id'] = $day->id;
             $data[$index]['date'] = @$dates[$day->number]?->toDateString();
-            $data[$index]['status']=(bool) now()->gt($data[$index]['date']);
+            $data[$index]['status'] = (bool) now()->gt(@$dates[$day->number]);
             $data[$index]['day']  = $day->title;
         }
 
@@ -49,13 +51,11 @@ class AgendaController extends Controller
                 ->first();
             $data->meal = Meal::where('day_id', $day_id)
                 ->where('is_active', true)
-                ->WithTranslation()
                 ->latest()
                 ->first();
 
             $data->video = Video::where('is_active', true)
                 ->where('day_id', $day_id)
-                ->WithTranslation()
                 ->latest()
                 ->first();
             if ($data->userInfo != null || $data->meal != null || $data->video != null) {

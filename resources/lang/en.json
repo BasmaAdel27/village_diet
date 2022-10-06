@@ -222,5 +222,6 @@
   "no_messages": "No Messages",
   "not_in_society": "Not In Society",
   "message_sent_successfully": "Message Sent Successfully",
-  "number_is_not_correct_please_connect_with_support": "Number Is Not Correct Please Connect With Support"
+  "number_is_not_correct_please_connect_with_support": "Number Is Not Correct Please Connect With Support",
+  "not_subscription": "You don't have subscrioption"
 }
