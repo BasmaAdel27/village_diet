@@ -17,7 +17,7 @@ class HomeController extends Controller
     public function index()
     {
         $user = auth()->user();
-        $day = now()->diffInDays($user->currentSubscription->created_at);
+        $day = now()->diffInDays($user->currentSubscription->created_at) + 1;
         $dayId = Day::select('id')->where('number', $day)->value('id');
         $obj = new stdClass;
 
