@@ -62,7 +62,7 @@ if (!function_exists('failedResponse')) {
         return response()->json([
             'status'  => false,
             'message' => $message,
-            'errors' => null
+            'data' => null
         ], $status);
     }
 }
