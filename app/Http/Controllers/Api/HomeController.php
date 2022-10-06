@@ -17,13 +17,12 @@ class HomeController extends Controller
     public function index()
     {
         $user = auth()->user();
-        $day = now()->diffInDays($user->currentSubscription->created_at);
+        $day = now()->diffInDays($user->currentSubscription->created_at) + 1;
         $dayId = Day::select('id')->where('number', $day)->value('id');
         $obj = new stdClass;
 
         $obj->slides = Slider::where('is_active', true)
             ->where('is_show_in_app', true)
-            ->WithTranslation()
             ->get();
 
         $obj->userInfo = $user->healthyInformation()
@@ -32,13 +31,11 @@ class HomeController extends Controller
 
         $obj->meal = Meal::where('day_id', $dayId)
             ->where('is_active', true)
-            ->WithTranslation()
             ->latest()
             ->first();
 
         $obj->video = Video::where('is_active', true)
             ->where('day_id', $dayId)
-            ->WithTranslation()
             ->latest()
             ->first();
 
