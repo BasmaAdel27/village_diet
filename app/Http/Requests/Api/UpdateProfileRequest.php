@@ -18,7 +18,6 @@ class UpdateProfileRequest extends FormRequest
             'last_name' => 'required|string',
             'email' => 'required|unique:users,email,' . auth()->id(),
             'phone' => 'required|numeric',
-            'image' => 'nullable|image'
         ];
     }
 }
