@@ -20,13 +20,16 @@ use function PHPUnit\Framework\isEmpty;
 
 class ChatController extends Controller
 {
-    public function getTrainerMessages(Request $request)
+    public function getTrainerMessages()
     {
-        $receiver=$request->receiver_id;
         if (auth()->user()->society) {
-            $messages = TrainerMessage::where([['sender_id', auth()->user()->id], ['receiver_id', $receiver]])
-                  ->orWhere(function ($query) use ($receiver) {
-                      return $query->where([['sender_id', $receiver], ['receiver_id', auth()->user()->id]]);
+
+            $society=Society::find(\auth()->user()->society_id);
+            $trainer=$society->trainer_id;
+
+            $messages = TrainerMessage::where([['sender_id', auth()->user()->id], ['receiver_id', $trainer]])
+                  ->orWhere(function ($query) use ($trainer) {
+                      return $query->where([['sender_id', $trainer], ['receiver_id', auth()->user()->id]]);
                   })->with('sender', 'receiver')->orderBy('created_at', 'asc')->get();
             if ($messages->isNotEmpty()) {
                 return successResponse(MessageResource::collection($messages));
