@@ -10,7 +10,7 @@ class StaticPageResource extends JsonResource
     {
         return [
             'title' => $this->translate(app()->getLocale())->title,
-            'content' => $this->content,
+            'content' => $this->translate(app()->getLocale())->content,
             'image' => $this->image
         ];
     }
