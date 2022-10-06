@@ -11,9 +11,16 @@ use App\Http\Resources\PaginationResource;
 use App\Models\Chat\AdminMessage;
 use App\Models\Chat\SocietyChat;
 use App\Models\Chat\TrainerMessage;
+use App\Models\Society\Society;
+use App\Models\User;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Lang;
+use Spatie\Permission\Models\Role;
+use function PHPUnit\Framework\isEmpty;
+
 
 class ChatController extends Controller
 {
@@ -27,37 +34,56 @@ class ChatController extends Controller
         $trainerId = auth()->user()->society->trainer->id;
 
         $messages = TrainerMessage::with('sender', 'receiver')
-            ->where(function ($q) use ($userId, $trainerId) {
-                $q->where(['sender_id' => $userId, 'receiver_id' => $trainerId])
-                    ->orWhere(['sender_id' => $trainerId, 'receiver_id' => $userId]);
-            })
-            ->latest()
-            ->paginate($request->per_page ?? 15);
+              ->where(function ($q) use ($userId, $trainerId) {
+                  $q->where([['sender_id', $userId], ['receiver_id', $trainerId]])
+                        ->orWhere([['sender_id', $trainerId], ['receiver_id' , $userId]]);
+              })->orderBy('created_at','asc')
+              ->paginate($request->per_page ?? 15);
+
 
         return successResponse(MessageResource::collection($messages), PaginationResource::make($messages));
     }
 
+
     public function getAdminMessages(Request $request)
     {
-        $receiver = $request->receiver_id;
-        $messages = AdminMessage::where([['sender_id', auth()->id()], ['receiver_id', $receiver]])
-            ->orWhere(function ($query) use ($receiver) {
-                return $query->where([['sender_id', $receiver], ['receiver_id', auth()->id()]]);
-            })->with('sender', 'receiver')->orderBy('created_at', 'asc')->get();
+        $userId = \auth()->id();
+        $roles = Role::whereNotIn('name', ['user', 'trainer'])->get();
+        $admins = [];
+        foreach ($roles as $role) {
+            $admins = DB::table('user_has_roles')->select('user_has_roles.*')
+                  ->where('user_has_roles.role_id', $role->id)
+                  ->join('users', 'user_has_roles.model_id', '=', 'users.id')
+                  ->get();
+        }
+        $messages = [];
+        foreach ($admins as $admin) {
+            $messages = AdminMessage::with('sender', 'receiver')
+                  ->where(function ($q) use ($userId, $admin) {
+                      $q->where([['sender_id', $userId], ['receiver_id', $admin->model_id]])
+                            ->orWhere([['sender_id', $admin->model_id], ['receiver_id', $userId]]);
+                  })->orderBy('created_at', 'asc')
+                  ->paginate($request->per_page ?? 15);
+
+        }
         if ($messages->isNotEmpty()) {
-            return successResponse(MessageResource::collection($messages));
+            return successResponse(MessageResource::collection($messages), PaginationResource::make($messages));
         } else {
             return failedResponse(Lang::get('no_messages'));
         }
     }
 
 
-    public function getSocietyMessages()
-    {
-        $messages = SocietyChat::where('society_id', Auth::user()->society->id)->with('sender.Roles')->get();
+
+
+
+    public function getSocietyMessages(){
+        $messages=SocietyChat::where('society_id',Auth::user()->society->id)
+              ->with('sender.Roles')->orderBy('created_at','asc')
+              ->paginate($request->per_page ?? 15);
         if ($messages->isNotEmpty()) {
-            return successResponse(SocietyMessageResource::collection($messages));
-        } else {
+            return successResponse(SocietyMessageResource::collection($messages),PaginationResource::make($messages));
+        }else{
             return failedResponse(Lang::get('no_messages'));
         }
     }
@@ -69,22 +95,8 @@ class ChatController extends Controller
 
         $trainerMessage->fill($data)->save();
 
+        return successResponse(MessageResource::make($trainerMessage),message: trans('message_sent_successfully'));
 
-
-        if ($storeMessageRequest->type == 'AUDIO') {
-            $path = $storeMessageRequest->file("message")->storePublicly('chats/audios', "public");
-            $audio =  "/storage/" . $path;
-            $trainerMessage->message = $audio;
-            $trainerMessage->save();
-        } elseif ($storeMessageRequest->type == 'IMAGE') {
-            $path = $storeMessageRequest->file("message")->storePublicly('chats/images', "public");
-            $image =  "/storage/" . $path;
-            $trainerMessage->message = $image;
-            $trainerMessage->save();
-        }
-
-        
-        return successResponse(MessageResource::make($trainerMessage), message: trans('message_sent_successfully'));
     }
 
 
@@ -95,39 +107,20 @@ class ChatController extends Controller
 
         $adminMessage->fill($data)->save();
 
-        if ($storeMessageRequest->type == 'AUDIO') {
-            $path = $storeMessageRequest->file("message")->storePublicly('chats/audios', "public");
-            $audio =  "/storage/" . $path;
-            $adminMessage->message = $audio;
-            $adminMessage->save();
-        } elseif ($storeMessageRequest->type == 'IMAGE') {
-            $path = $storeMessageRequest->file("message")->storePublicly('chats/images', "public");
-            $image =  "/storage/" . $path;
-            $adminMessage->message = $image;
-            $adminMessage->save();
-        }
-        return successResponse(MessageResource::make($adminMessage), message: trans('message_sent_successfully'));
+        return successResponse(MessageResource::make($adminMessage),message: trans('message_sent_successfully'));
+
     }
 
-    public function storeSocietyMessages(SocietyMessageRequest $societyMessageRequest, SocietyChat $societyChat)
+    public function storeSocietyMessages(SocietyMessageRequest $societyMessageRequest,SocietyChat $societyChat)
     {
-        $societyMessageRequest->validated();
+        $data = $societyMessageRequest->validated();
         $societyChat->sender_id = \auth()->id();
         $societyChat->society_id = \auth()->user()->society_id;
         $societyChat->type = $societyMessageRequest->type;
+        $societyChat->fill($data)->save();
 
-
-        if ($societyMessageRequest->type == 'AUDIO') {
-            $path = $societyMessageRequest->file("message")->storePublicly('chats/audios', "public");
-            $audio =  "/storage/" . $path;
-            $societyChat->message = $audio;
-            $societyChat->save();
-        } elseif ($societyMessageRequest->type == 'IMAGE') {
-            $path = $societyMessageRequest->file("message")->storePublicly('chats/images', "public");
-            $image =  "/storage/" . $path;
-            $societyChat->message = $image;
-            $societyChat->save();
-        }
         return successResponse(SocietyMessageResource::make($societyChat), message: trans('message_sent_successfully'));
+
     }
+
 }
