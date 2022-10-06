@@ -23,7 +23,6 @@ class HomeController extends Controller
 
         $obj->slides = Slider::where('is_active', true)
             ->where('is_show_in_app', true)
-            ->WithTranslation()
             ->get();
 
         $obj->userInfo = $user->healthyInformation()
@@ -32,13 +31,11 @@ class HomeController extends Controller
 
         $obj->meal = Meal::where('day_id', $dayId)
             ->where('is_active', true)
-            ->WithTranslation()
             ->latest()
             ->first();
 
         $obj->video = Video::where('is_active', true)
             ->where('day_id', $dayId)
-            ->WithTranslation()
             ->latest()
             ->first();
 
