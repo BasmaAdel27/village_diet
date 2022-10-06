@@ -21,7 +21,7 @@ class RateController extends Controller
     public function store(RateRequest $request)
     {
         $trainer = auth()->user()->society?->trainer;
-        if (!$rating = Rating::where('user_id', auth()->id())
+        if (!$rating = Rating::where('user_id', auth()->id() && $trainer)
             ->where('created_at', '>=', now()->startOfMonth())
             ->where('created_at', '<=', now()->endOfMonth())->exists()) {
 
