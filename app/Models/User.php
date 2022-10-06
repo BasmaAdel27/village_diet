@@ -59,6 +59,7 @@ class User extends Authenticatable
         return $this->hasRole('admin');
     }
 
+
     public static function boot()
     {
         parent::boot();
