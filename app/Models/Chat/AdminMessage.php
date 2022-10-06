@@ -10,7 +10,6 @@ class AdminMessage extends Model
 {
     public $guarded = [];
 
-    public $touches = ['chat'];
 
 
     public function sender()
