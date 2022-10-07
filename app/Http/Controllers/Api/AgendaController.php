@@ -64,7 +64,7 @@ class AgendaController extends Controller
                 return failedResponse(Lang::get('nothing_data'),200);
             }
         } else {
-            return failedResponse(Lang::get('date_wrong'),200);
+            return failedResponse(Lang::get('date_wrong'));
         }
     }
 }
