@@ -14,8 +14,8 @@ class AuthResource extends JsonResource
         $day = Day::where('number', $dayNumber)->first();
 
         return [
-            'id' => $this->id,
             'token' => $this->token,
+            'id' => $this->id,
             "first_name" => $this->first_name,
             "last_name" => $this->last_name,
             "email" => $this->email,
