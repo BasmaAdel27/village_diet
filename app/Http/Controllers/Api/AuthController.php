@@ -28,9 +28,9 @@ class AuthController extends Controller
         if (!$user->is_active) return failedResponse(Lang::get('connect_with_support'));
         Auth::loginUsingId($user->id);
 
-        $token = $user->createToken('village_diet')->plainTextToken;
+        $user->token = $user->createToken('village_diet')->plainTextToken;
 
-        return successResponse(AuthResource::make($user), extra: ['token' => $token]);
+        return successResponse(AuthResource::make($user));
     }
 
     public function updateProfile(UpdateProfileRequest $request)
