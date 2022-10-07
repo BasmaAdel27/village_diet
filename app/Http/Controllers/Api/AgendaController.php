@@ -61,10 +61,10 @@ class AgendaController extends Controller
             if ($data->userInfo != null || $data->meal != null || $data->video != null) {
                 return successResponse(AgendaResource::make($data));
             } else {
-                return failedResponse(Lang::get('nothing_data'));
+                return failedResponse(Lang::get('nothing_data'),200);
             }
         } else {
-            return failedResponse(Lang::get('date_wrong'));
+            return failedResponse(Lang::get('date_wrong'),200);
         }
     }
 }
