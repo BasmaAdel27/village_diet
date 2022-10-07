@@ -24,6 +24,22 @@ use function PHPUnit\Framework\isEmpty;
 
 class ChatController extends Controller
 {
+
+    private function setMessageAttribute($model)
+    {
+
+        if ($model->type == 'AUDIO' || $model->type == 'IMAGE') {
+//            dd('gg');
+            $path = $model->message->storePublicly('chats/media', "public");
+            $data = "/storage/" . $path;
+            return $data;
+        }else {
+            return $model->message;
+        }
+
+
+    }
+
     public function getTrainerMessages(Request $request)
     {
         $userId = auth()->id();
@@ -92,8 +108,9 @@ class ChatController extends Controller
     {
         $data = $storeMessageRequest->validated();
         $trainerMessage->sender_id = auth()->id();
-
         $trainerMessage->fill($data)->save();
+        $trainerMessage->message= $this->setMessageAttribute($trainerMessage);
+
 
         return successResponse(MessageResource::make($trainerMessage),message: trans('message_sent_successfully'));
 
@@ -103,9 +120,11 @@ class ChatController extends Controller
     public function storeAdminMessages(StoreMessageRequest $storeMessageRequest, AdminMessage $adminMessage)
     {
         $data = $storeMessageRequest->validated();
+        $file=$storeMessageRequest->file('message');
         $adminMessage->sender_id = \auth()->id();
-
         $adminMessage->fill($data)->save();
+       $adminMessage->message= $this->setMessageAttribute($adminMessage);
+
 
         return successResponse(MessageResource::make($adminMessage),message: trans('message_sent_successfully'));
 
@@ -118,6 +137,8 @@ class ChatController extends Controller
         $societyChat->society_id = \auth()->user()->society_id;
         $societyChat->type = $societyMessageRequest->type;
         $societyChat->fill($data)->save();
+        $societyChat->message= $this->setMessageAttribute($societyChat);
+
 
         return successResponse(SocietyMessageResource::make($societyChat), message: trans('message_sent_successfully'));
 

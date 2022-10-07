@@ -20,16 +20,5 @@ class SocietyChat extends Model
     {
         return $this->belongsTo(Society::class, 'society_id');
     }
-    public function setMessageAttribute($value)
-    {
-        if ($this->attributes['type'] == 'AUDIO' || $this->attributes['type'] == 'IMAGE') {
-            $path = $value->storePublicly('chats/media', "public");
-            $data = "/storage/" . $path;
-            $this->attributes['message'] = $data;
-        }else {
-            $this->attributes['message'] = $value;
-        }
 
-
-    }
 }

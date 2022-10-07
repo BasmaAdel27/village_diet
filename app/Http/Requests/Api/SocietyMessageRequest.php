@@ -24,8 +24,7 @@ class SocietyMessageRequest extends FormRequest
     public function rules()
     {
         $rules =[
-              'type'=>'required',
-
+              'type' => 'required|in:TEXT,IMAGE,AUDIO',
         ];
 
         if ($this->type =='TEXT'){
