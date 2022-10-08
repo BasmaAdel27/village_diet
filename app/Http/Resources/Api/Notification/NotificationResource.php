@@ -15,6 +15,7 @@ class NotificationResource extends JsonResource
             'notify_type' => $this->type,
             'created_at' => $this->created_at?->diffForHumans(),
             'read_at' => optional($this->read_at)->format("Y-m-d H:i"),
+            'user_image' => auth()->user()->image
         ];
     }
 }
