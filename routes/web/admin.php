@@ -20,6 +20,7 @@ use App\Http\Controllers\Admin\PendingTrainerController;
 use \App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\PostelNewsController;
+use App\Http\Controllers\Admin\TemplateController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('dashboard', [HomeController::class, 'home'])->name('dashboard');
@@ -58,3 +59,4 @@ Route::post('pending-trainers/submit/{id}', [PendingTrainerController::class, 's
 Route::post('pending-trainers/declined/{id}', [PendingTrainerController::class, 'declined'])->name('pending-trainers.declined');
 
 Route::get('/states', [AjaxController::class, 'fetchState'])->name('states');
+Route::resource('templates', TemplateController::class)->except('show');

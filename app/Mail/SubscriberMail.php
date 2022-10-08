@@ -2,6 +2,8 @@
 
 namespace App\Mail;
 
+use App\Models\Template\Template;
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -11,22 +13,18 @@ class SubscriberMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    /**
-     * Create a new message instance.
-     *
-     * @return void
-     */
-    public function __construct(public string $view, public string $email)
+    public function __construct(public string $email, public Template $template)
     {
     }
 
-    /**
-     * Build the message.
-     *
-     * @return $this
-     */
     public function build()
     {
-        return $this->view($this->view, ['email' => $this->email]);
+        $templateContent = preg_replace(
+            ['#@name#', '#@email#'],
+            [$this->email, $this->email],
+            $this->template['content']
+        );
+
+        return $this->subject($this->template['subject'])->view('emails.subscriber_mail', ['templateContent' => $templateContent]);
     }
 }

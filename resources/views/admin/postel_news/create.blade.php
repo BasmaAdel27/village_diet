@@ -19,14 +19,10 @@
           <label>@lang('template')</label>
           <select name="template" class="form-control">
             <option value="">@lang('select')</option>
-            @foreach ($templates as $template)
-            <option value="{{ $template }}">@lang("$template")</option>
+            @foreach ($templates as $id => $template)
+            <option value="{{ $id }}">{{ $template }}</option>
             @endforeach
           </select>
-        </div>
-        <div class="form-group col-12">
-          <label>@lang("content")</label>
-          <textarea class="form-control" name="content" id="summernote" rows="10">{{ old('content') }}</textarea>
         </div>
         <div class="form-group col-12">
           <label>@lang('users')</label>

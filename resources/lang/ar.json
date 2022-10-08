@@ -225,5 +225,8 @@
   "not_in_society": "لا يوجد لديك مجتمع",
   "message_sent_successfully": "تم ارسال الرساله بنجاح",
   "number_is_not_correct_please_connect_with_support": "رقم غير صحيح برجاء التواصل مع خدمة العملاء",
-  "not_subscription": "لا يوجد اشتراك"
+  "not_subscription": "لا يوجد اشتراك",
+  "subject": "الموضوع",
+  "templates": "النماذج",
+  "template_name": "اسم النموذج"
 }
