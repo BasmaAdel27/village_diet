@@ -18,7 +18,7 @@ class StoreMessageRequest extends FormRequest
     {
         $rules = [
             'receiver_id' => 'required|exists:users,id',
-            'type' => 'required|in:' . ['TEXT', 'IMAGE', 'AUDIO'],
+            'type' => 'required|in:TEXT,IMAGE,AUDIO',
         ];
 
         if ($this->type == 'TEXT') {
