@@ -226,5 +226,7 @@
   "not_subscription": "You don't have subscrioption",
   "subject": "Subject",
   "templates": "Templates",
-  "template_name": "Template Name"
+  "template_name": "Template Name",
+  "Please_wait_it_will_start_soon": "Please Wait It Will Start Soon",
+  "The_counting_of_days_will_start_from_": "The Counting Of Days Will Start From"
 }

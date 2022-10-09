@@ -36,6 +36,7 @@ Route::middleware(['auth:sanctum', 'appLocale'])->group(function () {
         Route::get('get_rate', 'index');
         Route::post('rate', 'store');
     });
+    Route::get('society_status',[\App\Http\Controllers\Api\SocietyController::class,'societyStatus']);
 
     Route::controller(ChatController::class)->group(function () {
         Route::get('get_trainer_messages', 'getTrainerMessages');
@@ -45,4 +46,6 @@ Route::middleware(['auth:sanctum', 'appLocale'])->group(function () {
         Route::post('store_admin_messages', 'storeAdminMessages');
         Route::post('store_society_messages', 'storeSocietyMessages');
     });
+
 });
+
