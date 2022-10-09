@@ -18,25 +18,25 @@ class HealthDataController extends Controller
             ->where('subscription_id', $user->currentSubscription->id)
             ->get();
 
-        $charts['weights'] = $data->pluck('weight', 'title')->transform(function ($day, $item) {
+        $charts['weights'] = $data->pluck('weight', 'title')->transform(function ($item, $day) {
             $data['weights'] = $item;
             $data['day'] = $day;
 
             return $data;
         })->values();
-        $charts['daily_cup_count'] = $data->pluck('daily_cup_count', 'title')->transform(function ($day, $item) {
+        $charts['daily_cup_count'] = $data->pluck('daily_cup_count', 'title')->transform(function ($item, $day) {
             $data['daily_cup_count'] = $item;
             $data['day'] = $day;
 
             return $data;
         })->values();
-        $charts['walk_duration'] = $data->pluck('walk_duration', 'title')->transform(function ($day, $item) {
+        $charts['walk_duration'] = $data->pluck('walk_duration', 'title')->transform(function ($item, $day) {
             $data['walk_duration'] = $item;
             $data['day'] = $day;
 
             return $data;
         })->values();
-        $charts['sleepHours'] = $data->pluck('sleep_hours', 'title')->transform(function ($day, $item) {
+        $charts['sleepHours'] = $data->pluck('sleep_hours', 'title')->transform(function ($item, $day) {
             $data['sleepHours'] = $item;
             $data['day'] = $day;
 
