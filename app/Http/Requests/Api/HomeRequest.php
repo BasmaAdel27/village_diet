@@ -18,6 +18,7 @@ class HomeRequest extends FormRequest
             'daily_cup_count' => 'nullable|numeric',
             'walk_duration' => 'nullable|numeric',
             'weight' => 'nullable|numeric',
+            'day_id' => 'required|exists:days,id',
         ];
     }
 }
