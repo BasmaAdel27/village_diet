@@ -37,6 +37,7 @@ class SettingRequest extends FormRequest
             'longitude' => 'required',
             'address' => 'required',
             'phone' => 'required',
+            'email'=>'required|email',
             'whatsapp_number' => 'required',
             'facebook' => 'nullable|string',
             'twitter' => 'nullable|string',

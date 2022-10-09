@@ -292,6 +292,14 @@
               </div>
             </div>
           </div>
+          <div class="col-md-5">
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label">@lang('email')</label>
+              <div class="col-sm-8">
+                <input type="email" name="email" value="{{$settings->email}}" class="form-control" />
+              </div>
+            </div>
+          </div>
         </div>
         <div class="row">
           <div class="col-md-5">

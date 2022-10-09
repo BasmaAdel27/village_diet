@@ -13,6 +13,7 @@ class ContactInfoResource extends JsonResource
               'longitude'=>$this->longitude,
               'address'=>$this->address,
               'phone'=>$this->phone,
+               'email' =>$this->email,
               'whatsapp_number'=>$this->whatsapp_number,
         ];
     }
