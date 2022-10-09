@@ -14,10 +14,10 @@ class UpdateProfileRequest extends FormRequest
     public function rules()
     {
         return [
-            'first_name' => 'required|string',
-            'last_name' => 'required|string',
-            'email' => 'required|unique:users,email,' . auth()->id(),
-            'phone' => 'required|numeric',
+            // 'first_name' => 'nullable|string',
+            // 'last_name' => 'nullable|string',
+            // 'email' => 'nullable|unique:users,email,' . auth()->id(),
+            // 'phone' => 'nullable|numeric',
             'image' => 'nullable|image'
         ];
     }

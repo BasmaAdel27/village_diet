@@ -35,7 +35,7 @@ class AuthController extends Controller
 
     public function updateProfile(UpdateProfileRequest $request)
     {
-        auth()->user()->fill($request->validated())->save();
+        auth()->user()->fill(['updated_at' => now()])->save();
 
         return successResponse(AuthResource::make(auth()->user()), message: trans('updated_successfully'));
     }
