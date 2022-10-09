@@ -228,5 +228,8 @@
   "not_subscription": "لا يوجد اشتراك",
   "subject": "الموضوع",
   "templates": "النماذج",
-  "template_name": "اسم النموذج"
+  "template_name": "اسم النموذج",
+  "Please_wait_it_will_start_soon": "برجاء االنتظار وسيتم البدء قريبا",
+  "The_counting_of_days_will_start_from_": "سيتم البدء باحتساب الايام من يوم"
+
 }

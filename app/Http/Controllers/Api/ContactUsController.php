@@ -16,12 +16,8 @@ class ContactUsController extends Controller
     public function ContactUs(ContactUsRequest $contactUsRequest){
           $data=$contactUsRequest->validated();
           $contactUs=ContactUs::create([
-                'full_name'=>$data['full_name'],
-                'email'=>$data['email'],
-                'title'=>$data['title'],
                 'message_type'=>$data['message_type'],
                 'content'=>$data['content'],
-                'user_type'=>'user'
           ]);
 
 
