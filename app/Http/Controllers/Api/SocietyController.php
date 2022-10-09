@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Api\DayResource;
+use App\Models\Day\Day;
 use Carbon\Carbon;
 use http\Message;
 use Illuminate\Http\Request;
@@ -25,6 +27,12 @@ class SocietyController extends Controller
             $data['society_status']=true;
             $data['notification_unread']=$user->unreadNotifications()->count();
             return successResponse($data, message: trans('The_counting_of_days_will_start_from_').$date_from);
+
+        }elseif ($user->society()->exists() && $user->society->is_active == 1){
+            $dayNumber = now()->diffInDays($user->currentSubscription->created_at) + 1;
+            $day['day_id'] = Day::select('id')->where('number', $dayNumber)->value('id');
+            $day['notification_unread']=$user->unreadNotifications()->count();
+            return successResponse($day);
         }
 
     }
