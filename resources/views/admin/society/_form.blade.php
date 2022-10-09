@@ -27,9 +27,9 @@
     <label>@lang('status')</label>
     <select name="is_active" class="form-control">
       <option value="">@lang('select')</option>
-      <option value="1" {{ (isset($society) && $society->is_active) || old('is_active') == '1' ? 'selected' : ''
+      <option value="1" {{ (isset($society) && $society->is_active) == '1' ? 'selected' : ''
         }}>@lang('active')</option>
-      <option value="0" {{ (isset($society) && $society->is_active) || old('is_active') == '0' ? 'selected' : ''
+      <option value="0" {{ (isset($society) && $society->is_active) == '0' ? 'selected' : ''
         }}>@lang('inactive')</option>
     </select>
   </div>
