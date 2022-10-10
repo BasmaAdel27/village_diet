@@ -16,7 +16,8 @@ class HomeResource extends JsonResource
             // 'slides' => SlideResource::collection($this->slides),
             'health_info' => UserInfoResource::make($this->userInfo),
             'meal'  => MealResource::make($this->meal),
-            'video'    => VideoResource::make($this->video)
+            'video'    => VideoResource::make($this->video),
+            'society'=>$this->society,
         ];
     }
 }
