@@ -17,7 +17,7 @@ class HomeResource extends JsonResource
             'health_info' => UserInfoResource::make($this->userInfo),
             'meal'  => MealResource::make($this->meal),
             'video'    => VideoResource::make($this->video),
-            'society'=>$this->society,
+            'society' => $this->society,
         ];
     }
 }
