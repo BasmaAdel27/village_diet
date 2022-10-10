@@ -23,28 +23,15 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable, HasRoles, HasAssetsTrait, HasTimestampTrait, Rateable;
 
     public $assets = ['image'];
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
+
     protected $guarded = [];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
+
     protected $hidden = [
         'password',
         'remember_token',
     ];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
@@ -81,8 +68,9 @@ class User extends Authenticatable
 
     public function getImageAttribute()
     {
-        if ($this->images()->whereOption('image')->value('media')) {
-            return asset($this->images()->whereOption('image')->value('media'));
+        if ($this->images()->where('option','image')->value('media')) {
+            dd('hh');
+            return asset($this->images()->where('option','image')->value('media'));
         }
 
         return in_array($this->entry?->gender, ['Male', 'ذكر', null]) ?
