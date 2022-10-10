@@ -13,10 +13,11 @@ class SocietyStatusResource extends JsonResource
     {
         $dayNumber = now()->diffInDays($this->currentSubscription?->created_at) + 1;
         $day = Day::where('number', $dayNumber)->first();
+
         return [
-              'subscription_day' => DayResource::make($day),
-              'current_subscription' => LogsResource::make($this->currentSubscription),
-              'notification_unread'=>$this->unreadNotifications()->count()
+            'subscription_day' => DayResource::make($day),
+            'current_subscription' => LogsResource::make($this->currentSubscription),
+            'notification_unread' => $this->unreadNotifications()->count()
         ];
     }
 }

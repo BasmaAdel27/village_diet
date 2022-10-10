@@ -9,7 +9,7 @@ class NotificationCollection extends ResourceCollection
     public function toArray($request)
     {
         return [
-            'unreadnotifications_count' => (int)auth()->user()->unreadnotifications->count(),
+            'unreadnotifications_count' => (int)auth()->user()->unreadNotifications->count(),
             'notifications' => NotificationResource::collection($this->collection)
         ];
     }
