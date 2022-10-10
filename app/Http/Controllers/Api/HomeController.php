@@ -20,37 +20,58 @@ class HomeController extends Controller
         $day = now()->diffInDays($user->currentSubscription->created_at) + 1;
         $dayId = Day::select('id')->where('number', $day)->value('id');
         $obj = new stdClass;
-
         $obj->slides = Slider::where('is_active', true)
             ->where('is_show_in_app', true)
             ->get();
+        if ($user->society()->exists() && $user->society->is_active == 1) {
+            $obj->userInfo = $user->healthyInformation()
+                ->where('day_id', $dayId)
+                ->first();
 
-        $obj->userInfo = $user->healthyInformation()
-            ->where('day_id', $dayId)
-            ->first();
+            $obj->meal = Meal::where('day_id', $dayId)
+                ->where('is_active', true)
+                ->latest()
+                ->first();
 
-        $obj->meal = Meal::where('day_id', $dayId)
-            ->where('is_active', true)
-            ->latest()
-            ->first();
+            $obj->video = Video::where('is_active', true)
+                ->where('day_id', $dayId)
+                ->latest()
+                ->first();
+            $obj->society = true;
 
-        $obj->video = Video::where('is_active', true)
-            ->where('day_id', $dayId)
-            ->latest()
-            ->first();
 
-        return successResponse(HomeResource::make($obj));
+            return successResponse(HomeResource::make($obj));
+        } else {
+            $obj->userInfo = null;
+            $obj->meal = Meal::where('day_id', 1)
+                ->where('is_active', true)
+                ->latest()
+                ->first();
+            $obj->video = Video::where('is_active', true)
+                ->where('day_id', 1)
+                ->latest()
+                ->first();
+
+            $obj->society = false;
+
+            return successResponse(HomeResource::make($obj));
+        }
     }
 
     public function store(HomeRequest $request)
     {
         $user = auth()->user();
-        $healthData = $user->healthyInformation()
-            ->updateOrCreate(
-                ['day_id' => $request->day_id],
-                $request->validated() + ['subscription_id' => $user->currentSubscription->id]
-            );
+        if ($user->society()->exists() && $user->society->is_active == 1) {
+            $healthData = $user->healthyInformation()
+                ->updateOrCreate(
+                    ['day_id' => $request->day_id],
+                    $request->validated() + ['subscription_id' => $user->currentSubscription->id]
+                );
 
-        return successResponse(UserInfoResource::make($healthData), message: __('created_successfully'));
+            return successResponse(UserInfoResource::make($healthData), message: __('created_successfully'));
+        } else {
+            $data['society'] = false;
+            return successResponse($data);
+        }
     }
 }
