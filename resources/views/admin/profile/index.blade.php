@@ -17,10 +17,18 @@
             <label>@lang('last_name')</label>
             <input type="text" name="last_name" class="form-control" value="{{ $user->last_name }}">
           </div>
+          @if ($user->isSuperAdmin())
+          <div class="form-group col-6">
+            <label>@lang('email')</label>
+            <input type="text" class="form-control" value="{{ $user->email }}" disabled>
+            <input type="hidden" name="email" value="{{ $user->email }}">
+          </div>
+          @else
           <div class="form-group col-6">
             <label>@lang('email')</label>
             <input type="text" name="email" class="form-control" value="{{ $user->email }}">
           </div>
+          @endif
           <div class="form-group col-6">
             <label>@lang('password')</label>
             <input type="password" class="form-control" placeholder="@lang('password')" name="password">
