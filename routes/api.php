@@ -16,7 +16,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('GrahamCampbell\Throttle\Http\Middleware\ThrottleMiddleware:3,1')->group(function () {
     Route::post('login', [AuthController::class, 'login']);
 });
-
+Route::group(['middleware' => ['auth:sanctum']], function() {
+    Route::post('logout',   [AuthController::class, 'logout']);
+});
 Route::post('contact_us', [ContactUsController::class, 'contactUs']);
 Route::get('contact_info', [ContactUsController::class, 'contactInfo']);
 

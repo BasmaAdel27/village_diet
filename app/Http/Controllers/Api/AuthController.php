@@ -7,6 +7,7 @@ use App\Http\Requests\Api\AuthRequest;
 use App\Http\Requests\Api\UpdateProfileRequest;
 use App\Http\Resources\Api\AuthResource;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Lang;
 
@@ -38,5 +39,11 @@ class AuthController extends Controller
         auth()->user()->fill(['updated_at' => now()])->save();
 
         return successResponse(AuthResource::make(auth()->user()), message: trans('updated_successfully'));
+    }
+
+    public function logout(Request $request){
+        $request->user()->tokens()->delete();
+        return response()->json(['message'=>'successfully_logged_out']);
+
     }
 }
