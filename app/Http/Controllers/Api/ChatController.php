@@ -11,8 +11,11 @@ use App\Http\Resources\PaginationResource;
 use App\Models\Chat\AdminMessage;
 use App\Models\Chat\SocietyChat;
 use App\Models\Chat\TrainerMessage;
+use App\Models\Society\Society;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Support\Facades\Lang;
 
 
@@ -70,6 +73,8 @@ class ChatController extends Controller
         $trainerMessage->sender_id = auth()->id();
         $trainerMessage->fill($storeMessageRequest->validated())->save();
         $this->setMessageAttribute($trainerMessage);
+        // send_notification()
+        $this->saveNotification($storeMessageRequest->receiver_id);
 
         return successResponse(MessageResource::make($trainerMessage), message: trans('message_sent_successfully'));
     }
@@ -80,6 +85,8 @@ class ChatController extends Controller
         $adminMessage->sender_id = auth()->id();
         $adminMessage->fill($storeMessageRequest->validated())->save();
         $this->setMessageAttribute($adminMessage);
+        // send_notification();
+        $this->saveNotification($storeMessageRequest->receiver_id);
 
         return successResponse(MessageResource::make($adminMessage), message: trans('message_sent_successfully'));
     }
@@ -89,7 +96,12 @@ class ChatController extends Controller
         $societyChat->sender_id = auth()->id();
         $societyChat->society_id = auth()->user()->society_id;
         $societyChat->fill($societyMessageRequest->validated())->save();
+        $society = Society::find($societyChat->society_id);
         $this->setMessageAttribute($societyChat);
+        // send_notification();
+        foreach ($society->users as $user) {
+            $this->saveNotification($user->id);
+        }
 
         return successResponse(SocietyMessageResource::make($societyChat), message: trans('message_sent_successfully'));
     }
@@ -100,5 +112,18 @@ class ChatController extends Controller
             $path = $model->message->storePublicly('chats/media', "public");
             $model->update(['message' => "/storage/" . $path]);
         }
+    }
+
+    public function saveNotification($id)
+    {
+        $data['id']  = Str::uuid();
+        $data['type'] = 'chat';
+        $data['notifiable_id'] = $id;
+        $data['notifiable_type'] = User::class;
+        $data['data']['type'] = 'trainer';
+        $data['data']['title'] = trans('new_message');
+        $data['data']['body'] = trans('u_receive_new_message');
+
+        DatabaseNotification::create($data);
     }
 }
