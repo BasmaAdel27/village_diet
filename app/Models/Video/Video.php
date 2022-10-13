@@ -35,4 +35,9 @@ class Video extends Model implements Translatable
     {
         return $this->images()->where('option', 'video')->value('media');
     }
+
+    public function getThumbnailAttribute()
+    {
+        return asset('adminPanel/images/fitness.jpg');
+    }
 }
