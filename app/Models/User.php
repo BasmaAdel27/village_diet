@@ -92,10 +92,10 @@ class User extends Authenticatable
 
     public function currentSubscription()
     {
-        if (Subscription::where('status', Subscription::ACTIVE)) {
-            return $this->hasOne(Subscription::class)->where('status', Subscription::ACTIVE)->latest('id');
-        }elseif(Subscription::where('status', Subscription::REQUEST_CANCEL)){
-            return $this->hasOne(Subscription::class)->where('status', Subscription::REQUEST_CANCEL)->latest('id');
+        if (Subscription::where('status', Subscription::ACTIVE)->latest('id')) {
+            return $this->hasOne(Subscription::class);
+        }elseif(Subscription::where('status', Subscription::REQUEST_CANCEL)->latest('id')){
+            return $this->hasOne(Subscription::class);
 
         }
     }
