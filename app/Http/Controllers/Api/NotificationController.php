@@ -12,7 +12,7 @@ class NotificationController extends Controller
     public function index()
     {
         $notifications = auth()->user()->notifications()->paginate();
-        $notifications->map->markAsRead();
+        auth()->user()->notifications()->markAsRead();
 
         return successResponse(NotificationCollection::make($notifications));
     }
