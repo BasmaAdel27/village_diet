@@ -41,15 +41,14 @@ class SocietyController extends Controller
         $data = $request->validated();
         $society->fill($data)->save();
         $users = User::find($data['user_id']);
-        $subscription=$users->map->currentSubscription();
         $users->map->update(['society_id' => $society->id]);
 
         if ($data['is_active'] == 1) {
             $society->update(['date_from' => now()]);
         }
-        $subscription->map->update([
+        $users->map->currentSubscription()->map->update([
             'created_at' => $society->date_from,
-            'end_date' => (new Carbon($society->date_from))->addDays(30),
+            'end_date' =>  Carbon::parse($society->date_from)->addDays(30),
         ]);
 
         return redirect()->route('admin.societies.index')->with('success', trans('created_successfully'));
@@ -72,16 +71,15 @@ class SocietyController extends Controller
         $data = $request->validated();
         $society->fill($data)->save();
         $users = User::find($data['user_id']);
-        $subscription=$users->map->currentSubscription();
         $users->map->update(['society_id' => $society->id]);
 
         if ($data['is_active'] == 1 && $society->is_active == 0) {
             $society->update(['date_from' => now()]);
         }
 
-        $subscription->map->update([
+        $users->map->currentSubscription()->map->update([
             'created_at' => $society->date_from,
-            'end_date' => (new Carbon($society->date_from))->addDays(30),
+            'end_date' => Carbon::parse($society->date_from)->addDays(30),
         ]);
 
         return redirect()->route('admin.societies.index')->with('success', trans('updated_successfully'));

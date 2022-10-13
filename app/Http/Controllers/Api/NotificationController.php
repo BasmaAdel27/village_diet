@@ -12,6 +12,7 @@ class NotificationController extends Controller
     public function index()
     {
         $notifications = auth()->user()->notifications()->paginate();
+        auth()->user()->notifications()->update(['read_at' => now()]);
 
         return successResponse(NotificationCollection::make($notifications));
     }
