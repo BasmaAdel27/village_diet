@@ -15,9 +15,12 @@ class SocietyStatusResource extends JsonResource
         $day = Day::where('number', $dayNumber)->first();
 
         return [
-            'subscription_day' => DayResource::make($day),
-            'current_subscription' => LogsResource::make($this->currentSubscription),
-            'notification_unread' => $this->unreadNotifications()->count()
+              'society_status' => true,
+              'subscription_day' => DayResource::make($day),
+              'current_subscription' => LogsResource::make($this->currentSubscription),
+              'notification_unread' => $this->unreadNotifications()->count(),
+              'trainer_id' => auth()->user()->society->trainer->id,
+              'subscription_status' => auth()->user()->currentSubscription->status,
         ];
     }
 }

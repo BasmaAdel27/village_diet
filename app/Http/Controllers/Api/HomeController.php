@@ -59,7 +59,7 @@ class HomeController extends Controller
                 return successResponse(HomeResource::make($obj));
             }
         }else{
-            return failedResponse(Lang::get('unauthorized'));
+            return failedResponse(Lang::get('unauthorized'),401);
         }
     }
 

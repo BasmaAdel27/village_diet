@@ -11,6 +11,7 @@ use App\Http\Controllers\Api\NotificationController;
 use App\Http\Controllers\Api\RateController;
 use App\Http\Controllers\Api\AgendaController;
 use App\Http\Controllers\Api\ChatController;
+use App\Http\Controllers\Api\SocietyController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('GrahamCampbell\Throttle\Http\Middleware\ThrottleMiddleware:3,1')->group(function () {
@@ -38,7 +39,7 @@ Route::middleware(['auth:sanctum', 'appLocale'])->group(function () {
         Route::get('get_rate', 'index');
         Route::post('rate', 'store');
     });
-    Route::get('society_status',[\App\Http\Controllers\Api\SocietyController::class,'societyStatus']);
+    Route::get('society_status',[SocietyController::class,'societyStatus']);
 
     Route::controller(ChatController::class)->group(function () {
         Route::get('get_trainer_messages', 'getTrainerMessages');

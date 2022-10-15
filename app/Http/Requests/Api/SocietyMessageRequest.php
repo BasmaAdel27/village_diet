@@ -32,7 +32,7 @@ class SocietyMessageRequest extends FormRequest
         }elseif ($this->type =='IMAGE'){
             $rules['message']='required|image|mimes:jpeg,jpg,png,gif|max:2048';
         }elseif($this->type =='AUDIO'){
-            $rules['message']='required|file|mimes:audio/mpeg,mpga,mp3,wav,aac,ogg';
+            $rules['message'] = 'required|file|mimes:audio/mpeg,mpga,mp3,wav,aac,ogg,mp4,m4a,mkv';
         }
 
         return $rules;
