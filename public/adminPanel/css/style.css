@@ -10828,14 +10828,14 @@ fieldset:disabled a.btn {
 
 .btn-primary {
   color: #fff;
-  background-color: #4d83ff;
-  border-color: #4d83ff;
+  background-color: #472B73;
+  border-color: #472B73;
 }
 
 .btn-primary:hover {
   color: #fff;
-  background-color: #2768ff;
-  border-color: #1a5fff;
+  background-color: #5A309C;
+  border-color: #5A309C;
 }
 
 .btn-primary:focus, .btn-primary.focus {
@@ -21036,13 +21036,7 @@ dl li {
   }
 }
 
-.auth .brand-logo {
-  margin-bottom: 2rem;
-}
 
-.auth .brand-logo img {
-  width: 150px;
-}
 
 .auth form .form-group {
   margin-bottom: 1.5rem;
@@ -21905,3 +21899,9 @@ dl li {
 .role{
   display: inline-block;
 }
+.auth .brand-logo img {
+  width: 156px;
+  margin: auto;
+  margin-left: 83px;
+}
+

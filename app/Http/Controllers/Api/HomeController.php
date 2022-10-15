@@ -20,7 +20,7 @@ class HomeController extends Controller
         $user = auth()->user();
         if ($user->currentSubscription->status == 'active' || $user->currentSubscription->status == 'request_cancel' ) {
             $day = now()->diffInDays($user->currentSubscription->created_at) + 1;
-        $dayId = Day::select('id')->where('number', $day)->value('id');
+            $dayId = Day::select('id')->where('number', $day)->value('id');
             $obj = new stdClass;
             $obj->slides = Slider::where('is_active', true)
                   ->where('is_show_in_app', true)
