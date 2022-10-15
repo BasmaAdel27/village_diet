@@ -15,6 +15,7 @@ class SocietyStatusResource extends JsonResource
         $day = Day::where('number', $dayNumber)->first();
 
         return [
+              'society_status' => true,
               'subscription_day' => DayResource::make($day),
               'current_subscription' => LogsResource::make($this->currentSubscription),
               'notification_unread' => $this->unreadNotifications()->count(),
