@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\Api\subscriptions\LogsResource;
 use App\Http\Resources\Api\SubscriptionsResource;
 use App\Models\Subscription;
+use Illuminate\Support\Facades\Lang;
 use stdClass;
 
 class SubscriptionsController extends Controller
@@ -23,12 +24,18 @@ class SubscriptionsController extends Controller
 
     public function cancelSubscription()
     {
-        $currentSubscription = auth()->user()->currentSubscription;
-        $currentSubscription->update(['status' => Subscription::REQUEST_CANCEL]);
+        $user=auth()->user();
 
-        return successResponse(LogsResource::make($currentSubscription), message: trans(
-            'cancel_successfully',
-            ['date' => $currentSubscription->end_date->toDateString()]
-        ));
+        if ($user->currentSubscription->status == 'active' && $user->society()->exists() && $user->society->date_from == $user->currentSubscription->created_at ) {
+            $currentSubscription = $user->currentSubscription;
+            $currentSubscription->update(['status' => Subscription::REQUEST_CANCEL]);
+
+            return successResponse(LogsResource::make($currentSubscription), message: trans(
+                  'cancel_successfully',
+                  ['date' => $currentSubscription->end_date->toDateString()]
+            ));
+        }else{
+            return failedResponse(Lang::get('unauthorized'));
+        }
     }
 }
