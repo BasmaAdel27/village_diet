@@ -34,7 +34,7 @@ class ChatController extends Controller
             ->where(function ($q) use ($userId, $trainerId) {
                 $q->where([['sender_id', $userId], ['receiver_id', $trainerId]])
                     ->orWhere([['sender_id', $trainerId], ['receiver_id', $userId]]);
-            })->orderBy('created_at', 'asc')
+            })->orderBy('created_at', 'desc')
             ->paginate($request->per_page ?? 15);
 
         return successResponse(MessageResource::collection($messages), PaginationResource::make($messages));
@@ -51,7 +51,7 @@ class ChatController extends Controller
                 $q->where(fn ($q) => $q->where('sender_id', $userId)->whereIn('receiver_id', $adminsIds))
                     ->orWhere(fn ($q) => $q->whereIn('sender_id', $adminsIds)->where('receiver_id', $userId));
             })
-            ->orderBy('created_at', 'asc')
+            ->orderBy('created_at', 'desc')
             ->paginate($request->per_page ?? 15);
 
         return successResponse(MessageResource::collection($messages), PaginationResource::make($messages));
@@ -62,7 +62,7 @@ class ChatController extends Controller
         $messages = SocietyChat::query()
             ->where('society_id', auth()->user()->society?->id)
             ->with('sender.roles')
-            ->orderBy('created_at', 'asc')
+            ->orderBy('created_at', 'desc')
             ->paginate($request->per_page ?? 15);
 
         return successResponse(SocietyMessageResource::collection($messages), PaginationResource::make($messages));

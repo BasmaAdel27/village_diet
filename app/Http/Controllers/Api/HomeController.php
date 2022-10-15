@@ -10,6 +10,7 @@ use App\Models\Day\Day;
 use App\Models\Meal\Meal;
 use App\Models\Slider\Slider;
 use App\Models\Video\Video;
+use Illuminate\Support\Facades\Lang;
 use stdClass;
 
 class HomeController extends Controller
@@ -17,44 +18,48 @@ class HomeController extends Controller
     public function index()
     {
         $user = auth()->user();
-        $day = now()->diffInDays($user->currentSubscription->created_at) + 1;
+        if ($user->currentSubscription->status == 'active' || $user->currentSubscription->status == 'request_cancel' ) {
+            $day = now()->diffInDays($user->currentSubscription->created_at) + 1;
         $dayId = Day::select('id')->where('number', $day)->value('id');
-        $obj = new stdClass;
-        $obj->slides = Slider::where('is_active', true)
-            ->where('is_show_in_app', true)
-            ->get();
-        if ($user->society()->exists() && $user->society->is_active == 1) {
-            $obj->userInfo = $user->healthyInformation()
-                ->where('day_id', $dayId)
-                ->first();
+            $obj = new stdClass;
+            $obj->slides = Slider::where('is_active', true)
+                  ->where('is_show_in_app', true)
+                  ->get();
+            if ($user->society()->exists() && $user->society->is_active == 1) {
+                $obj->userInfo = $user->healthyInformation()
+                      ->where('day_id', $dayId)
+                      ->first();
 
-            $obj->meal = Meal::where('day_id', $dayId)
-                ->where('is_active', true)
-                ->latest()
-                ->first();
+                $obj->meal = Meal::where('day_id', $dayId)
+                      ->where('is_active', true)
+                      ->latest()
+                      ->first();
 
-            $obj->video = Video::where('is_active', true)
-                ->where('day_id', $dayId)
-                ->latest()
-                ->first();
-            $obj->society = true;
+                $obj->video = Video::where('is_active', true)
+                      ->where('day_id', $dayId)
+                      ->latest()
+                      ->first();
+                $obj->society = true;
 
 
-            return successResponse(HomeResource::make($obj));
-        } else {
-            $obj->userInfo = null;
-            $obj->meal = Meal::where('day_id', 1)
-                ->where('is_active', true)
-                ->latest()
-                ->first();
-            $obj->video = Video::where('is_active', true)
-                ->where('day_id', 1)
-                ->latest()
-                ->first();
+                return successResponse(HomeResource::make($obj));
+            } else {
+                $obj->userInfo = null;
+                $obj->meal = Meal::where('day_id', 1)
+                      ->where('is_active', true)
+                      ->latest()
+                      ->first();
+                $obj->video = Video::where('is_active', true)
+                      ->where('day_id', 1)
+                      ->latest()
+                      ->first();
 
-            $obj->society = false;
+                $obj->society = false;
 
-            return successResponse(HomeResource::make($obj));
+                return successResponse(HomeResource::make($obj));
+            }
+        }else{
+            return failedResponse(Lang::get('unauthorized'));
         }
     }
 
