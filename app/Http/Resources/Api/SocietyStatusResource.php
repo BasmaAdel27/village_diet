@@ -20,6 +20,7 @@ class SocietyStatusResource extends JsonResource
               'current_subscription' => LogsResource::make($this->currentSubscription),
               'notification_unread' => $this->unreadNotifications()->count(),
               'trainer_id' => auth()->user()->society->trainer->id,
+              'subscription_status' => auth()->user()->currentSubscription->status,
         ];
     }
 }

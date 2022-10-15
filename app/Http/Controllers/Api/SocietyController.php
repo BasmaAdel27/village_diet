@@ -15,6 +15,7 @@ class SocietyController extends Controller
 
         if ($user->society()->doesntExist()) {
             $data['society_status'] = false;
+            $data['subscription_status'] = $user->currentSubscription->status;
             $data['notification_unread'] = $user->unreadNotifications()->count();
 
             return successResponse($data, message: trans('Please_wait_it_will_start_soon'));
@@ -23,6 +24,7 @@ class SocietyController extends Controller
                 Carbon::setLocale('ar');
                 $date_from = Carbon::parse($user->society->date_from)->format('Y - m - d');
                 $data['society_status'] = true;
+                $data['subscription_status'] = $user->currentSubscription->status;
                 $data['notification_unread'] = $user->unreadNotifications()->count();
                 $data['trainer_id'] = $user->society->trainer->id;
 
