@@ -25,8 +25,7 @@ class SubscriptionsController extends Controller
     public function cancelSubscription()
     {
         $user=auth()->user();
-
-        if ($user->currentSubscription->status == 'active' && $user->society()->exists() && $user->society->date_from == $user->currentSubscription->created_at ) {
+        if ($user->currentSubscription->status == 'active' && $user->society()->exists()) {
             $currentSubscription = $user->currentSubscription;
             $currentSubscription->update(['status' => Subscription::REQUEST_CANCEL]);
 
