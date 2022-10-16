@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Trainer extends Model
 {
-    use HasFactory, HasAssetsTrait ,HasTimestampTrait;
+    use HasFactory, HasAssetsTrait, HasTimestampTrait;
 
     public $assets = ['confidental_image'];
     public $files = ['cv'];
@@ -18,7 +18,7 @@ class Trainer extends Model
 
     const PENDING  = 'PENDING';
     const DONE     = 'DONE';
-    const DECLINED ='DECLINED';
+    const DECLINED = 'DECLINED';
     const STATUSES = [self::PENDING, self::DONE, self::DECLINED];
 
     public static function boot()
@@ -29,12 +29,9 @@ class Trainer extends Model
         });
     }
 
-    public function societies(){
-        return $this->hasMany(Society::class);
-    }
-
-    public function user(){
-        return $this->belongsTo(User::class,'user_id','id');
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
     public function getImageAttribute()
@@ -42,7 +39,6 @@ class Trainer extends Model
         if ($this->images()->whereOption('confidental_image')->value('media')) {
             return asset($this->images()->whereOption('confidental_image')->value('media'));
         }
-
     }
 
     public function getCvAttribute()
@@ -50,7 +46,5 @@ class Trainer extends Model
         if ($this->images()->whereOption('cv')->value('media')) {
             return asset($this->images()->whereOption('cv')->value('media'));
         }
-
     }
 }
-
