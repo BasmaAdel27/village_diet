@@ -94,9 +94,9 @@ class User extends Authenticatable
     {
         if ($this->society()->exists()) {
             return $this->hasOne(Subscription::class)
-                  ->whereIn('status', [Subscription::ACTIVE, Subscription::REQUEST_CANCEL])->latest('id');
+                ->whereIn('status', [Subscription::ACTIVE, Subscription::REQUEST_CANCEL])->latest('id');
         }
-        return $this->hasOne(Subscription::class)->where('status',Subscription::ACTIVE)->latest('id');
+        return $this->hasOne(Subscription::class)->where('status', Subscription::ACTIVE)->latest('id');
     }
 
     public function subscriptions()
@@ -128,6 +128,11 @@ class User extends Authenticatable
     public function state()
     {
         return $this->belongsTo(State::class);
+    }
+
+    public function societies()
+    {
+        return $this->hasMany(Society::class, 'trainer_id');
     }
 
 

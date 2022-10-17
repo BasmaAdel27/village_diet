@@ -15,7 +15,7 @@ class TrainerDatatable extends DataTable
         return datatables()
             ->eloquent($query)
               ->editColumn('societies_count',function ($query){
-                  return $query->societies()->count();
+                  return $query->user->societies()->count();
               })
               ->editColumn('show_inPage', function ($query) {
                   return ($query->show_inPage == 1) ? '<span class="btn btn-success">' . trans('active') . "</span>" : '<span class="btn btn-danger">' . trans('inactive') . "</span>";
@@ -24,7 +24,7 @@ class TrainerDatatable extends DataTable
                   return ($query->status == 'DONE') ? '<span class="btn btn-success">' . trans('active') . "</span>" : '<span class="btn btn-danger">' . trans('inactive') . "</span>";
               })->editColumn('Action', function ($query) {
                   return view('admin.trainers.datatable.action', compact('query'));
-              })->rawColumns(['societies_count','show_inPage','status','Active']);
+              })->rawColumns(['show_inPage','status','Active']);
     }
 
 
