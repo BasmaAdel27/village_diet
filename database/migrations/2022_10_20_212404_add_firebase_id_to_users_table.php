@@ -9,14 +9,14 @@ class AddFirebaseIdToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('firebase_id')->nullable();
+            $table->string('firebase_token')->nullable();
         });
     }
 
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('firebase_id');
+            $table->dropColumn('firebase_token');
         });
     }
 }

@@ -10,7 +10,7 @@ class AddFirebaseRequest extends FormRequest
     {
         return [
             'user_id' => 'required|exists:users,id',
-            'firebase_id' => 'required|string'
+            'firebase_token' => 'required|string'
         ];
     }
 }

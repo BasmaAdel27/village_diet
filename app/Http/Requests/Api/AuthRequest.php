@@ -15,6 +15,7 @@ class AuthRequest extends FormRequest
     {
         return [
             'user_number' => 'required|numeric',
+            'firebase_token' => 'required|string',
             'device_type' => 'nullable',
             'device_token' => 'nullable'
         ];
