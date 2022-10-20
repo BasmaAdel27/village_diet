@@ -17,11 +17,12 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('GrahamCampbell\Throttle\Http\Middleware\ThrottleMiddleware:3,1')->group(function () {
     Route::post('login', [AuthController::class, 'login']);
 });
-Route::group(['middleware' => ['auth:sanctum']], function() {
+Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('logout',   [AuthController::class, 'logout']);
 });
 Route::post('contact_us', [ContactUsController::class, 'contactUs']);
 Route::get('contact_info', [ContactUsController::class, 'contactInfo']);
+Route::post('update_user_add_firebase', [AuthController::class, 'addFirebaseToUser']);
 
 Route::middleware(['auth:sanctum', 'appLocale'])->group(function () {
     Route::post('update_profile', [AuthController::class, 'updateProfile']);
@@ -39,7 +40,7 @@ Route::middleware(['auth:sanctum', 'appLocale'])->group(function () {
         Route::get('get_rate', 'index');
         Route::post('rate', 'store');
     });
-    Route::get('society_status',[SocietyController::class,'societyStatus']);
+    Route::get('society_status', [SocietyController::class, 'societyStatus']);
 
     Route::controller(ChatController::class)->group(function () {
         Route::get('get_trainer_messages', 'getTrainerMessages');
@@ -49,6 +50,4 @@ Route::middleware(['auth:sanctum', 'appLocale'])->group(function () {
         Route::post('store_admin_messages', 'storeAdminMessages');
         Route::post('store_society_messages', 'storeSocietyMessages');
     });
-
 });
-

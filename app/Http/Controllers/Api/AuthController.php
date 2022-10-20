@@ -52,7 +52,7 @@ class AuthController extends Controller
     {
         $data = $request->validated();
         $user = User::findOrFail($data['user_id']);
-        $user->update(['firebase_id' => $data['firebase']]);
+        $user->update(['firebase_id' => $data['firebase_id']]);
 
         return successResponse(AuthResource::make($user), message: trans('updated_successfully'));
     }
