@@ -60,3 +60,6 @@ Route::post('pending-trainers/declined/{id}', [PendingTrainerController::class, 
 
 Route::get('/states', [AjaxController::class, 'fetchState'])->name('states');
 Route::resource('templates', TemplateController::class)->except('show');
+
+Route::get('index',[\App\Http\Controllers\Admin\ChatController::class,'index']);
+Route::get('messages/{id}',[\App\Http\Controllers\Admin\ChatController::class,'message']);
