@@ -15,6 +15,7 @@ class AuthResource extends JsonResource
 
         return [
             'token' => $this->token,
+            'firebase_token' => $this->firebase_token,
             'id' => $this->id,
             "first_name" => $this->first_name,
             "last_name" => $this->last_name,

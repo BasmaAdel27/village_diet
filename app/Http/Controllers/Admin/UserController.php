@@ -153,4 +153,9 @@ class UserController extends Controller
 
         return redirect()->route('admin.users.index')->with('success', trans('created_successfully'));
     }
+
+    public function messages()
+    {
+        return view('admin.users.chat');
+    }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\AddFirebaseRequest;
 use App\Http\Requests\Api\AuthRequest;
 use App\Http\Requests\Api\UpdateProfileRequest;
 use App\Http\Resources\Api\AuthResource;
@@ -29,6 +30,7 @@ class AuthController extends Controller
         if (!$user->is_active) return failedResponse(Lang::get('connect_with_support'));
         Auth::loginUsingId($user->id);
 
+        $user->update(['firebase_token' => $request->firebase_token]);
         $user->token = $user->createToken('village_diet')->plainTextToken;
 
         return successResponse(AuthResource::make($user));
@@ -41,9 +43,18 @@ class AuthController extends Controller
         return successResponse(AuthResource::make(auth()->user()), message: trans('updated_successfully'));
     }
 
-    public function logout(Request $request){
+    public function logout(Request $request)
+    {
         $request->user()->tokens()->delete();
-        return response()->json(['message'=>'successfully_logged_out']);
+        return response()->json(['message' => 'successfully_logged_out']);
+    }
 
+    public function addFirebaseToUser(AddFirebaseRequest $request)
+    {
+        $data = $request->validated();
+        $user = User::findOrFail($data['user_id']);
+        $user->update(['firebase_token' => $data['firebase_token']]);
+
+        return successResponse(AuthResource::make($user), message: trans('updated_successfully'));
     }
 }

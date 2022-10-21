@@ -42,4 +42,9 @@ class UserController extends Controller
 
         return view('trainer.users.statistics', compact('cahrts'));
     }
+
+    public function messages()
+    {
+        return view('trainer.users.messages');
+    }
 }
