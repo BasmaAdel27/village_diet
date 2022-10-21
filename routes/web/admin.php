@@ -23,6 +23,9 @@ use App\Http\Controllers\Admin\PostelNewsController;
 use App\Http\Controllers\Admin\TemplateController;
 use Illuminate\Support\Facades\Route;
 
+Route::get('societies/messages', [SocietyController::class, 'messages'])->name('societies.messages');
+Route::get('users/messages', [UserController::class, 'messages'])->name('users.messages');
+
 Route::get('dashboard', [HomeController::class, 'home'])->name('dashboard');
 Route::get('users-form-data', [UserController::class, 'getFormData'])->name('users.form_data');
 Route::post('users-form-data/{survey}', [UserController::class, 'postFormData'])->name('users.post_data');

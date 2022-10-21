@@ -92,4 +92,9 @@ class SocietyController extends Controller
 
         return redirect()->route('admin.societies.index')->with('success', trans('deleted_successfully'));
     }
+
+    public function messages()
+    {
+        return view('admin.society.chat');
+    }
 }

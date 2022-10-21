@@ -6,6 +6,8 @@ use App\Http\Controllers\Trainer\SocietyController;
 use App\Http\Controllers\Trainer\UserController;
 use Illuminate\Support\Facades\Route;
 
+Route::get('users_messages', [UserController::class, 'messages'])->name('users.messages');
+
 Route::get('dashboard', [HomeController::class, 'home'])->name('dashboard');
 Route::get('users-charts/{user}', [UserController::class, 'statistics'])->name('users.statistics');
 Route::resource('users', UserController::class)->only(['index', 'show']);

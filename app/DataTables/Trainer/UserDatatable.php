@@ -21,13 +21,13 @@ class UserDatatable extends DataTable
                 return $query->society?->title;
             })
             ->editColumn('currentSubscription.created_at', function ($query) {
-                return $query->currentSubscription->created_at?->diffForHumans();
+                return $query->currentSubscription?->created_at?->diffForHumans();
             })
             ->editColumn('currentSubscription.end_date', function ($query) {
-                return $query->currentSubscription->end_at?->diffForHumans();
+                return $query->currentSubscription?->end_at?->diffForHumans();
             })
             ->editColumn('currentSubscription.status', function ($query) {
-                $status = $query->currentSubscription->status;
+                $status = $query->currentSubscription?->status;
                 if (!$status) return '';
 
                 return $status == Subscription::ACTIVE ? '<span class="btn btn-success">' . trans('active') . "</span>" : '<span class="btn btn-danger">' .  trans($status) . "</span>";
