@@ -16,7 +16,14 @@
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
 @if (app()->getLocale() == 'ar')
 <script src="{{ asset('adminPanel/vendors/bootstrap-rtl/bootstrap.js') }}"></script>
+<script src={{ asset('adminPanel/vendors/base/vendor.bundle.base.js') }}></script>
 @endif
 <script src="{{ asset('js/custom.js') }}"></script>
 <script src="{{ asset('js/printThis.js') }}"></script>
+<script src="https://cdn.rawgit.com/mattdiamond/Recorderjs/08e7abd9/dist/recorder.js"></script>
+<script src="{{ asset('adminPanel/js/chat.js') }}"></script>
+<script>
+  var element = document.getElementById("chat");
+  element.scrollTop = element.scrollHeight;
+</script>
 @yield('scripts')

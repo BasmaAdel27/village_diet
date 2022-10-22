@@ -117,7 +117,7 @@ class TrainerController extends Controller
             'join_request_reason' => $request->join_request_reason,
             'is_certified' => $request->is_certified,
             'show_inPage' => $request->show_inPage,
-            'status' => $request->status,
+              'status' => 'DONE',
         ]);
 
         return redirect()->route('admin.trainers.index')->with('success', trans('updated_successfully'));

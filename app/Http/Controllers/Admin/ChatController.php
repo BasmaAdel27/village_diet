@@ -15,7 +15,7 @@ class ChatController extends Controller
         $adminsIds = User::whereHas('roles', fn ($q) => $q->whereNotIn('name', ['user', 'trainer']))->pluck('id');
         $chats=AdminMessage::where('sender_id','!=',$adminsIds)->get()->groupBy('sender_id');
 //        dd($chats);
-//        return view('admin.chat',compact('chats'));
+        return view('admin.users.chat',compact('chats'));
     }
 
 

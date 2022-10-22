@@ -88,6 +88,9 @@
 .chat .chat-history {
   padding: 20px;
   border-bottom: 2px solid #fff;
+  height: 320px;
+  overflow: scroll;
+  scroll-behavior:smooth;
 }
 
 .chat .chat-history ul {
