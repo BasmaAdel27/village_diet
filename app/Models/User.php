@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Chat\AdminMessage;
 use App\Models\Country\Country;
 use App\Models\Society\Society;
 use App\Models\State\State;
@@ -140,5 +141,14 @@ class User extends Authenticatable
         return $this->first_name . ' ' . $this->last_name;
     }
 
+    public function lastMessage()
+    {
+        return $this->hasOne(AdminMessage::class, 'receiver_id')->latestOfMany();
+    }
+
+    public function messagesFromUsers()
+    {
+        return $this->hasMany(AdminMessage::class, 'receiver_id');
+    }
     #endregion relationship
 }

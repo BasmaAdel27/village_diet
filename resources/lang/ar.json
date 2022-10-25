@@ -234,6 +234,7 @@
   "successfully_logged_out": "تم تسجيل الخروج بنجاح",
   "new_message": "رسالة جديدة",
   "u_receive_new_message": "تم استقبال رسالة جديدة",
-  "voice_message": "رساله صوتيه"
-
+  "voice_message": "رساله صوتيه",
+  "last_message_date": "تاريخ آخر رسالة",
+  "list_users_messages": "رسائل المستخدمين"
 }

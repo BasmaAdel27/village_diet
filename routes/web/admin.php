@@ -26,6 +26,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('societies/messages/{society}', [SocietyController::class, 'messages'])->name('societies.messages');
 Route::post('societies/addMsg', [SocietyController::class, 'addMsg'])->name('societies.addMsg');
 Route::post('societies/save', [SocietyController::class, 'save'])->name('societies.save');
+Route::get('users/chat/{id}', [UserController::class, 'chat'])->name('users.chat');
 Route::get('users/messages', [UserController::class, 'messages'])->name('users.messages');
 
 Route::get('dashboard', [HomeController::class, 'home'])->name('dashboard');
@@ -65,4 +66,3 @@ Route::post('pending-trainers/declined/{id}', [PendingTrainerController::class, 
 
 Route::get('/states', [AjaxController::class, 'fetchState'])->name('states');
 Route::resource('templates', TemplateController::class)->except('show');
-

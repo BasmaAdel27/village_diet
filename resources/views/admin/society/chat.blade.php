@@ -18,7 +18,7 @@
         <li class="clearfix">
           <div class="message-data text-right">
             <span>{{$message->sender->first_name}}</span>
-            <span>({{$message->sender->roles[0]->name}})</span>
+            <span>({{$message->sender->roles[0]?->name ?? ''}})</span>
             <img src="{{$message->sender->image}}" alt="avatar" />
             <div class="message-data-time">{{date('l Y-m-d H:i A', strtotime($message->created_at))}}</div>
 
