@@ -9,9 +9,6 @@
 @if (app()->getLocale() == 'ar')
 <link rel="stylesheet" href="{{ asset('adminPanel/vendors/bootstrap-rtl/bootstrap-rtl.css') }}">
 <link rel="stylesheet" href={{ asset('adminPanel/css/ar-style.css') }}>
-<link rel="stylesheet" href={{ asset('adminPanel/css/style.css') }}>
-<link rel="stylesheet" href={{ asset('adminPanel/css/chat.css') }}>
-
 @endif
 <link rel="stylesheet" href={{ asset('adminPanel/css/chat.css') }}>
 <meta name="csrf-token" content="{{ csrf_token() }}" />
