@@ -5,9 +5,12 @@ namespace App\Http\Controllers\Admin;
 use App\DataTables\Admin\SocietyDatatable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\SocietyRequest;
+use App\Models\Chat\SocietyChat;
 use App\Models\Society\Society;
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class SocietyController extends Controller
 {
@@ -93,8 +96,36 @@ class SocietyController extends Controller
         return redirect()->route('admin.societies.index')->with('success', trans('deleted_successfully'));
     }
 
-    public function messages()
+    public function messages(Society $society)
     {
-        return view('admin.society.chat');
+        $messages=SocietyChat::with(['society','sender'])->where('society_id',$society->id)->orderBy('created_at','asc')->get();
+        return view('admin.society.chat',compact('messages','society'));
+    }
+
+    public function addMsg(Request $request){
+        $data = $request->all(['message']);
+        $validator = Validator::make($data, ['message' => 'required']);
+        if ($validator->fails())
+            return redirect()->back()->with("errors",$validator->errors());
+
+        $message=SocietyChat::create([
+              'message'=>$request->message,
+              'sender_id'=>auth()->id(),
+               'type'=>'TEXT',
+                'society_id'=>$request->society_id,
+        ]);
+        return redirect()->back();
+
+    }
+
+    public function save(Request $request){
+        $path = $request->file('message')->storePublicly('chats/media', "public");
+        $message=SocietyChat::create([
+              'message'=>"/storage/" . $path,
+              'sender_id'=>$request->sender,
+              'type'=>'AUDIO',
+              'society_id'=>$request->society,
+        ]);
+       return response()->json($message);
     }
 }

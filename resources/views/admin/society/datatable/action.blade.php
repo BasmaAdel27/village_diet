@@ -1,6 +1,8 @@
-@can('admin.societies.messages')
-<a href="{{ route('admin.societies.messages') }}" class="btn btn-outline-dark mr-2 p-2">@lang('messages')</a>
-@endcan
+{{--@can('admin.societies.messages')--}}
+  @if($query->is_active == 1)
+<a href="{{ route('admin.societies.messages',$query->id) }}" class="btn btn-outline-dark mr-2 p-2">@lang('messages')</a>
+  @endif
+{{--@endcan--}}
 @can('admin.societies.update')
 <a href="{{ route('admin.societies.edit',$query->id) }}" class="btn btn-outline-success mr-2 p-2">@lang('edit')</a>
 @endcan

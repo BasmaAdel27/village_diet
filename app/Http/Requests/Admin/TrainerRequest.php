@@ -50,7 +50,6 @@ class TrainerRequest extends FormRequest
             $rules['confidental_image']='nullable|image|max:10000';
             $rules['email'] = 'required|min:2|max:255|unique:users,email,'.$this->trainer->user->id;
             $rules['cv']='nullable|max:10000';
-            $rules['status']='required';
 
         }
     return $rules;
