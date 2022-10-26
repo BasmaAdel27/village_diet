@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\DataTables\Admin\UserDatatable;
 use App\DataTables\Admin\UserChatDatatable;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\SendMessageRequest;
 use App\Http\Requests\Admin\UserRequest;
 use App\Mail\UserNumber;
 use App\Models\Chat\AdminMessage;
@@ -156,12 +157,7 @@ class UserController extends Controller
         return redirect()->route('admin.users.index')->with('success', trans('created_successfully'));
     }
 
-    public function messages(UserChatDatatable $userChatDatatable)
-    {
-        return $userChatDatatable->render('admin.users.chat.index');
-    }
-
-    public function chat($userId)
+    public function messages($userId)
     {
         $adminId = auth()->id();
 
@@ -170,9 +166,21 @@ class UserController extends Controller
                 $q->where(fn ($q) => $q->where('sender_id', $userId)->where('receiver_id', $adminId))
                     ->orWhere(fn ($q) => $q->where('sender_id', $adminId)->where('receiver_id', $userId));
             })
-            ->orderBy('created_at', 'desc')
+            ->oldest('id')
             ->get();
 
-        return view('admin.users.chat.show', compact('messages'));
+        return view('admin.users.chat', compact('messages', 'userId'));
+    }
+
+    public function sendMessage(SendMessageRequest $request, $userId)
+    {
+        AdminMessage::create([
+            'message' => $request->message,
+            'sender_id' => auth()->id(),
+            'type' => 'TEXT',
+            'receiver_id' => $userId,
+        ]);
+
+        return redirect()->back();
     }
 }

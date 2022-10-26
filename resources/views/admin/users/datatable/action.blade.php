@@ -1,5 +1,5 @@
-@can('admin.users.statistics')
-<a href="{{ route('admin.users.messages') }}" class="btn btn-outline-dark mr-2 p-2">@lang('messages')</a>
+@can('admin.users.messages')
+<a href="{{ route('admin.users.messages',$query->id) }}" class="btn btn-outline-dark mr-2 p-2">@lang('messages')</a>
 @endcan
 @can('admin.users.statistics')
 <a href="{{ route('admin.users.statistics',$query->id) }}"

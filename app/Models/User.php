@@ -145,10 +145,5 @@ class User extends Authenticatable
     {
         return $this->hasOne(AdminMessage::class, 'receiver_id')->latestOfMany();
     }
-
-    public function messagesFromUsers()
-    {
-        return $this->hasMany(AdminMessage::class, 'receiver_id');
-    }
     #endregion relationship
 }
