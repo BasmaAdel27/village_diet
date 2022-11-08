@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 60 60">
+  <g id="Group_5287" data-name="Group 5287" transform="translate(-1102 -992)">
+    <g id="eye_twotone" data-name="eye/twotone" transform="translate(1102 992)">
+      <g id="vuesax_twotone_eye" data-name="vuesax/twotone/eye">
+        <g id="eye">
+          <path id="Vector" d="M17.9,8.95A8.95,8.95,0,1,1,8.95,0,8.941,8.941,0,0,1,17.9,8.95Z" transform="translate(21.05 21.05)" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" opacity="0.4"/>
+          <path id="Vector-2" data-name="Vector" d="M24.462,41.375c8.825,0,17.05-5.2,22.775-14.2a13.314,13.314,0,0,0,0-12.975C41.512,5.2,33.287,0,24.462,0S7.412,5.2,1.687,14.2a13.314,13.314,0,0,0,0,12.975C7.412,36.175,15.637,41.375,24.462,41.375Z" transform="translate(5.538 9.3)" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+          <path id="Vector-3" data-name="Vector" d="M0,0H60V60H0Z" transform="translate(60 60) rotate(180)" fill="none" opacity="0"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50">
+  <g id="Group_5290" data-name="Group 5290" transform="translate(-753 -1279)">
+    <g id="Ellipse_49" data-name="Ellipse 49" transform="translate(753 1279)" fill="rgba(71,43,115,0.03)" stroke="#472b73" stroke-width="1">
+      <circle cx="25" cy="25" r="25" stroke="none"/>
+      <circle cx="25" cy="25" r="24.5" fill="none"/>
+    </g>
+    <g id="Group_5289" data-name="Group 5289" transform="translate(-16 24)">
+      <g id="play_twotone" data-name="play/twotone" transform="translate(782 1268)">
+        <g id="vuesax_twotone_play" data-name="vuesax/twotone/play">
+          <g id="play">
+            <path id="Vector" d="M0,8.523V4.963C0,.543,3.13-1.267,6.96.943l3.09,1.78L13.14,4.5c3.83,2.21,3.83,5.83,0,8.04l-3.09,1.78L6.96,16.1C3.13,18.313,0,16.5,0,12.083Z" transform="translate(4 3.477)" fill="none" stroke="#472b73" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+            <path id="Vector-2" data-name="Vector" d="M0,0H24V24H0Z" fill="none" opacity="0"/>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -9,8 +9,8 @@ Route::get('/', function () {
 });
 
 Auth::routes([
-      'register' => false,
-      'verify' => false,
+    'register' => false,
+    'verify' => false,
 ]);
 Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::group(
@@ -33,6 +33,12 @@ Route::group(
             'middleware' => ['auth'],
         ], function () {
             require('web/trainer.php');
+        });
+
+        Route::group([
+            'as' => 'website.',
+        ], function () {
+            require('web/website.php');
         });
     }
 );
