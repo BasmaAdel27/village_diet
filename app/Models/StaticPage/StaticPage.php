@@ -27,6 +27,8 @@ class StaticPage extends Model implements Translatable
 
     public function getImageAttribute()
     {
-        return asset($this->images()->whereOption('image')->value('media'));
+        return ($this->images()->whereOption('image')->value('media') != null) ?
+            asset($this->images()->whereOption('image')->value('media')) :
+            asset('website/assets/images/logo/logo.svg');
     }
 }
