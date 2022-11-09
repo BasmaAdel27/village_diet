@@ -1,0 +1,88 @@
+@font-face {
+    font-family: "rb";
+    src: url('../fonts/rb/RB_REGULAR.woff2');
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: "rb";
+    src: url('../fonts/rb/RB_REGULAR.woff2');
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: "rb";
+    src: url('../fonts/rb/RB_Bold.woff2');
+    font-weight: 900;
+}
+
+* {
+    margin: 0px;
+    box-sizing: border-box;
+    font-family: "rb" , sans-serif ;
+    scroll-behavior: smooth;
+
+    &::selection{
+        background-color: #472B73;
+        color: #fff; 
+    }
+    
+    &::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background-color: #ccc;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+        background: #472B73; 
+        border-radius: 8px;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+        background: #BE64A7; 
+    }
+}
+
+.overflowNone{
+    overflow: hidden;
+}
+
+.btn:focus,
+button:focus,
+input:focus,
+.form-control:focus {
+    outline-width: 0px !important;
+    outline-color: transparent !important;
+    box-shadow: 0 0 0 0 rgba($color: #000000, $alpha: 0);
+}
+
+a {
+    text-decoration: none !important;
+}
+
+ul{
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+.owl-theme .owl-dots .owl-dot span{
+    width: 20px;
+    height: 4px;
+    border-radius: 4px;
+    background-color: #F2CA2F;
+    opacity: .5;
+    transition: all .5s linear;
+}
+
+.owl-theme .owl-dots .owl-dot.active span,
+.owl-theme .owl-dots .owl-dot:hover span{
+    background-color: #F2CA2F;
+    opacity: 1;
+}
+
+.overflowNone{
+    overflow: hidden;
+}

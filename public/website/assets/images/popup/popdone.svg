@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
+  <g id="popdone" transform="translate(-138 -15)">
+    <circle id="Ellipse_33" data-name="Ellipse 33" cx="50" cy="50" r="50" transform="translate(138 15)" fill="#007c4b"/>
+    <g id="Group_5381" data-name="Group 5381" transform="translate(10 -15)">
+      <g id="tick-circle_twotone" data-name="tick-circle/twotone" transform="translate(153 55)">
+        <g id="vuesax_twotone_tick-circle" data-name="vuesax/twotone/tick-circle">
+          <g id="tick-circle">
+            <path id="Vector" d="M20.863,41.726A20.863,20.863,0,1,0,0,20.863,20.924,20.924,0,0,0,20.863,41.726Z" transform="translate(4.137 4.137)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+            <path id="Vector-2" data-name="Vector" d="M0,5.854l5.854,5.854L17.582,0" transform="translate(16.209 19.146)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" opacity="0.34"/>
+            <path id="Vector-3" data-name="Vector" d="M0,0H50V50H0Z" fill="none" opacity="0"/>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

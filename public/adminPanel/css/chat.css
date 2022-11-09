@@ -19,7 +19,6 @@
 }
 
 .chat-app .chat {
-  margin-left: 280px;
   border-left: 1px solid #eaeaea;
 }
 
@@ -90,7 +89,7 @@
   border-bottom: 2px solid #fff;
   height: 320px;
   overflow: scroll;
-  scroll-behavior:smooth;
+  scroll-behavior: smooth;
 }
 
 .chat .chat-history ul {

@@ -23,6 +23,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 Route::post('contact_us', [ContactUsController::class, 'contactUs']);
 Route::get('contact_info', [ContactUsController::class, 'contactInfo']);
 Route::post('update_user_add_firebase', [AuthController::class, 'addFirebaseToUser']);
+Route::get('static_page/{id}', [MenuController::class, 'show']);
 
 Route::middleware(['auth:sanctum', 'appLocale'])->group(function () {
     Route::post('update_profile', [AuthController::class, 'updateProfile']);

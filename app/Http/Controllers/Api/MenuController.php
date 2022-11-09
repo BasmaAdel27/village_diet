@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Api\MenuResource;
+use App\Http\Resources\Api\StaticPageResource;
 use App\Models\Setting;
 use App\Models\StaticPage\StaticPage;
 use Illuminate\Http\Request;
@@ -23,5 +24,12 @@ class MenuController extends Controller
         )->get();
 
         return successResponse(MenuResource::make($obj));
+    }
+
+    public function show($id)
+    {
+        $static_page = StaticPage::where(["is_show_in_app" => true, "is_active" => true])->findorfail($id);
+
+        return successResponse(StaticPageResource::make($static_page));
     }
 }

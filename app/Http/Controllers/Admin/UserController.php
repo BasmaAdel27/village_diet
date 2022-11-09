@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\DataTables\Admin\UserDatatable;
+use App\DataTables\Admin\UserChatDatatable;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\SendMessageRequest;
 use App\Http\Requests\Admin\UserRequest;
 use App\Mail\UserNumber;
+use App\Models\Chat\AdminMessage;
 use App\Models\Country\Country;
 use App\Models\HealthyInformation;
 use App\Models\State\State;
@@ -154,8 +157,30 @@ class UserController extends Controller
         return redirect()->route('admin.users.index')->with('success', trans('created_successfully'));
     }
 
-    public function messages()
+    public function messages($userId)
     {
-        return view('admin.users.chat');
+        $adminId = auth()->id();
+
+        $messages = AdminMessage::with('sender', 'receiver')
+            ->where(function ($q) use ($userId, $adminId) {
+                $q->where(fn ($q) => $q->where('sender_id', $userId)->where('receiver_id', $adminId))
+                    ->orWhere(fn ($q) => $q->where('sender_id', $adminId)->where('receiver_id', $userId));
+            })
+            ->oldest('id')
+            ->get();
+
+        return view('admin.users.chat', compact('messages', 'userId'));
+    }
+
+    public function sendMessage(SendMessageRequest $request, $userId)
+    {
+        AdminMessage::create([
+            'message' => $request->message,
+            'sender_id' => auth()->id(),
+            'type' => 'TEXT',
+            'receiver_id' => $userId,
+        ]);
+
+        return redirect()->back();
     }
 }

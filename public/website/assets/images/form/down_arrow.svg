@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+  <g id="Group_5275" data-name="Group 5275" transform="translate(-0.145 -0.145)">
+    <g id="down" transform="translate(0.145 0.145)">
+      <g id="arrow-down_twotone" data-name="arrow-down/twotone">
+        <g id="vuesax_twotone_arrow-down" data-name="vuesax/twotone/arrow-down">
+          <g id="arrow-down">
+            <path id="Vector" d="M13.151,0,7.738,5.473a1.636,1.636,0,0,1-2.325,0L0,0" transform="translate(3.425 7.436)" fill="none" stroke="#472b73" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+            <path id="Vector-2" data-name="Vector" d="M0,0H20V20H0Z" transform="translate(20 20) rotate(180)" fill="none" opacity="0"/>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
