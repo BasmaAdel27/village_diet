@@ -23,7 +23,7 @@ class StaticPageDatatable extends DataTable
                 return ($query->is_show_in_app == 1) ?  '<span class="btn btn-success">' . trans('active') . "</span>" : '<span class="btn btn-danger">' .  trans('inactive') . "</span>";
             })
             ->editColumn('images.image', function ($query) {
-                return "<img src='" . asset($query->images()->first()->media) . "' width=200>";
+                return "<img src='" . $query->image . "' width=200>";
             })
             ->editColumn('translations.title', function ($query) {
                 return $query->translate(app()->getLocale())->title;
