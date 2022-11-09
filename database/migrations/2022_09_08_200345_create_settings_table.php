@@ -21,6 +21,8 @@ class CreateSettingsTable extends Migration
             $table->decimal('tax_amount')->nullable();
             $table->enum('tax_type', Setting::TAX_TYPES)->nullable();
             $table->string('website_url')->nullable();
+            $table->string('ios_url')->nullable();
+            $table->string('android_url')->nullable();
             $table->boolean('is_link_active')->default(true);
             $table->boolean('forced_android')->default(false);
             $table->boolean('forced_ios')->default(false);

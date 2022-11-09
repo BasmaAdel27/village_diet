@@ -43,6 +43,7 @@
   </div>
 
 </div>
+<input type="hidden" name="slug">
 <div class="row">
   <div class="form-group col-6">
     <input type="submit" class="btn btn-dark" value="@lang('submit')">

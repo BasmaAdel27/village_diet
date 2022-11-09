@@ -234,5 +234,7 @@
   "u_receive_new_message": "You Have New Message ",
   "voice_message": "Voice Message",
   "last_message_date": "Last Message Date",
-  "list_users_messages": "Users Messages"
+  "list_users_messages": "Users Messages",
+  "android_download_link": "Android Download Link",
+  "ios_download_link": "IOS Download Link"
 }

@@ -45,6 +45,8 @@ class SettingRequest extends FormRequest
             'snapchat' => 'nullable|string',
             'tiktok' => 'nullable|string',
             'instagram' => 'nullable|string',
+            'android_url'=>'required',
+            'ios_url'=>'required'
         ];
     }
 }

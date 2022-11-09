@@ -13,7 +13,7 @@ class StaticPage extends Model implements Translatable
 {
     use HasFactory, TranslatableTranslatable, HasTimestampTrait, HasAssetsTrait;
 
-    protected $fillable = ['is_active', 'is_show_in_app'];
+    protected $fillable = ['is_active', 'is_show_in_app','slug'];
     public $translatedAttributes = ['title', 'content'];
     public $assets = ['image'];
 
