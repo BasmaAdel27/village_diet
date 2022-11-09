@@ -2,8 +2,15 @@
   @foreach ($locales as $locale)
   <div class="form-group col-6">
     <label>@lang("name_$locale")</label>
+  @if(isset($staticPage))
+    @if($staticPage->slug == 'Food-Recipes' || $staticPage->slug == 'Our-Vision' || $staticPage->slug =='About-Village-Diet')
     <input type="text" class="form-control" placeholder='@lang("name_$locale")' name={{ $locale }}[title]
-      value='{{ isset($staticPage) ? $staticPage->translate($locale)?->title : old("$locale.title")}}'>
+      value='{{ isset($staticPage) ? $staticPage->translate($locale)?->title : old("$locale.title")}}' readonly>
+    @endif
+  @else
+      <input type="text" class="form-control" placeholder='@lang("name_$locale")' name={{ $locale }}[title]
+             value='{{ isset($staticPage) ? $staticPage->translate($locale)?->title : old("$locale.title")}}' >
+  @endif
   </div>
   @endforeach
   @foreach ($locales as $locale)

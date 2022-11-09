@@ -35,7 +35,6 @@ class StaticPageController extends Controller
         $data = $request->validated();
         $data['slug']=str_slug($data['en']['title']);
         $staticPage->fill($data)->save();
-        dd($staticPage);
 
         return redirect()->route('admin.static_pages.index')->with('success', trans('created_successfully'));
     }

@@ -54,6 +54,7 @@ class CreateSettingsTable extends Migration
             $table->string('link_status')->nullable();
             $table->string('website_title')->nullable();
             $table->text('website_description')->nullable();
+            $table->string('visit_store')->nullable();
             $table->timestamps();
         });
     }

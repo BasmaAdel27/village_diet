@@ -25,7 +25,7 @@ class SettingSeeder extends Seeder
             'android_version' => 'v1.1.1',
             'web_title' => Str::random(10),
             'web_description' => Str::random(100),
-            'logo' => 'settings/unnamed.png',
+            'logo' => 'settings/logo.svg',
             'footer' => 'Copyright © village Diet 2022',
             'latitude' => '24.7253981',
             'longitude' => '47.3830547',
@@ -38,6 +38,10 @@ class SettingSeeder extends Seeder
             'snapchat' => 'https//www.snapchat.com',
             'tiktok' => 'https//www.tiktok.com',
             'instagram' => 'https//www.instagram.com',
+            'visit_store'=>'https//www.store.com',
+             'android_url'=> 'https//www.android.com',
+            'ios_url'=>'https//www.ios.com',
+            'email'=>'village@village.com'
         ]);
     }
 }
