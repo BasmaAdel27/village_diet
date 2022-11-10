@@ -20,7 +20,7 @@ class ContactUsRequest extends FormRequest
             'full_name' => 'nullable',
             'email' => 'nullable',
             'title' => 'nullable',
-            'message_type' => 'required,in:' . implode(',', ContactUs::MESSAGE_TYPES),
+            'message_type' => 'required|in:' . implode(',', ContactUs::MESSAGE_TYPES),
             'content' => 'required',
             'phone' => 'nullable',
             'whatsapp_phone' => 'nullable',
