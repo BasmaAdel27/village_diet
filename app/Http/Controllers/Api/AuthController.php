@@ -52,8 +52,7 @@ class AuthController extends Controller
     public function addFirebaseToUser(AddFirebaseRequest $request)
     {
         $data = $request->validated();
-        $user = User::findOrFail($data['user_id']);
-        $user->update(['firebase_token' => $data['firebase_token']]);
+        auth()->user()->update(['firebase_token' => $data['firebase_token']]);
 
         return successResponse(AuthResource::make($user), message: trans('updated_successfully'));
     }
