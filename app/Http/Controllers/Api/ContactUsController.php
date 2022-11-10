@@ -13,20 +13,23 @@ use Illuminate\Support\Facades\Lang;
 
 class ContactUsController extends Controller
 {
-    public function ContactUs(ContactUsRequest $contactUsRequest){
-          $data=$contactUsRequest->validated();
-          $contactUs=ContactUs::create([
-                'message_type'=>$data['message_type'],
-                'content'=>$data['content'],
-          ]);
+    public function ContactUs(ContactUsRequest $contactUsRequest)
+    {
+        $data = $contactUsRequest->validated();
+        $contactUs = ContactUs::create([
+            'message_type' => $data['message_type'],
+            'content' => $data['content'],
+            'user_type' => auth()->user()->trainer()->exists() ? ContactUs::TRAINER : ContactUs::USER
+        ]);
 
 
-          return successResponse(ContactUsResource::make($contactUs),extra: ['message' => Lang::get('message_has_been_sent_successfully')]);
+        return successResponse(ContactUsResource::make($contactUs), extra: ['message' => Lang::get('message_has_been_sent_successfully')]);
     }
 
 
-    public function contactInfo(){
-        $info=Setting::first();
+    public function contactInfo()
+    {
+        $info = Setting::first();
         return successResponse(ContactInfoResource::make($info));
     }
 }
