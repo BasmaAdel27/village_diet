@@ -19,7 +19,6 @@ class ContactUsController extends Controller
         $contactUs = ContactUs::create([
             'message_type' => $data['message_type'],
             'content' => $data['content'],
-            'user_type' => auth()->user()->trainer()->exists() ? ContactUs::TRAINER : ContactUs::USER
         ]);
 
 
