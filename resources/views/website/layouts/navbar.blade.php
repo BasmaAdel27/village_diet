@@ -6,8 +6,8 @@
       <span class="line"></span>
     </div>
 
-    <a href="index.html" class="brand-name">
-      <img src="assets/images/logo/logo.svg" loading="lazy" alt="" />
+    <a href="/" class="brand-name">
+      <img src="{{asset('website/assets/images/logo/logo.svg')}}" loading="lazy" alt="" />
     </a>
 
     <ul class="navbar-nav">
@@ -24,7 +24,7 @@
       </li>
 
       <li class="nav-item">
-        <a href="trainer.html" class="nav-link"> المدربين </a>
+        <a href="/trainers" class="nav-link"> المدربين </a>
       </li>
 
       <li class="nav-item">
@@ -42,7 +42,7 @@
       </a>
 
       <a href="login.html" class="custom-btn primary-color">
-        <img src="assets/images/navbar/user.svg" loading="lazy" alt="" />
+        <img src="{{asset('website/assets/images/navbar/user.svg')}}" loading="lazy" alt="" />
 
         <span> التسجيل </span>
       </a>
