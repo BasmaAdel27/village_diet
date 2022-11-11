@@ -5,12 +5,12 @@
     </div>
 
     <div class="form-group">
-      <img src="assets/images/form/sms.svg" class="icon" loading="lazy" alt="" />
+      <img src="{{asset('website/assets/images/form/sms.svg')}}" class="icon" loading="lazy" alt="" />
 
       <input type="text" class="form-control" placeholder="  ... ادخل البريد الالكتروني" />
 
       <a href="#" class="custom-btn primary-color">
-        <img src="assets/images/navbar/user.svg" loading="lazy" alt="" />
+        <img src="{{asset('website/assets/images/navbar/user.svg')}}" loading="lazy" alt="" />
 
         <span> اشترك الآن </span>
       </a>
@@ -21,7 +21,7 @@
     <div class="col-lg-4 col-12 mb-4">
       <div class="contain">
         <a href="index.html" class="brand-name">
-          <img src="assets/images/logo/logo.svg" loading="lazy" alt="" />
+          <img src="{{asset('website/assets/images/logo/logo.svg')}}" loading="lazy" alt="" />
         </a>
 
         <p>
@@ -31,37 +31,37 @@
         <ul class="socail-media">
           <li>
             <a href="#">
-              <img src="assets/images/footer/facebook.svg" loading="lazy" alt="" />
+              <img src="{{asset('website/assets/images/footer/facebook.svg')}}" loading="lazy" alt="" />
             </a>
           </li>
 
           <li>
             <a href="#">
-              <img src="assets/images/footer/instagram.svg" loading="lazy" alt="" />
+              <img src="{{asset('website/assets/images/footer/instagram.svg')}}" loading="lazy" alt="" />
             </a>
           </li>
 
           <li>
             <a href="#">
-              <img src="assets/images/footer/snapchat.svg" loading="lazy" alt="" />
+              <img src="{{asset('website/assets/images/footer/snapchat.svg')}}" loading="lazy" alt="" />
             </a>
           </li>
 
           <li>
             <a href="#">
-              <img src="assets/images/footer/tik-tok.svg" loading="lazy" alt="" />
+              <img src="{{asset('website/assets/images/footer/tik-tok.svg')}}" loading="lazy" alt="" />
             </a>
           </li>
 
           <li>
             <a href="#">
-              <img src="assets/images/footer/twitter.svg" loading="lazy" alt="" />
+              <img src="{{asset('website/assets/images/footer/twitter.svg')}}" loading="lazy" alt="" />
             </a>
           </li>
 
           <li>
             <a href="#">
-              <img src="assets/images/footer/youtube.svg" loading="lazy" alt="" />
+              <img src="{{asset('website/assets/images/footer/youtube.svg')}}" loading="lazy" alt="" />
             </a>
           </li>
         </ul>
@@ -151,25 +151,25 @@
         <ul class="payment">
           <li>
             <a href="#">
-              <img src="assets/images/footer/visa.webp" loading="lazy" alt="" />
+              <img src="{{asset('website/assets/images/footer/visa.webp')}}" loading="lazy" alt="" />
             </a>
           </li>
 
           <li>
             <a href="#">
-              <img src="assets/images/footer/mastercard.webp" loading="lazy" alt="" />
+              <img src="{{asset('website/assets/images/footer/mastercard.webp')}}" loading="lazy" alt="" />
             </a>
           </li>
 
           <li>
             <a href="#">
-              <img src="assets/images/footer/mada.webp" loading="lazy" alt="" />
+              <img src="{{asset('website/assets/images/footer/mada.webp')}}" loading="lazy" alt="" />
             </a>
           </li>
 
           <li>
             <a href="#">
-              <img src="assets/images/footer/pay.webp" loading="lazy" alt="" />
+              <img src="{{asset('website/assets/images/footer/pay.webp')}}" loading="lazy" alt="" />
             </a>
           </li>
         </ul>

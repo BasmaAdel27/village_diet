@@ -206,6 +206,24 @@
         <div class="row">
           <div class="col-md-5">
             <div class="form-group row">
+              <label class="col-sm-4 col-form-label" >@lang('android_download_link')</label>
+              <div class="col-sm-8">
+                <input type="text" name="android_url" value="{{$settings->android_url}}" class="form-control" />
+              </div>
+            </div>
+          </div>
+          <div class="col-md-5">
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label" >@lang('ios_download_link')</label>
+              <div class="col-sm-8">
+                <input type="text" name="ios_url" value="{{$settings->ios_url}}" class="form-control" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-5">
+            <div class="form-group row">
               <label class="col-sm-4 col-form-label">@lang('android maintenance')</label>
               <div class="col-sm-8">
                 <select class="form-control" name="android_maintenance">
@@ -351,6 +369,17 @@
               <label class="col-sm-4 col-form-label">@lang('instagram')</label>
               <div class="col-sm-8">
                 <input type="text" name="instagram" value="{{$settings->instagram}}" class="form-control" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-5">
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label">@lang('visit_store')</label>
+              <div class="col-sm-8">
+                <input type="text" name="visit_store" value="{{$settings->visit_store}}" class="form-control" />
               </div>
             </div>
           </div>

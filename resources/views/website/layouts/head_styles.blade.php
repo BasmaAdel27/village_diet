@@ -8,3 +8,5 @@
 @endif
 <link rel="stylesheet" href="{{ asset('website/assets/css/lib/swiper-bundle.min.css') }}" />
 <link rel="stylesheet" href="{{ asset('website/assets/css/style.css') }}" />
+<style rel="stylesheet" href={{asset('js/sweetalert/sweetalert2.css')}}></style>
+

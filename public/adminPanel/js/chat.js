@@ -38,28 +38,28 @@ function startRecording() {
   https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia */
 
   navigator.mediaDevices
-    .getUserMedia(constraints)
-    .then(function (stream) {
-      console.log('getUserMedia() success, stream created, initializing Recorder.js ...');
-      /* assign to gumStream for later use */
-      gumStream = stream;
-      /* use the stream */
-      input = audioContext.createMediaStreamSource(stream);
-      /* Create the Recorder object and configure to record mono sound (1 channel) Recording 2 channels will double the file size */
-      rec = new Recorder(input, {
-        numChannels: 1,
-      });
-      //start the recording process
-      rec.record();
-      recording.innerHTML = 'Recording started';
-      console.log('Recording started');
-    })
-    .catch(function (err) {
-      //enable the record button if getUserMedia() fails
-      recordButton.disabled = false;
-      stopButton.disabled = true;
-      pauseButton.disabled = true;
-    });
+        .getUserMedia(constraints)
+        .then(function (stream) {
+          console.log('getUserMedia() success, stream created, initializing Recorder.js ...');
+          /* assign to gumStream for later use */
+          gumStream = stream;
+          /* use the stream */
+          input = audioContext.createMediaStreamSource(stream);
+          /* Create the Recorder object and configure to record mono sound (1 channel) Recording 2 channels will double the file size */
+          rec = new Recorder(input, {
+            numChannels: 1,
+          });
+          //start the recording process
+          rec.record();
+          recording.innerHTML = 'Recording started';
+          console.log('Recording started');
+        })
+        .catch(function (err) {
+          //enable the record button if getUserMedia() fails
+          recordButton.disabled = false;
+          stopButton.disabled = true;
+          pauseButton.disabled = true;
+        });
 }
 function pauseRecording() {
   console.log('pauseButton clicked rec.recording=', rec.recording);
@@ -125,27 +125,27 @@ function createDownloadLink(blob) {
       },
     });
     downloadButton.addEventListener(
-      'click',
-      function (e) {
-        var society = $('input[name=society_id]').val();
-        var sender = $('input[name=sender_id]').val();
-        var message = new File([blob], filename + '.wav');
-        var formData = new FormData();
-        formData.append('message', message);
-        formData.append('society', society);
-        formData.append('sender', sender);
-        $.ajax({
-          type: 'POST',
-          url: '/admin/societies/save',
-          data: formData,
-          processData: false,
-          contentType: false,
-          success: function (data) {
-            location.reload();
+          'click',
+          function (e) {
+            var society = $('input[name=society_id]').val();
+            var sender = $('input[name=sender_id]').val();
+            var message = new File([blob], filename + '.wav');
+            var formData = new FormData();
+            formData.append('message', message);
+            formData.append('society', society);
+            formData.append('sender', sender);
+            $.ajax({
+              type: 'POST',
+              url: '/admin/societies/save',
+              data: formData,
+              processData: false,
+              contentType: false,
+              success: function (data) {
+                location.reload();
+              },
+            });
           },
-        });
-      },
-      false
+          false
     );
   }
 

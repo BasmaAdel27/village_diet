@@ -234,5 +234,25 @@
   "u_receive_new_message": "You Have New Message ",
   "voice_message": "Voice Message",
   "last_message_date": "Last Message Date",
-  "list_users_messages": "Users Messages"
+  "list_users_messages": "Users Messages",
+  "android_download_link": "Android Download Link",
+  "ios_download_link": "IOS Download Link",
+  "visit_store": "Visit Store",
+  "inquiry": "Inquiry",
+  "complaint": "Complaint",
+  "suggestion": "Suggestion",
+  "user_type": "User Type",
+  "user": "User",
+  "message_address": "Title",
+  "send_message": "Send Message",
+  "sending_message": "Sending a Message",
+  "full_name": "Full Name",
+  "message_content": "Message Content",
+  "contactus_desc": "Send a message now to the administration and they will reply to you as soon as possible, with you wherever you are",
+  "contact_desc": "If you have any questions, do not hesitate to contact us",
+  "trainers_desc": "Elite coaches on the Village Diet platform",
+  "licensed": "Licensed",
+  "not_licensed": "Unlicensed"
+
+
 }
