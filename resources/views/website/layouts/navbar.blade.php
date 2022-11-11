@@ -24,7 +24,7 @@
       </li>
 
       <li class="nav-item">
-        <a href="/trainers" class="nav-link"> المدربين </a>
+        <a href="/trainers" class="nav-link"> @lang('trainers') </a>
       </li>
 
       <li class="nav-item">
@@ -32,7 +32,7 @@
       </li>
 
       <li class="nav-item">
-        <a href="contact.html" class="nav-link"> اتصل بنا </a>
+        <a href="/contact_us" class="nav-link"> @lang('contact us') </a>
       </li>
     </ul>
 

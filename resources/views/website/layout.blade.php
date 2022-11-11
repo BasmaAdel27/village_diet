@@ -21,6 +21,8 @@
     @include('website.layouts.footer')
   </footer>
   @include('website.layouts.foot_scripts')
+  @include('website.layouts.flash.errors')
+  @include('website.layouts.flash.success')
 </body>
 
 </html>

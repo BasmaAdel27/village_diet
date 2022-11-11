@@ -6,11 +6,11 @@
   <div class="container general-pattern right-left-pattern">
     <div class="heading">
       <h1>
-        المدربين
+        @lang('trainers')
       </h1>
 
       <p>
-        نخبة من المدربين الموجودين على منصة فيلج دايت
+        @lang('trainers_desc')
       </p>
     </div>
   </div>
@@ -63,11 +63,11 @@
               <div class="custom-btn">
                 @if($trainer->is_certified == 1)
                 <span>
-                  مدرب مرخص
+                  @lang('trainer') @lang('licensed')
                 </span>
                 @else
                   <span>
-                  مدرب غير مرخص
+                  @lang('trainer') @lang('not_licensed')
                 </span>
                 @endif
               </div>
