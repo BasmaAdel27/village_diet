@@ -16,8 +16,6 @@ class StaticPageRequest extends FormRequest
         $rules = [
             'is_active' => 'required|in:0,1',
             'is_show_in_app' => 'required|in:0,1',
-            'slug'=>'nullable'
-
         ];
 
         foreach (config('translatable.locales') as $locale) {
