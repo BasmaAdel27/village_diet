@@ -15,7 +15,8 @@ class ContactUsRequest extends FormRequest
 
 
     public function rules()
-    { return [
+    {
+        return [
           'full_name' => 'nullable',
           'email' => 'required',
           'title' => 'nullable',

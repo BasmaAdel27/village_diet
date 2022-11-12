@@ -11,7 +11,7 @@ class TrainarController extends Controller
 
     public function index()
     {
-        $trainers=Trainer::where('show_inPage',1)->with('user')->get();
+        $trainers=Trainer::where([['show_inPage',1],['status','DONE']])->with('user')->get();
 
         return view('website.pages.trainers',compact('trainers'));
     }

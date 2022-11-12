@@ -28,7 +28,7 @@
       </li>
 
       <li class="nav-item">
-        <a href="testimonials.html" class="nav-link"> أراء العملاء </a>
+        <a href="/customers_opinions" class="nav-link"> @lang('customer_opinions') </a>
       </li>
 
       <li class="nav-item">

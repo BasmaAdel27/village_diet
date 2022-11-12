@@ -252,7 +252,10 @@
   "contact_desc": "If you have any questions, do not hesitate to contact us",
   "trainers_desc": "Elite coaches on the Village Diet platform",
   "licensed": "Licensed",
-  "not_licensed": "Unlicensed"
-
+  "not_licensed": "Unlicensed",
+  "customer_opinions": "Customer Opinions",
+  "opinion_desc": "A group of distinguished opinions of our valued customers and the standard of our excellence and leadership",
+  "empty_trainers": "There are no coaches currently",
+  "empty_opinions": "There are currently no customer reviews"
 
 }

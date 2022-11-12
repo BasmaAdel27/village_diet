@@ -118,7 +118,7 @@
       @else
         <div class="heading">
           <p>
-            لا يوجد مدربين حاليا
+            @lang('empty_trainers')
           </p>
         </div>
       @endif
