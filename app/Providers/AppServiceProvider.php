@@ -26,6 +26,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        // TODO: check on date of subscription , set date to finished , and reactivate the subscription
         try {
             $setting = Setting::first();
             View::share('setting', $setting);
