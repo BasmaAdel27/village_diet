@@ -18,7 +18,7 @@
                 </p>
 
                 <a href="#" class="custom-btn secondary-color">
-                  <img src="assets/images/icons/arrow.svg" loading="lazy" alt="" />
+                  <img src="{{asset('website/assets/images/icons/arrow.svg')}}" loading="lazy" alt="" />
 
                   <span> المزيد عنا </span>
                 </a>
@@ -39,7 +39,7 @@
                 </p>
 
                 <a href="#" class="custom-btn secondary-color">
-                  <img src="assets/images/icons/arrow.svg" loading="lazy" alt="" />
+                  <img src="{{asset('website/assets/images/icons/arrow.svg')}}" loading="lazy" alt="" />
 
                   <span> المزيد عنا </span>
                 </a>
@@ -60,7 +60,7 @@
                 </p>
 
                 <a href="#" class="custom-btn secondary-color">
-                  <img src="assets/images/icons/arrow.svg" loading="lazy" alt="" />
+                  <img src="{{asset('website/assets/images/icons/arrow.svg')}}" loading="lazy" alt="" />
 
                   <span> المزيد عنا </span>
                 </a>

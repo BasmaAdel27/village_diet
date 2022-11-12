@@ -20,8 +20,8 @@
   <div class="row">
     <div class="col-lg-4 col-12 mb-4">
       <div class="contain">
-        <a href="index.html" class="brand-name">
-          <img src="{{asset('website/assets/images/logo/logo.svg')}}" loading="lazy" alt="" />
+        <a href="/" class="brand-name">
+          <img src="{{asset('storage/'.$setting->logo)}}" loading="lazy" alt="" />
         </a>
 
         <p>
@@ -91,17 +91,17 @@
             </li>
 
             <li>
-              <a href="trainer.html"> المدربين </a>
+              <a href="/trainers"> المدربين </a>
             </li>
           </ul>
 
           <ul class="links">
             <li>
-              <a href="testimonials.html"> أراء العملاء </a>
+              <a href="/customers_opinions"> أراء العملاء </a>
             </li>
 
             <li>
-              <a href="contact.html"> اتصل بنا </a>
+              <a href="/contact_us"> اتصل بنا </a>
             </li>
           </ul>
         </div>

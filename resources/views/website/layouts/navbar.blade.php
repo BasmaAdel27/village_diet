@@ -7,7 +7,7 @@
     </div>
 
     <a href="/" class="brand-name">
-      <img src="{{asset('website/assets/images/logo/logo.svg')}}" loading="lazy" alt="" />
+      <img src="{{asset('storage/'.$setting->logo)}}" loading="lazy" alt="" />
     </a>
 
     <ul class="navbar-nav">
