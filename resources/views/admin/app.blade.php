@@ -30,6 +30,9 @@
   @include('admin.layout.flash.errors')
   @include('admin.layout.flash.success')
   @include('admin.layout.helpers.delete_script')
+  @include('admin.layout.helpers.active_script')
+  @include('admin.layout.helpers.cancel_script')
+  @include('admin.layout.helpers.inactive_script')
 </body>
 
 </html>

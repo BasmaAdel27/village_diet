@@ -258,6 +258,11 @@
   "customer_opinions": "أراء العملاء",
   "opinion_desc": "مجموعة من الأراء المميزة لعملائنا الكرام ومعيار تفوقنا وريادتنا",
   "empty_trainers": "لا يوجد مدربين حاليا",
-  "empty_opinions": "لا توجد أراء للعملاء حاليا"
-
+  "empty_opinions": "لا توجد أراء للعملاء حاليا",
+  "cancellation": "إلغاء",
+  "deactivate": "تعطيل",
+  "activate": "تفعيل",
+  "Yes, activate it!": "نعم, قم بالتفعيل ",
+  "cancel": "إلغاء",
+  "confirm!": "تأكيد!"
 }

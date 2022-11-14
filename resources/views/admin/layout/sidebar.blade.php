@@ -51,6 +51,14 @@
       </a>
     </li>
     @endcan
+    @can('admin.subscriptions.index')
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('admin.subscriptions.index') }}">
+          <i class="mdi mdi-account-group menu-icon"></i>
+          <span class="menu-title">@lang('subscriptions')</span>
+        </a>
+      </li>
+    @endcan
     @can('admin.societies.index')
     <li class="nav-item">
       <a class="nav-link" href="{{ route('admin.societies.index') }}">

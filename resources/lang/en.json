@@ -256,6 +256,12 @@
   "customer_opinions": "Customer Opinions",
   "opinion_desc": "A group of distinguished opinions of our valued customers and the standard of our excellence and leadership",
   "empty_trainers": "There are no coaches currently",
-  "empty_opinions": "There are currently no customer reviews"
+  "empty_opinions": "There are currently no customer reviews",
+  "cancel_request": "Cancel",
+  "cancellation": "Cancellation",
+  "deactivate": "Deactivate",
+  "activate": "Activate",
+  "cancel": "Cancel",
+  "confirm!": "Confirm!"
 
 }

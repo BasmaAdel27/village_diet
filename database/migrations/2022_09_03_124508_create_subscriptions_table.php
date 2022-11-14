@@ -12,6 +12,7 @@ class CreateSubscriptionsTable extends Migration
         Schema::create('subscriptions', function (Blueprint $table) {
             $table->id();
             $table->enum('status', Subscription::STATUSES);
+            $table->enum('status_ar', Subscription::STATUSES_AR);
             $table->decimal('amount');
             $table->decimal('tax_amount')->default(0);
             $table->decimal('total_amount');
