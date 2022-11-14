@@ -1,66 +1,59 @@
 <div class="container">
-  <form action="" class="form-contain">
+  <form action="{{ route('website.subscribe') }}" class="form-contain" method="POST">@csrf
     <div class="form-title">
-      <p>النشرة البريدية</p>
+      <p>@lang('subscription_list')</p>
     </div>
-
     <div class="form-group">
       <img src="{{asset('website/assets/images/form/sms.svg')}}" class="icon" loading="lazy" alt="" />
-
-      <input type="text" class="form-control" placeholder="  ... ادخل البريد الالكتروني" />
-
-      <a href="#" class="custom-btn primary-color">
+      <input type="text" class="form-control" placeholder="@lang('enter_email')" name="email" />
+      <a href="#!" class="custom-btn primary-color" onclick="$(this).closest('form').submit()">
         <img src="{{asset('website/assets/images/navbar/user.svg')}}" loading="lazy" alt="" />
-
-        <span> اشترك الآن </span>
+        <span onclick="$(this).closest('form').submit()">@lang('subscribe')</span>
       </a>
     </div>
   </form>
-
   <div class="row">
     <div class="col-lg-4 col-12 mb-4">
       <div class="contain">
         <a href="/" class="brand-name">
-          <img src="{{asset('storage/'.$setting->logo)}}" loading="lazy" alt="" />
+          <img src="{{ asset('storage/'.$setting->logo) }}" loading="lazy" alt="" />
         </a>
-
         <p>
-          ابدأ الآن لتصل إلى وزن مثالي وحياة صحية مع فيلج دايت وعلى ايدي مجموعة من المتخصصين
+          @lang('start_now')
         </p>
-
         <ul class="socail-media">
           <li>
-            <a href="#">
-              <img src="{{asset('website/assets/images/footer/facebook.svg')}}" loading="lazy" alt="" />
+            <a href="{{ $setting->facebook }}">
+              <img src="{{ asset('website/assets/images/footer/facebook.svg') }}" loading="lazy" alt="" />
             </a>
           </li>
 
           <li>
-            <a href="#">
-              <img src="{{asset('website/assets/images/footer/instagram.svg')}}" loading="lazy" alt="" />
+            <a href="{{ $setting->instagram }}">
+              <img src="{{ asset('website/assets/images/footer/instagram.svg') }}" loading="lazy" alt="" />
             </a>
           </li>
 
           <li>
-            <a href="#">
+            <a href="{{ $setting->snapchat }}">
               <img src="{{asset('website/assets/images/footer/snapchat.svg')}}" loading="lazy" alt="" />
             </a>
           </li>
 
           <li>
-            <a href="#">
+            <a href="{{ $setting->tiktok }}">
               <img src="{{asset('website/assets/images/footer/tik-tok.svg')}}" loading="lazy" alt="" />
             </a>
           </li>
 
           <li>
-            <a href="#">
+            <a href="{{ $setting->twitter }}">
               <img src="{{asset('website/assets/images/footer/twitter.svg')}}" loading="lazy" alt="" />
             </a>
           </li>
 
           <li>
-            <a href="#">
+            <a href="{{ $setting->youtube }}">
               <img src="{{asset('website/assets/images/footer/youtube.svg')}}" loading="lazy" alt="" />
             </a>
           </li>
@@ -70,38 +63,32 @@
 
     <div class="col-lg-4 col-12 mb-4">
       <div class="contain padding-contain">
-        <h1>أقسام المنصة</h1>
+        <h1>@lang('website_menu')</h1>
 
         <div class="flex-link">
           <ul class="links">
             <li>
-              <a href="index.html"> الرئيسية </a>
+              <a href="{{ route('website.home') }}">@lang('home')</a>
             </li>
-
             <li>
-              <a href="sheet-meals.html"> نبذة عنا </a>
+              <a href="{{ route('website.home') }}#about-us">@lang('about_us')</a>
             </li>
-
             <li>
-              <a href="questions.html"> أسئلة شائعة </a>
+              <a href="questions.html">@lang('faq')</a>
             </li>
-
             <li>
-              <a href="sheet-meals.html"> الوصفات الغذائية </a>
+              <a href="sheet-meals.html"> @lang('food_recipes')</a>
             </li>
-
             <li>
-              <a href="/trainers"> المدربين </a>
+              <a href="{{ route('website.trainers.index') }}">@lang('our_trainers')</a>
             </li>
           </ul>
-
           <ul class="links">
             <li>
-              <a href="/customers_opinions"> أراء العملاء </a>
+              <a href="{{ route('website.customers_opinions.index') }}">@lang('customer_opinions')</a>
             </li>
-
             <li>
-              <a href="/contact_us"> اتصل بنا </a>
+              <a href="{{ route('website.contact_us.index') }}">@lang('contact_us')</a>
             </li>
           </ul>
         </div>
@@ -111,38 +98,22 @@
     <div class="col-lg-4 col-12 mb-4">
       <div class="contain">
         <div class="flex-data">
+          @if (isset($staticPages) && count($staticPages))
           <div>
-            <h1>روابط هامة</h1>
-
+            <h1>@lang('important_links')</h1>
             <ul class="links">
-              <li>
-                <a href="#"> شروط الاستخدام </a>
-              </li>
-
-              <li>
-                <a href="#"> سياسة الاشتراك </a>
-              </li>
-
-              <li>
-                <a href="#"> سياسة الخصوصية </a>
-              </li>
+              @foreach ($staticPages as $page)
+              <li><a href="{{ route('website.static_pages.show',$page->id) }}">{{ $page->title }}</a></li>
+              @endforeach
             </ul>
           </div>
-
+          @endif
           <div>
-            <h1>المدربين</h1>
+            <h1>@lang('trainers')</h1>
 
             <ul class="links">
               <li>
-                <a href="login.html"> التسجيل </a>
-              </li>
-
-              <li>
-                <a href="#"> المتطلبات </a>
-              </li>
-
-              <li>
-                <a href="#"> مزايا الاشتراك </a>
+                <a href="login.html">@lang('register')</a>
               </li>
             </ul>
           </div>
@@ -179,9 +150,7 @@
 
   <div class="copyrights">
     <p>
-      جميع الحقوق محفوظة لموقع
-      <span> فيلج دايت </span>
-      @ 2022
+      {{ $setting->footer }}
     </p>
   </div>
 </div>
