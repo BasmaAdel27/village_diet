@@ -11,7 +11,7 @@
     <div class="row">
       <div class="col-lg-3 col-12 mb-4 box-contain">
         <div class="box">
-          <img src="assets/images/takes/take_1.svg" loading="lazy" alt="" />
+          <img src="{{asset('website/assets/images/takes/take_1.svg')}}" loading="lazy" alt="" />
 
           <h2>منتجات مميزة</h2>
 
@@ -21,7 +21,7 @@
 
       <div class="col-lg-3 col-12 mb-4 box-contain">
         <div class="box">
-          <img src="assets/images/takes/take_2.svg" loading="lazy" alt="" />
+          <img src="{{asset('website/assets/images/takes/take_2.svg')}}" loading="lazy" alt="" />
 
           <h2>ضمان شامل</h2>
 
@@ -31,7 +31,7 @@
 
       <div class="col-lg-3 col-12 mb-4 box-contain">
         <div class="box">
-          <img src="assets/images/takes/take_3.svg" loading="lazy" alt="" />
+          <img src="{{asset('website/assets/images/takes/take_3.svg')}}" loading="lazy" alt="" />
 
           <h2>أسعار تنافسية</h2>
 
@@ -41,7 +41,7 @@
 
       <div class="col-lg-3 col-12 mb-4 box-contain">
         <div class="box">
-          <img src="assets/images/takes/take_4.svg" loading="lazy" alt="" />
+          <img src="{{asset('website/assets/images/takes/take_4.svg')}}" loading="lazy" alt="" />
 
           <h2>شحن سريع</h2>
 

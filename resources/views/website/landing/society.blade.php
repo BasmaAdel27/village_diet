@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-lg-5 col-12 mobile-order-1">
         <div class="image-content">
-          <img src="assets/images/socaity.webp" loading="lazy" alt="" />
+          <img src="{{asset('website/assets/images/socaity.webp')}}" loading="lazy" alt="" />
         </div>
       </div>
 

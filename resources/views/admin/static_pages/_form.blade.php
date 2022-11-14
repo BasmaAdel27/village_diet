@@ -4,12 +4,14 @@
     <label>@lang("name_$locale")</label>
   @if(isset($staticPage))
     @if($staticPage->slug == 'Food-Recipes' || $staticPage->slug == 'Our-Vision' || $staticPage->slug =='About-Village-Diet')
-    <input type="text" class="form-control" placeholder='@lang("name_$locale")' name={{ $locale }}[title]
-      value='{{ isset($staticPage) ? $staticPage->translate($locale)?->title : old("$locale.title")}}' readonly>
+        <input type="text" class="form-control" placeholder='@lang("name_$locale")' name={{ $locale }}[title]
+          value='{{ $staticPage->translate($locale)?->title}}' readonly>
+    @else
+        <input type="text" class="form-control" placeholder='@lang("name_$locale")' name={{ $locale }}[title]
+               value='{{ $staticPage->translate($locale)?->title}}'>
     @endif
   @else
-      <input type="text" class="form-control" placeholder='@lang("name_$locale")' name={{ $locale }}[title]
-             value='{{ isset($staticPage) ? $staticPage->translate($locale)?->title : old("$locale.title")}}' >
+      <input type="text" class="form-control" placeholder='@lang("name_$locale")' name={{ $locale }}[title]>
   @endif
   </div>
   @endforeach

@@ -11,7 +11,7 @@
         <div class="box first-box">
           <span> 01 </span>
 
-          <img src="assets/images/works/work_1.svg" loading="lazy" alt="" />
+          <img src="{{asset('website/assets/images/works/work_1.svg')}}" loading="lazy" alt="" />
 
           <h2>عميلة التسجيل</h2>
 
@@ -23,7 +23,7 @@
         <div class="box">
           <span> 02 </span>
 
-          <img src="assets/images/works/work_2.svg" loading="lazy" alt="" />
+          <img src="{{asset('website/assets/images/works/work_2.svg')}}" loading="lazy" alt="" />
 
           <h2>تفعيل التطبيق</h2>
 
@@ -35,7 +35,7 @@
         <div class="box">
           <span> 03 </span>
 
-          <img src="assets/images/works/work_3.svg" loading="lazy" alt="" />
+          <img src="{{asset('website/assets/images/works/work_3.svg')}}" loading="lazy" alt="" />
 
           <h2>المتابعة اليومية</h2>
 
@@ -47,7 +47,7 @@
         <div class="box last-box">
           <span> 04 </span>
 
-          <img src="assets/images/works/work_4.svg" loading="lazy" alt="" />
+          <img src="{{asset('website/assets/images/works/work_4.svg')}}" loading="lazy" alt="" />
 
           <h2>التواجد في المجتمع</h2>
 

@@ -7,7 +7,7 @@
     </div>
 
     <a href="/" class="brand-name">
-      <img src="{{asset('website/assets/images/logo/logo.svg')}}" loading="lazy" alt="" />
+      <img src="{{asset('storage/'.$setting->logo)}}" loading="lazy" alt="" />
     </a>
 
     <ul class="navbar-nav">
@@ -28,7 +28,7 @@
       </li>
 
       <li class="nav-item">
-        <a href="testimonials.html" class="nav-link"> أراء العملاء </a>
+        <a href="/customers_opinions" class="nav-link"> @lang('customer_opinions') </a>
       </li>
 
       <li class="nav-item">

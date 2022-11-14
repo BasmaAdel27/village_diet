@@ -6,11 +6,11 @@
   <div class="container general-pattern right-left-pattern">
     <div class="heading">
       <h1>
-        أراء العملاء
+        @lang('customer_opinions')
       </h1>
 
       <p>
-        مجموعة من الأراء المميزة لعملائنا الكرام ومعيار تفوقنا وريادتنا
+        @lang('opinion_desc')
       </p>
     </div>
   </div>
@@ -19,141 +19,30 @@
 <section class="trainer">
   <div class="container">
     <div class="row">
-      <div class="col-lg-6 col-12 mb-4">
-        <div class="testimonails-box">
-          <p>
-            تسعى المنصة أن تصبح الانطلاقة الوطنية الجديدة داخل المجتمع السعودي في عالم الصحة واللياقة البدنية. عبر تجميع
-            وعرض كافة المدربين
-          </p>
+      @if($opinions->isNotEmpty())
+        @foreach($opinions as $opinion)
+        <div class="col-lg-6 col-12 mb-4">
+          <div class="testimonails-box">
+            <p>
+              {{$opinion->content}}
+            </p>
+            <div class="user-data">
+              <img src="{{$opinion->getImageAttribute()}}" loading="lazy" alt="" />
 
-          <div class="user-data">
-            <img src="assets/images/trainer/user.webp" loading="lazy" alt="" />
-
-            <h2>
-              كريم الورداني
-            </h2>
+              <h2>
+                {{$opinion->name}}
+              </h2>
+            </div>
           </div>
         </div>
-      </div>
-
-      <div class="col-lg-6 col-12 mb-4">
-        <div class="testimonails-box">
-          <p>
-            تسعى المنصة أن تصبح الانطلاقة الوطنية الجديدة داخل المجتمع السعودي في عالم الصحة واللياقة البدنية. عبر تجميع
-            وعرض كافة المدربين
+        @endforeach
+      @else
+        <div class="heading">
+        <p>
+            @lang('empty_opinions')
           </p>
-
-          <div class="user-data">
-            <img src="assets/images/trainer/user.webp" loading="lazy" alt="" />
-
-            <h2>
-              كريم الورداني
-            </h2>
-          </div>
         </div>
-      </div>
-
-      <div class="col-lg-6 col-12 mb-4">
-        <div class="testimonails-box">
-          <p>
-            تسعى المنصة أن تصبح الانطلاقة الوطنية الجديدة داخل المجتمع السعودي في عالم الصحة واللياقة البدنية. عبر تجميع
-            وعرض كافة المدربين
-          </p>
-
-          <div class="user-data">
-            <img src="assets/images/trainer/user.webp" loading="lazy" alt="" />
-
-            <h2>
-              كريم الورداني
-            </h2>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-6 col-12 mb-4">
-        <div class="testimonails-box">
-          <p>
-            تسعى المنصة أن تصبح الانطلاقة الوطنية الجديدة داخل المجتمع السعودي في عالم الصحة واللياقة البدنية. عبر تجميع
-            وعرض كافة المدربين
-          </p>
-
-          <div class="user-data">
-            <img src="assets/images/trainer/user.webp" loading="lazy" alt="" />
-
-            <h2>
-              كريم الورداني
-            </h2>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-6 col-12 mb-4">
-        <div class="testimonails-box">
-          <p>
-            تسعى المنصة أن تصبح الانطلاقة الوطنية الجديدة داخل المجتمع السعودي في عالم الصحة واللياقة البدنية. عبر تجميع
-            وعرض كافة المدربين
-          </p>
-
-          <div class="user-data">
-            <img src="assets/images/trainer/user.webp" loading="lazy" alt="" />
-
-            <h2>
-              كريم الورداني
-            </h2>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-6 col-12 mb-4">
-        <div class="testimonails-box">
-          <p>
-            تسعى المنصة أن تصبح الانطلاقة الوطنية الجديدة داخل المجتمع السعودي في عالم الصحة واللياقة البدنية. عبر تجميع
-            وعرض كافة المدربين
-          </p>
-
-          <div class="user-data">
-            <img src="assets/images/trainer/user.webp" loading="lazy" alt="" />
-
-            <h2>
-              كريم الورداني
-            </h2>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-6 col-12 mb-4">
-        <div class="testimonails-box">
-          <p>
-            تسعى المنصة أن تصبح الانطلاقة الوطنية الجديدة داخل المجتمع السعودي في عالم الصحة واللياقة البدنية. عبر تجميع
-            وعرض كافة المدربين
-          </p>
-
-          <div class="user-data">
-            <img src="assets/images/trainer/user.webp" loading="lazy" alt="" />
-
-            <h2>
-              كريم الورداني
-            </h2>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-6 col-12 mb-4">
-        <div class="testimonails-box">
-          <p>
-            تسعى المنصة أن تصبح الانطلاقة الوطنية الجديدة داخل المجتمع السعودي في عالم الصحة واللياقة البدنية. عبر تجميع
-            وعرض كافة المدربين
-          </p>
-
-          <div class="user-data">
-            <img src="assets/images/trainer/user.webp" loading="lazy" alt="" />
-
-            <h2>
-              كريم الورداني
-            </h2>
-          </div>
-        </div>
-      </div>
+      @endif
     </div>
   </div>
 </section>

@@ -254,5 +254,15 @@
   "contact_desc": "في حالة كان لديك إي إستفسار لا تترد بالتواصل معنا",
   "trainers_desc": "نخبة من المدربين الموجودين على منصة فيلج دايت",
   "licensed": "مرخص",
-  "not_licensed": "غير مرخص"
+  "not_licensed": "غير مرخص",
+  "customer_opinions": "أراء العملاء",
+  "opinion_desc": "مجموعة من الأراء المميزة لعملائنا الكرام ومعيار تفوقنا وريادتنا",
+  "empty_trainers": "لا يوجد مدربين حاليا",
+  "empty_opinions": "لا توجد أراء للعملاء حاليا",
+  "cancellation": "إلغاء",
+  "deactivate": "تعطيل",
+  "activate": "تفعيل",
+  "Yes, activate it!": "نعم, قم بالتفعيل ",
+  "cancel": "إلغاء",
+  "confirm!": "تأكيد!"
 }

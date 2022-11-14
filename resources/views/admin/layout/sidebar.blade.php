@@ -51,6 +51,14 @@
       </a>
     </li>
     @endcan
+    @can('admin.subscriptions.index')
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('admin.subscriptions.index') }}">
+          <i class="mdi mdi-account-group menu-icon"></i>
+          <span class="menu-title">@lang('subscriptions')</span>
+        </a>
+      </li>
+    @endcan
     @can('admin.societies.index')
     <li class="nav-item">
       <a class="nav-link" href="{{ route('admin.societies.index') }}">
@@ -239,6 +247,14 @@
       </div>
     </li>
     @endcanany
+    @can('admin.opinions.index')
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('admin.opinions.index') }}">
+          <i class="mdi mdi-comment-eye menu-icon"></i>
+          <span class="menu-title">@lang('customer_opinions')</span>
+        </a>
+      </li>
+    @endcan
     @can('admin.settings.index')
     <li class="nav-item">
       <a class="nav-link" href="{{ route('admin.settings.index') }}">
@@ -247,6 +263,7 @@
       </a>
     </li>
     @endcan
+
 
   </ul>
 </nav>

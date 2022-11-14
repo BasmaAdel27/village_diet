@@ -19,7 +19,7 @@ class SubscriptionFactory extends Factory
         $tax_amount = rand(1, 100);
         $total = $amount + $tax_amount;
 
-        return [
+        $data= [
             'status' => $this->faker->randomElement(Subscription::STATUSES),
             'amount' => $amount,
             'tax_amount' => $tax_amount,
@@ -28,5 +28,17 @@ class SubscriptionFactory extends Factory
             'end_date' => now()->addDays(30),
             'user_id' => User::factory()->create(),
         ];
-    }
+        if ($data['status']=='active'){
+            $data['status_ar'] = 'مفعل';
+        }elseif ($data['status']=='in_active'){
+            $data['status_ar'] = 'معطل';
+        }  elseif ($data['status']=='finished') {
+            $data['status_ar'] = 'منتهي';
+        }else {
+            $data['status_ar'] = 'ملغي';
+        }
+        return $data;
+}
+
+
 }
