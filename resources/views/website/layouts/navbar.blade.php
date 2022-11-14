@@ -16,7 +16,7 @@
       </li>
 
       <li class="nav-item">
-        <a href="questions.html" class="nav-link">@lang('faq')</a>
+        <a href="{{ route('website.faqs') }}" class="nav-link">@lang('faq')</a>
       </li>
 
       <li class="nav-item">

@@ -74,7 +74,7 @@
               <a href="{{ route('website.home') }}#about-us">@lang('about_us')</a>
             </li>
             <li>
-              <a href="questions.html">@lang('faq')</a>
+              <a href="{{ route('website.faqs') }}">@lang('faq')</a>
             </li>
             <li>
               <a href="sheet-meals.html"> @lang('food_recipes')</a>
