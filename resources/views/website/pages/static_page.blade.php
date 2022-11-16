@@ -6,7 +6,7 @@
   <div class="container general-pattern right-left-pattern">
     <div class="heading">
       <h1>
-        {{ $page->title }}
+        {{ $staticPage->title }}
       </h1>
     </div>
   </div>
@@ -17,9 +17,11 @@
     <div class="row">
       <div class="col-12 mb-4">
         <div class="image-sheet-meals-content">
-          <img src="{{ $page->image }}" loading="lazy" alt="" />
+          <img src="{{ $staticPage->image }}" loading="lazy" alt="" />
         </div>
-        {{ $page->content }}
+        <p class="desc">
+          {{ $staticPage->content }}
+        </p>
       </div>
     </div>
   </div>

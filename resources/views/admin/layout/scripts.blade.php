@@ -20,7 +20,6 @@
 <script src="{{ asset('js/custom.js') }}"></script>
 <script src="{{ asset('js/printThis.js') }}"></script>
 <script src="https://cdn.rawgit.com/mattdiamond/Recorderjs/08e7abd9/dist/recorder.js"></script>
-
 <script>
   var element = document.getElementById("chat");
   element.scrollTop = element.scrollHeight;

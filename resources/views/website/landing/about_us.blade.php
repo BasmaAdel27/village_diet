@@ -1,4 +1,4 @@
-<section class="about-us">
+<section class="about-us" id="about-us">
   <div class="container general-pattern right-pattern">
     <div class="heading">
       <h1>من نحن</h1>

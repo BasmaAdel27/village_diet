@@ -7,44 +7,43 @@
     </div>
 
     <a href="/" class="brand-name">
-      <img src="{{asset('storage/'.$setting->logo)}}" loading="lazy" alt="" />
+      <img src="{{ asset('storage/'.$setting->logo) }}" loading="lazy" alt="" />
     </a>
 
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a href="index.html" class="nav-link"> نبذة عنا </a>
+        <a href="{{ route('website.home') }}#about-us" class="nav-link">@lang('about_us')</a>
       </li>
 
       <li class="nav-item">
-        <a href="questions.html" class="nav-link"> أسئلة شائعة </a>
+        <a href="{{ route('website.faqs') }}" class="nav-link">@lang('faq')</a>
       </li>
 
       <li class="nav-item">
-        <a href="sheet-meals.html" class="nav-link"> الوصفات الغذائية </a>
+        <a href="{{ route('website.food_recipes') }}" class="nav-link">@lang('food_recipes')</a>
       </li>
-
       <li class="nav-item">
-        <a href="/trainers" class="nav-link"> @lang('trainers') </a>
+        <a href="{{ route('website.trainers.index') }}" class="nav-link"> @lang('trainers') </a>
       </li>
-
       <li class="nav-item">
-        <a href="/customers_opinions" class="nav-link"> @lang('customer_opinions') </a>
+        <a href="{{ route('website.customers_opinions.index') }}" class="nav-link"> @lang('customer_opinions') </a>
       </li>
-
       <li class="nav-item">
-        <a href="/contact_us" class="nav-link"> @lang('contact us') </a>
+        <a href="{{ route('website.contact_us.index') }}" class="nav-link"> @lang('contact us') </a>
       </li>
     </ul>
 
     <div class="button-contain">
-      <a href="#" class="lang">
-        <span> En </span>
+      @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+      @if ($localeCode != LaravelLocalization::getCurrentLocale())
+      <a href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}" class="lang">
+        <span> {{ $localeCode }}</span>
       </a>
-
+      @endif
+      @endforeach
       <a href="login.html" class="custom-btn primary-color">
         <img src="{{asset('website/assets/images/navbar/user.svg')}}" loading="lazy" alt="" />
-
-        <span> التسجيل </span>
+        <span>@lang('register')</span>
       </a>
     </div>
   </div>

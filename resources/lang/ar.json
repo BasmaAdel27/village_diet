@@ -264,5 +264,20 @@
   "activate": "تفعيل",
   "Yes, activate it!": "نعم, قم بالتفعيل ",
   "cancel": "إلغاء",
-  "confirm!": "تأكيد!"
+  "confirm!": "تأكيد!",
+  "subscription_list": "النشرة البريدية",
+  "enter_email": "ادحل البريد الالكتروني ..",
+  "subscribe_successfully": "تم الاشتراك بنجاح",
+  "subscribe": "اشترك الآن",
+  "start_now": "ابدأ الآن لتصل إلى وزن مثالي وحياة صحية مع فيلج دايت وعلى ايدي مجموعة من المتخصصين",
+  "website_menu": "أقسام المنصة",
+  "home": "الرئيسية",
+  "about_us": "نبذة عنا",
+  "faq": "الأسئلة الشائعة",
+  "food_recipes": "الوصفات الغذائية",
+  "our_trainers": "المدربين",
+  "contact_us": "اتصل بنا",
+  "important_links": "روابط هامة",
+  "register": "التسجيل",
+  "services": "الخدمات"
 }

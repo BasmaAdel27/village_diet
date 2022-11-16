@@ -262,6 +262,20 @@
   "deactivate": "Deactivate",
   "activate": "Activate",
   "cancel": "Cancel",
-  "confirm!": "Confirm!"
-
+  "confirm!": "Confirm!",
+  "subscription_list": "Subscription List",
+  "enter_email": "Enter Email ..",
+  "subscribe_successfully": "Subscribe Successfully",
+  "subscribe": "Subscribe",
+  "start_now": "Start now to reach an ideal weight and a healthy life with Village Diet and at the hands of a group of specialists",
+  "website_menu": "Website Menu",
+  "home": "Home",
+  "about_us": "About Us",
+  "faq": "Faq",
+  "food_recipes": "Food Recipes",
+  "our_trainers": "Our Trainers",
+  "contact_us": "Contact Us",
+  "important_links": "Important Links",
+  "register": "Register",
+  "services": "Services"
 }
