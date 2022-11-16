@@ -77,10 +77,10 @@
               <a href="{{ route('website.faqs') }}">@lang('faq')</a>
             </li>
             <li>
-              <a href="sheet-meals.html"> @lang('food_recipes')</a>
+              <a href="{{ route('website.food_recipes') }}> @lang('food_recipes')</a>
             </li>
             <li>
-              <a href="{{ route('website.trainers.index') }}">@lang('our_trainers')</a>
+              <a href=" {{ route('website.trainers.index') }}">@lang('our_trainers')</a>
             </li>
           </ul>
           <ul class="links">

@@ -7,7 +7,7 @@
     </div>
 
     <a href="/" class="brand-name">
-      <img src="{{asset('storage/'.$setting->logo)}}" loading="lazy" alt="" />
+      <img src="{{ asset('storage/'.$setting->logo) }}" loading="lazy" alt="" />
     </a>
 
     <ul class="navbar-nav">
@@ -20,7 +20,7 @@
       </li>
 
       <li class="nav-item">
-        <a href="sheet-meals.html" class="nav-link">@lang('food_recipes')</a>
+        <a href="{{ route('website.food_recipes') }}" class="nav-link">@lang('food_recipes')</a>
       </li>
       <li class="nav-item">
         <a href="{{ route('website.trainers.index') }}" class="nav-link"> @lang('trainers') </a>

@@ -29,3 +29,10 @@ Route::get('static_pages/{id}', function (StaticPage $staticPage) {
 Route::get('faq', function () {
     return view('website/pages/faq', ['faqs' => Faq::where('is_active', true)->get()]);
 })->name('faqs');
+
+Route::get('food_recipes', function () {
+    return view(
+        'website/pages/meals',
+        ['page' => StaticPage::where('slug', 'Food-Recipes')->first()]
+    );
+})->name('food_recipes');
