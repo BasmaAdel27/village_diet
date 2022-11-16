@@ -1,4 +1,5 @@
 @extends('admin.app')
+@section('title') @lang('users') @endsection
 @section('styles')
   @if (app()->getLocale() == 'en')
     <link rel="stylesheet" href={{ asset('adminPanel/css/chat.css') }}>

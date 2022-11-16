@@ -277,5 +277,6 @@
   "contact_us": "Contact Us",
   "important_links": "Important Links",
   "register": "Register",
-  "services": "Services"
+  "services": "Services",
+  "messageCount": "Unread Messages Count"
 }
