@@ -12,7 +12,7 @@
     @can('trainer.users.index')
     <li class="nav-item">
       <a class="nav-link" href="{{ route('trainer.users.index') }}">
-        <i class="mdi mdi-home menu-icon"></i>
+        <i class="mdi mdi-account-group menu-icon"></i>
         <span class="menu-title">@lang('users')</span>
       </a>
     </li>
@@ -20,7 +20,7 @@
     @can('trainer.societies.index')
     <li class="nav-item">
       <a class="nav-link" href="{{ route('trainer.societies.index') }}">
-        <i class="mdi mdi-home menu-icon"></i>
+        <i class="mdi mdi-human menu-icon"></i>
         <span class="menu-title">@lang('societies')</span>
       </a>
     </li>

@@ -31,4 +31,5 @@ class Society extends Model implements Translatable
     {
         return $this->hasMany(SocietyChat::class, 'society_id');
     }
+
 }

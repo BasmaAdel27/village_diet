@@ -110,3 +110,6 @@
 </div>
 
 @endsection
+@section('scripts')
+  <script src="{{ asset('adminPanel/js/chat.js') }}"></script>
+@endsection

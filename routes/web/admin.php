@@ -30,6 +30,7 @@ Route::post('societies/addMsg', [SocietyController::class, 'addMsg'])->name('soc
 Route::post('societies/save', [SocietyController::class, 'save'])->name('societies.save');
 Route::post('users/chat/{id}', [UserController::class, 'sendMessage'])->name('users.send_message');
 Route::get('users/messages/{id}', [UserController::class, 'messages'])->name('users.messages');
+Route::post('audio_save', [UserController::class, 'audioSave'])->name('users.audio_save');
 
 Route::get('dashboard', [HomeController::class, 'home'])->name('dashboard');
 Route::get('users-form-data', [UserController::class, 'getFormData'])->name('users.form_data');

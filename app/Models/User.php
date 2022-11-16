@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Chat\AdminMessage;
+use App\Models\Chat\TrainerMessage;
 use App\Models\Country\Country;
 use App\Models\Society\Society;
 use App\Models\State\State;
@@ -146,4 +147,14 @@ class User extends Authenticatable
         return $this->hasOne(AdminMessage::class, 'receiver_id')->latestOfMany();
     }
     #endregion relationship
+
+    public function messagesCount($user_id){
+        $counts=AdminMessage::where([['receiver_id',auth()->id()],['read_at',null],['sender_id',$user_id]])->count();
+        return $counts;
+    }
+
+    public function messagesCountTrainer($user_id){
+        $counts=TrainerMessage::where([['receiver_id',auth()->id()],['read_at',null],['sender_id',$user_id]])->count();
+        return $counts;
+    }
 }

@@ -16,12 +16,12 @@ class UserDatatable extends DataTable
             ->eloquent($query)
             ->editColumn('is_active', function ($query) {
                 return ($query->is_active == 1) ?  '<span class="btn btn-success">' . trans('active') . "</span>" : '<span class="btn btn-danger">' .  trans('inactive') . "</span>";
-            })
-            ->editColumn('society', function ($query) {
+            })->editColumn('society', function ($query) {
                 return $query->society?->title;
-            })
-            ->editColumn('currentSubscription.created_at', function ($query) {
+            })->editColumn('currentSubscription.created_at', function ($query) {
                 return $query->currentSubscription?->created_at;
+            })->editColumn('messageCount', function ($query) {
+                  return ($query->messagesCount($query->id) > 0) ?  '<span class="btn btn-danger" style="margin: auto">' . $query->messagesCount($query->id) . "</span>" : '<span class="btn btn-success">' .  $query->messagesCount($query->id) . "</span>";
             })
             ->editColumn('currentSubscription.status', function ($query) {
                 $status = $query->currentSubscription?->status;
@@ -31,7 +31,7 @@ class UserDatatable extends DataTable
             })
             ->editColumn('Action', function ($query) {
                 return view('admin.users.datatable.action', compact('query'));
-            })->rawColumns(['currentSubscription.status', 'Action']);
+            })->rawColumns(['currentSubscription.status', 'Action','messageCount']);
     }
 
     public function query()
@@ -68,6 +68,7 @@ class UserDatatable extends DataTable
             Column::make('currentSubscription.created_at')->title(trans('subscription_date'))->orderable(false)->searchable(false),
             Column::make('currentSubscription.status')->title(trans('subscription_status'))->orderable(false)->searchable(false),
             Column::make('created_at')->title(trans('created_at')),
+            Column::make('messageCount')->title(trans('messagesCount'))->searchable(false)->orderable(false),
             Column::make('Action')->title(trans('action'))->searchable(false)->orderable(false)
         ];
     }

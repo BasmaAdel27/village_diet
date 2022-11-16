@@ -9,6 +9,15 @@
 @section('content')
 <div class="card chat-app">
   <div class="chat">
+    <div class="chat-header clearfix">
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="chat-about">
+            <h6 class="m-b-0">{{$user->first_name}} {{$user->last_name}}</h6>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="chat-history" id="chat">
       <ul class="m-b-0">
         @foreach($messages as $message)
@@ -79,6 +88,8 @@
           <h3 id="record" style="margin-left: 15px"></h3>
           <li id="recordingsList" style="margin-left: 15px;list-style-type: none"></li>
           <div class="modal-footer">
+            <input type="hidden" name="receiver_id" value="{{$userId}}" />
+            <input type="hidden" name="sender_id" value="{{auth()->id()}}" />
             <button type="button" class="btn btn-danger" data-dismiss="modal">@lang('close')</button>
             <button type="submit" class="btn btn-success" id="downloadButton" data-dismiss="modal"
               disabled>@lang('send')</button>
@@ -89,4 +100,7 @@
 
   </div>
 </div>
+@endsection
+@section('scripts')
+  <script src="{{ asset('adminPanel/js/userscript.js') }}"></script>
 @endsection

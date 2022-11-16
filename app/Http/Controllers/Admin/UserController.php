@@ -160,6 +160,7 @@ class UserController extends Controller
     public function messages($userId)
     {
         $adminId = auth()->id();
+        $user=User::find($userId);
 
         $messages = AdminMessage::with('sender', 'receiver')
             ->where(function ($q) use ($userId, $adminId) {
@@ -168,8 +169,16 @@ class UserController extends Controller
             })
             ->oldest('id')
             ->get();
+        foreach ($messages as $message)
+        {
+            if (\auth()->id()==$message->receiver_id)
+            {
+                $message->read_at = now();
+                $message->save();
+            }
+        }
 
-        return view('admin.users.chat', compact('messages', 'userId'));
+        return view('admin.users.chat', compact('messages', 'userId','user'));
     }
 
     public function sendMessage(SendMessageRequest $request, $userId)
@@ -182,5 +191,15 @@ class UserController extends Controller
         ]);
 
         return redirect()->back();
+    }
+    public function audioSave(SendMessageRequest $request){
+        $path = $request->file('message')->storePublicly('chats/media', "public");
+        $message=AdminMessage::create([
+              'message'=>"/storage/" . $path,
+              'sender_id' => auth()->id(),
+              'type' => 'AUDIO',
+              'receiver_id' => $request->receiver,
+        ]);
+        return response()->json($message);
     }
 }
