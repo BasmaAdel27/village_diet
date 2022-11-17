@@ -36,13 +36,13 @@
                   @for ($i = 0; $i < 5; $i++)
                     @if ($i < $trainer->user->averageRating)
                   <li>
-                    <a href="#" class="active">
+                    <a  class="active">
                       <img src="{{asset('website/assets/images/trainer/stars.svg')}}" loading="lazy" alt="" />
                     </a>
                   </li>
                     @else
                       <li>
-                        <a href="#">
+                        <a>
                           <img src="{{asset('website/assets/images/trainer/stars.svg')}}" loading="lazy" alt="" />
                         </a>
                       </li>
@@ -51,7 +51,7 @@
                 @else
                   @for ($i = 0; $i < 5; $i++)
                     <li>
-                      <a href="#">
+                      <a>
                         <img src="{{asset('website/assets/images/trainer/stars.svg')}}" loading="lazy" alt="" />
                       </a>
                     </li>
@@ -85,13 +85,13 @@
                   @for ($i = 0; $i < 5; $i++)
                     @if ($i < $trainer->user->averageRating)
                       <li>
-                        <a href="#" class="active">
+                        <a class="active">
                           <img src="{{asset('website/assets/images/trainer/stars.svg')}}" loading="lazy" alt="" />
                         </a>
                       </li>
                     @else
                       <li>
-                        <a href="#">
+                        <a>
                           <img src="{{asset('website/assets/images/trainer/stars.svg')}}" loading="lazy" alt="" />
                         </a>
                       </li>
@@ -100,7 +100,7 @@
                 @else
                     @for ($i = 0; $i < 5; $i++)
                       <li>
-                        <a href="#">
+                        <a>
                           <img src="{{asset('website/assets/images/trainer/stars.svg')}}" loading="lazy" alt="" />
                         </a>
                       </li>

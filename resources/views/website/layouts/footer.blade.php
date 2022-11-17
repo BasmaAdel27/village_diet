@@ -121,25 +121,25 @@
 
         <ul class="payment">
           <li>
-            <a href="#">
+            <a>
               <img src="{{asset('website/assets/images/footer/visa.webp')}}" loading="lazy" alt="" />
             </a>
           </li>
 
           <li>
-            <a href="#">
+            <a>
               <img src="{{asset('website/assets/images/footer/mastercard.webp')}}" loading="lazy" alt="" />
             </a>
           </li>
 
           <li>
-            <a href="#">
+            <a>
               <img src="{{asset('website/assets/images/footer/mada.webp')}}" loading="lazy" alt="" />
             </a>
           </li>
 
           <li>
-            <a href="#">
+            <a>
               <img src="{{asset('website/assets/images/footer/pay.webp')}}" loading="lazy" alt="" />
             </a>
           </li>
