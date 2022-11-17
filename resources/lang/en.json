@@ -277,5 +277,12 @@
   "contact_us": "Contact Us",
   "important_links": "Important Links",
   "register": "Register",
-  "services": "Services"
+  "services": "Services",
+  "messageCount": "Unread Messages Count",
+  "common_questions": "Common Questions",
+  "question": "Question",
+  "question_ar": "Question In Arabic",
+  "question_en": "Question In English",
+  "answer_ar": "Answer In Arabic",
+  "answer_en": "Answer In English"
 }

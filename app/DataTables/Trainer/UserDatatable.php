@@ -21,10 +21,10 @@ class UserDatatable extends DataTable
                 return $query->society?->title;
             })
             ->editColumn('currentSubscription.created_at', function ($query) {
-                return $query->currentSubscription?->created_at?->diffForHumans();
+                return $query->currentSubscription?->created_at;
             })
             ->editColumn('currentSubscription.end_date', function ($query) {
-                return $query->currentSubscription?->end_at?->diffForHumans();
+                return $query->currentSubscription?->end_date?->diffForHumans($query->currentSubscription?->created_at);
             })
             ->editColumn('currentSubscription.status', function ($query) {
                 $status = $query->currentSubscription?->status;
@@ -34,7 +34,10 @@ class UserDatatable extends DataTable
             })
             ->editColumn('Action', function ($query) {
                 return view('trainer.users.datatable.action', compact('query'));
-            })->rawColumns(['currentSubscription.status', 'Action']);
+            })->editColumn('messageCount', function ($query) {
+                  return ($query->messagesCountTrainer($query->id) > 0) ?  '<span class="btn btn-danger" style="margin: auto">' . $query->messagesCountTrainer($query->id) . "</span>" : '<span class="btn btn-success">' .  $query->messagesCountTrainer($query->id) . "</span>";
+              })
+              ->rawColumns(['currentSubscription.status', 'Action','messageCount']);
     }
 
     public function query()
@@ -73,6 +76,7 @@ class UserDatatable extends DataTable
             Column::make('currentSubscription.end_date')->title(trans('subscription_end_date'))->searchable(false),
             Column::make('currentSubscription.status')->title(trans('subscription_status'))->searchable(false),
             Column::make('created_at')->title(trans('created_at')),
+            Column::make('messageCount')->title(trans('messageCount'))->searchable(false)->orderable(false),
             Column::make('Action')->title(trans('action'))->searchable(false)->orderable(false)
         ];
     }

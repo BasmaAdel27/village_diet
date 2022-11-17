@@ -1,4 +1,5 @@
 @extends('trainer.layout')
+@section('title') @lang('statistics') @endsection
 @section('content')
 
 <div class="card mt-5">

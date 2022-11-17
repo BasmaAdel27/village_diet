@@ -24,6 +24,7 @@ use App\Http\Controllers\Admin\TemplateController;
 use App\Http\Controllers\Admin\CustomerOpinionController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\SubscriptionController;
+use App\Http\Controllers\Admin\FaqsController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('societies/messages/{society}', [SocietyController::class, 'messages'])->name('societies.messages');
@@ -31,6 +32,7 @@ Route::post('societies/addMsg', [SocietyController::class, 'addMsg'])->name('soc
 Route::post('societies/save', [SocietyController::class, 'save'])->name('societies.save');
 Route::post('users/chat/{id}', [UserController::class, 'sendMessage'])->name('users.send_message');
 Route::get('users/messages/{id}', [UserController::class, 'messages'])->name('users.messages');
+Route::post('audio_save', [UserController::class, 'audioSave'])->name('users.audio_save');
 
 Route::get('dashboard', [HomeController::class, 'home'])->name('dashboard');
 Route::get('users-form-data', [UserController::class, 'getFormData'])->name('users.form_data');
@@ -75,3 +77,4 @@ Route::put('subscriptions/active/{id}', [SubscriptionController::class, 'active'
 Route::put('subscriptions/cancel/{id}', [SubscriptionController::class, 'cancel'])->name('subscriptions.cancel');
 Route::put('subscriptions/inactive/{id}', [SubscriptionController::class, 'inactive'])->name('subscriptions.inactive');
 Route::resource('services', ServiceController::class)->except('show');
+Route::resource('common_questions', FaqsController::class);

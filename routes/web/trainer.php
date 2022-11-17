@@ -6,7 +6,10 @@ use App\Http\Controllers\Trainer\SocietyController;
 use App\Http\Controllers\Trainer\UserController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('users_messages', [UserController::class, 'messages'])->name('users.messages');
+Route::get('users_messages/{userId}', [UserController::class, 'messages'])->name('users.messages');
+Route::post('send_messages/{userId}', [UserController::class, 'sendMessage'])->name('users.send_message');
+Route::post('audio_message', [UserController::class, 'audioMessage'])->name('users.audio_message');
+Route::get('societies/messages/{society}', [\App\Http\Controllers\Admin\SocietyController::class, 'messages'])->name('societies.messages');
 
 Route::get('dashboard', [HomeController::class, 'home'])->name('dashboard');
 Route::get('users-charts/{user}', [UserController::class, 'statistics'])->name('users.statistics');

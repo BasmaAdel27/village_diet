@@ -12,7 +12,7 @@
     @can('trainer.users.index')
     <li class="nav-item">
       <a class="nav-link" href="{{ route('trainer.users.index') }}">
-        <i class="mdi mdi-home menu-icon"></i>
+        <i class="mdi mdi-account-group menu-icon"></i>
         <span class="menu-title">@lang('users')</span>
       </a>
     </li>
@@ -20,7 +20,7 @@
     @can('trainer.societies.index')
     <li class="nav-item">
       <a class="nav-link" href="{{ route('trainer.societies.index') }}">
-        <i class="mdi mdi-home menu-icon"></i>
+        <i class="mdi mdi-human menu-icon"></i>
         <span class="menu-title">@lang('societies')</span>
       </a>
     </li>
@@ -153,6 +153,14 @@
       <a class="nav-link" href="{{ route('admin.static_pages.index') }}">
         <i class="mdi mdi-file-multiple menu-icon"></i>
         <span class="menu-title">@lang('static_pages')</span>
+      </a>
+    </li>
+    @endcan
+    @can('admin.common_questions.index')
+    <li class="nav-item">
+      <a class="nav-link" href="{{ route('admin.common_questions.index') }}">
+        <i class="mdi mdi-comment-question menu-icon"></i>
+        <span class="menu-title">@lang('common_questions')</span>
       </a>
     </li>
     @endcan
