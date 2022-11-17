@@ -280,5 +280,11 @@
   "important_links": "روابط هامة",
   "register": "التسجيل",
   "services": "الخدمات",
-  "messageCount": "الرسائل الغير مقروءه"
+  "messageCount": "الرسائل الغير مقروءه",
+  "common_questions": "الأسئله الشائعه",
+  "question": "السؤال",
+  "question_ar": "السؤال باللغه العربيه",
+  "question_en": "السؤال باللغه الانجليزيه",
+  "answer_ar": "الاجابه باللغه العربيه",
+  "answer_en": "الاجابه باللغه الانجليزيه"
 }

@@ -156,6 +156,14 @@
       </a>
     </li>
     @endcan
+    @can('admin.common_questions.index')
+    <li class="nav-item">
+      <a class="nav-link" href="{{ route('admin.common_questions.index') }}">
+        <i class="mdi mdi-comment-question menu-icon"></i>
+        <span class="menu-title">@lang('common_questions')</span>
+      </a>
+    </li>
+    @endcan
     @can('admin.videos.index')
     <li class="nav-item">
       <a class="nav-link" href="{{ route('admin.videos.index') }}">

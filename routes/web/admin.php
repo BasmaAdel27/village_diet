@@ -24,6 +24,7 @@ use App\Http\Controllers\Admin\TemplateController;
 use App\Http\Controllers\Admin\CustomerOpinionController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\SubscriptionController;
+use App\Http\Controllers\Admin\FaqsController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('societies/messages/{society}', [SocietyController::class, 'messages'])->name('societies.messages');
@@ -76,3 +77,4 @@ Route::put('subscriptions/active/{id}', [SubscriptionController::class, 'active'
 Route::put('subscriptions/cancel/{id}', [SubscriptionController::class, 'cancel'])->name('subscriptions.cancel');
 Route::put('subscriptions/inactive/{id}', [SubscriptionController::class, 'inactive'])->name('subscriptions.inactive');
 Route::resource('services', ServiceController::class)->except('show');
+Route::resource('common_questions', FaqsController::class);
