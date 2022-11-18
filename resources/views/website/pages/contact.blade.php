@@ -121,7 +121,7 @@
         <div class="contact-info">
           <div class="row">
             <div class="col-lg-4 col-12 mb-3">
-              <a href="#">
+              <a href="mailto:{{$setting->email}}">
                 <img src="{{asset('website/assets/images/contact/message.svg')}}" loading="lazy" alt="" />
 
                 <div>
@@ -137,7 +137,7 @@
             </div>
 
             <div class="col-lg-4 col-12 mb-3">
-              <a href="#" class="padding">
+              <a href="https://api.whatsapp.com/send?phone={{$setting->whatsapp_number}}" class="padding">
                 <img src="{{asset('website/assets/images/contact/whatsapp.svg')}}" loading="lazy" alt="" />
 
                 <div>
@@ -153,7 +153,7 @@
             </div>
 
             <div class="col-lg-4 col-12 mb-3">
-              <a href="#">
+              <a href="tel:{{$setting->phone}}">
                 <img src="{{asset('website/assets/images/contact/call.svg')}}" loading="lazy" alt="" />
 
                 <div>

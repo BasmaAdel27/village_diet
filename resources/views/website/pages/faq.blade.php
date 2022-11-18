@@ -15,20 +15,22 @@
 <section class="trainer">
   <div class="container">
     <div class="accordion" id="accordionExample">
-      @foreach ($faqs as $faq)
+      @foreach($faqs as $faq)
       <div class="card">
-        <div class="card-header" id="headingOne">
+        <div class="card-header" id="heading-{{$faq->id}}">
           <h2 class="mb-0">
-            <button class="btn btn-block" type="button" data-toggle="collapse" data-target="#collapseOne"
-              aria-expanded="true" aria-controls="collapseOne">
-              {{ $faq->question }}
+            <button class="btn btn-block" type="button" data-toggle="collapse" data-target="#collapse-{{$faq->id}}" onclick="event.preventDefault()"
+                    @if($loop->first) aria-expanded="true"
+                    @endif  aria-controls="collapse-{{$faq->id}}">
+              {{$faq->question}}
             </button>
           </h2>
         </div>
-        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+
+        <div id="collapse-{{$faq->id}}" @if($loop->first) class="collapse show" @else class="collapse" @endif aria-labelledby="heading-{{$faq->id}}" data-parent="#accordionExample">
           <div class="card-body">
             <p>
-              {{ $faq->answer }}
+              {{$faq->answer}}
             </p>
           </div>
         </div>
