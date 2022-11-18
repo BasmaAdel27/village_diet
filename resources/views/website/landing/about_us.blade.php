@@ -1,9 +1,10 @@
 <section class="about-us" id="about-us">
   <div class="container general-pattern right-pattern">
     <div class="heading">
-      <h1>من نحن</h1>
-
-      <p>تعرف على فيلج دايت في سطور بسيطة</p>
+      <h1>@lang('who_us')</h1>
+      <p>
+        @lang('about_us_brief')
+      </p>
     </div>
 
     <div class="row">
@@ -14,7 +15,7 @@
               aria-selected="true">
               <img src="{{asset('website/assets/images/about/about_1.svg')}}" loading="lazy" alt="" />
 
-              <span> نبذة عن فيلج دايت </span>
+              <span>{{ $aboutPage->title }}</span>
             </a>
           </li>
 
@@ -23,7 +24,7 @@
               aria-selected="false">
               <img src="{{asset('website/assets/images/about/about_2.svg')}}" loading="lazy" alt="" />
 
-              <span> رؤيتنا </span>
+              <span> {{ $ourVisionPage->title }} </span>
             </a>
           </li>
         </ul>
@@ -33,25 +34,12 @@
         <div class="tab-content" id="myTabContent">
           <div class="tab-pane fade show active" id="tab-1" role="tabpanel" aria-labelledby="tab-1-tab">
             <div class="contain">
-              <p>
-                تسعى المنصة أن تصبح الانطلاقة الوطنية الجديدة داخل المجتمع السعودي في عالم
-                الصحة واللياقة البدنية. عبر تجميع وعرض كافة المدربين التربية البدنية داخل
-                المنصة وتقديم خدمة المتابعة الأونلاين عبر تواصل مباشر بين الطرفين. تم التقابل
-                مع العميل وتحديد الجزء الاساسي من خواص المنصة وهذه الوثيقة شاملة جميع تفاصيل
-                المنصة
-              </p>
-
-              <p>
-                تسعى المنصة أن تصبح الانطلاقة الوطنية الجديدة داخل المجتمع السعودي في عالم
-                الصحة واللياقة البدنية. عبر تجميع وعرض كافة المدربين التربية البدنية داخل
-                المنصة وتقديم خدمة المتابعة الأونلاين
-              </p>
-
+              {{ $aboutPage->content }}
               <div class="button-contain">
-                <a href="sheet-meals.html" class="custom-btn secondary-color">
+                <a href="{{ route('website.food_recipes') }}" class="custom-btn secondary-color">
                   <img src="{{asset('website/assets/images/icons/arrow.svg')}}" loading="lazy" alt="" />
 
-                  <span> المزيد عنا </span>
+                  <span>@lang('more_than')</span>
                 </a>
 
                 <a href="#" class="video-play">
@@ -63,27 +51,12 @@
 
           <div class="tab-pane fade" id="tab-2" role="tabpanel" aria-labelledby="tab-2-tab">
             <div class="contain">
-              <p>
-                تسعى المنصة أن تصبح الانطلاقة الوطنية الجديدة داخل المجتمع السعودي في عالم
-                الصحة واللياقة البدنية. عبر تجميع وعرض كافة المدربين التربية البدنية داخل
-                المنصة وتقديم خدمة المتابعة الأونلاين عبر تواصل مباشر بين الطرفين. تم التقابل
-                مع العميل وتحديد الجزء الاساسي من خواص المنصة وهذه الوثيقة شاملة جميع تفاصيل
-                المنصة
-              </p>
-
-              <p>
-                تسعى المنصة أن تصبح الانطلاقة الوطنية الجديدة داخل المجتمع السعودي في عالم
-                الصحة واللياقة البدنية. عبر تجميع وعرض كافة المدربين التربية البدنية داخل
-                المنصة وتقديم خدمة المتابعة الأونلاين
-              </p>
-
+              {{ $ourVisionPage->content }}
               <div class="button-contain">
-                <a href="sheet-meals.html" class="custom-btn secondary-color">
+                <a href="{{ route('website.food_recipes') }}" class="custom-btn secondary-color">
                   <img src="{{asset('website/assets/images/icons/arrow.svg')}}" loading="lazy" alt="" />
-
-                  <span> المزيد عنا </span>
+                  <span> @lang('more_than')</span>
                 </a>
-
                 <a href="#" class="video-play">
                   <img src="{{asset('website/assets/images/about/video.svg')}}" loading="lazy" alt="" />
                 </a>
