@@ -10,7 +10,9 @@ use App\Models\Faq\Faq;
 use App\Models\StaticPage\StaticPage;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::view('/meals', 'website.pages.meals');
+Route::view('/register', 'website.pages.register.register')->name('register');
+Route::view('/payment', 'website.pages.register.payment');
+Route::view('/form', 'website.pages.register.form');
 
 
 

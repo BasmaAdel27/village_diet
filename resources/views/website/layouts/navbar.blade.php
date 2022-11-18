@@ -41,7 +41,7 @@
       </a>
       @endif
       @endforeach
-      <a href="login.html" class="custom-btn primary-color">
+      <a href="{{ route('website.register') }}" class="custom-btn primary-color">
         <img src="{{asset('website/assets/images/navbar/user.svg')}}" loading="lazy" alt="" />
         <span>@lang('register')</span>
       </a>
