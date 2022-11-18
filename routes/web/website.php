@@ -4,11 +4,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Website\TrainarController;
 use App\Http\Controllers\Website\ContactUsController;
 use App\Http\Controllers\Website\CustomerOpinionController;
+use App\Http\Controllers\Website\HomeController;
 use App\Http\Controllers\Website\SubscribeController;
 use App\Models\Faq\Faq;
 use App\Models\StaticPage\StaticPage;
 
-Route::view('/', 'website.pages.landing')->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::view('/meals', 'website.pages.meals');
 
 

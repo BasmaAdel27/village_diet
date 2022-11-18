@@ -4,68 +4,23 @@
       <div class="col-lg-5 col-12 mb-4">
         <div class="swiper swiper-header">
           <div class="swiper-wrapper">
+            @foreach ($sliders as $slide)
             <div class="swiper-slide">
               <div class="contain">
                 <h1>
-                  ابدأ حياتك الصحية
-
-                  <span> فيلج دايت </span>
+                  {{ $slide->title }}
+                  <span>{{ $setting->web_title }}</span>
                 </h1>
-
                 <p>
-                  ابدأ الآن لتصل إلى وزن مثالي وحياة صحية مع فيلج دايت وعلى ايدي مجموعة من
-                  المتخصصين
+                  {{ $slide->description }}
                 </p>
-
-                <a href="#" class="custom-btn secondary-color">
+                <a href="{{ $slide->link }}" class="custom-btn secondary-color">
                   <img src="{{asset('website/assets/images/icons/arrow.svg')}}" loading="lazy" alt="" />
-
-                  <span> المزيد عنا </span>
+                  <span>@lang('more_than')</span>
                 </a>
               </div>
             </div>
-
-            <div class="swiper-slide">
-              <div class="contain">
-                <h1>
-                  ابدأ حياتك الصحية
-
-                  <span> فيلج دايت </span>
-                </h1>
-
-                <p>
-                  ابدأ الآن لتصل إلى وزن مثالي وحياة صحية مع فيلج دايت وعلى ايدي مجموعة من
-                  المتخصصين
-                </p>
-
-                <a href="#" class="custom-btn secondary-color">
-                  <img src="{{asset('website/assets/images/icons/arrow.svg')}}" loading="lazy" alt="" />
-
-                  <span> المزيد عنا </span>
-                </a>
-              </div>
-            </div>
-
-            <div class="swiper-slide">
-              <div class="contain">
-                <h1>
-                  ابدأ حياتك الصحية
-
-                  <span> فيلج دايت </span>
-                </h1>
-
-                <p>
-                  ابدأ الآن لتصل إلى وزن مثالي وحياة صحية مع فيلج دايت وعلى ايدي مجموعة من
-                  المتخصصين
-                </p>
-
-                <a href="#" class="custom-btn secondary-color">
-                  <img src="{{asset('website/assets/images/icons/arrow.svg')}}" loading="lazy" alt="" />
-
-                  <span> المزيد عنا </span>
-                </a>
-              </div>
-            </div>
+            @endforeach
           </div>
           <div class="swiper-pagination"></div>
         </div>
