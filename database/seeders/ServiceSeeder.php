@@ -81,5 +81,74 @@ class ServiceSeeder extends Seeder
         ]);
 
         // Store Services
+        $five = Service::create([
+            'ar' => [
+                'title' => 'منتجات مميزة',
+                'description' => 'مجموعة مميزة من المنتجات المختلفة',
+            ],
+            'en' => [
+                'title' => 'Featured products',
+                'description' => 'A distinctive group of different products',
+            ],
+            'ordering' => 1,
+            'type' => 'Store'
+        ]);
+        $five->images()->create([
+            'media' => 'website/assets/images/takes/take_1.svg',
+            'option' => 'image',
+        ]);
+
+
+        $six = Service::create([
+            'ar' => [
+                'title' => 'ضمان شامل',
+                'description' => 'ضمان شامل على كل منتجات فيلج دايت',
+            ],
+            'en' => [
+                'title' => 'Comprehensive warranty',
+                'description' => 'Comprehensive warranty on all Village Diet products',
+            ],
+            'ordering' => 2,
+            'type' => 'Store'
+        ]);
+        $six->images()->create([
+            'media' => 'website/assets/images/takes/take_2.svg',
+            'option' => 'image',
+        ]);
+
+        $seven = Service::create([
+            'ar' => [
+                'title' => 'أسعار تنافسية',
+                'description' => 'أسعار مميزة كثيرة بالنسبة للمتاجر الأخرى',
+            ],
+            'en' => [
+                'title' => 'Competitive prices',
+                'description' => 'Many special prices compared to other stores',
+            ],
+            'ordering' => 3,
+            'type' => 'Store'
+        ]);
+        $seven->images()->create([
+            'media' => 'website/assets/images/takes/take_3.svg',
+            'option' => 'image',
+        ]);
+
+
+        $eight = Service::create([
+            'ar' => [
+                'title' => 'شحن سريع',
+                'description' => 'افضل طرق الشحن خيارات توصيل سريع',
+            ],
+            'en' => [
+                'title' => 'fast charging',
+                'description' => 'Best shipping methods Fast delivery options',
+            ],
+            'ordering' => 4,
+            'type' => 'Store'
+        ]);
+        $eight->images()->create([
+            'media' => 'website/assets/images/takes/take_4.svg',
+            'option' => 'image',
+        ]);
     }
 }

@@ -2,18 +2,18 @@
   <div class="conatiner general-pattern right-left-pattern">
     <div class="heading">
       <h1>
-        حمل الآن تطبيق
-        <span> فيلج دايت </span>
-        وتمتع بمميزات أكثر من رائعة
+        @lang('download_app')
+        <span> @lang('website_title')</span>
+        @lang('enjoy_website')
       </h1>
     </div>
 
     <div class="button-contain">
-      <a href="#" class="download-btn">
+      <a href="{{ $setting->android_url }}" class="download-btn">
         <img src="{{asset('website/assets/images/donwload/play_store.webp')}}" alt="" />
       </a>
 
-      <a href="#" class="download-btn">
+      <a href="{{ $setting->ios_url }}" class="download-btn">
         <img src="{{asset('website/assets/images/donwload/apple_store.webp')}}" alt="" />
       </a>
     </div>
