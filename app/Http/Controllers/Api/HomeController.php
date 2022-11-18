@@ -18,7 +18,11 @@ class HomeController extends Controller
     public function index()
     {
         $user = auth()->user();
-        if ($user->currentSubscription?->status == 'active' || $user->currentSubscription?->status == 'request_cancel') {
+        if (
+            $user->currentSubscription &&
+            ($user->currentSubscription?->status == 'active' ||
+                $user->currentSubscription?->status == 'request_cancel')
+        ) {
             $day = now()->diffInDays($user->currentSubscription->created_at) + 1;
             $dayId = Day::select('id')->where('number', $day)->value('id');
             $obj = new stdClass;
@@ -58,8 +62,6 @@ class HomeController extends Controller
 
                 return successResponse(HomeResource::make($obj));
             }
-        } else {
-            return failedResponse(Lang::get('unauthorized'), 401);
         }
     }
 
