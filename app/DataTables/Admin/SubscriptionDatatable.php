@@ -16,7 +16,7 @@ class SubscriptionDatatable extends DataTable
             ->editColumn('Action', function ($query) {
                 return view('admin.subscriptions.datatable.action', compact('query'));
             })->editColumn('user.first_name', function ($query) {
-                return  $query->user->first_name . ' ' .  $query->user->last_name;
+                return  $query->user?->first_name . ' ' .  $query->user?->last_name;
             })
             ->editColumn('status', function ($query) {
                 if (app()->getLocale() == 'ar') {
