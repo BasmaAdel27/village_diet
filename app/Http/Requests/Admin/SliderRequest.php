@@ -26,7 +26,7 @@ class SliderRequest extends FormRequest
         }
 
         if (!$this->isMethod('PUT')) {
-            $rules['image'] = 'required|image|max:10000';
+            $rules['image'] = 'nullable|image|max:10000';
         } else {
             $rules['image'] = 'nullable|image|max:10000';
         }
