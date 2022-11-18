@@ -5,13 +5,11 @@
         <div class="col-lg-8 col-12">
           <div class="data">
             <h1>
-              سجل في
-
-              <span> فيلج دايت </span>
+              @lang('register_in')
+              <span>@lang('website_title')</span>
             </h1>
-
             <p>
-              اشترك الآن في منصة فيلج دايت واستمتع بكل المميزات المقدمة وابدأ نظامك الغذائي
+              @lang('register_brief')
             </p>
           </div>
         </div>
@@ -19,7 +17,7 @@
         <div class="col-lg-4 col-12">
           <div class="button-contain">
             <a href="#" class="custom-btn gray-color">
-              <span> سجل الآن </span>
+              <span>@lang('register_now')</span>
             </a>
           </div>
         </div>
