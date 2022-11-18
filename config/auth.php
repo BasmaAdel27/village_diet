@@ -107,5 +107,5 @@ return [
     */
 
     'password_timeout' => 10800,
-
+    'firebase_id' => env('FIREBASE_KEY')
 ];

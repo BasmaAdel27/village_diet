@@ -76,24 +76,24 @@ if (!function_exists('send_notification')) {
     {
         $fcmUrl = 'https://fcm.googleapis.com/fcm/send';
         $notification = [
-              'notification' => $message,
-              'sound' => true,
-              'title' => $title,
-              'body' => $content,
-              'priority' => 'high',
+            'notification' => $message,
+            'sound' => true,
+            'title' => $title,
+            'body' => $content,
+            'priority' => 'high',
         ];
 
         $extraNotificationData = ["data" => $notification];
 
         $fcmNotification = [
-              'to' => $token, //single token
-              'notification' => $notification,
-              'data' => $extraNotificationData
+            'to' => $token, //single token
+            'notification' => $notification,
+            'data' => $extraNotificationData
         ];
 
         $headers = [
-              'Authorization: key='.env('FIREBASE_KEY'),
-              'Content-Type: application/json'
+            'Authorization: key=' . config('auth.firebase_id'),
+            'Content-Type: application/json'
         ];
 
         $ch = curl_init();
@@ -105,6 +105,7 @@ if (!function_exists('send_notification')) {
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($fcmNotification));
         $result = curl_exec($ch);
         curl_close($ch);
+
         return true;
     }
 }
