@@ -101,6 +101,12 @@ class User extends Authenticatable
         return $this->hasOne(Subscription::class)->where('status', Subscription::ACTIVE)->latest('id');
     }
 
+    public function isSubscriptionFinished()
+    {
+        // Finished => True
+        return $this->currentSubscription()->where('end_date', '>=', now()->endOfDay())->exists();
+    }
+
     public function subscriptions()
     {
         return $this->hasMany(Subscription::class, 'user_id');
@@ -148,13 +154,15 @@ class User extends Authenticatable
     }
     #endregion relationship
 
-    public function messagesCount($user_id){
-        $counts=AdminMessage::where([['receiver_id',auth()->id()],['read_at',null],['sender_id',$user_id]])->count();
+    public function messagesCount($user_id)
+    {
+        $counts = AdminMessage::where([['receiver_id', auth()->id()], ['read_at', null], ['sender_id', $user_id]])->count();
         return $counts;
     }
 
-    public function messagesCountTrainer($user_id){
-        $counts=TrainerMessage::where([['receiver_id',auth()->id()],['read_at',null],['sender_id',$user_id]])->count();
+    public function messagesCountTrainer($user_id)
+    {
+        $counts = TrainerMessage::where([['receiver_id', auth()->id()], ['read_at', null], ['sender_id', $user_id]])->count();
         return $counts;
     }
 }

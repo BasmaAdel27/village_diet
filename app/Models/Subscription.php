@@ -46,6 +46,6 @@ class Subscription extends Model
     public function setStatusAttribute($value)
     {
         $this->attributes['status_ar'] = trans($value);
-        return $this->attributes['status'] = $value;
+        $this->attributes['status'] = $value;
     }
 }
