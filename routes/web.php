@@ -42,3 +42,7 @@ Route::group(
         });
     }
 );
+
+Route::get('send_notitfy', function () {
+    send_notification('234567890edfgsdfghj', ['name' => 'ازيك ي عودة'], 'New Message', 'Hello World Test Notification');
+});
