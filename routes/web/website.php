@@ -1,12 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Website\TrainarController;
-use App\Http\Controllers\Website\ContactUsController;
-use App\Http\Controllers\Website\CustomerOpinionController;
-use App\Http\Controllers\Website\HomeController;
-use App\Http\Controllers\Website\RegisterController;
-use App\Http\Controllers\Website\SubscribeController;
+use App\Http\Controllers\Website\{
+    TrainarController,
+    ContactUsController,
+    CustomerOpinionController,
+    HomeController,
+    RegisterController,
+    SubscribeController
+};
 use App\Models\Faq\Faq;
 use App\Models\StaticPage\StaticPage;
 

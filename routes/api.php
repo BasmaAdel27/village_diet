@@ -1,18 +1,20 @@
 <?php
 
 use App\Http\Controllers\Admin\AjaxController;
-use App\Http\Controllers\Api\AuthController;
-use App\Http\Controllers\Api\ContactUsController;
-use App\Http\Controllers\Api\HealthDataController;
-use App\Http\Controllers\Api\HomeController;
-use App\Http\Controllers\Api\MenuController;
-use App\Http\Controllers\Api\PersonalInfoController;
-use App\Http\Controllers\Api\SubscriptionsController;
-use App\Http\Controllers\Api\NotificationController;
-use App\Http\Controllers\Api\RateController;
-use App\Http\Controllers\Api\AgendaController;
-use App\Http\Controllers\Api\ChatController;
-use App\Http\Controllers\Api\SocietyController;
+use App\Http\Controllers\Api\{
+    AuthController,
+    ContactUsController,
+    HealthDataController,
+    HomeController,
+    MenuController,
+    PersonalInfoController,
+    SubscriptionsController,
+    NotificationController,
+    RateController,
+    AgendaController,
+    ChatController,
+    SocietyController
+};
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('GrahamCampbell\Throttle\Http\Middleware\ThrottleMiddleware:3,1')->group(function () {
