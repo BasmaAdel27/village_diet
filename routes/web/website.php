@@ -45,3 +45,5 @@ Route::get('food_recipes', function () {
         ['page' => StaticPage::where('slug', 'Food-Recipes')->first()]
     );
 })->name('food_recipes');
+
+Route::view('register_trainer', 'website.pages.register_trainer');
