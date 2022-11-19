@@ -18,14 +18,9 @@ Route::controller(RegisterController::class)->prefix('register')->group(function
     Route::post('/', 'storeRegister')->name('register.store');
     Route::get('form/{user}', 'getHealthyForm')->name('healthy.form');
     Route::post('store-form/{user}/{survey}', 'storeHealthyForm')->name('healthy.store');
-    Route::get('payment', 'getPayment')->name('payment.form');
+    Route::get('payment/{user}', 'getPayment')->name('payment.form');
     Route::post('payment', 'storePayment')->name('payment.store');
 });
-
-Route::view('/payment', 'website.pages.register.payment');
-Route::view('/form', 'website.pages.register.form');
-
-
 
 //trainers
 Route::get('/trainers', [TrainarController::class, 'index'])->name('trainers.index');

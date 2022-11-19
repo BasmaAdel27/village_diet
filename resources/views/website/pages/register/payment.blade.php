@@ -32,7 +32,7 @@
               </span>
 
               <span class="price">
-                250 ر.س
+                {{ $netSubscription }} ر.س
               </span>
             </li>
 
@@ -42,7 +42,7 @@
               </span>
 
               <span class="price">
-                20 ر.س
+                {{ $taxAmount }} ر.س
               </span>
             </li>
 
@@ -51,43 +51,20 @@
                 الخصم
               </span>
 
-              <span class="price">
-                لا يوجد
+              <span class="price" id="discount">
+                {{ $discount }} ر.س
               </span>
             </li>
 
             <li class="data-contain">
-              <a href="#" class="custom-btn">
-                <span>
-                  اضف كوبون خصم
-                </span>
-              </a>
-
-              <form action="" class="form-contain">
+              <form class="form-contain" action="">
                 <div class="form-group span-form">
-                  <input type="text" class="form-control" placeholder="متوسط عدد ساعات النوم" />
+                  <input type="text" name="code" class="form-control" placeholder=" الكوبون"
+                    value="{{ request('code') }}" />
+                  <input type="submit" class="text-btn secondary-btn" value="اضافة">
 
-                  <button class="text-btn secondary-btn">
-                    اضافة
-                  </button>
                 </div>
               </form>
-
-              <div class="discount-contain">
-                <div class="discount-data">
-                  <h2>
-                    Village@2022
-                  </h2>
-
-                  <p>
-                    ينتهي في 25 نوفمبر 2022
-                  </p>
-                </div>
-
-                <a href="#" class="delete">
-                  <img src="{{ asset('website/assets/images/form/delete.svg') }}" loading="lazy" alt="">
-                </a>
-              </div>
             </li>
 
             <li>
@@ -95,8 +72,8 @@
                 الإجمالي
               </span>
 
-              <span class="price bold">
-                260 ر.س
+              <span class="price bold" id="total">
+                {{ $total }} ر.س
               </span>
             </li>
           </ul>
@@ -104,7 +81,9 @@
       </div>
 
       <div class="col-lg-7 col-12">
-        <form action="" class="form-contain">
+        <form action="{{ route('website.payment.store',$user) }}" class="form-contain" method="POST" id="paymentForm">
+          @csrf
+          <input type="hidden" name="total" value="{{ $total }}">
           <h1>
             دفع الطلب
           </h1>
@@ -166,7 +145,7 @@
           </div>
 
           <div class="wrapper mt-3">
-            <input type="radio" class="radio-check" />
+            <input type="radio" class="radio-check" name="renew" value="1" />
 
             <label class="radio-title bold-text">
               أوافق على الدفع التلقائي لتجديد الإشتراك شهريا
@@ -174,11 +153,10 @@
           </div>
 
           <div class="button-contain">
-            <a href="#" type="button" class="custom-btn" data-toggle="modal" data-target="#popdone">
+            <a href="#!" type="button" class="custom-btn" onclick="$('#paymentForm').submit()">
               <img src="{{ asset('website/assets/images/icons/arrow.svg') }}" loading="lazy" alt="" />
-
               <span>
-                تسجيل
+                الدفع
               </span>
             </a>
           </div>

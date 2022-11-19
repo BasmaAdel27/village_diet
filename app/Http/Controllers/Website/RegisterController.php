@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Website\HealthyDataRequest;
 use App\Http\Requests\Website\RegisterRequest;
 use App\Models\Country\Country;
+use App\Models\Coupon;
+use App\Models\Setting;
 use App\Models\Subscriber;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -50,12 +52,34 @@ class RegisterController extends Controller
         return redirect()->route('website.payment.form')->with('success', trans('created_successfully'));
     }
 
-    public function getPayment()
+    public function getPayment(Request $request, User $user)
     {
-        return view('website.pages.register.payment');
+        $discount = 0;
+        $setting = Setting::first();
+        $netSubscription = $setting->net_subscription;
+        $taxAmount = $setting->tax_amount;
+        $coupon = Coupon::whereColumn('used_times', '<', 'max_used')
+            ->where('end_date', '>=', now()->endOfDay())
+            ->where('code', $request->code)->first();
+
+        $subTotal = $netSubscription + $taxAmount;
+
+        if ($coupon) {
+            $discount = ($coupon->coupon_type == 'fixed') ? $coupon->amount : ($subTotal * $coupon->percent) / 100;
+        }
+        $total = $subTotal - $discount;
+
+        return view('website.pages.register.payment', compact(
+            'user',
+            'netSubscription',
+            'taxAmount',
+            'discount',
+            'total'
+        ));
     }
 
-    public function storePayment()
+    public function storePayment(Request $request, User $user)
     {
+        return back()->with('success', trans('created_successfully'));
     }
 }
