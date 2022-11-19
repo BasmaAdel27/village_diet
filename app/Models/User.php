@@ -104,7 +104,7 @@ class User extends Authenticatable
     public function isSubscriptionFinished()
     {
         // Finished => True
-        return $this->currentSubscription()->where('end_date', '>=', now()->endOfDay())->exists();
+        return $this->currentSubscription()->where('end_date', '<=', now()->endOfDay())->exists();
     }
 
     public function subscriptions()
