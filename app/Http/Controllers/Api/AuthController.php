@@ -28,9 +28,6 @@ class AuthController extends Controller
         ]);
 
         if (!$user) return failedResponse(Lang::get('user_not_found'));
-        dd($user->currentSubscription);
-        // 8-12 <=
-        // 8-11
         if ($user->currentSubscription?->end_date <= now()->endOfDay()) {
             $user->currentSubscription()->update([
                 'status' => Subscription::FINISHED,
