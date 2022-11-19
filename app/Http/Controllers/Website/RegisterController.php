@@ -49,7 +49,7 @@ class RegisterController extends Controller
         $answers = $this->validate($request, $survey->rules);
         (new Entry())->for($survey)->by($user)->fromArray(collect($answers)->all())->push();
 
-        return redirect()->route('website.payment.form')->with('success', trans('created_successfully'));
+        return redirect()->route('website.payment.form', $user)->with('success', trans('created_successfully'));
     }
 
     public function getPayment(Request $request, User $user)
