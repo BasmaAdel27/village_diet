@@ -17,6 +17,7 @@ class SocietyController extends Controller
             $data['society_status'] = false;
             $data['subscription_status'] = $user->currentSubscription->status;
             $data['notification_unread'] = $user->unreadNotifications()->count();
+            $data['subscription_day'] = trans('start_when_society_begin');
 
             return successResponse($data, message: trans('Please_wait_it_will_start_soon'));
         } else {
