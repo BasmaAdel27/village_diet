@@ -13,9 +13,13 @@ use App\Models\Faq\Faq;
 use App\Models\StaticPage\StaticPage;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::controller(RegisterController::class)->group(function () {
-    Route::get('register', 'create')->name('register');
-    Route::post('register', 'create')->name('register.store');
+Route::controller(RegisterController::class)->prefix('register')->group(function () {
+    Route::get('/', 'getRegister')->name('register');
+    Route::post('/', 'storeRegister')->name('register.store');
+    Route::get('form/{user}', 'getHealthyForm')->name('healthy.form');
+    Route::post('store-form/{user}', 'storeHealthyForm')->name('healthy.store');
+    Route::get('payment', 'getPayment')->name('payment.form');
+    Route::post('payment', 'storePayment')->name('payment.store');
 });
 
 Route::view('/payment', 'website.pages.register.payment');

@@ -49,7 +49,8 @@
                 </p>
               </div>
 
-              <form action="{{ route('website.register.store') }}" class="form-contain" method="POST">@csrf
+              <form action="{{ route('website.register.store') }}" class="form-contain" method="POST" id="registerForm">
+                @csrf
                 <h2 class="sub-title">
                   معلومات أساسية
                 </h2>
@@ -60,7 +61,8 @@
                       <img src="{{ asset('website/assets/images/form/user.svg') }}" class="icon" loading="lazy"
                         alt="" />
 
-                      <input type="text" name="first_name" class="form-control" placeholder="الاسم الأول" />
+                      <input type="text" name="first_name" value="{{ old('first_name') ?? '' }}" class="form-control"
+                        placeholder="الاسم الأول" />
                     </div>
                   </div>
 
@@ -69,7 +71,8 @@
                       <img src="{{ asset('website/assets/images/form/user.svg') }}" class="icon" loading="lazy"
                         alt="" />
 
-                      <input type="text" name="last_name" class="form-control" placeholder="الاسم الأخير" />
+                      <input type="text" name="last_name" value="{{ old('last_name') ?? '' }}" class="form-control"
+                        placeholder="الاسم الأخير" />
                     </div>
                   </div>
 
@@ -77,7 +80,8 @@
                     <div class="form-group">
                       <img src="{{ asset('website/assets/images/form/sms.svg') }}" class="icon" loading="lazy" alt="" />
 
-                      <input type="text" name="email" class="form-control" placeholder="البريد الالكتروني" />
+                      <input type="text" name="email" value="{{ old('email') ?? '' }}" class="form-control"
+                        placeholder="البريد الالكتروني" />
                     </div>
                   </div>
 
@@ -85,8 +89,8 @@
                     <div class="form-group">
                       <img src="{{ asset('website/assets/images/form/sms.svg') }}" class="icon" loading="lazy" alt="" />
 
-                      <input type="text" name="email_confirmation" class="form-control"
-                        placeholder="تأكيد البريد الالكتروني" />
+                      <input type="text" value="{{ old('email_confirmation') ?? '' }}" name="email_confirmation"
+                        class="form-control" placeholder="تأكيد البريد الالكتروني" />
                     </div>
                   </div>
 
@@ -101,7 +105,8 @@
                         </div>
                       </div>
 
-                      <input type="text" name="phone" class="form-control" placeholder="رقم الجوال" />
+                      <input type="text" value="{{ old('phone') ?? '' }}" name="phone" class="form-control"
+                        placeholder="رقم الجوال" />
                     </div>
                   </div>
 
@@ -128,7 +133,7 @@
                           الدولة
                         </option>
                         @foreach ($countries as $id => $name)
-                        <option value="{{ $id }}">{{ $name }}</option>
+                        <option value="{{ $id }}" {{ $id==old('country_id') ? 'selected' : '' }}>{{ $name }}</option>
                         @endforeach
                       </select>
                     </div>
@@ -139,7 +144,7 @@
                       <img src="{{ asset('website/assets/images/form/location.svg') }}" class="icon" loading="lazy"
                         alt="" />
 
-                      <select class="form-control" name="state_id" id="state">
+                      <select class="form-control" value="{{ old('state_id') ?? '' }}" name="state_id" id="state">
                         <option value="" hidden>
                           المدينة
                         </option>
@@ -150,7 +155,9 @@
                   <div class="col-12">
                     <div class="form-group text-area no-margin">
                       <textarea name="address" class="form-control" placeholder=" ... العنوان بالتفصيل" id="" cols="30"
-                        rows="10"></textarea>
+                        rows="10">
+                      {{ old('address') ?? '' }}
+                      </textarea>
                     </div>
                   </div>
                 </div>
@@ -163,13 +170,13 @@
                   <img src="{{ asset('website/assets/images/form/instagram_twotone.svg') }}" loading="lazy" alt=""
                     class="icon" />
 
-                  <input type="text" name="insta_link" class="form-control" placeholder="رابط حساب انستجرام" />
+                  <input type="text" value="{{ old('insta_link') ?? '' }}" name="insta_link" class="form-control"
+                    placeholder="رابط حساب انستجرام" />
                 </div>
 
                 <div class="section-seprate">
                   <div class="wrapper">
-                    <input type="radio" name="is_postal" class="radio-check" />
-
+                    <input type="radio" value="1" name="is_postal" class="radio-check" />
                     <label class="radio-title bold-text">
                       الإشتراك في النشرة البريدية لتلقي كل جديد
                     </label>
@@ -186,10 +193,10 @@
                 </div>
 
                 <div class="button-contain">
-                  <a href="#" type="button" class="custom-btn" data-toggle="modal" data-target="#popcancel">
+                  <a href="#!" type="button" class="custom-btn" onclick="$('#registerForm').submit()">
                     <img src="{{ asset('website/assets/images/icons/arrow.svg') }}" loading="lazy" alt="" />
                     <span>
-                      التالي
+                      تسجيل
                     </span>
                   </a>
                 </div>
