@@ -52,11 +52,6 @@
               <input type="text" class="form-control" name='max_used' value="{{$coupon->max_used}}">
             </div>
 
-            <div class="form-group col-6">
-              <label>@lang("used_times")</label>
-              <input type="text" class="form-control" name='used_times' value="{{$coupon->used_times}}">
-            </div>
-
 
           </div>
           <div class="row">
