@@ -6,10 +6,12 @@ use App\DataTables\Admin\SocietyDatatable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\SocietyRequest;
 use App\Models\Chat\SocietyChat;
+use App\Models\SeenMessage;
 use App\Models\Society\Society;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Validator;
 
 class SocietyController extends Controller
@@ -98,7 +100,45 @@ class SocietyController extends Controller
 
     public function messages(Society $society)
     {
-        $messages=SocietyChat::with(['society','sender'])->where('society_id',$society->id)->orderBy('created_at','asc')->get();
+        $messages = SocietyChat::with(['society', 'sender'])->where('society_id', $society->id)->orderBy('created_at', 'asc')->get();
+        $senders=SocietyChat::pluck('sender_id')->toArray();
+        if ($senders) {
+            if (in_array(auth()->id(), $senders)) {
+                $sender = SocietyChat::where([['sender_id', auth()->id()], ['society_id', $society->id], ['read_at', null]])->orderBy('id', 'DESC')->first();
+                if ($sender) {
+                    $unreadMsgs = SocietyChat::where([['id', '>', $sender->id], ['society_id', $society->id]])->get();
+                    foreach ($unreadMsgs as $unreadMsg) {
+                        SeenMessage::create([
+                              'message_id' => $unreadMsg->id,
+                              'user_id' => auth()->id(),
+                        ]);
+                        $sender->read_at = now();
+                        $sender->save();
+                    }
+                }
+
+            } else {
+                $Msgs = SocietyChat::where([['society_id', $society->id]])->get();
+                $readMsgs = SeenMessage::get();
+                foreach ($Msgs as $Msg) {
+                    if ($readMsgs->isNotEmpty()) {
+                        foreach ($readMsgs as $readMsg) {
+                            $data = SeenMessage::where([['message_id', $Msg->id], ['user_id', auth()->id()]])->get();
+                            if (!$data)
+                                SeenMessage::create([
+                                      'message_id' => $Msg->id,
+                                      'user_id' => auth()->id(),
+                                ]);
+                        }
+                    } else {
+                        SeenMessage::create([
+                              'message_id' => $Msg->id,
+                              'user_id' => auth()->id(),
+                        ]);
+                    }
+                }
+            }
+        }
         return view('admin.society.chat',compact('messages','society'));
     }
 

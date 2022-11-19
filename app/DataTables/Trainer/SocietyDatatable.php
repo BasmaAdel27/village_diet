@@ -24,7 +24,9 @@ class SocietyDatatable extends DataTable
                 return ($query->is_active == 1) ?  '<span class="btn btn-success">' . trans('active') . "</span>" : '<span class="btn btn-danger">' .  trans('inactive') . "</span>";
             })->editColumn('translations.title', function ($query) {
                 return $query->title;
-            })->rawColumns(['Action', 'is_active']);
+            })->editColumn('messageCount', function ($query) {
+                  return ($query->msgCount($query->id) > 0) ?  '<span class="btn btn-danger" style="margin: auto">' . $query->msgCount($query->id) . "</span>" : '<span class="btn btn-success">' .  $query->msgCount($query->id) . "</span>";
+              })->rawColumns(['Action', 'is_active','messageCount']);
     }
 
     public function query()
@@ -61,6 +63,7 @@ class SocietyDatatable extends DataTable
             Column::make('users_count')->orderable(true)->title(trans('users_count'))->orderable(false)->searchable(false),
             Column::make('is_active')->title(trans('status')),
             Column::make('created_at')->title(trans('created_at')),
+            Column::make('messageCount')->title(trans('messageCount'))->searchable(false)->orderable(false),
             Column::make('Action')->title(trans('action'))->searchable(false)->orderable(false)
         ];
     }

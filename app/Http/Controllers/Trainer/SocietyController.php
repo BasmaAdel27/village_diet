@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Trainer;
 use App\DataTables\Trainer\SocietyDatatable;
 use App\Http\Controllers\Controller;
 use App\Models\Chat\SocietyChat;
+use App\Models\SeenMessage;
 use App\Models\Society\Society;
 
 class SocietyController extends Controller
@@ -27,9 +28,5 @@ class SocietyController extends Controller
         return  view('trainer.society.show', compact('society'));
     }
 
-    public function messages(Society $society)
-    {
-        $messages=SocietyChat::with(['society','sender'])->where('society_id',$society->id)->orderBy('created_at','asc')->get();
-        return view('admin.society.chat',compact('messages','society'));
-    }
+
 }

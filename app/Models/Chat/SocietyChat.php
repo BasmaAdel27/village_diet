@@ -21,4 +21,5 @@ class SocietyChat extends Model
         return $this->belongsTo(Society::class, 'society_id');
     }
 
+
 }
