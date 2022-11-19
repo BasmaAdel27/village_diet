@@ -10,9 +10,10 @@ class AuthResource extends JsonResource
 {
     public function toArray($request)
     {
-        $dayNumber = now()->diffInDays($this->currentSubscription?->created_at);
-        if ($dayNumber) $dayNumber = $dayNumber + 1;
-        $day = Day::where('number', $dayNumber)->first();
+        if ($this->currentSubscription) {
+            $dayNumber = now()->diffInDays($this->currentSubscription?->created_at) + 1;
+            $day = Day::where('number', $dayNumber)->first();
+        }
 
         return [
             'token' => $this->token,
@@ -32,7 +33,7 @@ class AuthResource extends JsonResource
             "state" => $this->state?->name,
             'created_at' => $this->created_at,
             'image' => $this->image,
-            'subscription_day' => DayResource::make($day),
+            'subscription_day' => isset($day) ? DayResource::make($day) : null,
             'current_subscription' => LogsResource::make($this->currentSubscription)
         ];
     }
