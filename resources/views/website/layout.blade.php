@@ -17,6 +17,8 @@
   <main>
     @yield('content')
   </main>
+  @include('website.layouts.modals.register')
+  @include('website.layouts.modals.subscription')
   <footer>
     @include('website.layouts.footer')
   </footer>

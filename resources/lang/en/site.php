@@ -63,5 +63,15 @@ return [
     'admin.reports.copouns' => 'Copouns (Reports)',
     'admin.postel_news.index' => 'Index (Postel News)',
     'admin.postel_news.store' => 'Store (Postel News)',
-    'admin.postel_news.destroy' => 'Destroy (Postel News)'
+    'admin.postel_news.destroy' => 'Destroy (Postel News)',
+
+    // website
+    "society_list" => [
+        "The ability to participate with the trainer in the community",
+        "The ability to participate with the participants in the community",
+        "The ability to view new content for individuals",
+        "The ability to participate in written content and pictures",
+        "The ability to share audio files", "Interaction with all members of the community",
+        'added_to_society' => 'You have been added to a new community under the auspices of Coach :trainer'
+    ]
 ];

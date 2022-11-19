@@ -32,7 +32,7 @@ html[dir="ltr"] {
   .take-now .box-contain::after,
   .general-pattern.left-pattern::after {
     right: 0;
-    left: unset !important; 
+    left: unset !important;
   }
 
   .socaity .contain .list li::after,
@@ -40,7 +40,7 @@ html[dir="ltr"] {
     left: 0px;
     right: unset !important;
   }
-  
+
   .form-contain .form-group .icon {
     left: 15px;
     right: unset;
@@ -283,7 +283,7 @@ html[dir="ltr"] {
       .line{
         width: 30px;
         height: 3px;
-        background: linear-gradient(90deg, #472B73, #BE64A7); 
+        background: linear-gradient(90deg, #472B73, #BE64A7);
         display: block;
         margin: 8px auto;
         transition: all 0.3s ease-in-out;
@@ -307,10 +307,10 @@ html[dir="ltr"] {
           &:nth-child(1){
             transform: translateY(6.5px);
           }
-          
+
           &:nth-child(3){
             transform: translateY(-15px) rotate(90deg);
-          }                             
+          }
         }
       }
     }
@@ -338,7 +338,7 @@ html[dir="ltr"] {
           color: var(--dark-color);
           position: relative;
           z-index: 9;
-          
+
           &::after, &::before {
             content: '';
             position: absolute;
@@ -872,7 +872,7 @@ header {
       &::after {
         background: linear-gradient(90deg, #A6A6A5, #674495);
       }
-  
+
       &::before {
         background: linear-gradient(90deg, #674495, #472B73);
       }
@@ -890,7 +890,7 @@ header {
   .image-content {
     width: 100%;
     height: 445px;
-    
+
     img {
       width: 100%;
       height: 100%;
@@ -1282,7 +1282,7 @@ footer {
 
     &.text-area {
       height: 100px;
-      
+
       .form-control {
         border-radius: 15px !important;
         resize: none;
@@ -1343,12 +1343,12 @@ footer {
       z-index: 999;
       background-color: rgba($color: #472B73, $alpha: 0.03);
       border: 1px solid rgba($color: #472B73, $alpha: 0.06);
-      
+
       .phone-drop {
         padding-inline-end: 34px;
         padding-inline-start: 15px;
         border-inline-end: 1px solid rgba($color: #472B73, $alpha: 0.06);
-        
+
         .phone-contain {
           display: flex;
           align-items: center;
@@ -1419,7 +1419,7 @@ footer {
                 border-radius: 50%;
                 margin-inline-end: 5px;
               }
-    
+
               span {
                 color: var(--dark-color);
                 font-size: 15px;
@@ -1462,7 +1462,7 @@ footer {
         background-color: transparent !important;
         padding-inline-start: 10px !important;
       }
-    } 
+    }
 
     &:hover {
       .icon {
@@ -1474,7 +1474,67 @@ footer {
       }
     }
   }
+.form-data {
+  position: relative;
+  z-index: 9;
+  margin-bottom: 16px;
 
+  label {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--dark-color);
+    margin-bottom: 10px;
+  }
+}
+
+.file-upload {
+  width: 280px;
+  height: 150px;
+
+  input[type="file"] {
+    display: none;
+  }
+
+  .file-upload-section {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+    background: rgba($color: #674495, $alpha: 0.07);
+    border: 1px solid rgba($color: #674495, $alpha: 0.10);
+    border-radius: 24px;
+    cursor: pointer;
+
+    img {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+      transition: all .3s linear;
+    }
+
+    h2 {
+      color: var(--primary-color);
+      font-size: 16px;
+      font-weight: 500;
+      margin: 15px 0px;
+    }
+
+    p {
+      color: var(--gray-color);
+      font-size: 11px;
+      font-weight: 500;
+      margin: 0px;
+    }
+
+    &:hover img {
+      transform: translateY(-10px);
+    }
+  }
+}
   .wrapper{
     display: flex;
     justify-content: flex-start;
@@ -1517,7 +1577,7 @@ footer {
         top: 0;
         left: 0;
       }
-    
+
       &:checked{
         &::after{
           transform: scale(1);
@@ -1628,7 +1688,7 @@ footer {
       display: flex;
       align-items: center;
       align-content: center;
-      
+
       li {
         margin-inline-end: 0px;
         width: 50%;
@@ -1683,7 +1743,7 @@ footer {
           a {
             &::after {
               right: 0
-            } 
+            }
           }
         }
       }
@@ -1740,7 +1800,7 @@ footer {
       border-radius: 15px;
       display: flex;
       margin-top: 40px;
-      
+
       img {
         width: 24px;
         height: 24px;
@@ -1767,7 +1827,7 @@ footer {
         &::after {
           background: linear-gradient(90deg, #674495, #A6A6A5);
         }
-    
+
         &::before {
           background: linear-gradient(90deg, #674495, #472B73);
         }
@@ -1959,7 +2019,7 @@ footer {
         &::after {
           background: linear-gradient(90deg, #674495, #A6A6A5);
         }
-    
+
         &::before {
           background: linear-gradient(90deg, #674495, #472B73);
         }
@@ -2030,7 +2090,7 @@ footer {
     position: relative;
     z-index: 9;
     border-radius: 6px;
-    
+
     &::after, &::before {
       content: '';
       position: absolute;
@@ -2078,7 +2138,7 @@ footer {
           font-weight: 900;
         }
       }
-      
+
       .price {
         font-size: 16px;
         font-weight: 900;
@@ -2136,7 +2196,7 @@ footer {
           width: 24px;
           height: 24px;
           display: flex;
-  
+
           img {
             width: 100%;
             height: 100%;
@@ -2165,7 +2225,7 @@ footer {
       &::after {
         background: linear-gradient(90deg, #674495, #A6A6A5);
       }
-  
+
       &::before {
         background: linear-gradient(90deg, #674495, #472B73);
       }
@@ -2220,7 +2280,7 @@ footer {
       .custom-btn {
         background-color: rgba($color: #472B73, $alpha: 0.03);
         border: 1px solid rgba($color: #472B73, $alpha: 0.06);
-  
+
         span {
           color: var(--primary-color)
         }
@@ -2253,7 +2313,7 @@ footer {
             object-fit: contain;
             filter: invert(100%) sepia(23%) saturate(1%) hue-rotate(194deg) brightness(119%) contrast(85%);
           }
-      
+
           &.active, &:hover {
             img {
               filter: invert(78%) sepia(37%) saturate(754%) hue-rotate(12deg) brightness(92%) contrast(93%);
@@ -2460,7 +2520,7 @@ footer {
           &[aria-expanded="true"] {
             &::after {
               transform: rotate(180deg);
-            } 
+            }
           }
 
           &::after {

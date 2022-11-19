@@ -95,14 +95,14 @@
 
               <div class="col-12">
                 <div class="form-group text-area">
-                  <textarea name="content" class="form-control" placeholder="@lang('message_content')..." id="" cols="30"
+                  <textarea name="content" class="form-control" placeholder="@lang('message_content')..." cols="30"
                     rows="10"></textarea>
                 </div>
               </div>
             </div>
 
             <div class="button-contain">
-              <button   type="submit" class="custom-btn" data-toggle="modal" data-target="#popdone">
+              <button type="submit" class="custom-btn">
                 <img src="{{asset('website/assets/images/icons/arrow.svg')}}" loading="lazy" alt="" />
 
                 <span>
@@ -115,7 +115,7 @@
         <div class="map-contain">
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d54708.5528184499!2d{{$setting->longitude}}!3d{{$setting->latitude}}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2seg!4v1667855570043!5m2!1sen!2seg"
-            style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" ></iframe>
+            style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
 
         <div class="contact-info">
@@ -158,7 +158,7 @@
 
                 <div>
                   <h2>
-                     @lang('phone')
+                    @lang('phone')
                   </h2>
 
                   <p>

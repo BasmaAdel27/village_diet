@@ -31,5 +31,6 @@ class DatabaseSeeder extends Seeder
         Subscription::factory(50)->create();
         $this->call(SurveySeeder::class);
         $this->call(StaticPagesSeeder::class);
+        $this->call(ServiceSeeder::class);
     }
 }

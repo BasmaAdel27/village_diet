@@ -1,30 +1,31 @@
 <?php
 
-use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\Admin\AjaxController;
-use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\Admin\RoleController;
-use App\Http\Controllers\Admin\ContactUsController;
-use App\Http\Controllers\Admin\RatingController;
-use App\Http\Controllers\Admin\SliderController;
-use App\Http\Controllers\Admin\SocietyController;
-use App\Http\Controllers\Admin\StaticPageController;
-use App\Http\Controllers\Admin\VideoController;
-use App\Http\Controllers\Admin\SettingController;
-use App\Http\Controllers\Admin\ProfileController;
-use App\Http\Controllers\Admin\MealController;
-use App\Http\Controllers\Admin\NotiifcationController;
-use App\Http\Controllers\Admin\ReportController;
-use App\Http\Controllers\Admin\TrainerController;
-use App\Http\Controllers\Admin\PendingTrainerController;
-use \App\Http\Controllers\Admin\CouponController;
-use App\Http\Controllers\Admin\HomeController;
-use App\Http\Controllers\Admin\PostelNewsController;
-use App\Http\Controllers\Admin\TemplateController;
-use App\Http\Controllers\Admin\CustomerOpinionController;
-use App\Http\Controllers\Admin\ServiceController;
-use App\Http\Controllers\Admin\SubscriptionController;
-use App\Http\Controllers\Admin\FaqsController;
+use App\Http\Controllers\Admin\{
+    AdminController,
+    UserController,
+    RoleController,
+    ContactUsController,
+    RatingController,
+    SliderController,
+    SocietyController,
+    StaticPageController,
+    VideoController,
+    SettingController,
+    ProfileController,
+    MealController,
+    NotiifcationController,
+    ReportController,
+    TrainerController,
+    PendingTrainerController,
+    CouponController,
+    HomeController,
+    PostelNewsController,
+    TemplateController,
+    CustomerOpinionController,
+    ServiceController,
+    SubscriptionController,
+    FaqsController
+};
 use Illuminate\Support\Facades\Route;
 
 Route::get('societies/messages/{society}', [SocietyController::class, 'messages'])->name('societies.messages');
@@ -69,7 +70,6 @@ Route::get('copouns-report', [ReportController::class, 'copounsReport'])->name('
 Route::post('pending-trainers/submit/{id}', [PendingTrainerController::class, 'submit'])->name('pending-trainers.submit');
 Route::post('pending-trainers/declined/{id}', [PendingTrainerController::class, 'declined'])->name('pending-trainers.declined');
 
-Route::get('/states', [AjaxController::class, 'fetchState'])->name('states');
 Route::resource('templates', TemplateController::class)->except('show');
 Route::resource('opinions', CustomerOpinionController::class);
 Route::get('subscriptions', [SubscriptionController::class, 'index'])->name('subscriptions.index');

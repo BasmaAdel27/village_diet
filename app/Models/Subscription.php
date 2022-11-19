@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Traits\HasTimestampTrait;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -18,13 +19,8 @@ class Subscription extends Model
     const IN_ACTIVE = 'in_active';
     const REQUEST_CANCEL = 'request_cancel';
     const FINISHED = 'finished';
-    const ACTIVE_AR = 'مفعل';
-    const INACTIVE_AR = 'معطل';
-    const REQUEST_CANCEL_AR = 'ملغي';
-    const FINISHED_AR = 'منتهي';
 
     const STATUSES = [self::ACTIVE, self::IN_ACTIVE, self::REQUEST_CANCEL, self::FINISHED];
-    const STATUSES_AR = [self::ACTIVE_AR, self::INACTIVE_AR, self::REQUEST_CANCEL_AR, self::FINISHED_AR];
 
     public function coupon()
     {
@@ -45,5 +41,11 @@ class Subscription extends Model
                 request()->has('date_to'),
                 fn ($q) => $q->where('created_at', '<=', $date_to)
             );
+    }
+
+    public function setStatusAttribute($value)
+    {
+        $this->attributes['status_ar'] = trans($value);
+        $this->attributes['status'] = $value;
     }
 }

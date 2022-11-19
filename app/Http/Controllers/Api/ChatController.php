@@ -31,11 +31,11 @@ class ChatController extends Controller
         $trainerId = auth()->user()->society->trainer->id;
 
         $messages = TrainerMessage::with('sender', 'receiver')
-              ->where(function ($q) use ($userId, $trainerId) {
-                  $q->where([['sender_id', $userId], ['receiver_id', $trainerId]])
-                        ->orWhere([['sender_id', $trainerId], ['receiver_id', $userId]]);
-              })->orderBy('created_at', 'desc')
-              ->paginate($request->per_page ?? 15);
+            ->where(function ($q) use ($userId, $trainerId) {
+                $q->where([['sender_id', $userId], ['receiver_id', $trainerId]])
+                    ->orWhere([['sender_id', $trainerId], ['receiver_id', $userId]]);
+            })->orderBy('created_at', 'desc')
+            ->paginate($request->per_page ?? 15);
 
         return successResponse(MessageResource::collection($messages), PaginationResource::make($messages));
     }
@@ -44,15 +44,15 @@ class ChatController extends Controller
     public function getAdminMessages(Request $request)
     {
         $userId = auth()->id();
-        $adminsIds = User::whereHas('roles', fn($q) => $q->whereNotIn('name', ['user', 'trainer']))->pluck('id');
+        $adminsIds = User::whereHas('roles', fn ($q) => $q->whereNotIn('name', ['user', 'trainer']))->pluck('id');
 
         $messages = AdminMessage::with('sender', 'receiver')
-              ->where(function ($q) use ($userId, $adminsIds) {
-                  $q->where(fn($q) => $q->where('sender_id', $userId)->whereIn('receiver_id', $adminsIds))
-                        ->orWhere(fn($q) => $q->whereIn('sender_id', $adminsIds)->where('receiver_id', $userId));
-              })
-              ->orderBy('created_at', 'desc')
-              ->paginate($request->per_page ?? 15);
+            ->where(function ($q) use ($userId, $adminsIds) {
+                $q->where(fn ($q) => $q->where('sender_id', $userId)->whereIn('receiver_id', $adminsIds))
+                    ->orWhere(fn ($q) => $q->whereIn('sender_id', $adminsIds)->where('receiver_id', $userId));
+            })
+            ->orderBy('created_at', 'desc')
+            ->paginate($request->per_page ?? 15);
 
         return successResponse(MessageResource::collection($messages), PaginationResource::make($messages));
     }
@@ -60,10 +60,10 @@ class ChatController extends Controller
     public function getSocietyMessages(Request $request)
     {
         $messages = SocietyChat::query()
-              ->where('society_id', auth()->user()->society?->id)
-              ->with('sender.roles')
-              ->orderBy('created_at', 'desc')
-              ->paginate($request->per_page ?? 15);
+            ->where('society_id', auth()->user()->society?->id)
+            ->with('sender.roles')
+            ->orderBy('created_at', 'desc')
+            ->paginate($request->per_page ?? 15);
 
         return successResponse(SocietyMessageResource::collection($messages), PaginationResource::make($messages));
     }
@@ -73,14 +73,7 @@ class ChatController extends Controller
         $trainerMessage->sender_id = auth()->id();
         $trainerMessage->fill($storeMessageRequest->validated())->save();
         $this->setMessageAttribute($trainerMessage);
-        // send_notification()
         $this->saveNotification($storeMessageRequest->receiver_id);
-
-        // send firebase notification to receiver
-        $title = "Village Diet";
-        $content = trans('mobile.notifications.content.new_message');
-        $message = trans('mobile.notifications.message.send_new_message', ['sender' => $trainerMessage->sender->full_name]);
-        send_notification($storeMessageRequest->receiver->firebase_token, $title, $content, $message);
 
         return successResponse(MessageResource::make($trainerMessage), message: trans('message_sent_successfully'));
     }
@@ -91,7 +84,6 @@ class ChatController extends Controller
         $adminMessage->sender_id = auth()->id();
         $adminMessage->fill($storeMessageRequest->validated())->save();
         $this->setMessageAttribute($adminMessage);
-        // send_notification();
         $this->saveNotification($storeMessageRequest->receiver_id);
 
         return successResponse(MessageResource::make($adminMessage), message: trans('message_sent_successfully'));
@@ -104,8 +96,8 @@ class ChatController extends Controller
         $societyChat->fill($societyMessageRequest->validated())->save();
         $society = Society::find($societyChat->society_id);
         $this->setMessageAttribute($societyChat);
-        // send_notification();
-        foreach ($society->users as $user) {
+
+        foreach ($society->users->where('id', '<>', auth()->id()) as $user) {
             $this->saveNotification($user->id);
         }
 
@@ -126,10 +118,15 @@ class ChatController extends Controller
         $data['type'] = 'chat';
         $data['notifiable_id'] = $id;
         $data['notifiable_type'] = User::class;
-        $data['data']['type'] = 'trainer';
-        $data['data']['title'] = trans('mobile.notifications.content.new_message');;
-        $data['data']['body'] = trans('u_receive_new_message');
+        $data['data']['type'] = 'chat';
+        $data['data']['title'] = trans('mobile.notifications.content.new_message', locale: 'en');
+        $data['data']['title_ar'] = trans('mobile.notifications.content.new_message', locale: 'ar');
+        $data['data']['body'] = trans('u_receive_new_message', locale: 'en');
+        $data['data']['body_ar'] = trans('u_receive_new_message', locale: 'ar');
 
         DatabaseNotification::create($data);
+
+        $user = User::find($id);
+        send_notification([$user->firebase_token], $data['data']);
     }
 }

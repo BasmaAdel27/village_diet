@@ -19,13 +19,12 @@ class CouponRequest extends FormRequest
 
     public function rules()
     {
-        $rules= [
-            'code'=>'required|min:6|max:6',
-            'activate_date'=>'required',
-            'end_date'=>'required',
-            'amount'=>'required|numeric',
-            'max_used'=>'required|numeric',
-            'used_times'=>'required|numeric',
+        $rules = [
+            'code' => 'required|min:6|max:6',
+            'activate_date' => 'required',
+            'end_date' => 'required',
+            'amount' => 'required|numeric',
+            'max_used' => 'required|numeric',
         ];
 
         return $rules;

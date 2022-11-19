@@ -7,6 +7,7 @@ use App\Http\Requests\Api\AddFirebaseRequest;
 use App\Http\Requests\Api\AuthRequest;
 use App\Http\Requests\Api\UpdateProfileRequest;
 use App\Http\Resources\Api\AuthResource;
+use App\Models\Subscription;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -23,10 +24,22 @@ class AuthController extends Controller
         }
 
         $user = User::firstWhere([
-            'user_number' => $data['user_number'],
+              'user_number' => $data['user_number'],
         ]);
 
         if (!$user) return failedResponse(Lang::get('user_not_found'));
+        if ($user->currentSubscription?->end_date <= now()->endOfDay()) {
+            $user->currentSubscription()->update([
+                  'status' => Subscription::FINISHED,
+                  'status_ar' => trans(Subscription::FINISHED)
+            ]);
+
+            return failedResponse(Lang::get('subscription_is_finished'));
+        }
+
+        if ($user->isSubscriptionFinished() || $user->currentSubscription == null)
+            return failedResponse(Lang::get('subscription_is_finished'));
+
         if (!$user->is_active) return failedResponse(Lang::get('connect_with_support'));
         Auth::loginUsingId($user->id);
 
@@ -53,7 +66,6 @@ class AuthController extends Controller
     {
         $data = $request->validated();
         auth()->user()->update(['firebase_token' => $data['firebase_token']]);
-
-        return successResponse(AuthResource::make($user), message: trans('updated_successfully'));
+        return successResponse(AuthResource::make(auth()->user()), message: trans('updated_successfully'));
     }
 }

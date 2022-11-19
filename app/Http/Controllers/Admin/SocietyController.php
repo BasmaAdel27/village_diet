@@ -13,6 +13,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class SocietyController extends Controller
 {
@@ -47,6 +48,7 @@ class SocietyController extends Controller
         $society->fill($data)->save();
         $users = User::find($data['user_id']);
         $users->map->update(['society_id' => $society->id]);
+        $this->sendNotify($users, $society);
 
         if ($data['is_active'] == 1) {
             $society->update(['date_from' => now()]);
@@ -75,8 +77,7 @@ class SocietyController extends Controller
     {
         $data = $request->validated();
         $society->fill($data)->save();
-        $users = User::find($data['user_id']);
-        $users->map->update(['society_id' => $society->id]);
+        $users = $this->handleChangedUsers($society, $data);
 
         if ($data['is_active'] == 1 && $society->is_active == 0) {
             $society->update(['date_from' => now()]);
@@ -140,32 +141,83 @@ class SocietyController extends Controller
             }
         }
         return view('admin.society.chat',compact('messages','society'));
+
     }
 
-    public function addMsg(Request $request){
+    public function addMsg(Request $request)
+    {
         $data = $request->all(['message']);
         $validator = Validator::make($data, ['message' => 'required']);
         if ($validator->fails())
-            return redirect()->back()->with("errors",$validator->errors());
+            return redirect()->back()->with("errors", $validator->errors());
 
-        $message=SocietyChat::create([
-              'message'=>$request->message,
-              'sender_id'=>auth()->id(),
-               'type'=>'TEXT',
-                'society_id'=>$request->society_id,
+        $message = SocietyChat::create([
+            'message' => $request->message,
+            'sender_id' => auth()->id(),
+            'type' => 'TEXT',
+            'society_id' => $request->society_id,
         ]);
         return redirect()->back();
-
     }
 
-    public function save(Request $request){
+    public function save(Request $request)
+    {
         $path = $request->file('message')->storePublicly('chats/media', "public");
-        $message=SocietyChat::create([
-              'message'=>"/storage/" . $path,
-              'sender_id'=>$request->sender,
-              'type'=>'AUDIO',
-              'society_id'=>$request->society,
+        $message = SocietyChat::create([
+            'message' => "/storage/" . $path,
+            'sender_id' => $request->sender,
+            'type' => 'AUDIO',
+            'society_id' => $request->society,
         ]);
-       return response()->json($message);
+        return response()->json($message);
+    }
+
+    private function sendNotify($users, $society)
+    {
+        foreach ($users as $user) {
+            $user->notifications()->create([
+                'id' => Str::uuid(),
+                'type' => 'society',
+                'data' => [
+                    'title' => 'Society',
+                    'title_ar' => 'مجتمعك',
+                    'body' => trans('added_to_society', [
+                        'trainer' => $society->trainer?->first_name . ' ' . $society->trainer?->first_name,
+                    ], 'en'),
+                    'body_ar' =>  trans('added_to_society', [
+                        'trainer' => $society->trainer?->first_name . ' ' . $society->trainer?->first_name,
+                    ], 'ar')
+                ]
+            ]);
+        }
+
+        send_notification($users->pluck('firebase_token')->all(), [
+            'type' => 'society',
+            'title' => 'Society',
+            'title_ar' => 'مجتمعك',
+            'body' => trans('added_to_society', [
+                'trainer' => $society->trainer?->first_name . ' ' . $society->trainer?->first_name,
+            ], 'en'),
+            'body_ar' =>  trans('added_to_society', [
+                'trainer' => $society->trainer?->first_name . ' ' . $society->trainer?->first_name,
+            ], 'ar'),
+        ]);
+    }
+
+    private function handleChangedUsers($society, $data)
+    {
+        $oldIds = $society->users()->pluck('id')->all();
+        $deletedUsersIds = array_diff($oldIds, $data['user_id']);
+        $addedUsersIds = array_diff($data['user_id'], $oldIds);
+
+        User::find($deletedUsersIds)->map->update(['society_id' => null]);
+        $users = User::find($data['user_id']);
+        $users->map->update(['society_id' => $society->id]);
+
+        if ($deletedUsersIds || $addedUsersIds) {
+            $this->sendNotify(User::find($addedUsersIds), $society);
+        }
+
+        return $users;
     }
 }

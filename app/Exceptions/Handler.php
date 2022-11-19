@@ -2,10 +2,12 @@
 
 namespace App\Exceptions;
 
+use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Support\Arr;
 use Illuminate\Validation\ValidationException;
+use MattDaneshvar\Survey\Exceptions\MaxEntriesPerUserLimitExceeded;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Throwable;
 
@@ -54,6 +56,11 @@ class Handler extends ExceptionHandler
                 return failedResponse(trans('number_is_not_correct_please_connect_with_support'), 429);
             }
         }
+
+        if ($throwable instanceof MaxEntriesPerUserLimitExceeded) {
+            return throw  \Illuminate\Validation\ValidationException::withMessages(['message' => trans('maximum_entries_per_user_exceeded')]);
+        }
+
         return parent::render($request, $throwable);
     }
 
