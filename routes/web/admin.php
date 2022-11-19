@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\Admin\AjaxController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\ContactUsController;
@@ -69,7 +68,6 @@ Route::get('copouns-report', [ReportController::class, 'copounsReport'])->name('
 Route::post('pending-trainers/submit/{id}', [PendingTrainerController::class, 'submit'])->name('pending-trainers.submit');
 Route::post('pending-trainers/declined/{id}', [PendingTrainerController::class, 'declined'])->name('pending-trainers.declined');
 
-Route::get('/states', [AjaxController::class, 'fetchState'])->name('states');
 Route::resource('templates', TemplateController::class)->except('show');
 Route::resource('opinions', CustomerOpinionController::class);
 Route::get('subscriptions', [SubscriptionController::class, 'index'])->name('subscriptions.index');

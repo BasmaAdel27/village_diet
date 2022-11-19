@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AjaxController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\ContactUsController;
 use App\Http\Controllers\Api\HealthDataController;
@@ -52,3 +53,5 @@ Route::middleware(['auth:sanctum', 'appLocale'])->group(function () {
         Route::post('store_society_messages', 'storeSocietyMessages');
     });
 });
+
+Route::get('/states', [AjaxController::class, 'fetchState'])->name('admin.states');
