@@ -12,11 +12,11 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $sliders = Slider::latest()->take(3)->get();
-        $ourVisionPage = StaticPage::where('slug', 'About-Village-Diet')->first();
-        $aboutPage = StaticPage::where('slug', 'Our-Vision')->first();
-        $workWaySteps = Service::where('type', 'WorkWay')->oldest('ordering')->get();
-        $products = Service::where('type', 'Store')->oldest('ordering')->get();
+        $sliders = Slider::where('is_active', true)->latest()->take(3)->get();
+        $ourVisionPage = StaticPage::where('is_active', true)->where('slug', 'About-Village-Diet')->first();
+        $aboutPage = StaticPage::where('is_active', true)->where('slug', 'Our-Vision')->first();
+        $workWaySteps = Service::where('is_active', true)->where('type', 'WorkWay')->oldest('ordering')->get();
+        $products = Service::where('is_active', true)->where('type', 'Store')->oldest('ordering')->get();
 
         return view('website.pages.landing', compact(
             'sliders',
