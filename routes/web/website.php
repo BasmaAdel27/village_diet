@@ -5,12 +5,17 @@ use App\Http\Controllers\Website\TrainarController;
 use App\Http\Controllers\Website\ContactUsController;
 use App\Http\Controllers\Website\CustomerOpinionController;
 use App\Http\Controllers\Website\HomeController;
+use App\Http\Controllers\Website\RegisterController;
 use App\Http\Controllers\Website\SubscribeController;
 use App\Models\Faq\Faq;
 use App\Models\StaticPage\StaticPage;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::view('/register', 'website.pages.register.register')->name('register');
+Route::controller(RegisterController::class)->group(function () {
+    Route::get('register', 'create')->name('register');
+    Route::post('register', 'create')->name('register.store');
+});
+
 Route::view('/payment', 'website.pages.register.payment');
 Route::view('/form', 'website.pages.register.form');
 

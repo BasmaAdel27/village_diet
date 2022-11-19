@@ -49,7 +49,7 @@
                 </p>
               </div>
 
-              <form action="" class="form-contain">
+              <form action="{{ route('website.register.store') }}" class="form-contain" method="POST">@csrf
                 <h2 class="sub-title">
                   معلومات أساسية
                 </h2>
@@ -60,7 +60,7 @@
                       <img src="{{ asset('website/assets/images/form/user.svg') }}" class="icon" loading="lazy"
                         alt="" />
 
-                      <input type="text" class="form-control" placeholder="الاسم الأول" />
+                      <input type="text" name="first_name" class="form-control" placeholder="الاسم الأول" />
                     </div>
                   </div>
 
@@ -69,7 +69,7 @@
                       <img src="{{ asset('website/assets/images/form/user.svg') }}" class="icon" loading="lazy"
                         alt="" />
 
-                      <input type="text" class="form-control" placeholder="الاسم الأخير" />
+                      <input type="text" name="last_name" class="form-control" placeholder="الاسم الأخير" />
                     </div>
                   </div>
 
@@ -77,7 +77,7 @@
                     <div class="form-group">
                       <img src="{{ asset('website/assets/images/form/sms.svg') }}" class="icon" loading="lazy" alt="" />
 
-                      <input type="text" class="form-control" placeholder="البريد الالكتروني" />
+                      <input type="text" name="email" class="form-control" placeholder="البريد الالكتروني" />
                     </div>
                   </div>
 
@@ -85,7 +85,8 @@
                     <div class="form-group">
                       <img src="{{ asset('website/assets/images/form/sms.svg') }}" class="icon" loading="lazy" alt="" />
 
-                      <input type="text" class="form-control" placeholder="تأكيد البريد الالكتروني" />
+                      <input type="text" name="email_confirmation" class="form-control"
+                        placeholder="تأكيد البريد الالكتروني" />
                     </div>
                   </div>
 
@@ -94,76 +95,13 @@
                       <div class="phone-drop">
                         <div class="phone-contain">
                           <img src="{{ asset('website/assets/images/form/suadia.png') }}" loading="lazy" alt="" />
-
                           <span>
                             +966
                           </span>
                         </div>
-
-                        <ul class="list">
-                          <li>
-                            <a href="#">
-                              <img src="{{ asset('website/assets/images/form/suadia.png') }}" loading="lazy" alt="" />
-
-                              <span>
-                                السعودية
-                              </span>
-                            </a>
-                          </li>
-
-                          <li>
-                            <a href="#">
-                              <img src="{{ asset('website/assets/images/form/suadia.png') }}" loading="lazy" alt="" />
-
-                              <span>
-                                السعودية
-                              </span>
-                            </a>
-                          </li>
-
-                          <li>
-                            <a href="#">
-                              <img src="{{ asset('website/assets/images/form/suadia.png') }}" loading="lazy" alt="" />
-
-                              <span>
-                                السعودية
-                              </span>
-                            </a>
-                          </li>
-
-                          <li>
-                            <a href="#">
-                              <img src="{{ asset('website/assets/images/form/suadia.png') }}" loading="lazy" alt="" />
-
-                              <span>
-                                السعودية
-                              </span>
-                            </a>
-                          </li>
-
-                          <li>
-                            <a href="#">
-                              <img src="{{ asset('website/assets/images/form/suadia.png') }}" loading="lazy" alt="" />
-
-                              <span>
-                                السعودية
-                              </span>
-                            </a>
-                          </li>
-
-                          <li>
-                            <a href="#">
-                              <img src="{{ asset('website/assets/images/form/suadia.png') }}" loading="lazy" alt="" />
-
-                              <span>
-                                السعودية
-                              </span>
-                            </a>
-                          </li>
-                        </ul>
                       </div>
 
-                      <input type="text" class="form-control" placeholder="رقم الجوال" />
+                      <input type="text" name="phone" class="form-control" placeholder="رقم الجوال" />
                     </div>
                   </div>
 
@@ -171,8 +109,7 @@
                     <div class="form-group">
                       <img src="{{ asset('website/assets/images/form/calendar.svg') }}" class="icon" loading="lazy"
                         alt="" />
-
-                      <input type="text" class="form-control" placeholder="تاريخ الميلاد" />
+                      <input type="date" name="date_of_birth" class="form-control" placeholder="تاريخ الميلاد" />
                     </div>
                   </div>
                 </div>
@@ -186,19 +123,13 @@
                     <div class="form-group select">
                       <img src="{{ asset('website/assets/images/form/flag.svg') }}" class="icon" loading="lazy"
                         alt="" />
-
-                      <select class="form-control" name="" id="">
+                      <select class="form-control" name="country_id" id="country">
                         <option value="" hidden>
                           الدولة
                         </option>
-
-                        <option value="السعودية">
-                          السعودية
-                        </option>
-
-                        <option value="مصر">
-                          مصر
-                        </option>
+                        @foreach ($countries as $id => $name)
+                        <option value="{{ $id }}">{{ $name }}</option>
+                        @endforeach
                       </select>
                     </div>
                   </div>
@@ -208,17 +139,9 @@
                       <img src="{{ asset('website/assets/images/form/location.svg') }}" class="icon" loading="lazy"
                         alt="" />
 
-                      <select class="form-control" name="" id="">
+                      <select class="form-control" name="state_id" id="state">
                         <option value="" hidden>
                           المدينة
-                        </option>
-
-                        <option value="">
-                          السعودية
-                        </option>
-
-                        <option value="">
-                          مصر
                         </option>
                       </select>
                     </div>
@@ -226,7 +149,7 @@
 
                   <div class="col-12">
                     <div class="form-group text-area no-margin">
-                      <textarea name="" class="form-control" placeholder=" ... العنوان بالتفصيل" id="" cols="30"
+                      <textarea name="address" class="form-control" placeholder=" ... العنوان بالتفصيل" id="" cols="30"
                         rows="10"></textarea>
                     </div>
                   </div>
@@ -240,12 +163,12 @@
                   <img src="{{ asset('website/assets/images/form/instagram_twotone.svg') }}" loading="lazy" alt=""
                     class="icon" />
 
-                  <input type="text" class="form-control" placeholder="رابط حساب انستجرام" />
+                  <input type="text" name="insta_link" class="form-control" placeholder="رابط حساب انستجرام" />
                 </div>
 
                 <div class="section-seprate">
                   <div class="wrapper">
-                    <input type="radio" class="radio-check" />
+                    <input type="radio" name="is_postal" class="radio-check" />
 
                     <label class="radio-title bold-text">
                       الإشتراك في النشرة البريدية لتلقي كل جديد
@@ -265,9 +188,8 @@
                 <div class="button-contain">
                   <a href="#" type="button" class="custom-btn" data-toggle="modal" data-target="#popcancel">
                     <img src="{{ asset('website/assets/images/icons/arrow.svg') }}" loading="lazy" alt="" />
-
                     <span>
-                      تسجيل
+                      التالي
                     </span>
                   </a>
                 </div>
@@ -310,4 +232,31 @@
   </div>
 </section>
 
+@endsection
+
+@section('scripts')
+<script>
+  $(document).ready(function () {
+      $('#country').on('change', function () {
+      var country_id = this.value;
+      $("#state").html('');
+      $.ajax({
+        url: "{{ route('admin.states') }}",
+        type : "get",
+        data : {
+          'country_id' : country_id
+        },
+        success: function (result) {
+          $('#state').html('<option value="">-- Select State --</option>');
+          $.each(result, function (key, value) {
+            $("#state").append('<option value="' + key + '">' + value + '</option>');
+
+          });
+
+        }
+
+      })
+    });
+    });
+</script>
 @endsection
