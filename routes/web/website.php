@@ -17,7 +17,7 @@ Route::controller(RegisterController::class)->prefix('register')->group(function
     Route::get('/', 'getRegister')->name('register');
     Route::post('/', 'storeRegister')->name('register.store');
     Route::get('form/{user}', 'getHealthyForm')->name('healthy.form');
-    Route::post('store-form/{user}', 'storeHealthyForm')->name('healthy.store');
+    Route::post('store-form/{user}/{survey}', 'storeHealthyForm')->name('healthy.store');
     Route::get('payment', 'getPayment')->name('payment.form');
     Route::post('payment', 'storePayment')->name('payment.store');
 });
