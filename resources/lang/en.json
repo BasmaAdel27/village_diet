@@ -300,5 +300,6 @@
   "product_breif": "Get the best store products",
   "visite_store": "Visit the store",
   "subscription_is_finished": "Your Subscription Is Finished",
-  "maximum_entries_per_user_exceeded": "Register Before"
+  "maximum_entries_per_user_exceeded": "Register Before",
+  "complete_your_data": "Complete Your Data"
 }

@@ -3530,3 +3530,6 @@ footer .copyrights p span {
 .form-contain .file-upload .file-upload-section:hover img {
   transform: translateY(-10px);
 }
+.disable-click{
+    pointer-events:none;
+}

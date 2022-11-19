@@ -10,7 +10,8 @@ class ServiceRequest extends FormRequest
     {
         $rules = [
             'is_active' => 'required|in:0,1',
-            'ordering' => 'required|numeric'
+            'ordering'  => 'required|numeric',
+            'type'      => 'required|in:WorkWay,Store'
         ];
 
         foreach (config('translatable.locales') as $locale) {

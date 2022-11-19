@@ -11,8 +11,8 @@ class RegisterRequest extends FormRequest
         return [
             'first_name' => 'required|max:255|min:5|string',
             'last_name' => 'required|max:255|min:5|string',
-            'email' => 'required|email|confirmed|unique:users,email',
-            'phone' => 'required|numeric|unique:users,phone',
+            'email' => 'required|email|confirmed|unique:users,email,' . $this->id . ',id,step,3',
+            'phone' => 'required|numeric',
             'date_of_birth' => 'required|date|date_format:Y-m-d|before:today',
             'country_id' => 'required|exists:countries,id',
             'state_id' => 'required|exists:states,id',

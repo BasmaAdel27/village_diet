@@ -19,7 +19,7 @@ Route::controller(RegisterController::class)->prefix('register')->group(function
     Route::get('form/{user}', 'getHealthyForm')->name('healthy.form');
     Route::post('store-form/{user}/{survey}', 'storeHealthyForm')->name('healthy.store');
     Route::get('payment/{user}', 'getPayment')->name('payment.form');
-    Route::post('payment', 'storePayment')->name('payment.store');
+    Route::post('payment/{user}', 'storePayment')->name('payment.store');
 });
 
 //trainers

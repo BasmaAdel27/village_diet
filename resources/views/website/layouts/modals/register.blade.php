@@ -30,7 +30,7 @@
   </div>
 </div>
 
-<div class="modal fade" id="popdone" tabindex="-1" aria-labelledby="popdone" aria-hidden="true">
+<div class="modal fade" id="subscription_active" tabindex="-1" aria-labelledby="subscription_active" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-body">
@@ -48,7 +48,7 @@
           </p>
 
           <div class="button-contain">
-            <a href="data-model.html" class="custom-btn">
+            <a href="{{ route('website.home') }}" class="custom-btn">
               <img src="{{ asset('website/assets/images/icons/arrow.svg') }}" loading="lazy" alt="" />
 
               <span>

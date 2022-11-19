@@ -83,7 +83,7 @@
       <div class="col-lg-7 col-12">
         <form action="{{ route('website.payment.store',$user) }}" class="form-contain" method="POST" id="paymentForm">
           @csrf
-          <input type="hidden" name="total" value="{{ $total }}">
+          <input type="hidden" name="code" value="{{ request('code') }}">
           <h1>
             دفع الطلب
           </h1>
@@ -153,7 +153,7 @@
           </div>
 
           <div class="button-contain">
-            <a href="#!" type="button" class="custom-btn" onclick="$('#paymentForm').submit()">
+            <a href="#!" type="button" class="custom-btn" id="submitBtn" onclick="$('#paymentForm').submit()">
               <img src="{{ asset('website/assets/images/icons/arrow.svg') }}" loading="lazy" alt="" />
               <span>
                 الدفع
@@ -166,4 +166,67 @@
   </div>
 </section>
 
+<div class="modal fade" id="popdone" tabindex="-1" aria-labelledby="popdone" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="contain">
+          <div class="pop-icon green">
+            <img src="{{ asset('website/assets/images/popup/popdone.svg') }}" loading="lazy" alt="" />
+          </div>
+
+          <h1>
+            Village Diet مرحبا بك في
+          </h1>
+
+          <p>
+            تم ارسال ايميل به الرقم الشخصي الخاص بك لتفعيل التطبيق على إيميلك
+
+            <a href="#">
+              Info@gmail.com
+            </a>
+          </p>
+
+          <div class="number-copy">
+            <img src="{{ asset('website/assets/images/form/copy.svg') }}" loading="lazy" alt="" />
+
+            <div class="data">
+              <h2 id="user_number">
+
+              </h2>
+
+              <p>
+                رقمك التعريفي
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+@endsection
+
+@section('scripts')
+<script>
+  $('#paymentForm').submit(function(){
+    $("#submitBtn").addClass('disable-click');
+      form =$('#paymentForm');
+      $.ajax({
+        url: "{{ route('website.payment.store',$user->id) }}",
+        type : "POST",
+        data : form.serialize(),
+        success: function (result) {
+          $('#user_number').text(result.data.user_number);
+          $('#popdone').modal('show');
+        },
+        error : function(response){
+            $('#subscription_active').modal('show');
+        }
+
+      })
+    return false;
+  })
+</script>
 @endsection
