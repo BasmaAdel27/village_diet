@@ -72,23 +72,22 @@ if (!function_exists('send_notification')) {
      * send notifications
      *
      */
-    function send_notification($token, $content, $title, $message)
+    function send_notification(array $tokens, array $data)
     {
         $fcmUrl = 'https://fcm.googleapis.com/fcm/send';
         $notification = [
-            'notification' => $message,
             'sound' => true,
-            'title' => $title,
-            'body' => $content,
+            'title' => $data['title'],
+            'title_ar' => $data['title_ar'],
+            'body' => $data['body'],
+            'body_ar' => $data['body_ar'],
             'priority' => 'high',
         ];
 
-        $extraNotificationData = ["data" => $notification];
 
         $fcmNotification = [
-            'to' => $token, //single token
-            'notification' => $notification,
-            'data' => $extraNotificationData
+            'registration_ids' => $tokens,
+            'data' => $notification,
         ];
 
         $headers = [
