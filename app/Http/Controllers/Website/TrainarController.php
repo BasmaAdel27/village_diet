@@ -45,8 +45,8 @@ class TrainarController extends Controller
               'email' => $request->email,
               'insta_link' => $request->instagram,
               'twitter_link' => $request->twitter,
-              'country_id' => $request->countries,
-              'state_id' => $request->states,
+              'country_id' => $request->country_id,
+              'state_id' => $request->state_id,
               'address' => $request->address,
                'email_verified_at'=> now(),
         ]);

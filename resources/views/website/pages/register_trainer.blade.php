@@ -113,7 +113,7 @@
                   </label>
 
                   <div class="file-upload">
-                    <input type="file" name="resume" id="uploadFile2" />
+                    <input type="file" name="cv" id="uploadFile2" />
 
                     <label for="uploadFile2" class="file-upload-section">
                       <img src="{{ asset('website/assets/images/form/document_upload.svg') }}" alt="">
@@ -147,7 +147,7 @@
                 <div class="form-group select">
                   <img src="{{ asset('website/assets/images/form/flag.svg') }}" class="icon" loading="lazy" alt="" />
 
-                  <select class="form-control" name="countries" id="country">
+                  <select class="form-control" name="country_id" id="country">
                     <option value="" hidden>
                       @lang('country')
                     </option>
@@ -164,7 +164,7 @@
                   <img src="{{ asset('website/assets/images/form/location.svg') }}" class="icon" loading="lazy"
                     alt="" />
 
-                  <select class="form-control" name="states" id="state">
+                  <select class="form-control" name="state_id" id="state">
                     <option value="" hidden>
                       @lang('city')
                     </option>
@@ -209,7 +209,7 @@
             </h2>
 
             <div class="wrapper mb-1">
-              <input type="radio" class="radio-check" name="body_shape" />
+              <input type="radio" class="radio-check" name="body_shape" value="slim"/>
 
               <label class="radio-title">
                 @lang('slim')
@@ -217,7 +217,7 @@
             </div>
 
             <div class="wrapper mb-1">
-              <input type="radio" class="radio-check" name="body_shape"/>
+              <input type="radio" class="radio-check" name="body_shape" value="sportsman"/>
 
               <label class="radio-title">
                 @lang('sportsman')
@@ -225,7 +225,7 @@
             </div>
 
             <div class="wrapper mb-1">
-              <input type="radio" class="radio-check" name="body_shape"/>
+              <input type="radio" class="radio-check" name="body_shape" value="Stretchy muscles"/>
 
               <label class="radio-title">
                 @lang('Stretchy_muscles')
@@ -241,14 +241,14 @@
             </div>
 
             <div class="wrapper mb-1">
-              <input type="radio" class="radio-check" name="body_shape"/>
+              <input type="radio" class="radio-check" name="body_shape" vlaue="Slightly overweight"/>
 
               <label class="radio-title">
                 @lang('Slightly_overweight')
               </label>
             </div>
             <div class="wrapper mb-1">
-              <input type="radio" class="radio-check"  name="body_shape"/>
+              <input type="radio" class="radio-check"  name="body_shape" value="overweight"/>
 
               <label class="radio-title">
                 @lang('overweight')
@@ -320,6 +320,88 @@
   </div>
 </section>
 
+@endsection
+@section('scripts')
+  <script>
+    $(document).ready(function () {
+      $('#country').on('change', function () {
+        console.log('kk')
+        var country_id = this.value;
+        $("#state").html('');
+        $.ajax({
+          url: "{{ route('admin.states') }}",
+          type : "get",
+          data : {
+            'country_id' : country_id
+          },
+          success: function (result) {
+            $.each(result, function (key, value) {
+              $("#state").append('<option value="' + key + '">' + value + '</option>');
+
+            });
+
+          }
+
+        })
+      });
+      $("#license_img").hide();
+      $("input[name$='is_certified']").click(function() {
+        var test = $(this).val();
+        if (test == 1) {
+          $('#license_img').show();
+        }
+        if (test != 1) {
+          $("#license_img").hide();
+        }
+      });
+
+      $.ajaxSetup({
+        headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+      });
+      $("#btn-job-submit").click(function (event) {
+        var form=document.getElementById('form');
+        event.preventDefault();
+        var data = new FormData(form);
+        $.ajax({
+          type: "POST",
+          url: "{{route('website.register_trainer.store')}}",
+          data: data,
+          success: function (data) {
+            $('#popdone2').modal('show');
+
+            $('#form')[0].reset();
+          },
+          contentType: false,
+          processData: false,
+          error: function(message,error)
+          {
+            const Toast = Swal.mixin({
+              toast: true,
+              position: 'top-end',
+              showConfirmButton: false,
+              timer: 3000,
+              timerProgressBar: true,
+              didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+              }
+            })
+
+            Toast.fire({
+              icon: 'error',
+              title: message.responseJSON.errors[0]
+            })
+
+          }
+        });
+
+      });
+    });
+
+
+  </script>
 @endsection
 
 
