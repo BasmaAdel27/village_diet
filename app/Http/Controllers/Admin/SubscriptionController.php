@@ -18,29 +18,20 @@ class SubscriptionController extends Controller
         $subscription = Subscription::find($id);
         $subscription->update([
             'status' => Subscription::ACTIVE,
-            'status_ar' => Subscription::ACTIVE_AR
+            'status_ar' => 'مفعل'
         ]);
 
         return redirect()->back()->with('success', trans('updated_successfully'));
     }
 
-    public function cancel($id)
-    {
-        $subscription = Subscription::find($id);
-        $subscription->update([
-            'status' => Subscription::REQUEST_CANCEL,
-            'status_ar' => Subscription::REQUEST_CANCEL_AR
-        ]);
 
-        return redirect()->back()->with('success', trans('updated_successfully'));
-    }
 
     public function inactive($id)
     {
         $subscription = Subscription::find($id);
         $subscription->update([
             'status' => Subscription::IN_ACTIVE,
-            'status_ar' => Subscription::INACTIVE_AR
+            'status_ar' => 'معطل'
         ]);
 
         return redirect()->back()->with('success', trans('updated_successfully'));

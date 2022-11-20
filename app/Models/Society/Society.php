@@ -34,31 +34,6 @@ class Society extends Model implements Translatable
         return $this->hasMany(SocietyChat::class, 'society_id');
     }
 
-    public function msgCount($society_id)
-    {
-        $senders=SocietyChat::pluck('sender_id')->toArray();
-        if ($senders){
-        if (in_array(auth()->id(),$senders)) {
-            $sender = SocietyChat::where([['sender_id', auth()->id()], ['society_id', $society_id], ['read_at', null]])->orderBy('id', 'DESC')->first();
-            if ($sender) {
-                $count = SocietyChat::where([['id', '>', $sender->id], ['society_id', $society_id]])->count();
-                return $count;
 
-            }else{
-                $count=0;
-                return $count;
-            }
-        }
-        else {
-            $count= SocietyChat::where([['society_id', $society_id]])->count();
-               return $count;
-        }
-
-        }else{
-            $count=0;
-            return $count;
-        }
-
-    }
 
 }
