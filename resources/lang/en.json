@@ -301,5 +301,25 @@
   "visite_store": "Visit the store",
   "subscription_is_finished": "Your Subscription Is Finished",
   "maximum_entries_per_user_exceeded": "Register Before",
-  "complete_your_data": "Complete Your Data"
+  "complete_your_data": "Complete Your Data",
+  "review": "The request is under review and you will be contacted by the administration",
+  "basic_informations": "Basic Informations",
+  "current_job": "Current Job",
+  "attach_image": "Attach Image",
+  "attach_cv": "Attach Resume",
+  "write_about": "Write About",
+  "location_information": "Location Information",
+  "detailed_address": "Detailed Address",
+  "social_media_accounts": "Social Media Accounts",
+  "yes": "Yes",
+  "no": "No",
+  "attach_confidental_image": "Attach Confidental Image",
+  "country": "Country",
+  "city": "City",
+  "pdf_or_word": "PDF or Word",
+  "max_size": "Max Size",
+  "register_as_trainer": "Register as Trainer",
+  "trainer_desc": "We would like to know more about you so that we can serve you better "
+
+
 }

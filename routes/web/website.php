@@ -46,4 +46,5 @@ Route::get('food_recipes', function () {
     );
 })->name('food_recipes');
 
-Route::view('register_trainer', 'website.pages.register_trainer');
+Route::get('register_trainer/create', [TrainarController::class,'create'])->name('register_trainer.create');
+Route::post('register_trainer/store',[TrainarController::class,'store'])->name('register_trainer.store');

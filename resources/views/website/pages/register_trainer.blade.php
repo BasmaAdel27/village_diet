@@ -6,12 +6,9 @@
   <div class="container general-pattern right-left-pattern">
     <div class="heading">
       <h1>
-        التسجيل كمدرب
+       @lang('register_as_trainer')
       </h1>
 
-      <p>
-        قم بالتسجيل في حالة عدم وجود حساب لديك أو إعادة الإشتراك في حالة إنهائه أو تعطيله
-      </p>
     </div>
   </div>
 </section>
@@ -23,17 +20,18 @@
         <div class="contain">
           <div class="heading no-top-margin">
             <h1>
-              تسجيل كمدرب
+              @lang('register_as_trainer')
             </h1>
 
             <p>
-              نحن نرغب في معرفة المزيد عنك لكي نتمكن من خدمتك بشكل أفضل
+              @lang('trainer_desc')
             </p>
           </div>
 
-          <form action="" class="form-contain">
+          <form  method="post" enctype="multipart/form-data" class="form-contain" id="form"  action="register_trainer/store" >
+            @csrf
             <h2 class="sub-title">
-              معلومات أساسية
+              @lang('basic_informations')
             </h2>
 
             <div class="row">
@@ -41,7 +39,14 @@
                 <div class="form-group">
                   <img src="{{ asset('website/assets/images/form/user.svg') }}" class="icon" loading="lazy" alt="" />
 
-                  <input type="text" class="form-control" placeholder="الاسم المدرب" />
+                  <input type="text" class="form-control" placeholder="@lang('first_name')"  name="first_name"/>
+                </div>
+              </div>
+              <div class="col-lg-6 col-12 px-2">
+                <div class="form-group">
+                  <img src="{{ asset('website/assets/images/form/user.svg') }}" class="icon" loading="lazy" alt="" />
+
+                  <input type="text" class="form-control" placeholder="@lang('last_name')"  name="last_name"/>
                 </div>
               </div>
 
@@ -49,7 +54,7 @@
                 <div class="form-group">
                   <img src="{{ asset('website/assets/images/form/sms.svg') }}" class="icon" loading="lazy" alt="" />
 
-                  <input type="text" class="form-control" placeholder="البريد الالكتروني" />
+                  <input type="text" class="form-control" placeholder="@lang('email')" name="email" />
                 </div>
               </div>
 
@@ -63,100 +68,38 @@
                         +966
                       </span>
                     </div>
-
-                    <ul class="list">
-                      <li>
-                        <a href="#">
-                          <img src="{{ asset('website/assets/images/form/suadia.png') }}" loading="lazy" alt="" />
-
-                          <span>
-                            السعودية
-                          </span>
-                        </a>
-                      </li>
-
-                      <li>
-                        <a href="#">
-                          <img src="{{ asset('website/assets/images/form/suadia.png') }}" loading="lazy" alt="" />
-
-                          <span>
-                            السعودية
-                          </span>
-                        </a>
-                      </li>
-
-                      <li>
-                        <a href="#">
-                          <img src="{{ asset('website/assets/images/form/suadia.png') }}" loading="lazy" alt="" />
-
-                          <span>
-                            السعودية
-                          </span>
-                        </a>
-                      </li>
-
-                      <li>
-                        <a href="#">
-                          <img src="{{ asset('website/assets/images/form/suadia.png') }}" loading="lazy" alt="" />
-
-                          <span>
-                            السعودية
-                          </span>
-                        </a>
-                      </li>
-
-                      <li>
-                        <a href="#">
-                          <img src="{{ asset('website/assets/images/form/suadia.png') }}" loading="lazy" alt="" />
-
-                          <span>
-                            السعودية
-                          </span>
-                        </a>
-                      </li>
-
-                      <li>
-                        <a href="#">
-                          <img src="{{ asset('website/assets/images/form/suadia.png') }}" loading="lazy" alt="" />
-
-                          <span>
-                            السعودية
-                          </span>
-                        </a>
-                      </li>
-                    </ul>
                   </div>
 
-                  <input type="text" class="form-control" placeholder="رقم الجوال" />
+                  <input type="text" class="form-control" placeholder="@lang('phone')" name="phone" />
                 </div>
               </div>
 
-              <div class="col-lg-6 col-12 px-2">
+              <div class="col-lg-12 col-12 px-2">
                 <div class="form-group">
                   <img src="{{ asset('website/assets/images/form/idnoac.svg') }}" class="icon" loading="lazy" alt="" />
 
-                  <input type="text" class="form-control" placeholder="المهنة الحالية" />
+                  <input type="text" class="form-control" placeholder="@lang('current_job')" name="current_job" />
                 </div>
               </div>
 
               <div class="col-lg-6 col-12 px-2">
                 <div class="form-data">
                   <label for="">
-                    صورة شخصية
+                    @lang('image')
                   </label>
 
                   <div class="file-upload">
-                    <input type="file" name="uploadFile" id="uploadFile" />
+                    <input type="file" name="image" id="uploadFile" />
 
                     <label for="uploadFile" class="file-upload-section">
                       <img src="{{ asset('website/assets/images/form/document_upload.svg') }}" alt="">
 
                       <h2>
-                        ارفق صورة شخصية
+                        @lang('attach_image')
                       </h2>
 
                       <p>
-                        Max Size : 5MB
+                        @lang('max_size') : 2MB
                       </p>
                     </label>
                   </div>
@@ -166,21 +109,21 @@
               <div class="col-lg-6 col-12 px-2">
                 <div class="form-data">
                   <label for="">
-                    السيرة الذاتية
+                    @lang('cv')
                   </label>
 
                   <div class="file-upload">
-                    <input type="file" name="uploadFile" id="uploadFile" />
+                    <input type="file" name="resume" id="uploadFile2" />
 
-                    <label for="uploadFile" class="file-upload-section">
+                    <label for="uploadFile2" class="file-upload-section">
                       <img src="{{ asset('website/assets/images/form/document_upload.svg') }}" alt="">
 
                       <h2>
-                        ارفق السيرة الذاتية
+                        @lang('attach_cv')
                       </h2>
 
                       <p>
-                        PDF or Word
+                        @lang('pdf_or_word')
                       </p>
                     </label>
                   </div>
@@ -189,14 +132,14 @@
 
               <div class="col-12">
                 <div class="form-group text-area">
-                  <textarea name="" class="form-control" placeholder=" اكتب نبذة عنك ... " id="" cols="30"
+                  <textarea name="bio" class="form-control" placeholder=" @lang('write_about') ... " id="" cols="30"
                     rows="10"></textarea>
                 </div>
               </div>
             </div>
 
             <h2 class="sub-title section-contain">
-              معلومات الموقع
+              @lang('location_information')
             </h2>
 
             <div class="row">
@@ -204,53 +147,42 @@
                 <div class="form-group select">
                   <img src="{{ asset('website/assets/images/form/flag.svg') }}" class="icon" loading="lazy" alt="" />
 
-                  <select class="form-control" name="" id="">
+                  <select class="form-control" name="countries" id="country">
                     <option value="" hidden>
-                      الدولة
+                      @lang('country')
                     </option>
+                    @foreach ($countries as $id => $name)
+                      <option value="{{$id}}">{{trans($name)}}</option>
+                    @endforeach
 
-                    <option value="السعودية">
-                      السعودية
-                    </option>
-
-                    <option value="مصر">
-                      مصر
-                    </option>
                   </select>
                 </div>
               </div>
 
               <div class="col-lg-6 col-12 px-2">
-                <div class="form-group select">
+                <div class="form-group select state">
                   <img src="{{ asset('website/assets/images/form/location.svg') }}" class="icon" loading="lazy"
                     alt="" />
 
-                  <select class="form-control" name="" id="">
+                  <select class="form-control" name="states" id="state">
                     <option value="" hidden>
-                      المدينة
+                      @lang('city')
                     </option>
 
-                    <option value="">
-                      السعودية
-                    </option>
-
-                    <option value="">
-                      مصر
-                    </option>
                   </select>
                 </div>
               </div>
 
               <div class="col-12">
                 <div class="form-group text-area no-margin">
-                  <textarea name="" class="form-control" placeholder=" ... العنوان بالتفصيل" id="" cols="30"
+                  <textarea name="address" class="form-control" placeholder=" ... @lang('detailed_address')" id="" cols="30"
                     rows="10"></textarea>
                 </div>
               </div>
             </div>
 
             <h2 class="sub-title section-contain">
-              حسابات السوشيال ميديا
+              @lang('social_media_accounts')
             </h2>
 
             <div class="row">
@@ -259,7 +191,7 @@
                   <img src="{{ asset('website/assets/images/form/instagram_twotone.svg') }}" loading="lazy" alt=""
                     class="icon" />
 
-                  <input type="text" class="form-control" placeholder="رابط حساب انستجرام" />
+                  <input type="text" class="form-control" name="instagram" placeholder="@lang('instagram')" />
                 </div>
               </div>
 
@@ -267,120 +199,119 @@
                 <div class="form-group">
                   <img src="{{ asset('website/assets/images/form/twitter.svg') }}" loading="lazy" alt="" class="icon" />
 
-                  <input type="text" class="form-control" placeholder="رابط حساب تويتر" />
+                  <input type="text" class="form-control" name="twitter" placeholder="@lang('twitter')" />
                 </div>
               </div>
             </div>
 
             <h2 class="sub-title section-contain">
-              الشكل البدني
+              @lang('body shape')
             </h2>
 
             <div class="wrapper mb-1">
-              <input type="radio" class="radio-check" />
+              <input type="radio" class="radio-check" name="body_shape" />
 
               <label class="radio-title">
-                رفيع (slim)
+                @lang('slim')
               </label>
             </div>
 
             <div class="wrapper mb-1">
-              <input type="radio" class="radio-check" />
+              <input type="radio" class="radio-check" name="body_shape"/>
 
               <label class="radio-title">
-                رياضي
+                @lang('sportsman')
               </label>
             </div>
 
             <div class="wrapper mb-1">
-              <input type="radio" class="radio-check" />
+              <input type="radio" class="radio-check" name="body_shape"/>
 
               <label class="radio-title">
-                عضلات مفتولة
+                @lang('Stretchy_muscles')
               </label>
             </div>
 
             <div class="wrapper mb-1">
-              <input type="radio" class="radio-check" />
+              <input type="radio" class="radio-check" name="body_shape"/>
 
               <label class="radio-title">
-                متوسط البنية
+                @lang('Medium_build')
               </label>
             </div>
 
             <div class="wrapper mb-1">
-              <input type="radio" class="radio-check" />
+              <input type="radio" class="radio-check" name="body_shape"/>
 
               <label class="radio-title">
-                وزن زائد قليلا
+                @lang('Slightly_overweight')
               </label>
             </div>
-
             <div class="wrapper mb-1">
-              <input type="radio" class="radio-check" />
+              <input type="radio" class="radio-check"  name="body_shape"/>
 
               <label class="radio-title">
-                وزن زائد
+                @lang('overweight')
               </label>
             </div>
 
             <h3 class="sub-head">
-              هل لديك ترخيص فعال ؟
+              @lang('is licensed?')
             </h3>
 
             <div class="flex-data">
               <div class="wrapper mb-1">
-                <input type="radio" class="radio-check" />
+                <input type="radio" class="radio-check" name="is_certified" value="1" id="license"/>
 
                 <label class="radio-title">
-                  نعم لدي ترخيص
+                  @lang('yes')
                 </label>
               </div>
 
               <div class="wrapper mb-1">
-                <input type="radio" class="radio-check" />
+                <input type="radio" class="radio-check" name="is_certified" value="0" id="license1"/>
 
                 <label class="radio-title">
-                  لا ليس لدي ترخيص
+                  @lang('no')
                 </label>
               </div>
             </div>
 
-            <div class="form-data">
+            <div class="form-data" id="license_img">
               <label for="">
-                صورة الترخيص
+                @lang('licensed_image')
               </label>
 
               <div class="file-upload">
-                <input type="file" name="uploadFile" id="uploadFile" />
+                <input type="file" name="confidental_image" id="uploadFile3" />
 
-                <label for="uploadFile" class="file-upload-section">
+                <label for="uploadFile3" class="file-upload-section">
                   <img src="{{ asset('website/assets/images/form/document_upload.svg') }}" alt="">
 
                   <h2>
-                    ارفق صورة الترخيص
+                    @lang('attach_confidental_image')
                   </h2>
 
                   <p>
-                    Max Size : 5MB
+                    @lang('max_size') : 2MB
                   </p>
                 </label>
               </div>
             </div>
 
             <div class="form-group text-area">
-              <textarea name="" class="form-control" placeholder=" سبب تقديمك لطلب الانضمام.... " id="" cols="30"
+              <textarea name="join_request_reason" class="form-control" placeholder=" @lang("reason to join us").... " id="" cols="30"
                 rows="10"></textarea>
             </div>
 
             <div class="button-contain">
-              <a href="#" type="button" class="custom-btn" data-toggle="modal" data-target="#popdone">
+              <button type="submit" class="custom-btn" data-toggle="modal" id="btn-job-submit">
                 <img src="{{ asset('website/assets/images/icons/arrow.svg') }}" loading="lazy" alt="" />
 
                 <span>
-                  تسجيل
+                  @lang('register')
                 </span>
-              </a>
+              </button>
             </div>
           </form>
         </div>
@@ -390,3 +321,5 @@
 </section>
 
 @endsection
+
+
