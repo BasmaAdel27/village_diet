@@ -181,7 +181,7 @@
   "postel_news": "النشره البريديه",
   "slim": "رفيع",
   "sportsman": "رياضي",
-  "Stretchy_muscles": "عصلات مفتولة",
+  "Stretchy_muscles": "عضلات مفتولة",
   "Medium_build": "متوسط البنية",
   "Slightly_overweight": "وزن زائد قليلا",
   "overweight": "وزن زائد",
@@ -303,5 +303,26 @@
   "visite_store": "زيارة المتجر ",
   "subscription_is_finished": "لقد انتهي اشتراكك",
   "maximum_entries_per_user_exceeded": "تم التسجيل مسبقا",
-  "complete_your_data": "قم باستكمال بياناتك"
+  "complete_your_data": "قم باستكمال بياناتك",
+  "review": "الطلب قيد المراجعه وسيتم التواصل معك بواسطة الادارة",
+  "basic_informations": "معلومات اساسية",
+  "current_job": "المهنة الحالية",
+  "attach_image": "ارفق الصورة الشخضية",
+  "attach_cv": "ارفق السيرة الذاتية",
+  "write_about": "اكتب نبذه عنك",
+  "location_information": "معلومات الموقع",
+  "detailed_address": "العنوان بالتفضيل",
+  "social_media_accounts": "حسابات السوشيال ميديا",
+  "yes": "نعم",
+  "no": "لا",
+  "attach_confidental_image": "ارفق صورة الترخيص",
+  "country": "الدولة",
+  "city": "المدينه",
+  "pdf_or_word": "PDF or Word",
+  "max_size": "أقصى حجم",
+  "register_as_trainer": "تسجيل كمدرب",
+  "trainer_desc": " نحن نرغب في معرفة المزيد عنك لكي نتمكن من خدمتك بشكل أفضل "
+
+
+
 }

@@ -45,6 +45,8 @@
         <img src="{{asset('website/assets/images/navbar/user.svg')}}" loading="lazy" alt="" />
         <span>@lang('register')</span>
       </a>
+
+      </a>
     </div>
   </div>
 </div>

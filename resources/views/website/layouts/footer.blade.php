@@ -113,7 +113,7 @@
 
             <ul class="links">
               <li>
-                <a href="{{ route('website.register') }}">@lang('register')</a>
+                <a href="{{ route('website.register_trainer.create') }}">@lang('register')</a>
               </li>
             </ul>
           </div>

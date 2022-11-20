@@ -20,7 +20,8 @@
     </div>
     <div class="chat-history" id="chat">
       <ul class="m-b-0">
-        @foreach($messages as $message)
+
+      @foreach($messages as $message)
         @if($message->sender_id != auth()->id())
         <li class="clearfix">
           <div class="message-data text-right">

@@ -3,12 +3,14 @@
 namespace App\Models\Society;
 
 use App\Models\Chat\SocietyChat;
+use App\Models\SeenMessage;
 use App\Models\User;
 use App\Traits\HasTimestampTrait;
 use Astrotomic\Translatable\Contracts\Translatable;
 use Astrotomic\Translatable\Translatable as TranslatableTranslatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
 
 class Society extends Model implements Translatable
 {
@@ -31,5 +33,7 @@ class Society extends Model implements Translatable
     {
         return $this->hasMany(SocietyChat::class, 'society_id');
     }
+
+
 
 }
