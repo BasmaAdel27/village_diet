@@ -42,33 +42,45 @@ class Society extends Model implements Translatable
                 $count = SocietyChat::where([['id', '>', $sender->id], ['society_id', $society_id]])->count();
                 return $count;
             }else{
-              return $count=0;
-            }
-        }else{
-                $unreadMsgs = SocietyChat::where('society_id', $society_id)->get();
-
-
-            if ($unreadMsgs) {
-                $seenmsgs=array();
+                $unreadMsgs = SocietyChat::where([['society_id', $society_id],['sender_id','!=',auth()->id()]])->get();
+                if ($unreadMsgs) {
+                    $seenmsgs = array();
                     foreach ($unreadMsgs as $unreadMsg) {
-                        $data=SeenMessage::where([['message_id', $unreadMsg->id], ['user_id', auth()->id()]])->get();
-                        if ($data->isNotEmpty()){
-                            $seenmsgs[]=$data;
+                        $data = SeenMessage::where([['message_id', $unreadMsg->id], ['user_id', auth()->id()]])->get();
+                        if ($data->isNotEmpty()) {
+                            $seenmsgs[] = $data;
                         }
                     }
                     if (sizeof($seenmsgs)) {
-
-                        return count($unreadMsgs)-count($seenmsgs);
-                    }else{
-                        return count($unreadMsgs) ;
-
+                        return count($unreadMsgs) - count($seenmsgs);
+                    } else {
+                        return count($unreadMsgs);
                     }
-                }else{
-                    return 0;
                 }
+            }
+        }else{
+                $unreadMsgs = SocietyChat::where('society_id', $society_id)->get();
+                if ($unreadMsgs) {
+                    $seenmsgs=array();
+                        foreach ($unreadMsgs as $unreadMsg) {
+                            $data=SeenMessage::where([['message_id', $unreadMsg->id], ['user_id', auth()->id()]])->get();
+                            if ($data->isNotEmpty()){
+                                $seenmsgs[]=$data;
+                            }
+                        }
+                        if (sizeof($seenmsgs)) {
 
+                            return count($unreadMsgs)-count($seenmsgs);
+                        }else{
+                            return count($unreadMsgs) ;
+
+                        }
+                    }else{
+                        return 0;
+                }
         }
 
         }
+
 
 }
