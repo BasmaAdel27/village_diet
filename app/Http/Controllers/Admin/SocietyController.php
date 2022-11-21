@@ -102,8 +102,38 @@ class SocietyController extends Controller
     public function messages(Society $society)
     {
         $messages = SocietyChat::with(['society', 'sender'])->where('society_id', $society->id)->orderBy('created_at', 'asc')->get();
+        $sender = SocietyChat::where([['sender_id', auth()->id()], ['society_id', $society->id]])->orderBy('id', 'DESC')->first();
+                if ($sender) {
+                    if ($sender->read_at == null) {
+                        $unreadMsgs = SocietyChat::where([['id', '>', $sender->id], ['society_id', $society->id]])->get();
+                        foreach ($unreadMsgs as $unreadMsg) {
+                            SeenMessage::create([
+                                  'message_id' => $unreadMsg->id,
+                                  'user_id' => auth()->id(),
+                            ]);
+                            $sender->read_at = now();
+                            $sender->save();
+                        }
+                    }
+                }else {
+                    $unreadMsgs = SocietyChat::where('society_id', $society->id)->get();
+                    if ($unreadMsgs) {
+                        foreach ($unreadMsgs as $unreadMsg) {
+                            $seenmsgs = SeenMessage::where([['message_id', $unreadMsg->id], ['user_id', auth()->id()]])->get();
+                            if ($seenmsgs->isEmpty()) {
 
-        return view('admin.society.chat', compact('messages', 'society'));
+                                SeenMessage::create([
+                                      'message_id' => $unreadMsg->id,
+                                      'user_id' => auth()->id(),
+                                ]);
+                            }
+                        }
+                    }
+                }
+
+//
+        return view('admin.society.chat',compact('messages','society'));
+
     }
 
     public function addMsg(Request $request)
