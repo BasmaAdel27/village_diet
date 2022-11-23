@@ -59,10 +59,13 @@ class MyFatoorahController extends Controller {
             'CustomerMobile'     => '12345678',     // user phone
             'Language'           => 'ar',
             'CustomerReference'  => $orderId,
-            'SourceInfo'         => 'VillageDiet ' . app()::VERSION . ' - MyFatoorah Package ' . MYFATOORAH_LARAVEL_PACKAGE_VERSION
+            'SourceInfo'         => 'VillageDiet ' . app()::VERSION . ' - MyFatoorah Package ' . MYFATOORAH_LARAVEL_PACKAGE_VERSION,
+
+            'RecurringModel' => [
+                  'RecurringType' => 'Monthly',
+            ]
         ];
     }
-
 //-----------------------------------------------------------------------------------------------------------------------------------------
 
     /**
