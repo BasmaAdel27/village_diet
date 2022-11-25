@@ -59,6 +59,11 @@ class UserController extends Controller
         DB::beginTransaction();
         $userNumber = generateUniqueCode(User::class, 'user_number', 6);
         $user = User::make()->fill($request->validated() + ['user_number' => $userNumber]);
+        $user->subscriptions()->create([
+            'status' => Subscription::ACTIVE,
+            'status_ar' => trans(Subscription::ACTIVE),
+            'amount' => 0,
+        ]);
         $user->assignRole('user');
         $user->save();
 
@@ -160,7 +165,7 @@ class UserController extends Controller
     public function messages($userId)
     {
         $adminId = auth()->id();
-        $user=User::find($userId);
+        $user = User::find($userId);
 
         $messages = AdminMessage::with('sender', 'receiver')
             ->where(function ($q) use ($userId, $adminId) {
@@ -169,16 +174,14 @@ class UserController extends Controller
             })
             ->oldest('id')
             ->get();
-        foreach ($messages as $message)
-        {
-            if (\auth()->id()==$message->receiver_id)
-            {
+        foreach ($messages as $message) {
+            if (\auth()->id() == $message->receiver_id) {
                 $message->read_at = now();
                 $message->save();
             }
         }
 
-        return view('admin.users.chat', compact('messages', 'userId','user'));
+        return view('admin.users.chat', compact('messages', 'userId', 'user'));
     }
 
     public function sendMessage(SendMessageRequest $request, $userId)
@@ -192,13 +195,14 @@ class UserController extends Controller
 
         return redirect()->back();
     }
-    public function audioSave(SendMessageRequest $request){
+    public function audioSave(SendMessageRequest $request)
+    {
         $path = $request->file('message')->storePublicly('chats/media', "public");
-        $message=AdminMessage::create([
-              'message'=>"/storage/" . $path,
-              'sender_id' => auth()->id(),
-              'type' => 'AUDIO',
-              'receiver_id' => $request->receiver,
+        $message = AdminMessage::create([
+            'message' => "/storage/" . $path,
+            'sender_id' => auth()->id(),
+            'type' => 'AUDIO',
+            'receiver_id' => $request->receiver,
         ]);
         return response()->json($message);
     }
