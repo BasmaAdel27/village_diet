@@ -23,7 +23,7 @@ class SocietyController extends Controller
             if ($user->society->is_active == 0) {
                 Carbon::setLocale('ar');
                 $date_from = Carbon::parse($user->society->date_from)->format('Y - m - d');
-                $data['society_status'] = true;
+                $data['society_status'] = false;
                 $data['subscription_status'] = $user->currentSubscription->status;
                 $data['notification_unread'] = $user->unreadNotifications()->count();
                 $data['trainer_id'] = $user->society->trainer->id;
