@@ -20,7 +20,20 @@ class MenuController extends Controller
             ->with('translations')
             ->get();
         $obj->settings = Setting::select(
-            ['facebook', 'twitter', 'youtube', 'snapchat', 'tiktok', 'instagram']
+            [
+                'facebook',
+                'twitter',
+                'youtube',
+                'snapchat',
+                'tiktok',
+                'instagram',
+                'latitude',
+                'longitude',
+                'address',
+                'phone',
+                'email',
+                'whatsapp_number',
+            ]
         )->get();
 
         return successResponse(MenuResource::make($obj));
