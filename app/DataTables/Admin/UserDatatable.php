@@ -68,7 +68,7 @@ class UserDatatable extends DataTable
             Column::make('currentSubscription.created_at')->title(trans('subscription_date'))->orderable(false)->searchable(false),
             Column::make('currentSubscription.status')->title(trans('subscription_status'))->orderable(false)->searchable(false),
             Column::make('created_at')->title(trans('created_at')),
-            Column::make('messageCount')->title(trans('messagesCount'))->searchable(false)->orderable(false),
+            Column::make('messageCount')->title(trans('messageCount'))->searchable(false)->orderable(false),
             Column::make('Action')->title(trans('action'))->searchable(false)->orderable(false)
         ];
     }
