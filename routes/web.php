@@ -42,3 +42,13 @@ Route::group(
         });
     }
 );
+
+
+Route::get('test', function () {
+    return send_notification(['c7y1GRrhnkbykesYvQEweW:APA91bHpSgptV61W4SkOPw0FDEEUGDwUUW2WQDu6h8LZ8MLyypdW6DQl2EDqBPGp5nSYUrpWuxHulQDMnavj-KNi8EfNYs_nTbBuZsXjI0NYa0BXwt4YpXXUEkIFllGZ1XSM3Hz2RXNO'], [
+          'title' => 'Hashim',
+          'title_ar' => 'Hashim',
+          'body' => 'Hashim',
+          'body_ar' => 'Hashim',
+    ]);
+});
