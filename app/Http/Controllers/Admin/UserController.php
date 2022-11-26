@@ -16,10 +16,12 @@ use App\Models\Subscriber;
 use App\Models\Subscription;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use MattDaneshvar\Survey\Models\Entry;
 use MattDaneshvar\Survey\Models\Survey;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -193,8 +195,11 @@ class UserController extends Controller
             'receiver_id' => $userId,
         ]);
 
+        $this->saveNotification($userId);
+
         return redirect()->back();
     }
+
     public function audioSave(SendMessageRequest $request)
     {
         $path = $request->file('message')->storePublicly('chats/media', "public");
@@ -205,5 +210,23 @@ class UserController extends Controller
             'receiver_id' => $request->receiver,
         ]);
         return response()->json($message);
+    }
+
+    public function saveNotification($id)
+    {
+        $data['id'] = Str::uuid();
+        $data['type'] = 'chat';
+        $data['notifiable_id'] = $id;
+        $data['notifiable_type'] = User::class;
+        $data['data']['type'] = 'chat';
+        $data['data']['title'] = trans('mobile.notifications.content.new_message', locale: 'en');
+        $data['data']['title_ar'] = trans('mobile.notifications.content.new_message', locale: 'ar');
+        $data['data']['body'] = trans('u_receive_new_message', locale: 'en');
+        $data['data']['body_ar'] = trans('u_receive_new_message', locale: 'ar');
+
+        DatabaseNotification::create($data);
+
+        $user = User::find($id);
+        send_notification([$user->firebase_token], $data['data']);
     }
 }
