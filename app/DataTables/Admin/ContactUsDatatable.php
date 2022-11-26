@@ -46,7 +46,7 @@ class ContactUsDatatable extends DataTable
     {
         return [
             Column::make('id')->title(trans('ID')),
-            Column::make('fullname')->title(trans('name')),
+            Column::make('full_name')->title(trans('name')),
             Column::make('eamil')->title(trans('email')),
             Column::make('user_type')->title(trans('user type')),
             Column::make('message_type')->title(trans('message type')),
