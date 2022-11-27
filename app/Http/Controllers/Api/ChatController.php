@@ -81,7 +81,7 @@ class ChatController extends Controller
         $receiver = User::find($storeMessageRequest->receiver_id);
         // send notification to delivery
         $title = 'Village Diet';
-        $content = 'New Message';
+        $content = trans('u_receive_new_message');
         $message = [
               'data' => $trainerMessage
         ];
@@ -103,7 +103,7 @@ class ChatController extends Controller
         $receiver = User::find($storeMessageRequest->receiver_id);
         // send notification to delivery
         $title = 'Village Diet';
-        $content = 'New Message';
+        $content = trans('u_receive_new_message');
         $message = [
               'data' => $adminMessage
         ];
