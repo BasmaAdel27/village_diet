@@ -107,8 +107,8 @@ class ChatController extends Controller
         $message = [
               'data' => $adminMessage
         ];
-        $this->saveNotification($storeMessageRequest->receiver_id);
-//        Notification::send($receiver, new SendAdminNewMessage($adminMessage));
+//        $this->saveNotification($storeMessageRequest->receiver_id);
+        Notification::send($receiver, new SendAdminNewMessage($adminMessage));
         if ($receiver->firebase_token) {
             send_notification($receiver->firebase_token, $content, $title, $message);
         }
@@ -127,14 +127,13 @@ class ChatController extends Controller
 
         // send notification to delivery
         $title = 'Village Diet';
-        $content = 'New Message';
+        $content = trans('u_receive_new_message');
         $message = [
               'data' => $societyChat
         ];
         foreach ($society->users->where('id', '<>', auth()->id()) as $user) {
-            $this->saveNotification($user->id);
-
-//            \Notification::send($user, new SendSocietyNewMessage($societyChat));
+//            $this->saveNotification($user->id);
+            \Notification::send($user, new SendSocietyNewMessage($societyChat));
             if ($user->firebase_token) {
                 send_notification($user->firebase_token, $content, $title, $message);
             }

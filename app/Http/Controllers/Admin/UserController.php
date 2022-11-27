@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\DataTables\Admin\UserDatatable;
-use App\DataTables\Admin\UserChatDatatable;
+use App\Notifications\SendAdminNewMessage;
+use Illuminate\Support\Facades\Notification;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\SendMessageRequest;
 use App\Http\Requests\Admin\UserRequest;
@@ -188,14 +189,28 @@ class UserController extends Controller
 
     public function sendMessage(SendMessageRequest $request, $userId)
     {
-        AdminMessage::create([
+        $adminMessage = AdminMessage::create([
             'message' => $request->message,
             'sender_id' => auth()->id(),
             'type' => 'TEXT',
             'receiver_id' => $userId,
         ]);
 
-        $this->saveNotification($userId);
+        $receiver = User::find($userId);
+
+        // send notification to delivery
+        $title = 'Village Diet';
+        $content = trans('u_receive_new_message');
+        $message = [
+              'data' => $adminMessage
+        ];
+//        $this->saveNotification($storeMessageRequest->receiver_id);
+        Notification::send($receiver, new SendAdminNewMessage($adminMessage));
+        if ($receiver->firebase_token) {
+            send_notification($receiver->firebase_token, $content, $title, $message);
+        }
+
+//        $this->saveNotification($userId);
 
         return redirect()->back();
     }
