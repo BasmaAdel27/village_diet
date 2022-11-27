@@ -159,6 +159,7 @@
         type : "POST",
         data : form.serialize(),
         success: function (result) {
+          window.location.replace(result.url);
           $('#user_number').text(result.data.user_number);
           $('#popdone').modal('show');
         },

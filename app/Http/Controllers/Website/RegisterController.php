@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Website;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\MyFatoorahController;
 use App\Http\Requests\Website\HealthyDataRequest;
 use App\Http\Requests\Website\RegisterRequest;
 use App\Mail\UserNumber;
@@ -82,17 +83,21 @@ class RegisterController extends Controller
     public function storePayment(Request $request, User $user)
     {
         $data = $this->calculateSubscription($request);
-        if ($request->renew) {
-        } else {
-        }
 
         if ($user->currentSubscription()->exists()) {
             return failedResponse(['message' => trans('you_subscribe_already')], 422);
         }
 
-        $userNumber = $this->afterSuccessPay($user, $data);
+        $paymentMethodId = 0; // 0 for MyFatoorah invoice or 1 for Knet in test mode
+        $paymentService = (new MyFatoorahController($data, $request->boolean('renew'), $user))->index();
+        $redirectLink = $paymentService->mfObj->getInvoiceURL(
+            $paymentService->getPayLoadData($data, $request->renew, $user),
+            $paymentMethodId
+        );
 
-        return successResponse(['user_number' => $userNumber]);
+        $this->afterSuccessPay($user, $data);
+
+        return response(['url' => $redirectLink['invoiceURL']]);
     }
 
     private function calculateSubscription($request)
@@ -136,7 +141,7 @@ class RegisterController extends Controller
         $userNumber = generateUniqueCode(User::class, 'user_number', 6);
         $user->update(['step' => 3, 'user_number' => $userNumber]);
         $user->assignRole('user');
-        Mail::to($user->email)->send(new UserNumber($user));
+        // Mail::to($user->email)->send(new UserNumber($user));
         if ($data['coupon']) $data['coupon']->increment('used_times');
 
         return $userNumber;
