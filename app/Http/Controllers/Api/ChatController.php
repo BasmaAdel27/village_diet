@@ -13,14 +13,11 @@ use App\Models\Chat\SocietyChat;
 use App\Models\Chat\TrainerMessage;
 use App\Models\Society\Society;
 use App\Models\User;
-use App\Notifications\SendAdminNewMessage;
 use App\Notifications\SendSocietyNewMessage;
-use App\Notifications\SendTrainerNewMessage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Support\Facades\Lang;
-use Illuminate\Support\Facades\Notification;
 
 
 class ChatController extends Controller
@@ -77,21 +74,7 @@ class ChatController extends Controller
         $trainerMessage->sender_id = auth()->id();
         $trainerMessage->fill($storeMessageRequest->validated())->save();
         $this->setMessageAttribute($trainerMessage);
-
-        $receiver = User::find($storeMessageRequest->receiver_id);
-        // send notification to delivery
-        $title = 'Village Diet';
-        $content = 'New Message';
-        $message = [
-              'data' => $trainerMessage
-        ];
         $this->saveNotification($storeMessageRequest->receiver_id);
-//        Notification::send($receiver, new SendTrainerNewMessage($trainerMessage));
-        if ($receiver->firebase_token) {
-            send_notification($receiver->firebase_token, $content, $title, $message);
-        }
-
-
 
         return successResponse(MessageResource::make($trainerMessage), message: trans('message_sent_successfully'));
     }
@@ -102,18 +85,7 @@ class ChatController extends Controller
         $adminMessage->sender_id = auth()->id();
         $adminMessage->fill($storeMessageRequest->validated())->save();
         $this->setMessageAttribute($adminMessage);
-        $receiver = User::find($storeMessageRequest->receiver_id);
-        // send notification to delivery
-        $title = 'Village Diet';
-        $content = 'New Message';
-        $message = [
-              'data' => $adminMessage
-        ];
-//        Notification::send($receiver, new SendAdminNewMessage($adminMessage));
         $this->saveNotification($storeMessageRequest->receiver_id);
-        if ($receiver->firebase_token) {
-            send_notification($receiver->firebase_token, $content, $title, $message);
-        }
 
         return successResponse(MessageResource::make($adminMessage), message: trans('message_sent_successfully'));
     }
@@ -136,9 +108,10 @@ class ChatController extends Controller
 
         foreach ($society->users->where('id', '<>', auth()->id()) as $user) {
             \Notification::send($user, new SendSocietyNewMessage($societyChat));
-            if ($user->firebase_token) {
+            if ($user->firebase_token){
                 send_notification($user->firebase_token, $content, $title, $message);
             }
+//            $this->saveNotification($user->id);
         }
 
         return successResponse(SocietyMessageResource::make($societyChat), message: trans('message_sent_successfully'));
@@ -154,6 +127,9 @@ class ChatController extends Controller
 
     public function saveNotification($id)
     {
+
+
+
         $data['id'] = Str::uuid();
         $data['type'] = 'chat';
         $data['notifiable_id'] = $id;
@@ -166,7 +142,13 @@ class ChatController extends Controller
 
         DatabaseNotification::create($data);
 
-//        $user = User::find($id);
-//        send_notification([$user->firebase_token], $data['data']);
+        $title = 'Village Diet';
+        $content = 'New Message';
+        $message = [
+              'data' => $data
+        ];
+        $user = User::find($id);
+        send_notification($user->firebase_token, $content, $title, $message);
+
     }
 }
