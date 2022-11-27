@@ -85,8 +85,8 @@ class ChatController extends Controller
         $message = [
               'data' => $trainerMessage
         ];
-        $this->saveNotification($storeMessageRequest->receiver_id);
-//        Notification::send($receiver, new SendTrainerNewMessage($trainerMessage));
+//        $this->saveNotification($storeMessageRequest->receiver_id);
+        Notification::send($receiver, new SendTrainerNewMessage($trainerMessage));
         if ($receiver->firebase_token) {
             send_notification($receiver->firebase_token, $content, $title, $message);
         }
