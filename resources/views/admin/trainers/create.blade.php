@@ -170,7 +170,7 @@
           'country_id' : country_id
         },
         success: function (result) {
-          $('#state').html('<option value="">-- Select State --</option>');
+          $('#state').html('<option value="">اختر المدينة</option>');
           $.each(result, function (key, value) {
             $("#state").append('<option value="' + key + '">' + value + '</option>');
 

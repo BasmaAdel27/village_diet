@@ -36,7 +36,7 @@ class MyFatoorahController extends Controller
             'CustomerEmail'      => $user->email,
             'CallBackUrl'        => $callbackURL,
             'ErrorUrl'           => $callbackURL,
-            'MobileCountryCode'  => '+965',
+            'MobileCountryCode'  => '+966',
             'CustomerMobile'     => $user->phone,
             'Language'           => 'ar',
             'CustomerReference'  => $user->id,
