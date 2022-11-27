@@ -74,37 +74,39 @@ if (!function_exists('send_notification')) {
      */
     function send_notification(array $tokens, array $data)
     {
-        $fcmUrl = 'https://fcm.googleapis.com/fcm/send';
         $notification = [
-            'sound' => true,
-            'title' => $data['title'],
-            'title_ar' => $data['title_ar'],
-            'body' => $data['body'],
-            'body_ar' => $data['body_ar'],
-            'priority' => 'high',
-        ];
+                    'sound' => true,
+                    'title' => $data['title'],
+                    'title_ar' => $data['title_ar'],
+                    'body' => $data['body'],
+                    'body_ar' => $data['body_ar'],
+                    'priority' => 'high',
+                ];
 
-
-        $fcmNotification = [
-            'registration_ids' => $tokens,
-            'data' => $notification,
-        ];
-
-        $headers = [
-            'Authorization: key=' . config('auth.firebase_id'),
-            'Content-Type: application/json'
-        ];
-
+        $data = json_encode($notification);
+        //FCM API end-point
+        $url = 'https://fcm.googleapis.com/fcm/send';
+        //api_key in Firebase Console -> Project Settings -> CLOUD MESSAGING -> Server key
+        $server_key = config('auth.firebase_id');
+        //header with content_type api key
+        $headers = array(
+            'Content-Type:application/json',
+            'Authorization:key='.$server_key
+        );
+        //CURL request to route notification to FCM connection server (provided by Google)
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $fcmUrl);
+        curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($fcmNotification));
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
         $result = curl_exec($ch);
+        if ($result === FALSE) {
+            die('Oops! FCM Send Error: ' . curl_error($ch));
+        }
         curl_close($ch);
 
-        return true;
     }
 }
