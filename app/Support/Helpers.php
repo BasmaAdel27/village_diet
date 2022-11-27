@@ -5,7 +5,7 @@ if (!function_exists('Setting')) {
     function Setting(string $attr)
     {
         if (\Illuminate\Support\Facades\Schema::hasTable('settings')) {
-            return  \App\Models\Setting::select($attr)->value($attr);
+            return \App\Models\Setting::select($attr)->value($attr);
         }
     }
 }
@@ -60,9 +60,9 @@ if (!function_exists('failedResponse')) {
     function failedResponse($message = 'Failure', $status = 400)
     {
         return response()->json([
-            'status'  => false,
-            'message' => $message,
-            'data' => null
+              'status' => false,
+              'message' => $message,
+              'data' => null
         ], $status);
     }
 }
@@ -72,41 +72,39 @@ if (!function_exists('send_notification')) {
      * send notifications
      *
      */
-    function send_notification(array $tokens, array $data)
+    function send_notification($token, $content, $title, $message)
     {
-        $notification = [
-                    'sound' => true,
-                    'title' => $data['title'],
-                    'title_ar' => $data['title_ar'],
-                    'body' => $data['body'],
-                    'body_ar' => $data['body_ar'],
-                    'priority' => 'high',
-                ];
 
-        $data = json_encode($notification);
-        //FCM API end-point
-        $url = 'https://fcm.googleapis.com/fcm/send';
-        //api_key in Firebase Console -> Project Settings -> CLOUD MESSAGING -> Server key
+        $fcmUrl = 'https://fcm.googleapis.com/fcm/send';
+        $notification = [
+              'notification' => $message,
+              'sound' => true,
+              'title' => $title,
+              'body' => $content,
+              'priority' => 'high',
+        ];
+
+        $extraNotificationData = ["data" => $notification];
+
+        $fcmNotification = [
+              'to' => $token, //single token
+              'notification' => $notification,
+              'data' => $extraNotificationData
+        ];
         $server_key = config('auth.firebase_id');
-        //header with content_type api key
         $headers = array(
-            'Content-Type:application/json',
-            'Authorization:key='.$server_key
+              'Content-Type:application/json',
+              'Authorization:key=' . $server_key
         );
-        //CURL request to route notification to FCM connection server (provided by Google)
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_URL, $fcmUrl);
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($fcmNotification));
         $result = curl_exec($ch);
-        if ($result === FALSE) {
-            die('Oops! FCM Send Error: ' . curl_error($ch));
-        }
         curl_close($ch);
-
+        return true;
     }
 }

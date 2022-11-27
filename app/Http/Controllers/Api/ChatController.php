@@ -13,6 +13,9 @@ use App\Models\Chat\SocietyChat;
 use App\Models\Chat\TrainerMessage;
 use App\Models\Society\Society;
 use App\Models\User;
+use App\Notifications\SendAdminNewMessage;
+use App\Notifications\SendSocietyNewMessage;
+use App\Notifications\SendTrainerNewMessage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Notifications\DatabaseNotification;
@@ -31,11 +34,11 @@ class ChatController extends Controller
         $trainerId = auth()->user()->society->trainer->id;
 
         $messages = TrainerMessage::with('sender', 'receiver')
-            ->where(function ($q) use ($userId, $trainerId) {
-                $q->where([['sender_id', $userId], ['receiver_id', $trainerId]])
-                    ->orWhere([['sender_id', $trainerId], ['receiver_id', $userId]]);
-            })->orderBy('created_at', 'desc')
-            ->paginate($request->per_page ?? 15);
+              ->where(function ($q) use ($userId, $trainerId) {
+                  $q->where([['sender_id', $userId], ['receiver_id', $trainerId]])
+                        ->orWhere([['sender_id', $trainerId], ['receiver_id', $userId]]);
+              })->orderBy('created_at', 'desc')
+              ->paginate($request->per_page ?? 15);
 
         return successResponse(MessageResource::collection($messages), PaginationResource::make($messages));
     }
@@ -44,15 +47,15 @@ class ChatController extends Controller
     public function getAdminMessages(Request $request)
     {
         $userId = auth()->id();
-        $adminsIds = User::whereHas('roles', fn ($q) => $q->whereNotIn('name', ['user', 'trainer']))->pluck('id');
+        $adminsIds = User::whereHas('roles', fn($q) => $q->whereNotIn('name', ['user', 'trainer']))->pluck('id');
 
         $messages = AdminMessage::with('sender', 'receiver')
-            ->where(function ($q) use ($userId, $adminsIds) {
-                $q->where(fn ($q) => $q->where('sender_id', $userId)->whereIn('receiver_id', $adminsIds))
-                    ->orWhere(fn ($q) => $q->whereIn('sender_id', $adminsIds)->where('receiver_id', $userId));
-            })
-            ->orderBy('created_at', 'desc')
-            ->paginate($request->per_page ?? 15);
+              ->where(function ($q) use ($userId, $adminsIds) {
+                  $q->where(fn($q) => $q->where('sender_id', $userId)->whereIn('receiver_id', $adminsIds))
+                        ->orWhere(fn($q) => $q->whereIn('sender_id', $adminsIds)->where('receiver_id', $userId));
+              })
+              ->orderBy('created_at', 'desc')
+              ->paginate($request->per_page ?? 15);
 
         return successResponse(MessageResource::collection($messages), PaginationResource::make($messages));
     }
@@ -60,10 +63,10 @@ class ChatController extends Controller
     public function getSocietyMessages(Request $request)
     {
         $messages = SocietyChat::query()
-            ->where('society_id', auth()->user()->society?->id)
-            ->with('sender.roles')
-            ->orderBy('created_at', 'desc')
-            ->paginate($request->per_page ?? 15);
+              ->where('society_id', auth()->user()->society?->id)
+              ->with('sender.roles')
+              ->orderBy('created_at', 'desc')
+              ->paginate($request->per_page ?? 15);
 
         return successResponse(SocietyMessageResource::collection($messages), PaginationResource::make($messages));
     }
@@ -73,7 +76,21 @@ class ChatController extends Controller
         $trainerMessage->sender_id = auth()->id();
         $trainerMessage->fill($storeMessageRequest->validated())->save();
         $this->setMessageAttribute($trainerMessage);
-        $this->saveNotification($storeMessageRequest->receiver_id);
+
+        $receiver = User::find($storeMessageRequest->receiver_id);
+        // send notification to delivery
+        $title = 'Village Diet';
+        $content = 'New Message';
+        $message = [
+              'data' => $trainerMessage
+        ];
+        \Notification::send($receiver, new SendTrainerNewMessage($trainerMessage));
+        if ($receiver->firebase_token) {
+            send_notification($receiver->firebase_token, $content, $title, $message);
+        }
+
+
+//        $this->saveNotification($storeMessageRequest->receiver_id);
 
         return successResponse(MessageResource::make($trainerMessage), message: trans('message_sent_successfully'));
     }
@@ -84,7 +101,18 @@ class ChatController extends Controller
         $adminMessage->sender_id = auth()->id();
         $adminMessage->fill($storeMessageRequest->validated())->save();
         $this->setMessageAttribute($adminMessage);
-        $this->saveNotification($storeMessageRequest->receiver_id);
+        $receiver = User::find($storeMessageRequest->receiver_id);
+        // send notification to delivery
+        $title = 'Village Diet';
+        $content = 'New Message';
+        $message = [
+              'data' => $adminMessage
+        ];
+        \Notification::send($receiver, new SendAdminNewMessage($adminMessage));
+        if ($receiver->firebase_token) {
+            send_notification($receiver->firebase_token, $content, $title, $message);
+        }
+//        $this->saveNotification($storeMessageRequest->receiver_id);
 
         return successResponse(MessageResource::make($adminMessage), message: trans('message_sent_successfully'));
     }
@@ -97,8 +125,19 @@ class ChatController extends Controller
         $society = Society::find($societyChat->society_id);
         $this->setMessageAttribute($societyChat);
 
+
+        // send notification to delivery
+        $title = 'Village Diet';
+        $content = 'New Message';
+        $message = [
+              'data' => $societyChat
+        ];
+
         foreach ($society->users->where('id', '<>', auth()->id()) as $user) {
-            $this->saveNotification($user->id);
+            \Notification::send($user, new SendSocietyNewMessage($societyChat));
+            if ($user->firebase_token) {
+                send_notification($user->firebase_token, $content, $title, $message);
+            }
         }
 
         return successResponse(SocietyMessageResource::make($societyChat), message: trans('message_sent_successfully'));
