@@ -20,6 +20,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Support\Facades\Lang;
+use Illuminate\Support\Facades\Notification;
 
 
 class ChatController extends Controller
@@ -84,13 +85,13 @@ class ChatController extends Controller
         $message = [
               'data' => $trainerMessage
         ];
-        \Notification::send($receiver, new SendTrainerNewMessage($trainerMessage));
+        $this->saveNotification($storeMessageRequest->receiver_id);
+//        Notification::send($receiver, new SendTrainerNewMessage($trainerMessage));
         if ($receiver->firebase_token) {
             send_notification($receiver->firebase_token, $content, $title, $message);
         }
 
 
-//        $this->saveNotification($storeMessageRequest->receiver_id);
 
         return successResponse(MessageResource::make($trainerMessage), message: trans('message_sent_successfully'));
     }
@@ -108,11 +109,11 @@ class ChatController extends Controller
         $message = [
               'data' => $adminMessage
         ];
-        \Notification::send($receiver, new SendAdminNewMessage($adminMessage));
+//        Notification::send($receiver, new SendAdminNewMessage($adminMessage));
+        $this->saveNotification($storeMessageRequest->receiver_id);
         if ($receiver->firebase_token) {
             send_notification($receiver->firebase_token, $content, $title, $message);
         }
-//        $this->saveNotification($storeMessageRequest->receiver_id);
 
         return successResponse(MessageResource::make($adminMessage), message: trans('message_sent_successfully'));
     }
@@ -165,7 +166,7 @@ class ChatController extends Controller
 
         DatabaseNotification::create($data);
 
-        $user = User::find($id);
-        send_notification([$user->firebase_token], $data['data']);
+//        $user = User::find($id);
+//        send_notification([$user->firebase_token], $data['data']);
     }
 }
