@@ -48,4 +48,4 @@ Route::get('food_recipes', function () {
 
 Route::get('register_trainer/create', [TrainarController::class, 'create'])->name('register_trainer.create');
 Route::post('register_trainer/store', [TrainarController::class, 'store'])->name('register_trainer.store');
-Route::get('callback_success', [RegisterController::class, 'callback']);
+Route::get('callback/{user}/{code?}', [RegisterController::class, 'callback'])->name('callback');

@@ -95,8 +95,6 @@ class RegisterController extends Controller
             $paymentMethodId
         );
 
-        $this->afterSuccessPay($user, $data);
-
         return response(['url' => $redirectLink['invoiceURL']]);
     }
 
@@ -145,5 +143,23 @@ class RegisterController extends Controller
         if ($data['coupon']) $data['coupon']->increment('used_times');
 
         return $userNumber;
+    }
+
+    public function callback(User $user, $code, Request $request)
+    {
+        $paymentId = $request->paymentId;
+
+        try {
+            if ($paymentId) {
+                $this->afterSuccessPay($user, $code);
+
+                return redirect()->route('website.home')->with(['message' => 'Subscribed Successfully']);
+            } else {
+            }
+
+            return response()->json(['IsSuccess' => 'true', 'Message' => $msg, 'Data' => $data]);
+        } catch (\Exception $e) {
+            return response()->json(['IsSuccess' => 'false', 'Message' => $e->getMessage()]);
+        }
     }
 }
