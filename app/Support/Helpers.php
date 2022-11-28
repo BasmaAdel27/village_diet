@@ -5,7 +5,7 @@ if (!function_exists('Setting')) {
     function Setting(string $attr)
     {
         if (\Illuminate\Support\Facades\Schema::hasTable('settings')) {
-            return  \App\Models\Setting::select($attr)->value($attr);
+            return \App\Models\Setting::select($attr)->value($attr);
         }
     }
 }
@@ -60,9 +60,9 @@ if (!function_exists('failedResponse')) {
     function failedResponse($message = 'Failure', $status = 400)
     {
         return response()->json([
-            'status'  => false,
-            'message' => $message,
-            'data' => null
+              'status' => false,
+              'message' => $message,
+              'data' => null
         ], $status);
     }
 }
@@ -72,29 +72,30 @@ if (!function_exists('send_notification')) {
      * send notifications
      *
      */
-    function send_notification(array $tokens, array $data)
+    function send_notification($token, $content, $title, $message)
     {
+
         $fcmUrl = 'https://fcm.googleapis.com/fcm/send';
         $notification = [
-            'sound' => true,
-            'title' => $data['title'],
-            'title_ar' => $data['title_ar'],
-            'body' => $data['body'],
-            'body_ar' => $data['body_ar'],
-            'priority' => 'high',
+              'notification' => $message,
+              'sound' => true,
+              'title' => $title,
+              'body' => $content,
+              'priority' => 'high',
         ];
 
+        $extraNotificationData = ["data" => $notification];
 
         $fcmNotification = [
-            'registration_ids' => $tokens,
-            'data' => $notification,
+              'to' => $token, //single token
+              'notification' => $notification,
+              'data' => $extraNotificationData
         ];
-
-        $headers = [
-            'Authorization: key=' . config('auth.firebase_id'),
-            'Content-Type: application/json'
-        ];
-
+        $server_key = config('auth.firebase_id');
+        $headers = array(
+              'Content-Type:application/json',
+              'Authorization:key=' . $server_key
+        );
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $fcmUrl);
         curl_setopt($ch, CURLOPT_POST, true);
@@ -104,7 +105,6 @@ if (!function_exists('send_notification')) {
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($fcmNotification));
         $result = curl_exec($ch);
         curl_close($ch);
-
         return true;
     }
 }

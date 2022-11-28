@@ -9,6 +9,7 @@ use App\Models\Chat\SocietyChat;
 use App\Models\SeenMessage;
 use App\Models\Society\Society;
 use App\Models\User;
+use App\Notifications\SendSocietyNewMessage;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
@@ -159,12 +160,26 @@ class SocietyController extends Controller
         if ($validator->fails())
             return redirect()->back()->with("errors", $validator->errors());
 
-        $message = SocietyChat::create([
+        $societyChat = SocietyChat::create([
             'message' => $request->message,
             'sender_id' => auth()->id(),
             'type' => 'TEXT',
             'society_id' => $request->society_id,
         ]);
+        $society = Society::find($societyChat->society_id);
+        $title = 'Village Diet';
+        $content = trans('u_receive_new_message');
+        $message = [
+              'data' => $societyChat
+        ];
+        foreach ($society->users->where('id', '<>', auth()->id()) as $user) {
+//            $this->saveNotification($user->id);
+            \Notification::send($user, new SendSocietyNewMessage($societyChat));
+            if ($user->firebase_token) {
+                send_notification($user->firebase_token, $content, $title, $message);
+            }
+        }
+
         return redirect()->back();
     }
 
@@ -189,10 +204,10 @@ class SocietyController extends Controller
                 'data' => [
                     'title' => 'Society',
                     'title_ar' => 'مجتمعك',
-                    'body' => trans('added_to_society', [
+                    'body' => trans('site.added_to_society', [
                         'trainer' => $society->trainer?->first_name . ' ' . $society->trainer?->first_name,
                     ], 'en'),
-                    'body_ar' =>  trans('added_to_society', [
+                    'body_ar' =>  trans('site.added_to_society', [
                         'trainer' => $society->trainer?->first_name . ' ' . $society->trainer?->first_name,
                     ], 'ar')
                 ]
@@ -203,10 +218,10 @@ class SocietyController extends Controller
             'type' => 'society',
             'title' => 'Society',
             'title_ar' => 'مجتمعك',
-            'body' => trans('added_to_society', [
+            'body' => trans('site.added_to_society', [
                 'trainer' => $society->trainer?->first_name . ' ' . $society->trainer?->first_name,
             ], 'en'),
-            'body_ar' =>  trans('added_to_society', [
+            'body_ar' =>  trans('site.added_to_society', [
                 'trainer' => $society->trainer?->first_name . ' ' . $society->trainer?->first_name,
             ], 'ar'),
         ]);

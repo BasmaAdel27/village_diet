@@ -9,8 +9,8 @@ class RegisterRequest extends FormRequest
     public function rules()
     {
         return [
-            'first_name' => 'required|max:255|min:5|string',
-            'last_name' => 'required|max:255|min:5|string',
+            'first_name' => 'required|max:255|min:2|string',
+            'last_name' => 'required|max:255|min:3|string',
             'email' => 'required|email|confirmed|unique:users,email,' . $this->id . ',id,step,3',
             'phone' => 'required|numeric',
             'date_of_birth' => 'required|date|date_format:Y-m-d|before:today',

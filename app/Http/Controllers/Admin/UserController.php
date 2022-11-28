@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\DataTables\Admin\UserDatatable;
-use App\DataTables\Admin\UserChatDatatable;
+use App\Notifications\SendAdminNewMessage;
+use Illuminate\Support\Facades\Notification;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\SendMessageRequest;
 use App\Http\Requests\Admin\UserRequest;
@@ -16,10 +17,12 @@ use App\Models\Subscriber;
 use App\Models\Subscription;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use MattDaneshvar\Survey\Models\Entry;
 use MattDaneshvar\Survey\Models\Survey;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -59,6 +62,11 @@ class UserController extends Controller
         DB::beginTransaction();
         $userNumber = generateUniqueCode(User::class, 'user_number', 6);
         $user = User::make()->fill($request->validated() + ['user_number' => $userNumber]);
+        $user->subscriptions()->create([
+            'status' => Subscription::ACTIVE,
+            'status_ar' => trans(Subscription::ACTIVE),
+            'amount' => 0,
+        ]);
         $user->assignRole('user');
         $user->save();
 
@@ -160,7 +168,7 @@ class UserController extends Controller
     public function messages($userId)
     {
         $adminId = auth()->id();
-        $user=User::find($userId);
+        $user = User::find($userId);
 
         $messages = AdminMessage::with('sender', 'receiver')
             ->where(function ($q) use ($userId, $adminId) {
@@ -169,37 +177,71 @@ class UserController extends Controller
             })
             ->oldest('id')
             ->get();
-        foreach ($messages as $message)
-        {
-            if (\auth()->id()==$message->receiver_id)
-            {
+        foreach ($messages as $message) {
+            if (\auth()->id() == $message->receiver_id) {
                 $message->read_at = now();
                 $message->save();
             }
         }
 
-        return view('admin.users.chat', compact('messages', 'userId','user'));
+        return view('admin.users.chat', compact('messages', 'userId', 'user'));
     }
 
     public function sendMessage(SendMessageRequest $request, $userId)
     {
-        AdminMessage::create([
+        $adminMessage = AdminMessage::create([
             'message' => $request->message,
             'sender_id' => auth()->id(),
             'type' => 'TEXT',
             'receiver_id' => $userId,
         ]);
 
+        $receiver = User::find($userId);
+
+        // send notification to delivery
+        $title = 'Village Diet';
+        $content = trans('u_receive_new_message');
+        $message = [
+              'data' => $adminMessage
+        ];
+//        $this->saveNotification($storeMessageRequest->receiver_id);
+        Notification::send($receiver, new SendAdminNewMessage($adminMessage));
+        if ($receiver->firebase_token) {
+            send_notification($receiver->firebase_token, $content, $title, $message);
+        }
+
+//        $this->saveNotification($userId);
+
         return redirect()->back();
     }
-    public function audioSave(SendMessageRequest $request){
+
+    public function audioSave(SendMessageRequest $request)
+    {
         $path = $request->file('message')->storePublicly('chats/media', "public");
-        $message=AdminMessage::create([
-              'message'=>"/storage/" . $path,
-              'sender_id' => auth()->id(),
-              'type' => 'AUDIO',
-              'receiver_id' => $request->receiver,
+        $message = AdminMessage::create([
+            'message' => "/storage/" . $path,
+            'sender_id' => auth()->id(),
+            'type' => 'AUDIO',
+            'receiver_id' => $request->receiver,
         ]);
         return response()->json($message);
+    }
+
+    public function saveNotification($id)
+    {
+        $data['id'] = Str::uuid();
+        $data['type'] = 'chat';
+        $data['notifiable_id'] = $id;
+        $data['notifiable_type'] = User::class;
+        $data['data']['type'] = 'chat';
+        $data['data']['title'] = trans('mobile.notifications.content.new_message', locale: 'en');
+        $data['data']['title_ar'] = trans('mobile.notifications.content.new_message', locale: 'ar');
+        $data['data']['body'] = trans('u_receive_new_message', locale: 'en');
+        $data['data']['body_ar'] = trans('u_receive_new_message', locale: 'ar');
+
+        DatabaseNotification::create($data);
+
+        $user = User::find($id);
+        send_notification([$user->firebase_token], $data['data']);
     }
 }

@@ -16,3 +16,9 @@ yarn-error.log
 /.env
 composer.json
 composer.lock
+./composer.lock
+./composer.json
+./village_diet-main
+./village_diet-main.zip
+./Village.postman_collection.json
+./thevillagediet_village_diet.sql

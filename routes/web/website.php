@@ -46,14 +46,6 @@ Route::get('food_recipes', function () {
     );
 })->name('food_recipes');
 
-Route::get('register_trainer/create', [TrainarController::class,'create'])->name('register_trainer.create');
-Route::post('register_trainer/store',[TrainarController::class,'store'])->name('register_trainer.store');
-
-
-Route::get('/pay', [\App\Http\Controllers\MyFatoorahController::class, 'pay']);
-Route::get('/pay_callback', function (){
-    echo 'done';
-});
-Route::get('/pay_errorback', function (){
-    echo 'error';
-});
+Route::get('register_trainer/create', [TrainarController::class, 'create'])->name('register_trainer.create');
+Route::post('register_trainer/store', [TrainarController::class, 'store'])->name('register_trainer.store');
+Route::get('callback_success', [RegisterController::class, 'callback']);

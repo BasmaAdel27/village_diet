@@ -87,71 +87,12 @@
           <h1>
             دفع الطلب
           </h1>
-
-          <h2 class="sub-head">
-            إختر طريقة الدفع المناسبة
-          </h2>
-
-          <div class="flex-data">
-            <div class="wrapper mb-1">
-              <input type="radio" class="radio-check" />
-
-              <label class="radio-title">
-                أبل باي
-              </label>
-            </div>
-
-            <div class="wrapper mb-1">
-              <input type="radio" class="radio-check" />
-
-              <label class="radio-title">
-                الدفع بالبطاقات البنكية
-
-                <span>
-                  ( فيزا - ماستر كارد - مدى )
-                </span>
-              </label>
-            </div>
-          </div>
-
-          <div class="row mt-4">
-            <div class="col-lg-6 col-12 px-2">
-              <div class="form-group span-form">
-                <input type="text" class="form-control" placeholder="رقم البطاقة" />
-              </div>
-            </div>
-
-            <div class="col-lg-6 col-12 px-2">
-              <div class="form-group span-form">
-                <input type="text" class="form-control" placeholder="اسم صاحب البطاقة" />
-              </div>
-            </div>
-
-            <div class="col-lg-6 col-12 px-2">
-              <div class="form-group span-form">
-                <input type="text" class="form-control" placeholder="تاريخ الانتهاء" />
-
-                <span class="text-btn">
-                  <img src="{{ asset('website/assets/images/form/calendar.svg') }}" alt="">
-                </span>
-              </div>
-            </div>
-
-            <div class="col-lg-6 col-12 px-2">
-              <div class="form-group span-form">
-                <input type="text" class="form-control" placeholder="CVV" />
-              </div>
-            </div>
-          </div>
-
           <div class="wrapper mt-3">
             <input type="radio" class="radio-check" name="renew" value="1" />
-
             <label class="radio-title bold-text">
               أوافق على الدفع التلقائي لتجديد الإشتراك شهريا
             </label>
           </div>
-
           <div class="button-contain">
             <a href="#!" type="button" class="custom-btn" id="submitBtn" onclick="$('#paymentForm').submit()">
               <img src="{{ asset('website/assets/images/icons/arrow.svg') }}" loading="lazy" alt="" />
@@ -218,6 +159,7 @@
         type : "POST",
         data : form.serialize(),
         success: function (result) {
+          window.location.replace(result.url);
           $('#user_number').text(result.data.user_number);
           $('#popdone').modal('show');
         },
