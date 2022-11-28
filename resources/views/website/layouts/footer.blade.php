@@ -77,7 +77,7 @@
               <a href="{{ route('website.faqs') }}">@lang('faq')</a>
             </li>
             <li>
-              <a href="{{ route('website.food_recipes') }}> @lang('food_recipes')</a>
+              <a href="{{ route('website.food_recipes') }}"> @lang('food_recipes')</a>
             </li>
             <li>
               <a href=" {{ route('website.trainers.index') }}">@lang('our_trainers')</a>
