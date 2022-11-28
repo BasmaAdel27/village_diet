@@ -62,13 +62,20 @@ class UserController extends Controller
         DB::beginTransaction();
         $userNumber = generateUniqueCode(User::class, 'user_number', 6);
         $user = User::make()->fill($request->validated() + ['user_number' => $userNumber]);
-        $user->subscriptions()->create([
+        $user->assignRole('user');
+        $user->save();
+
+      Subscription::create([
             'status' => Subscription::ACTIVE,
             'status_ar' => trans(Subscription::ACTIVE),
             'amount' => 0,
+            'total_amount' => 0,
+            'payment_method'=>'cash',
+            'user_id'=>$user->id,
+            'end_date'=> now()->addDays(30),
         ]);
-        $user->assignRole('user');
-        $user->save();
+
+
 
         Mail::to($user->email)->send(new UserNumber($user));
 

@@ -32,11 +32,15 @@
   <div class="form-group col-6">
     <label>@lang('status')</label>
     <select name="is_active" class="form-control">
-      <option value="">@lang('select')</option>
-      <option value="1" {{ isset($staticPage) && $staticPage->is_active == '1' ? 'selected' : '' }}>@lang('active')
+      @if(isset($staticPage) && $staticPage->slug == 'food-recipes')
+        <option value="1" readonly="">@lang('active')</option>
+      @else
+        <option value="">@lang('select')</option>
+        <option value="1" {{ isset($staticPage) && $staticPage->is_active == '1' ? 'selected' : '' }}>@lang('active')
       </option>
       <option value="0" {{ isset($staticPage) && $staticPage->is_active == '0' ? 'selected' : '' }}>@lang('inactive')
       </option>
+      @endif
     </select>
   </div>
   <div class="form-group col-6">

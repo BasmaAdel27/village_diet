@@ -15,18 +15,18 @@ class MealDatatable extends DataTable
         return datatables()
             ->eloquent($query)
             ->editColumn('translations.breakfast', function ($query) {
-                return $query->translate(app()->getLocale())->breakfast;
+                return '<span style="text-overflow: ellipsis;">'.$query->translate(app()->getLocale())->breakfast ."</span>";
             })->editColumn('translations.lunch', function ($query) {
-                return $query->translate(app()->getLocale())->lunch;
+                return '<span style="text-overflow: ellipsis;">'.$query->translate(app()->getLocale())->lunch  ."</span>";
             })->editColumn('translations.dinner', function ($query) {
-                return $query->translate(app()->getLocale())->dinner;
+                return'<span style="text-overflow: ellipsis;">'. $query->translate(app()->getLocale())->dinner ."</span>";
             })->editColumn('day.translations.title', function ($query) {
                 return $query->day->translate(app()->getLocale())->title;
             })->editColumn('is_active', function ($query) {
                 return ($query->is_active == 1) ?  '<span class="btn btn-success">' . trans('active') . "</span>" : '<span class="btn btn-danger">' .  trans('inactive') . "</span>";
             })->editColumn('Action', function ($query) {
                 return view('admin.meals.datatable.action', compact('query'));
-            })->rawColumns(['is_active', 'Active']);
+            })->rawColumns(['translations.breakfast','translations.lunch','translations.dinner','is_active', 'Active']);
     }
 
 

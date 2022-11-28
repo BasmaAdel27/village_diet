@@ -17,6 +17,7 @@ class Service extends Model implements TranslatableContract
     protected $fillable = [
         'is_active',
         'ordering',
+        'type'
     ];
 
     public $assets = ['image'];
