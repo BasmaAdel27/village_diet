@@ -50,7 +50,7 @@ class AdminController extends Controller
     public function update(AdminRequest $request, User $admin)
     {
         $data = $request->validated();
-        $admin->fill($data)->save();
+        $admin->fill(array_except($data, 'role_id'))->save();
         $admin->assignRole(Role::findById($data['role_id']));
 
         return redirect()->route('admin.admins.index')->with('success', trans('updated_successfully'));

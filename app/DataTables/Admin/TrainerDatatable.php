@@ -19,12 +19,14 @@ class TrainerDatatable extends DataTable
               })
               ->editColumn('show_inPage', function ($query) {
                   return ($query->show_inPage == 1) ? '<span class="btn btn-success">' . trans('active') . "</span>" : '<span class="btn btn-danger">' . trans('inactive') . "</span>";
+              })->editColumn('rates', function ($query) {
+                  return view('admin.trainers.datatable.rating', compact('query'));
               })
               ->editColumn('status', function ($query) {
                   return ($query->status == 'DONE') ? '<span class="btn btn-success">' . trans('active') . "</span>" : '<span class="btn btn-danger">' . trans('inactive') . "</span>";
               })->editColumn('Action', function ($query) {
                   return view('admin.trainers.datatable.action', compact('query'));
-              })->rawColumns(['show_inPage','status','Active']);
+              })->rawColumns(['show_inPage','rates','status','Active']);
     }
 
 
@@ -64,6 +66,7 @@ class TrainerDatatable extends DataTable
             Column::make('show_inPage')->title(trans('our trainer page')),
               Column::make('status')->title(trans('status')),
               Column::make('created_at')->title(trans('created_at')),
+            Column::make('rates')->title(trans('rates'))->searchable(false)->orderable(false),
             Column::make('Action')->title(trans('action'))->searchable(false)->orderable(false),
         ];
     }

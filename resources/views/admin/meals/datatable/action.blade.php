@@ -1,3 +1,6 @@
+@can('admin.meals.show')
+<a href="{{ route('admin.meals.show',$query->id) }}" class="btn btn-outline-success mr-2 p-2">@lang('show')</a>
+@endcan
 @can('admin.meals.update')
 <a href="{{ route('admin.meals.edit',$query->id) }}" class="btn btn-outline-success mr-2 p-2">@lang('edit')</a>
 @endcan

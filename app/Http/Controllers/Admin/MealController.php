@@ -14,6 +14,7 @@ class MealController extends Controller
     {
         $this->middleware('permission:admin.meals.index')->only(['index']);
         $this->middleware('permission:admin.meals.store')->only(['store']);
+        $this->middleware('permission:admin.meals.show')->only(['show']);
         $this->middleware('permission:admin.meals.update')->only(['update']);
         $this->middleware('permission:admin.meals.destroy')->only(['destroy']);
     }
@@ -64,6 +65,12 @@ class MealController extends Controller
         return redirect()->route('admin.meals.index')->with('success', 'updated_successfully');
     }
 
+    public function show($id){
+        $meal=Meal::find($id);
+        $locales = config('translatable.locales');
+        return view('admin.meals.show',compact('meal','locales'));
+
+    }
     public function destroy($id)
     {
         Meal::find($id)->delete();

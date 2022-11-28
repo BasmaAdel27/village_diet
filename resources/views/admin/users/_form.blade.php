@@ -67,15 +67,6 @@
       </label>
     </div>
   </div>
-  <div class="form-group col-6">
-    <label>@lang('subscrioption_status')</label>
-    <select name="subscrioption_status" class="form-control">
-      <option value="">@lang('select')</option>
-      @foreach ($subscriptionStatus as $status)
-      <option value="{{ $status }}">@lang("$status")</option>
-      @endforeach
-    </select>
-  </div>
 </div>
 <div class="row">
   <div class="form-group col-6">

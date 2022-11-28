@@ -1,4 +1,4 @@
-@extends('trainer.layout')
+@extends('admin.app')
 @section('title') @lang('common_questions') @endsection
 @section('content')
 
