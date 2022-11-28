@@ -50,7 +50,7 @@ Route::resource('static_pages', StaticPageController::class)->except('show');
 Route::resource('videos', VideoController::class)->except('show');
 Route::get('ratings', RatingController::class)->name('ratings.index');
 Route::resource('settings', SettingController::class)->only('index', 'update');
-Route::resource('meals', MealController::class)->except('show');
+Route::resource('meals', MealController::class);
 Route::resource('trainers', TrainerController::class)->except('show');
 Route::resource('pending-trainers', PendingTrainerController::class)->except('show', 'destroy', 'store');
 Route::resource('coupons', CouponController::class)->except('show');

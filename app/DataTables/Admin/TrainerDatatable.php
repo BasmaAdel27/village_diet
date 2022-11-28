@@ -66,7 +66,7 @@ class TrainerDatatable extends DataTable
             Column::make('show_inPage')->title(trans('our trainer page')),
               Column::make('status')->title(trans('status')),
               Column::make('created_at')->title(trans('created_at')),
-            Column::make('rates')->title(trans('ratings'))->searchable(false)->orderable(false),
+            Column::make('rates')->title(trans('rates'))->searchable(false)->orderable(false),
             Column::make('Action')->title(trans('action'))->searchable(false)->orderable(false),
         ];
     }

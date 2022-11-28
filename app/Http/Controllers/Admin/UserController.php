@@ -225,13 +225,26 @@ class UserController extends Controller
     public function audioSave(SendMessageRequest $request)
     {
         $path = $request->file('message')->storePublicly('chats/media', "public");
-        $message = AdminMessage::create([
+        $adminMessage = AdminMessage::create([
             'message' => "/storage/" . $path,
             'sender_id' => auth()->id(),
             'type' => 'AUDIO',
             'receiver_id' => $request->receiver,
         ]);
-        return response()->json($message);
+        $receiver = User::find($request->receiver);
+
+        // send notification to delivery
+        $title = 'Village Diet';
+        $content = trans('u_receive_new_message');
+        $message = [
+              'data' => $adminMessage
+        ];
+//        $this->saveNotification($storeMessageRequest->receiver_id);
+        Notification::send($receiver, new SendAdminNewMessage($adminMessage));
+        if ($receiver->firebase_token) {
+            send_notification($receiver->firebase_token, $content, $title, $message);
+        }
+        return response()->json($adminMessage);
     }
 
     public function saveNotification($id)
