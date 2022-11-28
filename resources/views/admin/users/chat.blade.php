@@ -73,20 +73,22 @@
       </div>
     </form>
 
-    <div class="modal" id="myModal">
+    <div id="myModal" class="modal fade" role="dialog">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
             <h4 class="modal-title">@lang('voice_message')</h4>
             <button type="button" class="close" data-dismiss="modal">&times;</button>
           </div>
-          <div id="controls" style="margin: 15px;">
-            <button id="recordButton" class="btn btn-success"><i class="mdi mdi-play"></i></button>
-            <button id="pauseButton" class="btn btn-primary" disabled><i class="mdi mdi-pause"></i></button>
-            <button id="stopButton" class="btn btn-danger" disabled><i class="mdi mdi-stop"></i></button>
+          <div class="modal-body">
+            <div id="controls" style="margin: 15px;">
+              <button id="recordButton" class="btn btn-success"><i class="mdi mdi-play"></i></button>
+              <button id="pauseButton" class="btn btn-primary" disabled><i class="mdi mdi-pause"></i></button>
+              <button id="stopButton" class="btn btn-danger" disabled><i class="mdi mdi-stop"></i></button>
+            </div>
+            <h3 id="record" style="margin-left: 15px"></h3>
+            <li id="recordingsList" style="margin-left: 15px;list-style-type: none"></li>
           </div>
-          <h3 id="record" style="margin-left: 15px"></h3>
-          <li id="recordingsList" style="margin-left: 15px;list-style-type: none"></li>
           <div class="modal-footer">
             <input type="hidden" name="receiver_id" value="{{$userId}}" />
             <input type="hidden" name="sender_id" value="{{auth()->id()}}" />
@@ -95,6 +97,7 @@
               disabled>@lang('send')</button>
           </div>
         </div>
+
       </div>
     </div>
 
@@ -102,5 +105,5 @@
 </div>
 @endsection
 @section('scripts')
-  <script src="{{ asset('adminPanel/js/userscript.js') }}"></script>
+<script src="{{ asset('adminPanel/js/userscript.js') }}"></script>
 @endsection
