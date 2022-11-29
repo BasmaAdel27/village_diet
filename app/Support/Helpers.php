@@ -131,7 +131,7 @@ if (!function_exists('send_notification')) {
         curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
 
         $response = curl_exec($ch);
-c       url_close($ch);
+        curl_close($ch);
         return true;
 
 
