@@ -9,6 +9,7 @@
 
           <h1>
             نأسف لعدم إكمال العملية
+            {{ session('error_subscribed') }}
           </h1>
 
           <div class="button-contain">
