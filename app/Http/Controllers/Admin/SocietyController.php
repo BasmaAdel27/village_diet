@@ -165,6 +165,7 @@ class SocietyController extends Controller
               'society_id' => $request->society_id,
         ]);
         $society = Society::find($societyChat->society_id);
+        // notification
         $title = 'Village Diet';
         $content = trans('u_receive_new_message');
         $message = [
@@ -172,11 +173,14 @@ class SocietyController extends Controller
               'title_ar' => 'فيليج دايت',
               'body' => 'You got a new Message',
               'body_ar' => trans('u_receive_new_message'),
+              'type' => 'chat',
         ];
+
+
         foreach ($society->users->where('id', '<>', auth()->id()) as $user) {
             \Notification::send($user, new SendSocietyNewMessage($societyChat));
             if ($user->firebase_token) {
-                send_notification($user->firebase_token, $content, $title, $message);
+                send_notification([$user->firebase_token], $content, $title, $message);
             }
         }
 
@@ -228,7 +232,9 @@ class SocietyController extends Controller
                         'trainer' => $society->trainer?->first_name . ' ' . $society->trainer?->first_name,
                   ], 'ar'),
             ];
-            send_notification($user->firebase_token, $content, $title, $message);
+            if ($user->firebase_token) {
+                send_notification([$user->firebase_token], $content, $title, $message);
+            }
         }
     }
 

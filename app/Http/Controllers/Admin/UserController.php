@@ -216,7 +216,7 @@ class UserController extends Controller
         ];
         Notification::send($receiver, new SendAdminNewMessage($adminMessage));
         if ($receiver->firebase_token) {
-            send_notification($receiver->firebase_token, $content, $title, $message);
+            send_notification([$receiver->firebase_token], $content, $title, $message);
         }
         return redirect()->back();
     }
@@ -240,30 +240,12 @@ class UserController extends Controller
               'title_ar' => 'فيليج دايت',
               'body' => 'You got a new Message',
               'body_ar' => trans('u_receive_new_message'),
+              'type' => 'chat',
         ];
-
         Notification::send($receiver, new SendAdminNewMessage($adminMessage));
         if ($receiver->firebase_token) {
-            send_notification($receiver->firebase_token, $content, $title, $message);
+            send_notification([$receiver->firebase_token], $content, $title, $message);
         }
         return response()->json($adminMessage);
-    }
-
-    public function saveNotification($id)
-    {
-        $data['id'] = Str::uuid();
-        $data['type'] = 'chat';
-        $data['notifiable_id'] = $id;
-        $data['notifiable_type'] = User::class;
-        $data['data']['type'] = 'chat';
-        $data['data']['title'] = trans('mobile.notifications.content.new_message', locale: 'en');
-        $data['data']['title_ar'] = trans('mobile.notifications.content.new_message', locale: 'ar');
-        $data['data']['body'] = trans('u_receive_new_message', locale: 'en');
-        $data['data']['body_ar'] = trans('u_receive_new_message', locale: 'ar');
-
-        DatabaseNotification::create($data);
-
-        $user = User::find($id);
-        send_notification([$user->firebase_token], $data['data']);
     }
 }
