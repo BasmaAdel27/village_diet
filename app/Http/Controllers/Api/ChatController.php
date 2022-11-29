@@ -117,7 +117,7 @@ class ChatController extends Controller
         ];
         Notification::send($receiver, new SendAdminNewMessage($adminMessage));
         if ($receiver->firebase_token) {
-            send_notification($receiver->firebase_token, $content, $title, $message);
+            send_notification([$receiver->firebase_token], $content, $title, $message);
         }
 
         return successResponse(MessageResource::make($adminMessage), message: trans('message_sent_successfully'));
