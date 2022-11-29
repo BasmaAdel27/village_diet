@@ -44,10 +44,5 @@ Route::group(
 );
 
 Route::get('test_notification/{token}', function ($token) {
-    return send_notification([$token], [
-          'title' => 'village_diet',
-          'title_ar' => 'فيليج دايت',
-          'body' => 'test notification',
-          'body_ar' => 'اشعار تجريبي',
-    ],'Village Diet','New Message');
+    return send_notification([$token], 'You get a new message','Village Diet','test');
 });

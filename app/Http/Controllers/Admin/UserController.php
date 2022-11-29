@@ -212,6 +212,7 @@ class UserController extends Controller
               'title_ar' => 'فيليج دايت',
               'body' => 'You got a new Message',
               'body_ar' => trans('u_receive_new_message'),
+              'type' => 'chat',
         ];
         Notification::send($receiver, new SendAdminNewMessage($adminMessage));
         if ($receiver->firebase_token) {

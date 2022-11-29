@@ -85,9 +85,11 @@ class ChatController extends Controller
         $message = [
               'title' => 'village_diet',
               'title_ar' => 'فيليج دايت',
-              'body' => 'You Get a new Message',
+              'body' => 'You got a new Message',
               'body_ar' => trans('u_receive_new_message'),
+              'type' => 'chat',
         ];
+//        $this->saveNotification($storeMessageRequest->receiver_id);
         Notification::send($receiver, new SendTrainerNewMessage($trainerMessage));
         if ($receiver->firebase_token) {
             send_notification($receiver->firebase_token, $content, $title, $message);
@@ -109,13 +111,13 @@ class ChatController extends Controller
         $message = [
               'title' => 'village_diet',
               'title_ar' => 'فيليج دايت',
-              'body' => 'You Get a new Message',
+              'body' => 'You got a new Message',
               'body_ar' => trans('u_receive_new_message'),
+              'type' => 'chat',
         ];
-//        $this->saveNotification($storeMessageRequest->receiver_id);
         Notification::send($receiver, new SendAdminNewMessage($adminMessage));
         if ($receiver->firebase_token) {
-            send_notification($receiver->firebase_token, $content, $title, $content);
+            send_notification($receiver->firebase_token, $content, $title, $message);
         }
 
         return successResponse(MessageResource::make($adminMessage), message: trans('message_sent_successfully'));
@@ -136,10 +138,12 @@ class ChatController extends Controller
         $message = [
               'title' => 'village_diet',
               'title_ar' => 'فيليج دايت',
-              'body' => 'You Get a new Message',
+              'body' => 'You got a new Message',
               'body_ar' => trans('u_receive_new_message'),
+              'type' => 'chat',
         ];
         foreach ($society->users->where('id', '<>', auth()->id()) as $user) {
+//            $this->saveNotification($user->id);
             \Notification::send($user, new SendSocietyNewMessage($societyChat));
             if ($user->firebase_token) {
                 send_notification($user->firebase_token, $content, $title, $message);
