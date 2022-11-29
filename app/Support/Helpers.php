@@ -87,7 +87,8 @@ if (!function_exists('send_notification')) {
                     'title' => $title,
                     'sound' => "default",
                     'color' => "#203E78",
-                    'priority' => 'high'
+                    'priority' => 'high',
+                    'notification' => $message
               ]
         ];
         $headers = [

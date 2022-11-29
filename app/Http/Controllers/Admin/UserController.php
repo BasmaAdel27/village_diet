@@ -218,7 +218,7 @@ class UserController extends Controller
                   'title_ar' => 'فيليج دايت',
                   'body' => 'You Get A new Message',
                   'body_ar' => trans('u_receive_new_message'),
-            ], $title, $message);
+            ], $title, $content);
 //            send_notification($receiver->firebase_token, $content, $title, $message);
         }
         return redirect()->back();
@@ -241,7 +241,7 @@ class UserController extends Controller
         $message = [
               'data' => $adminMessage
         ];
-//        $this->saveNotification($storeMessageRequest->receiver_id);
+
         Notification::send($receiver, new SendAdminNewMessage($adminMessage));
         if ($receiver->firebase_token) {
             send_notification([$receiver->firebase_token], [
@@ -249,7 +249,7 @@ class UserController extends Controller
                   'title_ar' => 'فيليج دايت',
                   'body' => 'You Get A new Message',
                   'body_ar' => trans('u_receive_new_message'),
-            ], $title, $message);
+            ], $title, $content);
 //            send_notification($receiver->firebase_token, $content, $title, $message);
         }
         return response()->json($adminMessage);
