@@ -80,7 +80,7 @@ if (!function_exists('send_notification')) {
               'registration_ids' => $token,
               'priority' => 'high',
               'data' => [
-                    'name' => $message
+                    'name' => $title
               ],
               'notification' => [
                     'body' => $content,
