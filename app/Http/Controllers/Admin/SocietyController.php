@@ -176,7 +176,13 @@ class SocietyController extends Controller
 //            $this->saveNotification($user->id);
             \Notification::send($user, new SendSocietyNewMessage($societyChat));
             if ($user->firebase_token) {
-                send_notification($user->firebase_token, $content, $title, $message);
+                send_notification([$user->firebase_token], [
+                      'title' => 'village_diet',
+                      'title_ar' => 'فيليج دايت',
+                      'body' => 'You Get a new Message',
+                      'body_ar' => trans('u_receive_new_message'),
+                ], $title, $message);
+//                send_notification($user->firebase_token, $content, $title, $message);
             }
         }
 
@@ -229,7 +235,19 @@ class SocietyController extends Controller
                   ], 'ar'),
             ];
 
-            send_notification($user->firebase_token, $content, $title, $message);
+            send_notification([$user->firebase_token], [
+                  'type' => 'society',
+                  'title' => 'Society',
+                  'title_ar' => 'مجتمعك',
+                  'body' => trans('site.added_to_society', [
+                        'trainer' => $society->trainer?->first_name . ' ' . $society->trainer?->first_name,
+                  ], 'en'),
+                  'body_ar' => trans('site.added_to_society', [
+                        'trainer' => $society->trainer?->first_name . ' ' . $society->trainer?->first_name,
+                  ], 'ar'),
+            ], $title, $content);
+
+//            send_notification($user->firebase_token, $content, $title, $message);
         }
     }
 
