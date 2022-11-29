@@ -95,8 +95,6 @@ class RegisterController extends Controller
             $paymentMethodId
         );
 
-        $this->afterSuccessPay($user, $data);
-
         return response(['url' => $redirectLink['invoiceURL']]);
     }
 
@@ -124,26 +122,5 @@ class RegisterController extends Controller
             'total' => $total,
             'discount' => $discount
         ];
-    }
-
-    private function afterSuccessPay($user, $data)
-    {
-        $user->subscriptions()->create([
-            'status' => Subscription::ACTIVE,
-            'amount' => $data['amount'],
-            'tax_amount' => $data['tax_amount'],
-            'total_amount' => $data['total'],
-            'payment_method' => 'Visa',
-            'end_date' => now()->addDays(30),
-            'coupon_id' => $data['coupon']?->id,
-        ]);
-
-        $userNumber = generateUniqueCode(User::class, 'user_number', 6);
-        $user->update(['step' => 3, 'user_number' => $userNumber]);
-        $user->assignRole('user');
-        // Mail::to($user->email)->send(new UserNumber($user));
-        if ($data['coupon']) $data['coupon']->increment('used_times');
-
-        return $userNumber;
     }
 }
