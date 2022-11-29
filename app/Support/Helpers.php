@@ -130,13 +130,10 @@ if (!function_exists('send_notification')) {
 
         curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
 
-
-
         $response = curl_exec($ch);
+c       url_close($ch);
+        return true;
 
-
-
-        dd($response);
 
 
         // $fcmUrl = 'https://fcm.googleapis.com/fcm/send';
