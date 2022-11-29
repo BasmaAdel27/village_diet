@@ -30,37 +30,6 @@
   </div>
 </div>
 
-<div class="modal fade" id="subscription_active" tabindex="-1" aria-labelledby="subscription_active" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-body">
-        <div class="contain">
-          <div class="pop-icon green">
-            <img src="{{ asset('website/assets/images/popup/popdone.svg') }}" loading="lazy" alt="" />
-          </div>
-
-          <h1>
-            إشتراكك مفعل
-          </h1>
-
-          <p>
-            الحساب جاري بالفعل وسيتم تجديد الإشتراك تلقائياً
-          </p>
-
-          <div class="button-contain">
-            <a href="{{ route('website.home') }}" class="custom-btn">
-              <img src="{{ asset('website/assets/images/icons/arrow.svg') }}" loading="lazy" alt="" />
-
-              <span>
-                الإستمرار
-              </span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 
 <div class="modal fade" id="subscriptionCancel" tabindex="-1" aria-labelledby="subscriptionCancel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">

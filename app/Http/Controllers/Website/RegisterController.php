@@ -69,7 +69,7 @@ class RegisterController extends Controller
 
     public function getPayment(Request $request, User $user)
     {
-        $data = $this->calculateSubscription($request);
+        $data = Subscription::calculateSubscription($request);
 
         return view('website.pages.register.payment', [
             'user' => $user,
@@ -82,7 +82,7 @@ class RegisterController extends Controller
 
     public function storePayment(Request $request, User $user)
     {
-        $data = $this->calculateSubscription($request);
+        $data = Subscription::calculateSubscription($request->code);
 
         if ($user->currentSubscription()->exists()) {
             return failedResponse(['message' => trans('you_subscribe_already')], 422);
@@ -96,31 +96,5 @@ class RegisterController extends Controller
         );
 
         return response(['url' => $redirectLink['invoiceURL']]);
-    }
-
-    private function calculateSubscription($request)
-    {
-        $discount = 0;
-        $setting = Setting::first();
-        $netSubscription = $setting->net_subscription;
-        $taxAmount = $setting->tax_amount;
-        $coupon = Coupon::whereColumn('used_times', '<', 'max_used')
-            ->where('end_date', '>=', now()->endOfDay())
-            ->where('code', $request->code)->first();
-
-        $subTotal = $netSubscription + $taxAmount;
-
-        if ($coupon) {
-            $discount = ($coupon->coupon_type == 'fixed') ? $coupon->amount : ($subTotal * $coupon->percent) / 100;
-        }
-        $total = $subTotal - $discount;
-
-        return [
-            'amount' => $netSubscription,
-            'tax_amount' => $taxAmount,
-            'coupon' => $coupon,
-            'total' => $total,
-            'discount' => $discount
-        ];
     }
 }

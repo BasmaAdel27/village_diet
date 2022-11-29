@@ -15,9 +15,9 @@ class MyFatoorahController extends Controller
     public function __construct()
     {
         $this->mfObj = new PaymentMyfatoorahApiV2(
-              config('myfatoorah.api_key'),
-              config('myfatoorah.country_iso'),
-              config('myfatoorah.test_mode')
+            config('myfatoorah.api_key'),
+            config('myfatoorah.country_iso'),
+            config('myfatoorah.test_mode')
         );
     }
 
@@ -29,64 +29,66 @@ class MyFatoorahController extends Controller
 
     public function getPayLoadData($data, $renew = false, $user)
     {
-        $callbackURL = route('website.callback', ['user' => $user, 'code' => $data['code']]);
+        $callbackURL = route('website.callback', ['user' => $user, 'code' => @$data['code']]);
         $data = [
-              'CustomerName' => $user->first_name . ' ' . $user->last_name,
-              'InvoiceValue' => $data['total'],
-              'DisplayCurrencyIso' => 'SAR',
-              'CustomerEmail' => $user->email,
-              'CallBackUrl' => $callbackURL,
-              'ErrorUrl' => $callbackURL,
-              'MobileCountryCode' => '+966',
-              'CustomerMobile' => $user->phone,
-              'Language' => 'ar',
-              'CustomerReference' => $user->id,
-              'SourceInfo' => 'Laravel ' . app()::VERSION . ' - MyFatoorah Package ' . MYFATOORAH_LARAVEL_PACKAGE_VERSION
+            'CustomerName' => $user->first_name . ' ' . $user->last_name,
+            'InvoiceValue' => $data['total'],
+            'DisplayCurrencyIso' => 'SAR',
+            'CustomerEmail' => $user->email,
+            'CallBackUrl' => $callbackURL,
+            'ErrorUrl' => $callbackURL,
+            'MobileCountryCode' => '+966',
+            'CustomerMobile' => $user->phone,
+            'Language' => 'ar',
+            'CustomerReference' => $user->id,
+            'SourceInfo' => 'Laravel ' . app()::VERSION . ' - MyFatoorah Package ' . MYFATOORAH_LARAVEL_PACKAGE_VERSION
         ];
 
         if ($renew) {
             $data += [
-                  'RecurringModel' => [
-                        'RecurringType' => 'Monthly',
-                  ],
+                'RecurringModel' => [
+                    'RecurringType' => 'Monthly',
+                ],
             ];
         }
 
         return $data;
     }
 
-    public function callback(User $user, $code)
+    public function callback(User $user, $code = null)
     {
         try {
-            $data = $this->mfObj->getPaymentStatus(request('paymentId'), 'PaymentId');
-            if ($data->InvoiceStatus == 'Paid') {
-                $userNumber = $this->afterSuccessPay($user, $code);
+            $data = Subscription::calculateSubscription($code);
+            $paymentData = $this->mfObj->getPaymentStatus(request('paymentId'), 'PaymentId');
+            if ($paymentData->InvoiceStatus == 'Paid') {
+                $userNumber = $this->afterSuccessPay($user, $data, request('paymentId'));
 
-                return redirect()->to('website.home')->with('message', $userNumber);
-            } else if ($data->InvoiceStatus == 'Failed') {
-                $msg = 'Invoice is not paid due to ' . $data->InvoiceError;
+                return redirect()->route('website.home')->with('done_subscribed', $userNumber);
+            } else if ($paymentData->InvoiceStatus == 'Failed') {
+                $msg = 'Invoice is not paid due to ' . $paymentData->InvoiceError;
 
-                return redirect()->to('website.home')->with('message', 'Failed' . $msg);
-            } else if ($data->InvoiceStatus == 'Expired') {
+                return redirect()->route('website.home')->with('error_subscribed', 'Failed ->' . $msg);
+            } else if ($paymentData->InvoiceStatus == 'Expired') {
                 $msg = 'Invoice is expired.';
 
-                return redirect()->to('website.home')->with('message', 'Expired' . $msg);
+                return redirect()->route('website.home')->with('error_subscribed', 'Expired -> ' . $msg);
             }
         } catch (\Exception $e) {
             return response()->json(['IsSuccess' => 'false', 'Message' => $e->getMessage()]);
         }
     }
 
-    private function afterSuccessPay($user, $data)
+    private function afterSuccessPay($user, $data, $paymentId)
     {
         $user->subscriptions()->create([
-              'status' => Subscription::ACTIVE,
-              'amount' => $data['amount'],
-              'tax_amount' => $data['tax_amount'],
-              'total_amount' => $data['total'],
-              'payment_method' => 'Visa',
-              'end_date' => now()->addDays(30),
-              'coupon_id' => $data['coupon']?->id,
+            'status' => Subscription::ACTIVE,
+            'amount' => $data['amount'],
+            'tax_amount' => $data['tax_amount'],
+            'total_amount' => $data['total'],
+            'payment_method' => 'Visa',
+            'end_date' => now()->addDays(30),
+            'coupon_id' => $data['coupon']?->id,
+            'transaction_id' => $paymentId
         ]);
 
         $userNumber = generateUniqueCode(User::class, 'user_number', 6);
@@ -97,5 +99,4 @@ class MyFatoorahController extends Controller
 
         return $userNumber;
     }
-
 }

@@ -48,4 +48,30 @@ class Subscription extends Model
         $this->attributes['status_ar'] = trans($value);
         $this->attributes['status'] = $value;
     }
+
+    public static function calculateSubscription($code = null)
+    {
+        $discount = 0;
+        $setting = Setting::first();
+        $netSubscription = $setting->net_subscription;
+        $taxAmount = $setting->tax_amount;
+        $coupon = Coupon::whereColumn('used_times', '<', 'max_used')
+            ->where('end_date', '>=', now()->endOfDay())
+            ->where('code', $code)->first();
+
+        $subTotal = $netSubscription + $taxAmount;
+
+        if ($coupon) {
+            $discount = ($coupon->coupon_type == 'fixed') ? $coupon->amount : ($subTotal * $coupon->percent) / 100;
+        }
+        $total = $subTotal - $discount;
+
+        return [
+            'amount' => $netSubscription,
+            'tax_amount' => $taxAmount,
+            'coupon' => $coupon,
+            'total' => $total,
+            'discount' => $discount
+        ];
+    }
 }

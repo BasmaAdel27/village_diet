@@ -25,6 +25,8 @@
   @include('website.layouts.foot_scripts')
   @include('website.layouts.flash.errors')
   @include('website.layouts.flash.success')
+  @include('website.layouts.modals.done_subscribed')
+  @include('website.layouts.modals.error_modal')
 </body>
 
 </html>
