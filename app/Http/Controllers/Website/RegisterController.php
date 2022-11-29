@@ -123,43 +123,4 @@ class RegisterController extends Controller
             'discount' => $discount
         ];
     }
-
-    private function afterSuccessPay($user, $data)
-    {
-        $user->subscriptions()->create([
-            'status' => Subscription::ACTIVE,
-            'amount' => $data['amount'],
-            'tax_amount' => $data['tax_amount'],
-            'total_amount' => $data['total'],
-            'payment_method' => 'Visa',
-            'end_date' => now()->addDays(30),
-            'coupon_id' => $data['coupon']?->id,
-        ]);
-
-        $userNumber = generateUniqueCode(User::class, 'user_number', 6);
-        $user->update(['step' => 3, 'user_number' => $userNumber]);
-        $user->assignRole('user');
-        // Mail::to($user->email)->send(new UserNumber($user));
-        if ($data['coupon']) $data['coupon']->increment('used_times');
-
-        return $userNumber;
-    }
-
-    public function callback(User $user, $code, Request $request)
-    {
-        $paymentId = $request->paymentId;
-
-        try {
-            if ($paymentId) {
-                $this->afterSuccessPay($user, $code);
-
-                return redirect()->route('website.home')->with(['message' => 'Subscribed Successfully']);
-            } else {
-            }
-
-            return response()->json(['IsSuccess' => 'true', 'Message' => $msg, 'Data' => $data]);
-        } catch (\Exception $e) {
-            return response()->json(['IsSuccess' => 'false', 'Message' => $e->getMessage()]);
-        }
-    }
 }
