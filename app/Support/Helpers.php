@@ -79,9 +79,6 @@ if (!function_exists('send_notification')) {
         $fcmFields = [
               'registration_ids' => $token,
               'priority' => 'high',
-              'data' => [
-                    'name' => $title
-              ],
               'notification' => [
                     'body' => $content,
                     'title' => $title,

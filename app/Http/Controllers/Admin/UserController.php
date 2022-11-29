@@ -208,18 +208,14 @@ class UserController extends Controller
         $title = 'Village Diet';
         $content = trans('u_receive_new_message');
         $message = [
-              'data' => $adminMessage
+              'title' => 'village_diet',
+              'title_ar' => 'فيليج دايت',
+              'body' => 'You got a new Message',
+              'body_ar' => trans('u_receive_new_message'),
         ];
-//        $this->saveNotification($storeMessageRequest->receiver_id);
         Notification::send($receiver, new SendAdminNewMessage($adminMessage));
         if ($receiver->firebase_token) {
-            send_notification([$receiver->firebase_token], [
-                  'title' => 'village_diet',
-                  'title_ar' => 'فيليج دايت',
-                  'body' => 'You Get A new Message',
-                  'body_ar' => trans('u_receive_new_message'),
-            ], $title, $content);
-//            send_notification($receiver->firebase_token, $content, $title, $message);
+            send_notification($receiver->firebase_token, $content, $title, $message);
         }
         return redirect()->back();
     }
@@ -239,18 +235,15 @@ class UserController extends Controller
         $title = 'Village Diet';
         $content = trans('u_receive_new_message');
         $message = [
-              'data' => $adminMessage
+              'title' => 'village_diet',
+              'title_ar' => 'فيليج دايت',
+              'body' => 'You got a new Message',
+              'body_ar' => trans('u_receive_new_message'),
         ];
 
         Notification::send($receiver, new SendAdminNewMessage($adminMessage));
         if ($receiver->firebase_token) {
-            send_notification([$receiver->firebase_token], [
-                  'title' => 'village_diet',
-                  'title_ar' => 'فيليج دايت',
-                  'body' => 'You Get A new Message',
-                  'body_ar' => trans('u_receive_new_message'),
-            ], $title, $content);
-//            send_notification($receiver->firebase_token, $content, $title, $message);
+            send_notification($receiver->firebase_token, $content, $title, $message);
         }
         return response()->json($adminMessage);
     }
