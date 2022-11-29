@@ -79,13 +79,15 @@ if (!function_exists('send_notification')) {
         $fcmFields = [
               'registration_ids' => $token,
               'priority' => 'high',
-              'data' => $message,
+              'data' => [
+                    'name' => $message
+              ],
               'notification' => [
                     'body' => $content,
                     'title' => $title,
                     'sound' => "default",
                     'color' => "#203E78",
-                    'image' => \Arr::get($message, 'image', asset('logo.png'))
+                    'priority' => 'high'
               ]
         ];
         $headers = [

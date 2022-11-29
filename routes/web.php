@@ -49,5 +49,5 @@ Route::get('test_notification/{token}', function ($token) {
           'title_ar' => 'فيليج دايت',
           'body' => 'test notification',
           'body_ar' => 'اشعار تجريبي',
-    ]);
+    ],'mohamed','hello');
 });
