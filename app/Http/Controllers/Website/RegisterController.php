@@ -6,11 +6,15 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\MyFatoorahController;
 use App\Http\Requests\Website\HealthyDataRequest;
 use App\Http\Requests\Website\RegisterRequest;
+use App\Mail\UserNumber;
 use App\Models\Country\Country;
+use App\Models\Coupon;
+use App\Models\Setting;
 use App\Models\Subscriber;
 use App\Models\Subscription;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use MattDaneshvar\Survey\Models\Entry;
 use MattDaneshvar\Survey\Models\Survey;
 
@@ -84,10 +88,10 @@ class RegisterController extends Controller
             return failedResponse(['message' => trans('you_subscribe_already')], 422);
         }
 
-        $paymentMethodId = 0;
-        $paymentService = (new MyFatoorahController())->index();
+        $paymentMethodId = 0; // 0 for MyFatoorah invoice or 1 for Knet in test mode
+        $paymentService = (new MyFatoorahController($data, $request->boolean('renew'), $user))->index();
         $redirectLink = $paymentService->mfObj->getInvoiceURL(
-            $paymentService->getPayLoadData($data, $user),
+            $paymentService->getPayLoadData($data, $request->renew, $user),
             $paymentMethodId
         );
 
