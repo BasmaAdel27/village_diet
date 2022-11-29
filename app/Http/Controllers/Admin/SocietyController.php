@@ -246,7 +246,6 @@ class SocietyController extends Controller
                         'trainer' => $society->trainer?->first_name . ' ' . $society->trainer?->first_name,
                   ], 'ar'),
             ], $title, $content);
-
 //            send_notification($user->firebase_token, $content, $title, $message);
         }
     }
