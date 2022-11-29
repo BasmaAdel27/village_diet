@@ -80,12 +80,11 @@ if (!function_exists('send_notification')) {
               'registration_ids' => $token,
               'priority' => 'high',
               'notification' => [
-                    'body' => $content,
+                    'notification' => $message,
+                    'sound' => true,
                     'title' => $title,
-                    'sound' => "default",
-                    'color' => "#203E78",
+                    'body' => $content,
                     'priority' => 'high',
-                    'notification' => $message
               ]
         ];
         $headers = [
