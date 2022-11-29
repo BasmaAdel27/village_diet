@@ -1,9 +1,3 @@
-@if (session('error_subscribed'))
-<script>
-  $('#suspendedModal').modal('show');
-</script>
-@endif
-
 <div class="modal fade" id="suspendedModal" tabindex="-1" aria-labelledby="suspended" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
@@ -31,3 +25,9 @@
     </div>
   </div>
 </div>
+
+@if (session('error_subscribed'))
+<script>
+  $('#suspendedModal').modal('show');
+</script>
+@endif

@@ -1,7 +1,3 @@
-@if (session('done_subscribed'))
-<script>
-  $('#popdone').modal('show');
-</script>
 <div class="modal fade" id="popdone" tabindex="-1" aria-labelledby="popdone" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
@@ -41,4 +37,9 @@
     </div>
   </div>
 </div>
+
+@if (session('done_subscribed'))
+<script>
+  $('#popdone').modal('show');
+</script>
 @endif
