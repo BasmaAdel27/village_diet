@@ -8,6 +8,18 @@
   width: 100%;
   box-shadow: 0 1px 2px 0 rgb(0 0 0 / 10%);
 }
+.btn-primary  {
+  color: #fff;
+  background-color: #472B73;
+  border-color: #472B73;
+  margin-left: 2px;
+}
+
+.btn-primary:hover {
+  color: #fff;
+  background-color: #5A309C;
+  border-color: #5A309C;
+}
 
 .chat-app .people-list {
   width: 280px;

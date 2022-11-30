@@ -199,33 +199,34 @@ class SocietyController extends Controller
     {
         foreach ($users as $user) {
             $user->notifications()->create([
-                'id' => Str::uuid(),
-                'type' => 'society',
-                'data' => [
-                    'title' => 'Society',
-                    'title_ar' => 'مجتمعك',
-                    'body' => trans('site.added_to_society', [
-                        'trainer' => $society->trainer?->first_name . ' ' . $society->trainer?->first_name,
-                    ], 'en'),
-                    'body_ar' =>  trans('site.added_to_society', [
-                        'trainer' => $society->trainer?->first_name . ' ' . $society->trainer?->first_name,
-                    ], 'ar')
-                ]
+                  'id' => Str::uuid(),
+                  'type' => 'society',
+                  'data' => [
+                        'title' => 'Society',
+                        'title_ar' => 'مجتمعك',
+                        'body' => trans('site.added_to_society', [
+                              'trainer' => $society->trainer?->first_name . ' ' . $society->trainer?->first_name,
+                        ], 'en'),
+                        'body_ar' =>  trans('site.added_to_society', [
+                              'trainer' => $society->trainer?->first_name . ' ' . $society->trainer?->first_name,
+                        ], 'ar')
+                  ]
             ]);
         }
 
         send_notification($users->pluck('firebase_token')->all(), [
-            'type' => 'society',
-            'title' => 'Society',
-            'title_ar' => 'مجتمعك',
-            'body' => trans('site.added_to_society', [
-                'trainer' => $society->trainer?->first_name . ' ' . $society->trainer?->first_name,
-            ], 'en'),
-            'body_ar' =>  trans('site.added_to_society', [
-                'trainer' => $society->trainer?->first_name . ' ' . $society->trainer?->first_name,
-            ], 'ar'),
+              'type' => 'society',
+              'title' => 'Society',
+              'title_ar' => 'مجتمعك',
+              'body' => trans('site.added_to_society', [
+                    'trainer' => $society->trainer?->first_name . ' ' . $society->trainer?->first_name,
+              ], 'en'),
+              'body_ar' =>  trans('site.added_to_society', [
+                    'trainer' => $society->trainer?->first_name . ' ' . $society->trainer?->first_name,
+              ], 'ar'),
         ]);
     }
+
 
     private function handleChangedUsers($society, $data)
     {

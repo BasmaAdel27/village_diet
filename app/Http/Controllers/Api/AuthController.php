@@ -26,7 +26,6 @@ class AuthController extends Controller
         $user = User::firstWhere([
               'user_number' => $data['user_number'],
         ]);
-
         if (!$user) return failedResponse(Lang::get('user_not_found'));
         if ($user->currentSubscription?->end_date <= now()->endOfDay()) {
             $user->currentSubscription()->update([

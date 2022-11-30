@@ -18,7 +18,7 @@ class SubscriptionsController extends Controller
 
         $data->logs = $user->subscriptions()->where('id', '<>', $user->currentSubscription->id)->get();
         $data->active_subscription = $user->currentSubscription;
-        if ($user->currentSubscription->status == 'request_cancel' && $user->currentSubscription->end_date <= now()){
+        if ($user->currentSubscription->status == 'request_cancel' || $user->currentSubscription->status == 'in_active' && $user->currentSubscription->end_date <= now()){
             $user->currentSubscription->update(['status' => Subscription::FINISHED]);
 
         }

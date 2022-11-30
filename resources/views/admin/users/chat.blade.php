@@ -62,7 +62,7 @@
       <div class="chat-message clearfix">
         <div class="input-group mb-0">
           <div class="input-group-prepend">
-            <button type="submit" class="btn btn-primary" name="submit" style="margin-right: 2px"><i
+            <button type="submit" class="btn btn-primary" name="submit"><i
                 class="mdi mdi-send"></i> </button>
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
               <i class="mdi mdi-microphone"></i>
