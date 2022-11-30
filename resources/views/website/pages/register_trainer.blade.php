@@ -16,7 +16,7 @@
 <section class="form-page">
   <div class="conatiner">
     <div class="row">
-      <div class="col-lg-6 col-12 mx-auto">
+      <div class="col-lg-8 col-12 mx-auto">
         <div class="contain">
           <div class="heading no-top-margin">
             <h1>

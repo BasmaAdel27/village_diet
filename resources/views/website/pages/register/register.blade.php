@@ -19,7 +19,7 @@
 <section class="form-page">
   <div class="conatiner">
     <div class="row">
-      <div class="col-lg-6 col-12 mx-auto">
+      <div class="col-lg-8 col-12 mx-auto">
         <div class="contain">
           <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
