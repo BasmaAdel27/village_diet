@@ -212,26 +212,32 @@ class SocietyController extends Controller
                         'body' => trans('site.added_to_society', [
                               'trainer' => $society->trainer?->first_name . ' ' . $society->trainer?->first_name,
                         ], 'en'),
-                        'body_ar' =>  trans('site.added_to_society', [
+                        'body_ar' => trans('site.added_to_society', [
                               'trainer' => $society->trainer?->first_name . ' ' . $society->trainer?->first_name,
                         ], 'ar')
                   ]
             ]);
+
+            $title = 'Village Diet';
+            $content = trans('site.added_to_society', [
+                  'trainer' => $society->trainer?->first_name . ' ' . $society->trainer?->first_name,
+            ], 'ar');
+            $message = [
+                  'type' => 'society',
+                  'title' => 'Society',
+                  'title_ar' => 'مجتمعك',
+                  'body' => trans('site.added_to_society', [
+                        'trainer' => $society->trainer?->first_name . ' ' . $society->trainer?->first_name,
+                  ], 'en'),
+                  'body_ar' => trans('site.added_to_society', [
+                        'trainer' => $society->trainer?->first_name . ' ' . $society->trainer?->first_name,
+                  ], 'ar'),
+            ];
+            if ($user->firebase_token) {
+                send_notification([$user->firebase_token], $content, $title, $message);
+            }
         }
-
-        send_notification($users->pluck('firebase_token')->all(), [
-              'type' => 'society',
-              'title' => 'Society',
-              'title_ar' => 'مجتمعك',
-              'body' => trans('site.added_to_society', [
-                    'trainer' => $society->trainer?->first_name . ' ' . $society->trainer?->first_name,
-              ], 'en'),
-              'body_ar' =>  trans('site.added_to_society', [
-                    'trainer' => $society->trainer?->first_name . ' ' . $society->trainer?->first_name,
-              ], 'ar'),
-        ]);
     }
-
 
 
     private function handleChangedUsers($society, $data)

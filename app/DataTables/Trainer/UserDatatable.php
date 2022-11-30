@@ -43,10 +43,9 @@ class UserDatatable extends DataTable
     public function query()
     {
         return User::whereHas('roles', fn ($q) => $q->where('name', 'user'))
-            ->select('users.*')->with([
-                'society' => fn ($q) => $q->where('trainer_id', auth()->id()),
-                'currentSubscription'
-            ])->newQuery();
+             ->whereHas('society', fn ($q) => $q->where('trainer_id', auth()->id()))
+            ->select('users.*')
+              ->with('currentSubscription')->newQuery();
     }
 
     public function html()
