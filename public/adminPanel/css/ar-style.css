@@ -2175,16 +2175,28 @@ fieldset:disabled a.btn {
   pointer-events: none;
 }
 
-.btn-primary {
+/*.btn-primary {*/
+/*  color: #fff;*/
+/*  background-color: #4d83ff;*/
+/*  border-color: #4d83ff;*/
+/*}*/
+
+/*.btn-primary:hover {*/
+/*  color: #fff;*/
+/*  background-color: #2768ff;*/
+/*  border-color: #1a5fff;*/
+/*}*/
+.btn-primary  {
   color: #fff;
-  background-color: #4d83ff;
-  border-color: #4d83ff;
+  background-color: #472B73;
+  border-color: #472B73;
+  margin-left: 2px;
 }
 
 .btn-primary:hover {
   color: #fff;
-  background-color: #2768ff;
-  border-color: #1a5fff;
+  background-color: #5A309C;
+  border-color: #5A309C;
 }
 
 .btn-primary:focus, .btn-primary.focus {
