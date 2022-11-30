@@ -71,11 +71,16 @@ class PendingTrainerController extends Controller
                     'password' => 'required|min:8',
             ]);
        $trainer=Trainer::find($id);
-       $email=$request->email;
+
+        $email=$request->email;
        $password=$request->password;
+
         Mail::to($trainer->user->email)->send(new SubmitPendingTrainer($trainer,$email,$password));
         $trainer->status="DONE";
-        $trainer->user->password=Hash::make($password);
+        $trainer->user()->update([
+              'password'=>Hash::make($password),
+              ]
+        );
         $trainer->save();
         return redirect()->route('admin.pending-trainers.index')->with('success', trans('submitted_successfully'));
 

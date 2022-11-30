@@ -259,3 +259,17 @@
     overflow-x: auto;
   }
 }
+.btn-primary {
+  color: #fff;
+  background-color: #472B73;
+  border-color: #472B73;
+}
+
+.btn-primary:hover {
+  color: #fff;
+  background-color: #5A309C;
+  border-color: #5A309C;
+}
+.btn-primary{
+  margin-right: 2px
+}

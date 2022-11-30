@@ -199,6 +199,7 @@ class SocietyController extends Controller
         return response()->json($message);
     }
 
+
     private function sendNotify($users, $society)
     {
         foreach ($users as $user) {
@@ -237,6 +238,7 @@ class SocietyController extends Controller
             }
         }
     }
+
 
     private function handleChangedUsers($society, $data)
     {

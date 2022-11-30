@@ -1,11 +1,11 @@
 @extends('admin.app')
 @section('title') @lang('societies') @endsection
 @section('styles')
-@if (app()->getLocale() == 'en')
-<link rel="stylesheet" href={{ asset('adminPanel/css/chat.css') }}>
-@else
-<link rel="stylesheet" href={{ asset('adminPanel/css/chat_ar.css') }}>
-@endif
+  @if (app()->getLocale() == 'en')
+    <link rel="stylesheet" href={{ asset('adminPanel/css/chat.css') }}>
+  @else
+    <link rel="stylesheet" href={{ asset('adminPanel/css/chat_ar.css') }}>
+  @endif
 @section('content')
 <div class="card chat-app">
   <div class="chat" style=" margin-left:0px;">
@@ -67,8 +67,7 @@
       <div class="chat-message clearfix">
         <div class="input-group mb-0">
           <div class="input-group-prepend">
-            <button type="submit" class="btn btn-primary" name="submit" style="margin-right: 2px"><i
-                class="mdi mdi-send"></i> </button>
+            <button type="submit" class="btn btn-primary" name="submit"><i class="mdi mdi-send"></i> </button>
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"><i
                 class="mdi mdi-microphone"></i></button>
           </div>
