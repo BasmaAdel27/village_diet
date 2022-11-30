@@ -83,12 +83,15 @@ class ChatController extends Controller
         $title = 'Village Diet';
         $content = trans('u_receive_new_message');
         $message = [
-              'data' => $trainerMessage
+              'title' => 'village_diet',
+              'title_ar' => 'فيليج دايت',
+              'body' => 'You got a new Message',
+              'body_ar' => trans('u_receive_new_message'),
+              'type' => 'chat',
         ];
-//        $this->saveNotification($storeMessageRequest->receiver_id);
         Notification::send($receiver, new SendTrainerNewMessage($trainerMessage));
         if ($receiver->firebase_token) {
-            send_notification($receiver->firebase_token, $content, $title, $message);
+            send_notification([$receiver->firebase_token], $content, $title, $message);
         }
 
         return successResponse(MessageResource::make($trainerMessage), message: trans('message_sent_successfully'));
@@ -105,12 +108,15 @@ class ChatController extends Controller
         $title = 'Village Diet';
         $content = trans('u_receive_new_message');
         $message = [
-              'data' => $adminMessage
+              'title' => 'village_diet',
+              'title_ar' => 'فيليج دايت',
+              'body' => 'You got a new Message',
+              'body_ar' => trans('u_receive_new_message'),
+              'type' => 'chat',
         ];
-//        $this->saveNotification($storeMessageRequest->receiver_id);
         Notification::send($receiver, new SendAdminNewMessage($adminMessage));
         if ($receiver->firebase_token) {
-            send_notification($receiver->firebase_token, $content, $title, $message);
+            send_notification([$receiver->firebase_token], $content, $title, $message);
         }
 
         return successResponse(MessageResource::make($adminMessage), message: trans('message_sent_successfully'));
@@ -129,13 +135,16 @@ class ChatController extends Controller
         $title = 'Village Diet';
         $content = trans('u_receive_new_message');
         $message = [
-              'data' => $societyChat
+              'title' => 'village_diet',
+              'title_ar' => 'فيليج دايت',
+              'body' => 'You got a new Message',
+              'body_ar' => trans('u_receive_new_message'),
+              'type' => 'chat',
         ];
         foreach ($society->users->where('id', '<>', auth()->id()) as $user) {
-//            $this->saveNotification($user->id);
             \Notification::send($user, new SendSocietyNewMessage($societyChat));
             if ($user->firebase_token) {
-                send_notification($user->firebase_token, $content, $title, $message);
+                send_notification([$user->firebase_token], $content, $title, $message);
             }
         }
         return successResponse(SocietyMessageResource::make($societyChat), message: trans('message_sent_successfully'));
@@ -149,17 +158,4 @@ class ChatController extends Controller
         }
     }
 
-    public function saveNotification($id)
-    {
-        $data['id'] = Str::uuid();
-        $data['type'] = 'chat';
-        $data['notifiable_id'] = $id;
-        $data['notifiable_type'] = User::class;
-        $data['data']['type'] = 'chat';
-        $data['data']['title'] = trans('mobile.notifications.content.new_message', locale: 'en');
-        $data['data']['title_ar'] = trans('mobile.notifications.content.new_message', locale: 'ar');
-        $data['data']['body'] = trans('u_receive_new_message', locale: 'en');
-        $data['data']['body_ar'] = trans('u_receive_new_message', locale: 'ar');
-        DatabaseNotification::create($data);
-    }
 }

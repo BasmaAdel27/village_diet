@@ -7,12 +7,12 @@ return [
      * Live Token: https://myfatoorah.readme.io/docs/live-token
      * Test Token: https://myfatoorah.readme.io/docs/test-token
      */
-    'api_key' => 'rLtt6JWvbUHDDhsZnfpAhpYk4dxYDQkbcPTyGaKp2TYqQgG7FGZ5Th_WD53Oq8Ebz6A53njUoo1w3pjU1D4vs_ZMqFiz_j0urb_BH9Oq9VZoKFoJEDAbRZepGcQanImyYrry7Kt6MnMdgfG5jn4HngWoRdKduNNyP4kzcp3mRv7x00ahkm9LAK7ZRieg7k1PDAnBIOG3EyVSJ5kK4WLMvYr7sCwHbHcu4A5WwelxYK0GMJy37bNAarSJDFQsJ2ZvJjvMDmfWwDVFEVe_5tOomfVNt6bOg9mexbGjMrnHBnKnZR1vQbBtQieDlQepzTZMuQrSuKn-t5XZM7V6fCW7oP-uXGX-sMOajeX65JOf6XVpk29DP6ro8WTAflCDANC193yof8-f5_EYY-3hXhJj7RBXmizDpneEQDSaSz5sFk0sV5qPcARJ9zGG73vuGFyenjPPmtDtXtpx35A-BVcOSBYVIWe9kndG3nclfefjKEuZ3m4jL9Gg1h2JBvmXSMYiZtp9MR5I6pvbvylU_PP5xJFSjVTIz7IQSjcVGO41npnwIxRXNRxFOdIUHn0tjQ-7LwvEcTXyPsHXcMD8WtgBh-wxR8aKX7WPSsT1O8d8reb2aR7K3rkV3K82K_0OgawImEpwSvp9MNKynEAJQS6ZHe_J_l77652xwPNxMRTMASk1ZsJL',
+    'api_key' => 'EmwOtXjYSI8e38z3jKkxm9kbcs1e4ldfh_webJBc4NV-SO5LWLSbwa7XLJaMpdbUPP9WFyUtLU3CLJvi-sxpGZ0xkEruwZqzUP_OCEy2jQ1nUT55Ik4_mxBgyhfd2C6N-0Al0riaXB_NZtozVyxgHPc1u3Elbxqslz6ffk_UI630AowUGTdauF-zbmJ9G-sULXI3KyDcW339hRGt6l8zcdpFd8luL41_I152RSVhHbpTwRc49-k5SeHvVlnd3mK_jLPihsugc-p4b93A0bYAuh3a7yjK5mJOI93r-itAku3ZJDDmwZ1_Cbycpkz8Kod2I-U64CYxUBXRUNg-sLKhkY9VzCnsWYKVJobeMbOu67O4DvY2KFIDIlIrhv7m_FHXrGyqb9T6NUbWvMztROA0Ww79gAVFEwfVpzDqx1eCSP2FOdEcKQA4OiCLkMkUHNlhg4tKtpmP7VKxmMnd9_8jtSN2uTS6vKM7heJ7G8iuFE1yDrDaqdksiVKMgfihKU24hQW-gOdOaLROAvq7NEENv-lWqrXczpRnG8YJKE70J06ha154irl0vehfQkmuhghwTUjIyXeDM9HTueoqasESHYZ5InMQdjg_F25pYiIEZFgc7jXJj9AjFosfwumDD_pZRNEVyxnfhQWE3_TFZ6xpR7eQTXdAGbvTwwjyl_KiG5g66wM6_7tjEvWVnGIA2eKJxVYh3w',
     /**
      * Test Mode (boolean)
      * Accepted value: true for the test mode or false for the live mode
      */
-    'test_mode' => true,
+    'test_mode' => false,
     /**
      * Country ISO Code (string)
      * Accepted value: KWT, SAU, ARE, QAT, BHR, OMN, JOD, or EGY.

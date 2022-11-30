@@ -38,6 +38,8 @@ class AuthController extends Controller
 
         if ($user->isSubscriptionFinished() || $user->currentSubscription == null)
             return failedResponse(Lang::get('subscription_is_finished'));
+        if(!$user->society()->exists() && $user->currentSubscription->status == 'in_active')
+            return failedResponse(Lang::get('subscription_is_in_active'));
 
         if (!$user->is_active) return failedResponse(Lang::get('connect_with_support'));
         Auth::loginUsingId($user->id);

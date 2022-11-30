@@ -28,16 +28,16 @@ class SocietyController extends Controller
 
     public function index(SocietyDatatable $societyDatatable)
     {
-        return  $societyDatatable->render('admin.society.index');
+        return $societyDatatable->render('admin.society.index');
     }
 
     public function create()
     {
         $locales = config('translatable.locales');
-        $trainers = User::whereHas('roles', fn ($q) => $q->where('name', 'trainer'))->pluck('first_name', 'id');
+        $trainers = User::whereHas('roles', fn($q) => $q->where('name', 'trainer'))->pluck('first_name', 'id');
         $users = User::doesntHave('society')->whereHas(
-            'roles',
-            fn ($q) => $q->where('name', 'user')
+              'roles',
+              fn($q) => $q->where('name', 'user')
         )->pluck('first_name', 'id');
 
         return view('admin.society.create', compact('locales', 'trainers', 'users'));
@@ -55,8 +55,8 @@ class SocietyController extends Controller
             $society->update(['date_from' => now()]);
         }
         $users->map->currentSubscription()->map->update([
-            'created_at' => $society->date_from,
-            'end_date' =>  Carbon::parse($society->date_from)->addDays(30),
+              'created_at' => $society->date_from,
+              'end_date' => Carbon::parse($society->date_from)->addDays(30),
         ]);
 
         return redirect()->route('admin.societies.index')->with('success', trans('created_successfully'));
@@ -65,11 +65,11 @@ class SocietyController extends Controller
     public function edit(Society $society)
     {
         $locales = config('translatable.locales');
-        $trainers = User::whereHas('roles', fn ($q) => $q->where('name', 'trainer'))->pluck('first_name', 'id');
+        $trainers = User::whereHas('roles', fn($q) => $q->where('name', 'trainer'))->pluck('first_name', 'id');
         $users = User::doesntHave('society')->whereHas(
-            'roles',
-            fn ($q) => $q->where('name', 'user')
-        )->orWhereHas('society', fn ($q) => $q->where('society_id', $society->id))->pluck('first_name', 'id');
+              'roles',
+              fn($q) => $q->where('name', 'user')
+        )->orWhereHas('society', fn($q) => $q->where('society_id', $society->id))->pluck('first_name', 'id');
 
         return view('admin.society.edit', compact('society', 'locales', 'trainers', 'users'));
     }
@@ -85,8 +85,8 @@ class SocietyController extends Controller
         }
 
         $users->map->currentSubscription()->map->update([
-            'created_at' => $society->date_from,
-            'end_date' => Carbon::parse($society->date_from)->addDays(30),
+              'created_at' => $society->date_from,
+              'end_date' => Carbon::parse($society->date_from)->addDays(30),
         ]);
 
         return redirect()->route('admin.societies.index')->with('success', trans('updated_successfully'));
@@ -104,10 +104,24 @@ class SocietyController extends Controller
     {
         $messages = SocietyChat::with(['society', 'sender'])->where('society_id', $society->id)->orderBy('created_at', 'asc')->get();
         $sender = SocietyChat::where([['sender_id', auth()->id()], ['society_id', $society->id]])->orderBy('id', 'DESC')->first();
-                if ($sender) {
-                    if ($sender->read_at == null) {
-                        $unreadMsgs = SocietyChat::where([['id', '>', $sender->id], ['society_id', $society->id]])->get();
-                        foreach ($unreadMsgs as $unreadMsg) {
+        if ($sender) {
+            if ($sender->read_at == null) {
+                $unreadMsgs = SocietyChat::where([['id', '>', $sender->id], ['society_id', $society->id]])->get();
+                foreach ($unreadMsgs as $unreadMsg) {
+                    SeenMessage::create([
+                          'message_id' => $unreadMsg->id,
+                          'user_id' => auth()->id(),
+                    ]);
+                    $sender->read_at = now();
+                    $sender->save();
+                }
+            } else {
+                $unreadMsgs = SocietyChat::where([['society_id', $society->id], ['sender_id', '!=', auth()->id()]])->get();
+                if ($unreadMsgs) {
+                    foreach ($unreadMsgs as $unreadMsg) {
+                        $seenmsgs = SeenMessage::where([['message_id', $unreadMsg->id], ['user_id', auth()->id()]])->get();
+                        if ($seenmsgs->isEmpty()) {
+
                             SeenMessage::create([
                                   'message_id' => $unreadMsg->id,
                                   'user_id' => auth()->id(),
@@ -115,41 +129,25 @@ class SocietyController extends Controller
                             $sender->read_at = now();
                             $sender->save();
                         }
-                    }else{
-                        $unreadMsgs = SocietyChat::where([['society_id', $society->id],['sender_id','!=',auth()->id()]])->get();
-                        if ($unreadMsgs) {
-                            foreach ($unreadMsgs as $unreadMsg) {
-                                $seenmsgs = SeenMessage::where([['message_id', $unreadMsg->id], ['user_id', auth()->id()]])->get();
-                                if ($seenmsgs->isEmpty()) {
-
-                                    SeenMessage::create([
-                                          'message_id' => $unreadMsg->id,
-                                          'user_id' => auth()->id(),
-                                    ]);
-                                    $sender->read_at = now();
-                                    $sender->save();
-                                }
-                            }
-                        }
-                    }
-                }else {
-                    $unreadMsgs = SocietyChat::where('society_id', $society->id)->get();
-                    if ($unreadMsgs) {
-                        foreach ($unreadMsgs as $unreadMsg) {
-                            $seenmsgs = SeenMessage::where([['message_id', $unreadMsg->id], ['user_id', auth()->id()]])->get();
-                            if ($seenmsgs->isEmpty()) {
-
-                                SeenMessage::create([
-                                      'message_id' => $unreadMsg->id,
-                                      'user_id' => auth()->id(),
-                                ]);
-                            }
-                        }
                     }
                 }
+            }
+        } else {
+            $unreadMsgs = SocietyChat::where('society_id', $society->id)->get();
+            if ($unreadMsgs) {
+                foreach ($unreadMsgs as $unreadMsg) {
+                    $seenmsgs = SeenMessage::where([['message_id', $unreadMsg->id], ['user_id', auth()->id()]])->get();
+                    if ($seenmsgs->isEmpty()) {
 
-//
-        return view('admin.society.chat',compact('messages','society'));
+                        SeenMessage::create([
+                              'message_id' => $unreadMsg->id,
+                              'user_id' => auth()->id(),
+                        ]);
+                    }
+                }
+            }
+        }
+        return view('admin.society.chat', compact('messages', 'society'));
 
     }
 
@@ -161,22 +159,28 @@ class SocietyController extends Controller
             return redirect()->back()->with("errors", $validator->errors());
 
         $societyChat = SocietyChat::create([
-            'message' => $request->message,
-            'sender_id' => auth()->id(),
-            'type' => 'TEXT',
-            'society_id' => $request->society_id,
+              'message' => $request->message,
+              'sender_id' => auth()->id(),
+              'type' => 'TEXT',
+              'society_id' => $request->society_id,
         ]);
         $society = Society::find($societyChat->society_id);
+        // notification
         $title = 'Village Diet';
         $content = trans('u_receive_new_message');
         $message = [
-              'data' => $societyChat
+              'title' => 'village_diet',
+              'title_ar' => 'فيليج دايت',
+              'body' => 'You got a new Message',
+              'body_ar' => trans('u_receive_new_message'),
+              'type' => 'chat',
         ];
+
+
         foreach ($society->users->where('id', '<>', auth()->id()) as $user) {
-//            $this->saveNotification($user->id);
             \Notification::send($user, new SendSocietyNewMessage($societyChat));
             if ($user->firebase_token) {
-                send_notification($user->firebase_token, $content, $title, $message);
+                send_notification([$user->firebase_token], $content, $title, $message);
             }
         }
 
@@ -187,13 +191,14 @@ class SocietyController extends Controller
     {
         $path = $request->file('message')->storePublicly('chats/media', "public");
         $message = SocietyChat::create([
-            'message' => "/storage/" . $path,
-            'sender_id' => $request->sender,
-            'type' => 'AUDIO',
-            'society_id' => $request->society,
+              'message' => "/storage/" . $path,
+              'sender_id' => $request->sender,
+              'type' => 'AUDIO',
+              'society_id' => $request->society,
         ]);
         return response()->json($message);
     }
+
 
     private function sendNotify($users, $society)
     {
@@ -226,6 +231,7 @@ class SocietyController extends Controller
               ], 'ar'),
         ]);
     }
+
 
 
     private function handleChangedUsers($society, $data)

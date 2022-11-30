@@ -99,7 +99,7 @@ class User extends Authenticatable
                 ->whereIn('status', [Subscription::ACTIVE, Subscription::REQUEST_CANCEL ,Subscription::IN_ACTIVE])->latest('id');
         }
 
-        return $this->hasOne(Subscription::class)->where('status', Subscription::ACTIVE)->latest('id');
+        return $this->hasOne(Subscription::class)->whereIn('status', [Subscription::ACTIVE,Subscription::IN_ACTIVE])->latest('id');
     }
 
     public function isSubscriptionFinished()

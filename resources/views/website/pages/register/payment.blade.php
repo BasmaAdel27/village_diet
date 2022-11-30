@@ -88,7 +88,7 @@
             دفع الطلب
           </h1>
           <div class="wrapper mt-3">
-            <input type="radio" class="radio-check" name="renew" value="1" />
+            <input type="radio" class="radio-check" name="renew" value="1" disabled checked />
             <label class="radio-title bold-text">
               أوافق على الدفع التلقائي لتجديد الإشتراك شهريا
             </label>
@@ -107,46 +107,6 @@
   </div>
 </section>
 
-<div class="modal fade" id="popdone" tabindex="-1" aria-labelledby="popdone" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-body">
-        <div class="contain">
-          <div class="pop-icon green">
-            <img src="{{ asset('website/assets/images/popup/popdone.svg') }}" loading="lazy" alt="" />
-          </div>
-
-          <h1>
-            Village Diet مرحبا بك في
-          </h1>
-
-          <p>
-            تم ارسال ايميل به الرقم الشخصي الخاص بك لتفعيل التطبيق على إيميلك
-
-            <a href="#">
-              Info@gmail.com
-            </a>
-          </p>
-
-          <div class="number-copy">
-            <img src="{{ asset('website/assets/images/form/copy.svg') }}" loading="lazy" alt="" />
-
-            <div class="data">
-              <h2 id="user_number">
-
-              </h2>
-
-              <p>
-                رقمك التعريفي
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
 @endsection
 
 @section('scripts')
@@ -160,8 +120,6 @@
         data : form.serialize(),
         success: function (result) {
           window.location.replace(result.url);
-          $('#user_number').text(result.data.user_number);
-          $('#popdone').modal('show');
         },
         error : function(response){
             $('#subscription_active').modal('show');
