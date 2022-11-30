@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\UserNumber;
 use App\Models\Subscription;
 use App\Models\User;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use MyFatoorah\Library\PaymentMyfatoorahApiV2;
 
 class MyFatoorahController extends Controller
@@ -27,10 +28,10 @@ class MyFatoorahController extends Controller
         return $this;
     }
 
-    public function getPayLoadData($data, $renew = false, $user)
+    public function getPayLoadData($data, $user)
     {
         $callbackURL = route('website.callback', ['user' => $user, 'code' => @$data['code']]);
-        $data = [
+        return [
             'CustomerName' => $user->first_name . ' ' . $user->last_name,
             'InvoiceValue' => $data['total'],
             'DisplayCurrencyIso' => 'SAR',
@@ -41,18 +42,11 @@ class MyFatoorahController extends Controller
             'CustomerMobile' => $user->phone,
             'Language' => 'ar',
             'CustomerReference' => $user->id,
-            'SourceInfo' => 'Laravel ' . app()::VERSION . ' - MyFatoorah Package ' . MYFATOORAH_LARAVEL_PACKAGE_VERSION
+            'SourceInfo' => 'Laravel ' . app()::VERSION . ' - MyFatoorah Package ' . MYFATOORAH_LARAVEL_PACKAGE_VERSION,
+            'RecurringModel' => [
+                'RecurringType' => 'Monthly',
+            ],
         ];
-
-        if ($renew) {
-            $data += [
-                'RecurringModel' => [
-                    'RecurringType' => 'Monthly',
-                ],
-            ];
-        }
-
-        return $data;
     }
 
     public function callback(User $user, $code = null)
@@ -94,7 +88,7 @@ class MyFatoorahController extends Controller
         $userNumber = generateUniqueCode(User::class, 'user_number', 6);
         $user->update(['step' => 3, 'user_number' => $userNumber]);
         $user->assignRole('user');
-        // Mail::to($user->email)->send(new UserNumber($user));
+        Mail::to($user->email)->send(new UserNumber($user));
         if ($data['coupon']) $data['coupon']->increment('used_times');
 
         return $userNumber;
