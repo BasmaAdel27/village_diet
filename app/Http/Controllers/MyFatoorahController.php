@@ -42,7 +42,7 @@ class MyFatoorahController extends Controller
             'CustomerMobile' => $user->phone,
             'Language' => 'ar',
             'CustomerReference' => $user->id,
-            'SourceInfo' => 'Laravel ' . app()::VERSION . ' - MyFatoorah Package ' . MYFATOORAH_LARAVEL_PACKAGE_VERSION,
+            'SourceInfo' => 'VillageDiet - My Fatoorah ' . MYFATOORAH_LARAVEL_PACKAGE_VERSION,
             'RecurringModel' => [
                 'RecurringType' => 'Monthly',
             ],
