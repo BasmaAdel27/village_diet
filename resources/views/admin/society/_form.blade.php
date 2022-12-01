@@ -11,7 +11,7 @@
     <select name="trainer_id" class="form-control">
       <option value="">@lang('select')</option>
       @foreach ($trainers as $id => $name)
-      <option value="{{ $id }}" {{ isset($society) || old('trainer_id') && ($id==($society->trainer?->id ??
+      <option value="{{ $id }}" {{ isset($society) && ($id==($society->trainer?->id ??
         old('trainer_id'))) ?
         'selected': '' }}>
         {{ trans($name) }}</option>
