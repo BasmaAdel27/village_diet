@@ -21,9 +21,7 @@ class HomeController extends Controller
         if (
             $user->currentSubscription &&
             ($user->currentSubscription?->status == 'active' ||
-                $user->currentSubscription?->status == 'request_cancel') ||
-            $user->currentSubscription?->status == 'in_active')
-         {
+                $user->currentSubscription?->status == 'request_cancel')){
             $day = now()->diffInDays($user->currentSubscription->created_at) + 1;
             $dayId = Day::select('id')->where('number', $day)->value('id');
             $obj = new stdClass;
