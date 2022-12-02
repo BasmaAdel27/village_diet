@@ -16,7 +16,7 @@
 
         <div class="col-lg-4 col-12">
           <div class="button-contain">
-            <a href="#" class="custom-btn gray-color">
+            <a href="{{ route('website.register_trainer.create') }}" class="custom-btn gray-color">
               <span>@lang('register_now')</span>
             </a>
           </div>
