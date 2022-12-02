@@ -74,7 +74,6 @@ Route::resource('templates', TemplateController::class)->except('show');
 Route::resource('opinions', CustomerOpinionController::class);
 Route::get('subscriptions', [SubscriptionController::class, 'index'])->name('subscriptions.index');
 Route::put('subscriptions/active/{id}', [SubscriptionController::class, 'active'])->name('subscriptions.active');
-Route::put('subscriptions/cancel/{id}', [SubscriptionController::class, 'cancel'])->name('subscriptions.cancel');
 Route::put('subscriptions/inactive/{id}', [SubscriptionController::class, 'inactive'])->name('subscriptions.inactive');
 Route::resource('services', ServiceController::class)->except('show');
 Route::resource('common_questions', FaqsController::class);
