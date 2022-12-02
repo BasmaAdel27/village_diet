@@ -2,9 +2,6 @@
   <div class="container general-pattern right-pattern">
     <div class="heading">
       <h1>@lang('who_us')</h1>
-      <p>
-        @lang('about_us_brief')
-      </p>
     </div>
 
     <div class="row">
