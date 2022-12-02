@@ -23,12 +23,8 @@
         <div class="contain">
           <div class="heading no-top-margin">
             <h1>
-              @lang('sending_message')
+              @lang("contact_with_village")
             </h1>
-
-            <p>
-              @lang("contactus_desc")
-            </p>
           </div>
 
           <form action="{{route('website.contact_us.store')}}" class="form-contain" method="post">
@@ -112,11 +108,7 @@
             </div>
           </form>
         </div>
-        <div class="map-contain">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d54708.5528184499!2d{{$setting->longitude}}!3d{{$setting->latitude}}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2seg!4v1667855570043!5m2!1sen!2seg"
-            style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </div>
+
 
         <div class="contact-info">
           <div class="row">

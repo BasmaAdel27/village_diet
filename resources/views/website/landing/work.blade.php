@@ -3,10 +3,7 @@
     <div class="heading">
       <h1>
         @lang('work_way')
-      </h1>
-      <p>
-        @lang('work_way_steps')
-      </p>
+    </h1>
     </div>
     <div class="row">
       @foreach ($workWaySteps as $step)

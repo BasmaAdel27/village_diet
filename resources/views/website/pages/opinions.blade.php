@@ -8,10 +8,6 @@
       <h1>
         @lang('customer_opinions')
       </h1>
-
-      <p>
-        @lang('opinion_desc')
-      </p>
     </div>
   </div>
 </section>
@@ -20,28 +16,28 @@
   <div class="container">
     <div class="row">
       @if($opinions->isNotEmpty())
-        @foreach($opinions as $opinion)
-        <div class="col-lg-6 col-12 mb-4">
-          <div class="testimonails-box">
-            <p>
-              {{$opinion->content}}
-            </p>
-            <div class="user-data">
-              <img src="{{$opinion->getImageAttribute()}}" loading="lazy" alt="" />
+      @foreach($opinions as $opinion)
+      <div class="col-lg-6 col-12 mb-4">
+        <div class="testimonails-box">
+          <p>
+            {{$opinion->content}}
+          </p>
+          <div class="user-data">
+            <img src="{{$opinion->getImageAttribute()}}" loading="lazy" alt="" />
 
-              <h2>
-                {{$opinion->name}}
-              </h2>
-            </div>
+            <h2>
+              {{$opinion->name}}
+            </h2>
           </div>
         </div>
-        @endforeach
+      </div>
+      @endforeach
       @else
-        <div class="heading">
+      <div class="heading">
         <p>
-            @lang('empty_opinions')
-          </p>
-        </div>
+          @lang('empty_opinions')
+        </p>
+      </div>
       @endif
     </div>
   </div>

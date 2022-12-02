@@ -44,7 +44,7 @@ class PermissionSeeder extends Seeder
         foreach (Route::getRoutes() as $route) {
             if (
                 $route->getName() != ''
-                && $route->getAction()['middleware']['0'] == 'web'
+                && @$route->getAction()['middleware']['0'] == 'web'
                 && !Permission::where('name', $route->getName())->exists()
                 && !in_array($route->getName(), $publicRoutes)
                 && !str_contains($route->getName(), 'edit')
