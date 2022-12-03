@@ -14,10 +14,10 @@ class VideoDatatable extends DataTable
         return datatables()
             ->eloquent($query)
             ->editColumn('translations.title', function ($q) {
-                return $q->translate(app()->getLocale())->title;
+                return $q->translate(app()->getLocale())?->title;
             })
             ->editColumn('day.translations.title', function ($q) {
-                return $q->day->translate(app()->getLocale())->title;
+                return $q->day->translate(app()->getLocale())?->title;
             })
             ->editColumn('is_active', function ($query) {
                 return ($query->is_active == 1) ?  '<span class="btn btn-success">' . trans('active') . "</span>" : '<span class="btn btn-danger">' .  trans('inactive') . "</span>";
