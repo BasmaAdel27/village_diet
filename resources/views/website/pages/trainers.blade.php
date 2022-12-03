@@ -14,6 +14,74 @@
 
 <section class="trainer">
   <div class="container">
+    <div class="heading no-top-margin">
+      <h1>
+        @lang("example_videos")
+      </h1>
+    </div>
+    <div class="row">
+      <div class="col-lg-4 col-12 mb-4">
+        <div class="box">
+          <div class="front-data">
+            <iframe src="https://drive.google.com/file/d/1LgJQ5gfsyBTgeppzrevpi1_F7rWPsd_v/preview" frameborder="0"
+              width="640" height="250" allow="accelerometer; autoplay; encrypted-media; gyroscope;"
+              allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-12 mb-4">
+        <div class="box">
+          <div class="front-data">
+            <iframe src="https://drive.google.com/file/d/1IRUH7wYpfjCDSbYQMGNhww3RniGcpYNB/preview"" frameborder=" 0"
+              width="640" height="250" allow="accelerometer; autoplay; encrypted-media; gyroscope;"
+              allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-12 mb-4">
+        <div class="box">
+          <div class="front-data">
+            <iframe src="https://drive.google.com/file/d/15z27MeiEBl3_omPtunRO2r41AU_EHj2F/preview" frameborder=" 0"
+              width="640" height="250" allow="accelerometer; autoplay; encrypted-media; gyroscope;"
+              allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="register-now pb-5">
+      <div class="container">
+        <div class="contain">
+          <div class="row">
+            <div class="col-lg-8 col-12">
+              <div class="data">
+                <h1>
+                  @lang('register_in')
+                  <span>@lang('website_title')</span>
+                </h1>
+                <h3 style="color: rgba(255, 255, 255, 0.7);font-size: 16px;font-weight: 900;margin-top:20px">
+                  @lang('do_you_want_join_as_trainer')
+                </h3>
+              </div>
+            </div>
+
+            <div class="col-lg-4 col-12">
+              <div class="button-contain">
+                <a href="{{ route('website.register_trainer.create') }}" class="custom-btn gray-color">
+                  <span>@lang('register_now')</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="heading no-top-margin">
+      <h1>
+        @lang("our_trainers")
+      </h1>
+    </div>
     <div class="row">
       @if($trainers->isNotEmpty())
       @foreach($trainers as $trainer)
