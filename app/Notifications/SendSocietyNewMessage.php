@@ -43,7 +43,7 @@ class SendSocietyNewMessage extends Notification
               'title' => trans('mobile.notifications.content.new_message', locale: 'en'),
               'title_ar' => trans('mobile.notifications.content.new_message', locale: 'ar'),
               'society_id' => $this->societyChat->society_id,
-              'message' => $this->societyChat->message,
+              'message' => ' بارسال رسالة اليك '.$this->societyChat?->sender->name.'قام ',
         ];
     }
 

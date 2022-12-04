@@ -43,7 +43,7 @@ class SendAdminNewMessage extends Notification
               'type' => 'admin_chat',
               'title' => trans('mobile.notifications.content.new_message', locale: 'en'),
               'title_ar' => trans('mobile.notifications.content.new_message', locale: 'ar'),
-              'message' => $this->adminMessage->message,
+              'message' => ' بارسال رسالة اليك '.$this->adminMessage?->sender->name.'قام ',
         ];
     }
 

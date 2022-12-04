@@ -42,7 +42,7 @@ class SendTrainerNewMessage extends Notification
               'type' => 'trainer_chat',
               'title' => trans('mobile.notifications.content.new_message', locale: 'en'),
               'title_ar' => trans('mobile.notifications.content.new_message', locale: 'ar'),
-              'message' => $this->trainerMessage->message,
+              'message' => ' بارسال رسالة في المجتمع الخاص بك '.$this->trainerMessage?->sender->name.'قام ',
         ];
     }
 
