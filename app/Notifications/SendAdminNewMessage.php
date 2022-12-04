@@ -39,7 +39,7 @@ class SendAdminNewMessage extends Notification
     public function ToDatabase($notifiable)
     {
         $message_ar = ' بارسال رسالة اليك ' . $this->adminMessage?->sender->name . 'قام ';
-        $message_en = $this->adminMessage?->sender->name . ' had sent you a message';
+        $message_en = $this->adminMessage?->sender->full_name . ' had sent you a message';
         return [
               'id' => $this->adminMessage->id,
               'type' => 'admin_chat',
