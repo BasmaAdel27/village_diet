@@ -13,7 +13,7 @@ class NotificationResource extends JsonResource
               'id' => $this->id,
               'type' => @$this->data['type'],
               'title' => $locale == 'ar' ? @$this->data['title_ar'] : @$this->data['title'],
-              'body' => $locale == 'ar' ? @$this->data['message_ar'] : @$this->data['message'],
+              'body' => $locale == 'ar' ? @$this->data['message_ar'] : @$this->data['message_en'],
               'society_id' => @$this->when(@$this->data['society_id'], @$this->data['society_id']),
               'notify_type' => $this->type,
               'created_at' => $this->created_at?->diffForHumans(),
