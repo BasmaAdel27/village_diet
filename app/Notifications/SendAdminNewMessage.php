@@ -38,12 +38,17 @@ class SendAdminNewMessage extends Notification
 
     public function ToDatabase($notifiable)
     {
+        if (request()->header('Accept-Language') == 'ar') {
+            $message = ' بارسال رسالة اليك ' . $this->adminMessage?->sender->name . 'قام ';
+        } else {
+            $message = $this->adminMessage?->sender->name . ' had sent you a message';
+        }
         return [
               'id' => $this->adminMessage->id,
               'type' => 'admin_chat',
               'title' => trans('mobile.notifications.content.new_message', locale: 'en'),
               'title_ar' => trans('mobile.notifications.content.new_message', locale: 'ar'),
-              'message' => ' بارسال رسالة اليك '.$this->adminMessage?->sender->name.'قام ',
+              'message' => $message
         ];
     }
 

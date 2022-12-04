@@ -37,13 +37,19 @@ class SendSocietyNewMessage extends Notification
 
     public function ToDatabase($notifiable)
     {
+        if (request()->header('Accept-Language') == 'ar') {
+            $message = ' بارسال رسالة في المجتمع الخاص بك ' . $this->societyChat?->sender->name . 'قام ';
+        } else {
+            $message = $this->societyChat?->sender->name . ' had sent a message in your society';
+        }
+
         return [
               'id' => $this->societyChat->id,
               'type' => 'society_chat',
               'title' => trans('mobile.notifications.content.new_message', locale: 'en'),
               'title_ar' => trans('mobile.notifications.content.new_message', locale: 'ar'),
               'society_id' => $this->societyChat->society_id,
-              'message' => ' بارسال رسالة اليك '.$this->societyChat?->sender->name.'قام ',
+              'message' => $message
         ];
     }
 

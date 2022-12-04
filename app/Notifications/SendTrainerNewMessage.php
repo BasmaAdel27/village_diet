@@ -37,12 +37,17 @@ class SendTrainerNewMessage extends Notification
 
     public function ToDatabase($notifiable)
     {
+        if (request()->header('Accept-Language') == 'ar') {
+            $message = ' بارسال رسالة اليك ' . $this->trainerMessage?->sender->name . 'قام ';
+        } else {
+            $message = $this->trainerMessage?->sender->name . ' had sent you a message';
+        }
         return [
               'id' => $this->trainerMessage->id,
               'type' => 'trainer_chat',
               'title' => trans('mobile.notifications.content.new_message', locale: 'en'),
               'title_ar' => trans('mobile.notifications.content.new_message', locale: 'ar'),
-              'message' => ' بارسال رسالة في المجتمع الخاص بك '.$this->trainerMessage?->sender->name.'قام ',
+              'message' => $message,
         ];
     }
 
