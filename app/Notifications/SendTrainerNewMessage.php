@@ -37,7 +37,7 @@ class SendTrainerNewMessage extends Notification
 
     public function ToDatabase($notifiable)
     {
-        $message_ar = ' بارسال رسالة اليك ' . $this->trainerMessage?->sender->name . 'قام ';
+        $message_ar = ' بارسال رسالة اليك ' . $this->trainerMessage?->sender->full_name . 'قام ';
         $message_en = $this->trainerMessage?->sender->full_name . ' had sent you a message';
         return [
               'id' => $this->trainerMessage->id,

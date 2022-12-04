@@ -37,7 +37,7 @@ class SendSocietyNewMessage extends Notification
 
     public function ToDatabase($notifiable)
     {
-        $message_ar = ' بارسال رسالة في المجتمع الخاص بك ' . $this->societyChat?->sender->name . 'قام ';
+        $message_ar = ' بارسال رسالة في المجتمع الخاص بك ' . $this->societyChat?->sender->full_name . 'قام ';
         $message_en = $this->societyChat?->sender->full_name . ' had sent a message in your society';
         return [
               'id' => $this->societyChat->id,
