@@ -189,6 +189,7 @@ class SocietyController extends Controller
 
     public function save(Request $request)
     {
+
         $path = $request->file('message')->storePublicly('chats/media', "public");
         $message = SocietyChat::create([
               'message' => "/storage/" . $path,

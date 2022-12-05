@@ -95,7 +95,7 @@
           <div class="modal-footer">
             <input type="hidden" name="receiver_id" value="{{$userId}}" />
             <input type="hidden" name="sender_id" value="{{auth()->id()}}" />
-            <button type="button" class="btn btn-danger" data-dismiss="modal">@lang('close')</button>
+            <button type="button" class="btn btn-danger" data-dismiss="modal" id="cancel">@lang('close')</button>
             <button type="submit" class="btn btn-success" id="DownloadButton" data-dismiss="modal"
               disabled>@lang('send')</button>
           </div>
