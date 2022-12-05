@@ -5,10 +5,10 @@ var gumStream;
 var rec;
 //Recorder.js object
 var input;
+audioContext
 //MediaStreamAudioSourceNode we'll be recording
 // shim for AudioContext when it's not avb.
 var AudioContext = window.AudioContext || window.webkitAudioContext;
-var audioContext = new AudioContext();
 var RecordButton = document.getElementById('RecordButton');
 var StopButton = document.getElementById('StopButton');
 var PauseButton = document.getElementById('PauseButton');
@@ -43,6 +43,7 @@ function StartRecording() {
           /* assign to gumStream for later use */
           gumStream = stream;
           /* use the stream */
+          audioContext = new AudioContext();
           input = audioContext.createMediaStreamSource(stream);
           /* Create the Recorder object and configure to record mono sound (1 channel) Recording 2 channels will double the file size */
           rec = new Recorder(input, {
@@ -61,15 +62,15 @@ function StartRecording() {
         });
 }
 function PauseRecording() {
-  console.log('pauseButton clicked rec.recording=', rec.recording);
-  if (rec.Recording) {
-    //pause
+  if (rec.recording) {
     rec.stop();
-    PauseButton.innerHTML = 'Resume';
+    pauseButton.innerHTML = 'Resume';
+    recording.innerHTML='recording resumed'
   } else {
-    //resume
     rec.record();
-    PauseButton.innerHTML = 'Pause';
+    pauseButton.innerHTML = 'Pause';
+    recording.innerHTML = 'Recording started';
+
   }
 }
 
@@ -77,7 +78,7 @@ function StopRecording() {
   console.log('stopButton clicked');
   //disable the stop button, enable the record too allow for new recordings
   StopButton.disabled = true;
-  RecordButton.disabled = true;
+  RecordButton.disabled = false;
   PauseButton.disabled = true;
   //reset button just in case the recording is stopped while paused
   PauseButton.innerHTML = 'Pause';
