@@ -35,7 +35,9 @@ class AddToNewSociety extends Notification
 
     public function ToDatabase($notifiable)
     {
-        $message_ar = $this->society->date_from . ' وسيتم البدء في تفعيل المجتمع يوم  ' . $this->society->trainer->full_name . ' تم اضافتك الي مجتمع جديد تحت رعاية المدرب ';
+        $message_ar =
+              ' تم اضافتك الي مجتمع جديد تحت رعاية المدرب ' . $this->society->trainer->full_name . '
+              يتم البدء في تفعيل المجتمع يوم '  . $this->society->date_from;
         $message_en = 'You had added to a new society with the trainer ' . $this->society->trainer->full_name . ' ,it would start at ' . $this->society->date_from;
         return [
               'id' => $this->society->id,
