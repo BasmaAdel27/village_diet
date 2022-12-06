@@ -9,6 +9,7 @@ use App\Models\Chat\SocietyChat;
 use App\Models\SeenMessage;
 use App\Models\Society\Society;
 use App\Models\User;
+use App\Notifications\AddToNewSociety;
 use App\Notifications\SendSocietyNewMessage;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -49,7 +50,24 @@ class SocietyController extends Controller
         $society->fill($data)->save();
         $users = User::find($data['user_id']);
         $users->map->update(['society_id' => $society->id]);
-        $this->sendNotify($users, $society);
+//        $this->sendNotify($users, $society);
+
+        // notification
+        $title = 'Village Diet';
+        $content = trans('you_had_added_to_society');
+        $message = [
+              'title' => 'village_diet',
+              'title_ar' => 'فيليج دايت',
+              'body' => 'You had added to a new society',
+              'body_ar' => trans('you_had_added_to_society'),
+              'type' => 'society',
+        ];
+        foreach ($society->users->where('id', '<>', auth()->id()) as $user) {
+            \Notification::send($user, new AddToNewSociety($society));
+            if ($user->firebase_token) {
+                send_notification([$user->firebase_token], $content, $title, $message);
+            }
+        }
 
         if ($data['is_active'] == 1) {
             $society->update(['date_from' => now()]);
