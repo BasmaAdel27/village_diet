@@ -19,9 +19,10 @@ class HomeController extends Controller
     {
         $user = auth()->user();
         if (
-              $user->currentSubscription &&
-              ($user->currentSubscription?->status == 'active' ||
-                    $user->currentSubscription?->status == 'request_cancel')) {
+            $user->currentSubscription &&
+            ($user->currentSubscription?->status == 'active' ||
+                $user->currentSubscription?->status == 'request_cancel')
+        ) {
             $day = now()->diffInDays($user->currentSubscription->created_at) + 1;
             $dayId = Day::select('id')->where('number', $day)->value('id');
             $obj = new stdClass;
@@ -67,16 +68,12 @@ class HomeController extends Controller
     public function store(HomeRequest $request)
     {
         $user = auth()->user();
-        if ($user->society()->exists() && $user->society->is_active == 1) {
-            $healthData = $user->healthyInformation()
-                  ->updateOrCreate(
-                        ['day_id' => $request->day_id],
-                        $request->validated() + ['subscription_id' => $user->currentSubscription->id]
-                  );
-            return successResponse(UserInfoResource::make($healthData), message: __('created_successfully'));
-        } else {
-            $data['society'] = false;
-            return successResponse($data, message: __('not_in_society'));
-        }
+        $healthData = $user->healthyInformation()
+            ->updateOrCreate(
+                ['day_id' => $request->day_id],
+                $request->validated() + ['subscription_id' => $user->currentSubscription->id]
+            );
+
+        return successResponse(UserInfoResource::make($healthData), message: __('created_successfully'));
     }
 }
