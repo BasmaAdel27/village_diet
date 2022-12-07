@@ -27,7 +27,7 @@ class AgendaController extends Controller
         $days = Day::get();
 
         foreach ($days as $index => $day) {
-            if (!isset($dates[$day->number])) continue;
+            if (!isset($dates[$day->number - 1])) continue;
 
             $data[$index]['day_id'] = $day->id;
             $data[$index]['date'] = @$dates[$day->number]?->toDateString();
