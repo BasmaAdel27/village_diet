@@ -30,8 +30,8 @@ class AgendaController extends Controller
             if (!isset($dates[$day->number - 1])) continue;
 
             $data[$index]['day_id'] = $day->id;
-            $data[$index]['date'] = @$dates[$day->number]?->toDateString();
-            $data[$index]['status'] = (bool) now()->gt(@$dates[$day->number]);
+            $data[$index]['date'] = @$dates[$day->number - 1]?->toDateString();
+            $data[$index]['status'] = (bool) now()->gt(@$dates[$day->number -1]);
             $data[$index]['day']  = $day->title;
         }
 
