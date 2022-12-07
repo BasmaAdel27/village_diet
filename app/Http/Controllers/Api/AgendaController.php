@@ -21,17 +21,17 @@ class AgendaController extends Controller
         $currentSubscription = auth()->user()->currentSubscription;
         if (!$currentSubscription) return failedResponse(trans('not_subscription'));
 
-        $startDate = Carbon::parse($currentSubscription->created_at)->format('Y-m-d');
-        $endDate = Carbon::parse($currentSubscription->end_date)->format('Y-m-d');
+        $startDate = Carbon::parse($currentSubscription->created_at)->subDay()->format('Y-m-d');
+        $endDate = Carbon::parse($currentSubscription->end_date)->addDay()->format('Y-m-d');
         $dates = CarbonPeriod::create($startDate, $endDate)->toArray();
         $days = Day::get();
 
         foreach ($days as $index => $day) {
-            if (!isset($dates[$day->number - 1])) continue;
+            if (!isset($dates[$day->number])) continue;
 
             $data[$index]['day_id'] = $day->id;
-            $data[$index]['date'] = @$dates[$day->number - 1]?->toDateString();
-            $data[$index]['status'] = (bool) now()->gt(@$dates[$day->number -1]);
+            $data[$index]['date'] = @$dates[$day->number]?->toDateString();
+            $data[$index]['status'] = (bool) now()->gt(@$dates[$day->number]);
             $data[$index]['day']  = $day->title;
         }
 
