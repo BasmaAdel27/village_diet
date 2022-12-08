@@ -334,5 +334,7 @@
   "contact_with_village": "تواصل مع فيلج دايت",
   "do_you_want_join_as_trainer": "هل تود الانضمام إلينا كمدرب ؟!",
   "example_videos": "نماذج لمدربينا",
-  "you_had_added_to_society": "تم اضافتك الي مجتمع جديد"
+  "you_had_added_to_society": "تم اضافتك الي مجتمع جديد",
+  "rating_success": "تم التقييم بنجاح",
+  "rating_done_before": "تم تقييم المدرب سابقا خلال الشهر"
 }
