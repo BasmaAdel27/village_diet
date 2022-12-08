@@ -28,9 +28,9 @@ class RateController extends Controller
             ->where('created_at', '>=', now()->startOfMonth())
             ->where('created_at', '<=', now()->endOfMonth())->exists()) {
 
-            $rating = $trainer->rate($request->validated()['rating'], @$request->validated()['comment']);
+            $trainer->rate($request->validated()['rating'], @$request->validated()['comment']);
 
-            return successResponse(RatingResource::make($rating), message: trans('rating_success'));
+            return successResponse(RatingResource::make($trainer->ratings()->where('user_id', auth()->id())->first()), message: trans('rating_success'));
         } else {
             $rating = $trainer->ratings()->where('user_id', auth()->id())->first();
 
