@@ -35,10 +35,10 @@ class SocietyController extends Controller
     public function create()
     {
         $locales = config('translatable.locales');
-        $trainers = User::whereHas('roles', fn($q) => $q->where('name', 'trainer'))->pluck('first_name', 'id');
+        $trainers = User::whereHas('roles', fn ($q) => $q->where('name', 'trainer'))->pluck('first_name', 'id');
         $users = User::doesntHave('society')->whereHas(
-              'roles',
-              fn($q) => $q->where('name', 'user')
+            'roles',
+            fn ($q) => $q->where('name', 'user')
         )->pluck('first_name', 'id');
 
         return view('admin.society.create', compact('locales', 'trainers', 'users'));
@@ -50,17 +50,17 @@ class SocietyController extends Controller
         $society->fill($data)->save();
         $users = User::find($data['user_id']);
         $users->map->update(['society_id' => $society->id]);
-//        $this->sendNotify($users, $society);
+        //        $this->sendNotify($users, $society);
 
         // notification
         $title = 'Village Diet';
         $content = trans('you_had_added_to_society');
         $message = [
-              'title' => 'village_diet',
-              'title_ar' => 'فيليج دايت',
-              'body' => 'You had added to a new society',
-              'body_ar' => trans('you_had_added_to_society'),
-              'type' => 'society',
+            'title' => 'village_diet',
+            'title_ar' => 'فيليج دايت',
+            'body' => 'You had added to a new society',
+            'body_ar' => trans('you_had_added_to_society'),
+            'type' => 'society',
         ];
         foreach ($society->users->where('id', '<>', auth()->id()) as $user) {
             \Notification::send($user, new AddToNewSociety($society));
@@ -73,8 +73,8 @@ class SocietyController extends Controller
             $society->update(['date_from' => now()]);
         }
         $users->map->currentSubscription()->map->update([
-              'created_at' => $society->date_from,
-              'end_date' => Carbon::parse($society->date_from)->addDays(30),
+            'created_at' => $society->date_from,
+            'end_date' => Carbon::parse($society->date_from)->addDays(30),
         ]);
 
         return redirect()->route('admin.societies.index')->with('success', trans('created_successfully'));
@@ -83,11 +83,11 @@ class SocietyController extends Controller
     public function edit(Society $society)
     {
         $locales = config('translatable.locales');
-        $trainers = User::whereHas('roles', fn($q) => $q->where('name', 'trainer'))->pluck('first_name', 'id');
+        $trainers = User::whereHas('roles', fn ($q) => $q->where('name', 'trainer'))->pluck('first_name', 'id');
         $users = User::doesntHave('society')->whereHas(
-              'roles',
-              fn($q) => $q->where('name', 'user')
-        )->orWhereHas('society', fn($q) => $q->where('society_id', $society->id))->pluck('first_name', 'id');
+            'roles',
+            fn ($q) => $q->where('name', 'user')
+        )->orWhereHas('society', fn ($q) => $q->where('society_id', $society->id))->pluck('first_name', 'id');
 
         return view('admin.society.edit', compact('society', 'locales', 'trainers', 'users'));
     }
@@ -95,17 +95,18 @@ class SocietyController extends Controller
     public function update(SocietyRequest $request, Society $society)
     {
         $data = $request->validated();
-        $society->fill($data)->save();
-        $users = $this->handleChangedUsers($society, $data);
 
         if ($data['is_active'] == 1 && $society->is_active == 0) {
             $society->update(['date_from' => now()]);
         }
 
+        $society->fill($data)->save();
+        $users = $this->handleChangedUsers($society, $data);
         $users->map->currentSubscription()->map->update([
-              'created_at' => $society->date_from,
-              'end_date' => Carbon::parse($society->date_from)->addDays(30),
+            'created_at' => $society->date_from,
+            'end_date' => Carbon::parse($society->date_from)->addDays(30),
         ]);
+
 
         return redirect()->route('admin.societies.index')->with('success', trans('updated_successfully'));
     }
@@ -127,8 +128,8 @@ class SocietyController extends Controller
                 $unreadMsgs = SocietyChat::where([['id', '>', $sender->id], ['society_id', $society->id]])->get();
                 foreach ($unreadMsgs as $unreadMsg) {
                     SeenMessage::create([
-                          'message_id' => $unreadMsg->id,
-                          'user_id' => auth()->id(),
+                        'message_id' => $unreadMsg->id,
+                        'user_id' => auth()->id(),
                     ]);
                     $sender->read_at = now();
                     $sender->save();
@@ -141,8 +142,8 @@ class SocietyController extends Controller
                         if ($seenmsgs->isEmpty()) {
 
                             SeenMessage::create([
-                                  'message_id' => $unreadMsg->id,
-                                  'user_id' => auth()->id(),
+                                'message_id' => $unreadMsg->id,
+                                'user_id' => auth()->id(),
                             ]);
                             $sender->read_at = now();
                             $sender->save();
@@ -158,15 +159,14 @@ class SocietyController extends Controller
                     if ($seenmsgs->isEmpty()) {
 
                         SeenMessage::create([
-                              'message_id' => $unreadMsg->id,
-                              'user_id' => auth()->id(),
+                            'message_id' => $unreadMsg->id,
+                            'user_id' => auth()->id(),
                         ]);
                     }
                 }
             }
         }
         return view('admin.society.chat', compact('messages', 'society'));
-
     }
 
     public function addMsg(Request $request)
@@ -177,21 +177,21 @@ class SocietyController extends Controller
             return redirect()->back()->with("errors", $validator->errors());
 
         $societyChat = SocietyChat::create([
-              'message' => $request->message,
-              'sender_id' => auth()->id(),
-              'type' => 'TEXT',
-              'society_id' => $request->society_id,
+            'message' => $request->message,
+            'sender_id' => auth()->id(),
+            'type' => 'TEXT',
+            'society_id' => $request->society_id,
         ]);
         $society = Society::find($societyChat->society_id);
         // notification
         $title = 'Village Diet';
         $content = trans('u_receive_new_message');
         $message = [
-              'title' => 'village_diet',
-              'title_ar' => 'فيليج دايت',
-              'body' => 'You got a new Message',
-              'body_ar' => trans('u_receive_new_message'),
-              'type' => 'chat',
+            'title' => 'village_diet',
+            'title_ar' => 'فيليج دايت',
+            'body' => 'You got a new Message',
+            'body_ar' => trans('u_receive_new_message'),
+            'type' => 'chat',
         ];
 
 
@@ -210,10 +210,10 @@ class SocietyController extends Controller
 
         $path = $request->file('message')->storePublicly('chats/media', "public");
         $message = SocietyChat::create([
-              'message' => "/storage/" . $path,
-              'sender_id' => $request->sender,
-              'type' => 'AUDIO',
-              'society_id' => $request->society,
+            'message' => "/storage/" . $path,
+            'sender_id' => $request->sender,
+            'type' => 'AUDIO',
+            'society_id' => $request->society,
         ]);
         return response()->json($message);
     }
@@ -223,34 +223,34 @@ class SocietyController extends Controller
     {
         foreach ($users as $user) {
             $user->notifications()->create([
-                  'id' => Str::uuid(),
-                  'type' => 'society',
-                  'data' => [
-                        'title' => 'Society',
-                        'title_ar' => 'مجتمعك',
-                        'body' => trans('site.added_to_society', [
-                              'trainer' => $society->trainer?->first_name . ' ' . $society->trainer?->first_name,
-                        ], 'en'),
-                        'body_ar' => trans('site.added_to_society', [
-                              'trainer' => $society->trainer?->first_name . ' ' . $society->trainer?->first_name,
-                        ], 'ar')
-                  ]
+                'id' => Str::uuid(),
+                'type' => 'society',
+                'data' => [
+                    'title' => 'Society',
+                    'title_ar' => 'مجتمعك',
+                    'body' => trans('site.added_to_society', [
+                        'trainer' => $society->trainer?->first_name . ' ' . $society->trainer?->first_name,
+                    ], 'en'),
+                    'body_ar' => trans('site.added_to_society', [
+                        'trainer' => $society->trainer?->first_name . ' ' . $society->trainer?->first_name,
+                    ], 'ar')
+                ]
             ]);
 
             $title = 'Village Diet';
             $content = trans('site.added_to_society', [
-                  'trainer' => $society->trainer?->first_name . ' ' . $society->trainer?->first_name,
+                'trainer' => $society->trainer?->first_name . ' ' . $society->trainer?->first_name,
             ], 'ar');
             $message = [
-                  'type' => 'society',
-                  'title' => 'Society',
-                  'title_ar' => 'مجتمعك',
-                  'body' => trans('site.added_to_society', [
-                        'trainer' => $society->trainer?->first_name . ' ' . $society->trainer?->first_name,
-                  ], 'en'),
-                  'body_ar' => trans('site.added_to_society', [
-                        'trainer' => $society->trainer?->first_name . ' ' . $society->trainer?->first_name,
-                  ], 'ar'),
+                'type' => 'society',
+                'title' => 'Society',
+                'title_ar' => 'مجتمعك',
+                'body' => trans('site.added_to_society', [
+                    'trainer' => $society->trainer?->first_name . ' ' . $society->trainer?->first_name,
+                ], 'en'),
+                'body_ar' => trans('site.added_to_society', [
+                    'trainer' => $society->trainer?->first_name . ' ' . $society->trainer?->first_name,
+                ], 'ar'),
             ];
             if ($user->firebase_token) {
                 send_notification([$user->firebase_token], $content, $title, $message);
