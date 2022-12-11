@@ -97,10 +97,12 @@ class SocietyController extends Controller
         $data = $request->validated();
 
         if ($data['is_active'] == 1 && $society->is_active == 0) {
+            $society->fill($data)->save();
             $society->update(['date_from' => now()]);
+        } else {
+            $society->fill($data)->save();
         }
 
-        $society->fill($data)->save();
         $users = $this->handleChangedUsers($society, $data);
         $users->map->currentSubscription()->map->update([
             'created_at' => $society->date_from,
