@@ -6,11 +6,10 @@
   <div class="container general-pattern right-left-pattern">
     <div class="heading">
       <h1>
-        التسجيل وإعادة الإشتراك
+        @lang('register_and_rejoin')
       </h1>
-
       <p>
-        قم بالتسجيل في حالة عدم وجود حساب لديك أو إعادة الإشتراك في حالة إنهائه أو تعطيله
+        @lang('register_if_you_donot_have_one')
       </p>
     </div>
   </div>
@@ -22,13 +21,13 @@
       <div class="col-lg-5 col-12 mb-4">
         <div class="subscribe-details">
           <h1>
-            تفاصيل الإشتراك
+            @lang('subscription_details')
           </h1>
 
           <ul class="list-data">
             <li>
               <span class="name">
-                قيمة الاشتراك الشهري
+                @lang('monthly_subscription_amount')
               </span>
 
               <span class="price">
@@ -38,7 +37,7 @@
 
             <li>
               <span class="name">
-                قيمة الضرائب المضافة
+                @lang('vat_tax_amount')
               </span>
 
               <span class="price">
@@ -48,7 +47,7 @@
 
             <li>
               <span class="name">
-                الخصم
+                @lang('discount')
               </span>
 
               <span class="price" id="discount">
@@ -59,9 +58,9 @@
             <li class="data-contain">
               <form class="form-contain" action="">
                 <div class="form-group span-form">
-                  <input type="text" name="code" class="form-control" placeholder=" الكوبون"
+                  <input type="text" name="code" class="form-control" placeholder="@lang('coupon')"
                     value="{{ request('code') }}" />
-                  <input type="submit" class="text-btn secondary-btn" value="اضافة">
+                  <input type="submit" class="text-btn secondary-btn" value="@lang('add')">
 
                 </div>
               </form>
@@ -69,7 +68,7 @@
 
             <li>
               <span class="name bold">
-                الإجمالي
+                @lang('total_subscription')
               </span>
 
               <span class="price bold" id="total">
@@ -85,19 +84,19 @@
           @csrf
           <input type="hidden" name="code" value="{{ request('code') }}">
           <h1>
-            دفع الطلب
+            @lang('pay_order')
           </h1>
           <div class="wrapper mt-3">
             <input type="radio" class="radio-check" name="renew" value="1" disabled checked />
             <label class="radio-title bold-text">
-              أوافق على الدفع التلقائي لتجديد الإشتراك شهريا
+              @lang('accept_resubscribe')
             </label>
           </div>
           <div class="button-contain">
             <a href="#!" type="button" class="custom-btn" id="submitBtn" onclick="$('#paymentForm').submit()">
               <img src="{{ asset('website/assets/images/icons/arrow.svg') }}" loading="lazy" alt="" />
               <span>
-                الدفع
+                @lang('payment')
               </span>
             </a>
           </div>

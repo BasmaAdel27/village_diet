@@ -6,11 +6,11 @@
   <div class="container general-pattern right-left-pattern">
     <div class="heading">
       <h1>
-        التسجيل وإعادة الإشتراك
+        @lang('register_and_rejoin')
       </h1>
 
       <p>
-        قم بالتسجيل في حالة عدم وجود حساب لديك أو إعادة الإشتراك في حالة إنهائه أو تعطيله
+        @lang('register_if_you_donot_have_one')
       </p>
     </div>
   </div>
@@ -25,14 +25,14 @@
             <li class="nav-item" role="presentation">
               <a class="nav-link active" id="tab-1-tab" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1"
                 aria-selected="true">
-                تسجيل حساب
+                @lang('register')
               </a>
             </li>
 
             <li class="nav-item" role="presentation">
               <a class="nav-link" id="tab-2-tab" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2"
                 aria-selected="false">
-                إعادة تفعيل الإشتراك
+                @lang('resubscribe')
               </a>
             </li>
           </ul>
@@ -41,18 +41,18 @@
             <div class="tab-pane fade show active" id="tab-1" role="tabpanel" aria-labelledby="tab-1-tab">
               <div class="heading">
                 <h1>
-                  تسجيل حساب
+                  @lang('register')
                 </h1>
 
                 <p>
-                  في حالة إنضمامك للمرة الأولى على فيلج دايت ويفعل هذا الخيار في حالة الإنضمام للمرة الأولى للمنصة
+                  @lang('if_you_join_village_for_first_time')
                 </p>
               </div>
 
               <form action="{{ route('website.register.store') }}" class="form-contain" method="POST" id="registerForm">
                 @csrf
                 <h2 class="sub-title">
-                  معلومات أساسية
+                  @lang('primary_information')
                 </h2>
 
                 <div class="row">
@@ -62,7 +62,7 @@
                         alt="" />
 
                       <input type="text" name="first_name" value="{{ old('first_name') ?? '' }}" class="form-control"
-                        placeholder="الاسم الأول" />
+                        placeholder="@lang('first_name')" />
                     </div>
                   </div>
 
@@ -72,7 +72,7 @@
                         alt="" />
 
                       <input type="text" name="last_name" value="{{ old('last_name') ?? '' }}" class="form-control"
-                        placeholder="الاسم الأخير" />
+                        placeholder="@lang('last_name')" />
                     </div>
                   </div>
 
@@ -81,7 +81,7 @@
                       <img src="{{ asset('website/assets/images/form/sms.svg') }}" class="icon" loading="lazy" alt="" />
 
                       <input type="text" name="email" value="{{ old('email') ?? '' }}" class="form-control"
-                        placeholder="البريد الالكتروني" />
+                        placeholder="@lang('email')" />
                     </div>
                   </div>
 
@@ -90,7 +90,7 @@
                       <img src="{{ asset('website/assets/images/form/sms.svg') }}" class="icon" loading="lazy" alt="" />
 
                       <input type="text" value="{{ old('email_confirmation') ?? '' }}" name="email_confirmation"
-                        class="form-control" placeholder="تأكيد البريد الالكتروني" />
+                        class="form-control" placeholder="@lang('email_confirmation')" />
                     </div>
                   </div>
 
@@ -106,7 +106,7 @@
                       </div>
 
                       <input type="text" value="{{ old('phone') ?? '' }}" name="phone" class="form-control"
-                        placeholder="رقم الجوال" />
+                        placeholder="@lang('phone')" />
                     </div>
                   </div>
 
@@ -114,13 +114,14 @@
                     <div class="form-group">
                       <img src="{{ asset('website/assets/images/form/calendar.svg') }}" class="icon" loading="lazy"
                         alt="" />
-                      <input type="date" name="date_of_birth" class="form-control" placeholder="تاريخ الميلاد" />
+                      <input type="date" name="date_of_birth" class="form-control"
+                        placeholder="@lang('date_of_birth')" />
                     </div>
                   </div>
                 </div>
 
                 <h2 class="sub-title section-contain">
-                  معلومات الموقع
+                  @lang('address_info')
                 </h2>
 
                 <div class="row">
@@ -130,7 +131,7 @@
                         alt="" />
                       <select class="form-control" name="country_id" id="country">
                         <option value="" hidden>
-                          الدولة
+                          @lang('country')
                         </option>
                         @foreach ($countries as $id => $name)
                         <option value="{{ $id }}" {{ $id==old('country_id') ? 'selected' : '' }}>{{ $name }}</option>
@@ -146,7 +147,7 @@
 
                       <select class="form-control" value="{{ old('state_id') ?? '' }}" name="state_id" id="state">
                         <option value="" hidden>
-                          المدينة
+                          @lang('city')
                         </option>
                       </select>
                     </div>
@@ -154,7 +155,7 @@
 
                   <div class="col-12">
                     <div class="form-group text-area no-margin">
-                      <textarea name="address" class="form-control" placeholder=" ... العنوان بالتفصيل" id="" cols="30"
+                      <textarea name="address" class="form-control" placeholder="@lang('address')" id="" cols="30"
                         rows="10">
                       {{ old('address') ?? '' }}
                       </textarea>
@@ -163,7 +164,7 @@
                 </div>
 
                 <h2 class="sub-title section-contain">
-                  حسابات السوشيال ميديا
+                  @lang('social_accounts')
                 </h2>
 
                 <div class="form-group">
@@ -171,14 +172,14 @@
                     class="icon" />
 
                   <input type="text" value="{{ old('insta_link') ?? '' }}" name="insta_link" class="form-control"
-                    placeholder="رابط حساب انستجرام" />
+                    placeholder="@lang('instagram')" />
                 </div>
 
                 <div class="section-seprate">
                   <div class="wrapper">
                     <input type="radio" value="1" name="is_postal" class="radio-check" />
                     <label class="radio-title bold-text">
-                      الإشتراك في النشرة البريدية لتلقي كل جديد
+                      @lang('join_news_letters')
                     </label>
                   </div>
                 </div>
@@ -187,8 +188,7 @@
                   <img src="{{ asset('website/assets/images/form/system.svg') }}" loading="lazy" alt="" />
 
                   <p>
-                    النظام قائم علي التجديد التلقائي للاشتراك مع بداية تفعيل التطبيق وانه سيتم خصم قيمة الاشتراك بشكل
-                    تلقائي كل شهر
+                    @lang('system_append_on_automatic_rejoin')
                   </p>
                 </div>
 
@@ -196,7 +196,7 @@
                   <a href="#!" type="button" class="custom-btn" onclick="$('#registerForm').submit()">
                     <img src="{{ asset('website/assets/images/icons/arrow.svg') }}" loading="lazy" alt="" />
                     <span>
-                      تسجيل
+                      @lang('register')
                     </span>
                   </a>
                 </div>
@@ -206,11 +206,11 @@
             <div class="tab-pane fade" id="tab-2" role="tabpanel" aria-labelledby="tab-2-tab">
               <div class="heading">
                 <h1>
-                  إعادة تفعيل الإشتراك
+                  @lang('resubscribe')
                 </h1>
 
                 <p>
-                  يتم إتاحة هذا الخيار للمستخدمين المسجلين بالفعل في النظام ليتم إعادة تفعيل إشتراكهم في فيلج دايت
+                  @lang('messages_welcome')
                 </p>
               </div>
 
@@ -218,15 +218,14 @@
                 <div class="form-group">
                   <img src="{{ asset('website/assets/images/form/idnoac.svg') }}" class="icon" loading="lazy" alt="" />
 
-                  <input type="text" class="form-control" placeholder="رقم الملف الشخصي" />
+                  <input type="text" class="form-control" placeholder="@lang('user_number')" />
                 </div>
 
                 <div class="button-contain">
                   <a href="#" type="button" class="custom-btn" data-toggle="modal" data-target="#popdone">
                     <img src="{{ asset('website/assets/images/icons/arrow.svg') }}" loading="lazy" alt="" />
-
                     <span>
-                      تجديد
+                      @lang('renew')
                     </span>
                   </a>
                 </div>

@@ -6,11 +6,10 @@
   <div class="container general-pattern right-left-pattern">
     <div class="heading">
       <h1>
-        التسجيل وإعادة الإشتراك
+        @lang('register_and_rejoin')
       </h1>
-
       <p>
-        قم بالتسجيل في حالة عدم وجود حساب لديك أو إعادة الإشتراك في حالة إنهائه أو تعطيله
+        @lang('register_if_you_donot_have_one')
       </p>
     </div>
   </div>
@@ -23,11 +22,10 @@
         <div class="contain">
           <div class="heading no-top-margin">
             <h1>
-              تسجيل حساب
+              @lang('register_new_account')
             </h1>
-
             <p>
-              نحن نرغب في معرفة المزيد عنك لكي نتمكن من خدمتك بشكل أفضل
+              @lang('we_need_know_more')
             </p>
           </div>
 
@@ -39,7 +37,7 @@
               <a href="#!" type="button" class="custom-btn" onclick="$('#dataForm').submit()">
                 <img src="{{ asset('website/assets/images/icons/arrow.svg') }}" loading="lazy" alt="" />
                 <span>
-                  حفظ
+                  @lang('submit')
                 </span>
               </a>
             </div>
