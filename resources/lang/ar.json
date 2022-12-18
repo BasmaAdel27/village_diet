@@ -336,5 +336,7 @@
   "example_videos": "نماذج لمدربينا",
   "you_had_added_to_society": "تم اضافتك الي مجتمع جديد",
   "rating_success": "تم التقييم بنجاح",
-  "rating_done_before": "تم تقييم المدرب سابقا خلال الشهر"
+  "rating_done_before": "تم تقييم المدرب سابقا خلال الشهر",
+  "status_ar": "الحاله"
+
 }
