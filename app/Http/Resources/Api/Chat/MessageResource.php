@@ -15,7 +15,7 @@ class MessageResource extends JsonResource
             'sender' => UserResource::make($this->sender),
             'type' => $this->type,
             'message' => ($this->type != 'TEXT') ? url($this->message) : $this->message,
-            'created_at' => $this->created_at->toTimeString,
+            'created_at' => $this->created_at->toTimeString(),
 
         ];
     }
