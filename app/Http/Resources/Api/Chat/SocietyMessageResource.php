@@ -14,7 +14,7 @@ class SocietyMessageResource extends JsonResource
               'sender' => UserResource::make($this->sender),
               'type' => $this->type,
               'message' => ($this->type != 'TEXT') ? url($this->message) : $this->message,
-              'created_at' => date('l Y-m-d H:i:s A', strtotime($this->created_at)),
+              'created_at' => $this->created_at->format('g:i A'),
     ];
     }
 }
