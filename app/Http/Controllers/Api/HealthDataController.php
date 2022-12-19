@@ -10,13 +10,13 @@ class HealthDataController extends Controller
     public function index()
     {
         $user = auth()->user();
-
         $data = HealthyInformation::select(['weight', 'sleep_hours', 'daily_cup_count', 'walk_duration', 'day_translations.title'])
-            ->join('day_translations', 'healthy_information.day_id', 'day_translations.day_id')
-            ->where('locale', app()->getLocale())
-            ->where('user_id', $user->id)
-            ->where('subscription_id', $user->currentSubscription->id)
-            ->get();
+              ->join('day_translations', 'healthy_information.day_id', 'day_translations.day_id')
+              ->where('locale', app()->getLocale())
+              ->where('user_id', $user->id)
+              ->where('subscription_id', $user->currentSubscription->id)
+              ->orderBy('day_translations.id')
+              ->get();
 
         $charts['weights'] = $data->pluck('weight', 'title')->transform(function ($item, $day) {
             $data['weights'] = $item;
