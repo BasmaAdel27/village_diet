@@ -28,8 +28,8 @@ class SettingRequest extends FormRequest
             'ios_version' => 'required|string|min:2|max:50',
             'android_version' => 'required|string|min:2|max:50',
             'web_maintenance' => 'required',
-            'android_maintenance' => 'required',
-            'ios_maintenance' => 'required',
+            'android_maintenance' => 'nullable',
+            'ios_maintenance' => 'nullable',
             'website_title' => 'required|string|min:5|max:200',
             'website_description' => 'required|string|min:5|max:200',
             'logo' => 'nullable|image|mimes:png,jpg,jpeg,svg',
@@ -45,9 +45,9 @@ class SettingRequest extends FormRequest
             'snapchat' => 'nullable|string',
             'tiktok' => 'nullable|string',
             'instagram' => 'nullable|string',
-            'android_url'=>'required',
-            'ios_url'=>'required',
-            'visit_store'=>'required',
+            'android_url'=>'nullable',
+            'ios_url'=>'nullable',
+            'visit_store'=>'nullable',
         ];
     }
 }
