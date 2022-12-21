@@ -42,8 +42,8 @@ class SendSocietyNewMessage extends Notification
         return [
               'id' => $this->societyChat->id,
               'type' => 'society_chat',
-              'title' => trans('mobile.notifications.content.new_message', locale: 'en'),
-              'title_ar' => trans('mobile.notifications.content.new_message', locale: 'ar'),
+              'title' => trans('mobile.notifications.content.society_new_message', locale: 'en'),
+              'title_ar' => trans('mobile.notifications.content.society_new_message', locale: 'ar'),
               'society_id' => $this->societyChat->society_id,
               'message_ar' => $message_ar,
               'message_en' => $message_en

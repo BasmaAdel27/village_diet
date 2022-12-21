@@ -42,8 +42,8 @@ class SendTrainerNewMessage extends Notification
         return [
               'id' => $this->trainerMessage->id,
               'type' => 'trainer_chat',
-              'title' => trans('mobile.notifications.content.new_message', locale: 'en'),
-              'title_ar' => trans('mobile.notifications.content.new_message', locale: 'ar'),
+              'title' => trans('mobile.notifications.content.trainer_new_message', locale: 'en'),
+              'title_ar' => trans('mobile.notifications.content.trainer_new_message', locale: 'ar'),
               'message_ar' => $message_ar,
               'message_en' => $message_en,
         ];

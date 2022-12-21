@@ -43,8 +43,8 @@ class SendAdminNewMessage extends Notification
         return [
               'id' => $this->adminMessage->id,
               'type' => 'admin_chat',
-              'title' => trans('mobile.notifications.content.new_message', locale: 'en'),
-              'title_ar' => trans('mobile.notifications.content.new_message', locale: 'ar'),
+              'title' => trans('mobile.notifications.content.admin_new_message', locale: 'en'),
+              'title_ar' => trans('mobile.notifications.content.admin_new_message', locale: 'ar'),
               'message_ar' => $message_ar,
               'message_en' => $message_en
         ];

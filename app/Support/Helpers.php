@@ -1,11 +1,14 @@
 <?php
 
+ use \Illuminate\Support\Facades\Schema;
+ use App\Models\Setting;
+
 if (!function_exists('Setting')) {
 
     function Setting(string $attr)
     {
-        if (\Illuminate\Support\Facades\Schema::hasTable('settings')) {
-            return \App\Models\Setting::select($attr)->value($attr);
+        if (Schema::hasTable('settings')) {
+            return Setting::select($attr)->value($attr);
         }
     }
 }
@@ -95,37 +98,5 @@ if (!function_exists('send_notification')) {
         $request = \Http::withHeaders($headers)->post('https://fcm.googleapis.com/fcm/send', $fcmFields);
         return $request->body();
 
-
-//        $fcmUrl = 'https://fcm.googleapis.com/fcm/send';
-//        $notification = [
-//              'notification' => $message,
-//              'sound' => true,
-//              'title' => $title,
-//              'body' => $content,
-//              'priority' => 'high',
-//        ];
-//
-//        $extraNotificationData = ["data" => $notification];
-//
-//        $fcmNotification = [
-//              'to' => $token, //single token
-//              'notification' => $notification,
-//              'data' => $extraNotificationData
-//        ];
-//        $server_key = config('auth.firebase_id');
-//        $headers = array(
-//              'Content-Type:application/json',
-//              'Authorization:key=' . $server_key
-//        );
-//        $ch = curl_init();
-//        curl_setopt($ch, CURLOPT_URL, $fcmUrl);
-//        curl_setopt($ch, CURLOPT_POST, true);
-//        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-//        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-//        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-//        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($fcmNotification));
-//        $result = curl_exec($ch);
-//        curl_close($ch);
-//        return true;
     }
 }
