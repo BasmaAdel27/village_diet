@@ -31,7 +31,7 @@ class SettingRequest extends FormRequest
             'android_maintenance' => 'required',
             'ios_maintenance' => 'required',
             'website_title' => 'required|string|min:5|max:200',
-            'website_description' => 'required|string|min:20',
+            'website_description' => 'required|string|min:5|max:200',
             'logo' => 'nullable|image|mimes:png,jpg,jpeg,svg',
             'latitude' => 'required',
             'longitude' => 'required',
