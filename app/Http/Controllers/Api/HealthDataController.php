@@ -18,25 +18,25 @@ class HealthDataController extends Controller
               ->orderBy('day_translations.id')
               ->get();
         $charts['weights'] = $data->pluck('weight', 'title')->transform(function ($item, $day) {
-            $data['weights'] = $item ?? 0;
+            $data['weights'] = $item ?? "0";
             $data['day'] = $day;
 
             return $data;
         })->values();
         $charts['daily_cup_count'] = $data->pluck('daily_cup_count', 'title')->transform(function ($item, $day) {
-            $data['daily_cup_count'] = $item ?? 0;
+            $data['daily_cup_count'] = $item ?? "0";
             $data['day'] = $day;
 
             return $data;
         })->values();
         $charts['walk_duration'] = $data->pluck('walk_duration', 'title')->transform(function ($item, $day) {
-            $data['walk_duration'] = $item ?? 0;
+            $data['walk_duration'] = $item ?? "0";
             $data['day'] = $day;
 
             return $data;
         })->values();
         $charts['sleepHours'] = $data->pluck('sleep_hours', 'title')->transform(function ($item, $day) {
-            $data['sleepHours'] = $item ?? 0;
+            $data['sleepHours'] = $item ?? "0";
             $data['day'] = $day;
 
             return $data;
