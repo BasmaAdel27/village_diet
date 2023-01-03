@@ -20,7 +20,7 @@
           <img src="{{ $staticPage->image }}" loading="lazy" alt="" />
         </div>
         <p class="desc">
-          {{ $staticPage->content }}
+          {!! $staticPage->content !!}
         </p>
       </div>
     </div>

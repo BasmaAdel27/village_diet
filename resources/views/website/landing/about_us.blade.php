@@ -31,7 +31,7 @@
         <div class="tab-content" id="myTabContent">
           <div class="tab-pane fade show active" id="tab-1" role="tabpanel" aria-labelledby="tab-1-tab">
             <div class="contain">
-              {{ $aboutPage->content }}
+              {!! $aboutPage->content !!}
               <div class="button-contain">
                 <a href="{{ route('website.food_recipes') }}" class="custom-btn secondary-color">
                   <img src="{{asset('website/assets/images/icons/arrow.svg')}}" loading="lazy" alt="" />
@@ -48,7 +48,7 @@
 
           <div class="tab-pane fade" id="tab-2" role="tabpanel" aria-labelledby="tab-2-tab">
             <div class="contain">
-              {{ $ourVisionPage->content }}
+              {!! $ourVisionPage->content !!}
               <div class="button-contain">
                 <a href="{{ route('website.food_recipes') }}" class="custom-btn secondary-color">
                   <img src="{{asset('website/assets/images/icons/arrow.svg')}}" loading="lazy" alt="" />
