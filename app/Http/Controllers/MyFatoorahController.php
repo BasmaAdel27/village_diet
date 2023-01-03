@@ -35,6 +35,8 @@ class MyFatoorahController extends Controller
             'CustomerName' => $user->first_name . ' ' . $user->last_name,
             'InvoiceValue' => $data['total'],
             'DisplayCurrencyIso' => 'SAR',
+            'CurrencyIso' => 'SAR',
+            'NotificationOption' => 'All',
             'CustomerEmail' => $user->email,
             'CallBackUrl' => $callbackURL,
             'ErrorUrl' => $callbackURL,
