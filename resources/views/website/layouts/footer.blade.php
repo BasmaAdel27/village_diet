@@ -22,43 +22,54 @@
           @lang('start_now')
         </p>
         <ul class="socail-media">
-          <li>
-            <a href="{{ $setting->twitter }}">
-              <img src="{{asset('website/assets/images/footer/twitter.svg')}}" loading="lazy" alt="" />
-            </a>
-          </li>
-
+          @if(isset($setting->twitter))
+            <li>
+              <a href="{{ $setting->twitter }}">
+                <img src="{{asset('website/assets/images/footer/twitter.svg')}}" loading="lazy" alt="" />
+              </a>
+            </li>
+          @endif
+            @if(isset($setting->instagram))
           <li>
             <a href="{{ $setting->instagram }}">
               <img src="{{ asset('website/assets/images/footer/instagram.svg') }}" loading="lazy" alt="" />
             </a>
           </li>
+            @endif
+              @if(isset($setting->tiktok))
           <li>
             <a href="{{ $setting->tiktok }}">
               <img src="{{asset('website/assets/images/footer/tik-tok.svg')}}" loading="lazy" alt="" />
             </a>
           </li>
-
+            @endif
+                @if(isset($setting->linkedin))
           <li>
             <a href="{{ $setting->linkedin }}">
               <img src="{{asset('website/assets/images/footer/linkedin.svg')}}" loading="lazy" alt="" />
             </a>
           </li>
+            @endif
+                  @if(isset($setting->snapchat))
           <li>
             <a href="{{ $setting->snapchat }}">
               <img src="{{asset('website/assets/images/footer/snapchat.svg')}}" loading="lazy" alt="" />
             </a>
           </li>
+            @endif
+                    @if(isset($setting->facebook))
           <li>
             <a href="{{ $setting->facebook }}">
               <img src="{{ asset('website/assets/images/footer/facebook.svg') }}" loading="lazy" alt="" />
             </a>
           </li>
+                      @if(isset($setting->youtube))
           <li>
             <a href="{{ $setting->youtube }}">
               <img src="{{asset('website/assets/images/footer/youtube.svg')}}" loading="lazy" alt="" />
             </a>
           </li>
+              @endif
         </ul>
       </div>
     </div>
