@@ -47,4 +47,6 @@ class Trainer extends Model
             return asset($this->images()->whereOption('cv')->value('media'));
         }
     }
+
+
 }
