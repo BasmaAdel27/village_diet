@@ -13,6 +13,7 @@ class SubscriptionDatatable extends DataTable
     {
         return datatables()
             ->eloquent($query)
+            ->addIndexColumn()
             ->editColumn('Action', function ($query) {
                 return view('admin.subscriptions.datatable.action', compact('query'));
             })->editColumn('user.first_name', function ($query) {
@@ -56,7 +57,7 @@ class SubscriptionDatatable extends DataTable
             $statusColumn = Column::make('status')->title(trans('status'))->orderable(true);
         }
         return [
-            Column::make('id')->title(trans('ID')),
+            Column::make('DT_RowIndex')->name('DT_RowIndex')->title(trans('ID'))->orderable(false)->searchable(false),
             Column::make('user.first_name')->title(trans('name'))->orderable(false),
             Column::make('created_at')->title(trans('date-from'))->orderable(true),
             Column::make('end_date')->title(trans('end_date'))->orderable(true),
