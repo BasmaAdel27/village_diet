@@ -15,6 +15,7 @@ class SettingResource extends JsonResource
             'snapchat' => $this->snapchat,
             'tiktok' => $this->tiktok,
             'instagram' => $this->instagram,
+            'linkedin' => $this->linkedin,
             'latitude' => $this->latitude,
             'longitude' => $this->longitude,
             'address' => $this->address,
