@@ -13,6 +13,8 @@ return new class extends Migration
             $table->boolean('is_active')->default(true);
             $table->integer('ordering');
             $table->string('type')->nullable()->comment('Store - WorkWay');
+            $table->string('url')->nullable();
+
 
             $table->timestamps();
         });

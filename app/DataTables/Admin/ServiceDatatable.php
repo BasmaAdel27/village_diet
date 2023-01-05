@@ -3,6 +3,7 @@
 namespace App\DataTables\Admin;
 
 use App\Models\Service\Service;
+use Illuminate\Http\Request;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Services\DataTable;
@@ -25,13 +26,18 @@ class ServiceDatatable extends DataTable
             })
             ->editColumn('translations.description', function ($query) {
                 return $query->translate(app()->getLocale())->description;
-            })->rawColumns(['is_active', 'is_show_in_app', 'Action']);
+            })->rawColumns(['is_active', 'Action']);
     }
 
 
     public function query()
     {
-        return Service::with('translations')->select('services.*')->newQuery();
+        if (\request()->query('type')=='Store'){
+        return Service::with('translations')->select('services.*')->where('type','Store')->newQuery();
+        }else{
+            return Service::with('translations')->select('services.*')->where('type','WorkWay')->newQuery();
+
+        }
     }
 
 
@@ -58,8 +64,9 @@ class ServiceDatatable extends DataTable
         return [
             Column::make('id')->title(trans('ID')),
             Column::make('is_active')->title(trans('status')),
-            Column::make('translations.title')->title(trans('title'))->orderable(false),
+            Column::make('translations.title')->title(trans('title'))->orderable(true),
             Column::make('translations.description')->title(trans('description'))->orderable(false),
+            Column::make('url')->title(trans('url'))->orderable(false),
             Column::make('created_at')->title(trans('created_at')),
             Column::make('Action')->title(trans('action'))->searchable(false)->orderable(false)
         ];
@@ -68,6 +75,6 @@ class ServiceDatatable extends DataTable
 
     protected function filename(): string
     {
-        return 'Admin/Slider_' . date('YmdHis');
+        return 'Admin/ServiceStore_' . date('YmdHis');
     }
 }

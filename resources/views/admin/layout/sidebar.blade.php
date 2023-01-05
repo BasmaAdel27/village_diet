@@ -53,12 +53,28 @@
     </li>
     @endcan
     @can('admin.services.index')
-    <li class="nav-item">
-      <a class="nav-link" href="{{ route('admin.services.index') }}">
-        <i class="mdi mdi-image-multiple menu-icon"></i>
-        <span class="menu-title">@lang('services')</span>
-      </a>
-    </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="collapse" href="#services" aria-expanded="false" aria-controls="services">
+          <i class="mdi mdi-image-multiple menu-icon"></i>
+          <span class="menu-title">@lang('services')</span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="services">
+          <ul class="nav flex-column sub-menu">
+{{--            @can('admin.reports.subscriptions')--}}
+              <li class="nav-item">
+                <a class="nav-link" href="{{ route('admin.services.index',['type'=>'WorkWay']) }}">@lang('work_way')</a>
+              </li>
+{{--            @endcan--}}
+{{--            @can('admin.reports.users')--}}
+              <li class="nav-item">
+                <a class="nav-link" href="{{ route('admin.services.index',['type'=>'Store']) }}"> @lang('store')</a>
+              </li>
+{{--            @endcan--}}
+          </ul>
+        </div>
+      </li>
+
     @endcan
     @can('admin.subscriptions.index')
     <li class="nav-item">

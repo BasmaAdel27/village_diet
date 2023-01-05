@@ -76,4 +76,6 @@ Route::get('subscriptions', [SubscriptionController::class, 'index'])->name('sub
 Route::put('subscriptions/active/{id}', [SubscriptionController::class, 'active'])->name('subscriptions.active');
 Route::put('subscriptions/inactive/{id}', [SubscriptionController::class, 'inactive'])->name('subscriptions.inactive');
 Route::resource('services', ServiceController::class)->except('show');
+Route::post('services/show', [ServiceController::class, 'showSection'])->name('services.show');
+Route::post('services/disable', [ServiceController::class, 'disableSection'])->name('services.disable');
 Route::resource('common_questions', FaqsController::class);

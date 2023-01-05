@@ -33,6 +33,8 @@
   @include('admin.layout.helpers.active_script')
   @include('admin.layout.helpers.cancel_script')
   @include('admin.layout.helpers.inactive_script')
+  @include('admin.layout.helpers.showSection_script')
+  @include('admin.layout.helpers.diasbleSection_script')
 </body>
 
 </html>
