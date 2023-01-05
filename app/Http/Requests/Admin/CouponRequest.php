@@ -22,7 +22,7 @@ class CouponRequest extends FormRequest
     {
         $dt = Carbon::now()->format('Y-m-d');
         $rules = [
-            'code' => 'required|min:6|max:6',
+            'code' => 'required',
             'activate_date' => 'required|after_or_equal:'.$dt,
             'end_date' => 'required|after_or_equal:activate_date',
             'amount' => 'required|numeric',

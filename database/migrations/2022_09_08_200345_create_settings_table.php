@@ -49,6 +49,8 @@ class CreateSettingsTable extends Migration
             $table->string('snapchat')->nullable();
             $table->string('tiktok')->nullable();
             $table->string('instagram')->nullable();
+            $table->string('linkedin')->nullable();
+            $table->string('lifestyle_link')->nullable();
 
             $table->string('whatsapp_number')->nullable();
             $table->string('link_status')->nullable();

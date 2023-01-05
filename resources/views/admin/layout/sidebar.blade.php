@@ -61,16 +61,15 @@
         </a>
         <div class="collapse" id="services">
           <ul class="nav flex-column sub-menu">
-{{--            @can('admin.reports.subscriptions')--}}
+            @can('admin.services.index')
               <li class="nav-item">
                 <a class="nav-link" href="{{ route('admin.services.index',['type'=>'WorkWay']) }}">@lang('work_way')</a>
               </li>
-{{--            @endcan--}}
-{{--            @can('admin.reports.users')--}}
+
               <li class="nav-item">
                 <a class="nav-link" href="{{ route('admin.services.index',['type'=>'Store']) }}"> @lang('store')</a>
               </li>
-{{--            @endcan--}}
+           @endcan
           </ul>
         </div>
       </li>

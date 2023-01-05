@@ -48,6 +48,8 @@ class SettingRequest extends FormRequest
             'android_url'=>'nullable',
             'ios_url'=>'nullable',
             'visit_store'=>'nullable',
+            'linkedin'=>'nullable',
+            'lifestyle_link'=>'nullable',
         ];
     }
 }
