@@ -16,9 +16,11 @@
   <div class="container">
     <div class="row">
       <div class="col-12 mb-4">
+        @if (!$staticPage->slug == 'about-village-diet')
         <div class="image-sheet-meals-content">
           <img src="{{ $staticPage->image }}" loading="lazy" alt="" />
         </div>
+        @endif
         <p class="desc">
           {!! $staticPage->content !!}
         </p>

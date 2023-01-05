@@ -1,3 +1,7 @@
+@php
+$aboutUs = \App\Models\StaticPage\StaticPage::where('slug','about-village-diet')->first();
+@endphp
+
 <div class="container">
   <form action="{{ route('website.subscribe') }}" class="form-contain" method="POST">@csrf
     <div class="form-title">
@@ -24,54 +28,54 @@
         <ul class="socail-media">
 
           @if(isset($setting->twitter))
-            <li>
-              <a href="{{ $setting->twitter }}" target="_blank">
-                <img src="{{asset('website/assets/images/footer/twitter.svg')}}" loading="lazy" alt="" />
-              </a>
-            </li>
+          <li>
+            <a href="{{ $setting->twitter }}" target="_blank">
+              <img src="{{asset('website/assets/images/footer/twitter.svg')}}" loading="lazy" alt="" />
+            </a>
+          </li>
           @endif
-            @if(isset($setting->instagram))
+          @if(isset($setting->instagram))
           <li>
             <a href="{{ $setting->instagram }}" target="_blank">
               <img src="{{ asset('website/assets/images/footer/instagram.svg') }}" loading="lazy" alt="" />
             </a>
           </li>
-            @endif
-              @if(isset($setting->tiktok))
+          @endif
+          @if(isset($setting->tiktok))
           <li>
             <a href="{{ $setting->tiktok }}" target="_blank">
               <img src="{{asset('website/assets/images/footer/tik-tok.svg')}}" loading="lazy" alt="" />
             </a>
           </li>
-            @endif
-                @if(isset($setting->linkedin))
+          @endif
+          @if(isset($setting->linkedin))
           <li>
             <a href="{{ $setting->linkedin }}" target="_blank">
               <img src="{{asset('website/assets/images/footer/linkedin.svg')}}" loading="lazy" alt="" />
             </a>
           </li>
-            @endif
-                  @if(isset($setting->snapchat))
+          @endif
+          @if(isset($setting->snapchat))
           <li>
             <a href="{{ $setting->snapchat }}" target="_blank">
               <img src="{{asset('website/assets/images/footer/snapchat.svg')}}" loading="lazy" alt="" />
             </a>
           </li>
-            @endif
-            @if(isset($setting->facebook))
+          @endif
+          @if(isset($setting->facebook))
           <li>
             <a href="{{ $setting->facebook }}" target="_blank">
               <img src="{{ asset('website/assets/images/footer/facebook.svg') }}" loading="lazy" alt="" />
             </a>
           </li>
-            @endif
-                      @if(isset($setting->youtube))
+          @endif
+          @if(isset($setting->youtube))
           <li>
             <a href="{{ $setting->youtube }}">
               <img src="{{asset('website/assets/images/footer/youtube.svg')}}" loading="lazy" alt="" />
             </a>
           </li>
-              @endif
+          @endif
         </ul>
       </div>
     </div>
@@ -86,7 +90,7 @@
               <a href="{{ route('website.home') }}">@lang('home')</a>
             </li>
             <li>
-              <a href="{{ route('website.home') }}#about-us">@lang('about_us')</a>
+              <a href="{{ route('website.static_pages.show',$aboutUs->id) }}">{{ $aboutUs->title }}</a>
             </li>
             <li>
               <a href="{{ route('website.faqs') }}">@lang('faq')</a>

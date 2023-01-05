@@ -38,10 +38,6 @@
 
                   <span>@lang('more_than')</span>
                 </a>
-
-                <a href="#" class="video-play">
-                  <img src="{{asset('website/assets/images/about/video.svg')}}" loading="lazy" alt="" />
-                </a>
               </div>
             </div>
           </div>
@@ -53,9 +49,6 @@
                 <a href="{{ route('website.food_recipes') }}" class="custom-btn secondary-color">
                   <img src="{{asset('website/assets/images/icons/arrow.svg')}}" loading="lazy" alt="" />
                   <span> @lang('more_than')</span>
-                </a>
-                <a href="#" class="video-play">
-                  <img src="{{asset('website/assets/images/about/video.svg')}}" loading="lazy" alt="" />
                 </a>
               </div>
             </div>

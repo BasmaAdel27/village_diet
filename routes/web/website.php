@@ -31,7 +31,7 @@ Route::get('/customers_opinions', [CustomerOpinionController::class, 'index'])->
 
 
 Route::post('subscribe', [SubscribeController::class, 'subscribe'])->name('subscribe');
-Route::get('static_pages/{id}', function (StaticPage $staticPage) {
+Route::get('static_pages/{staticPage}', function (StaticPage $staticPage) {
     return view('website/pages/static_page', ['staticPage' => $staticPage]);
 })->name('static_pages.show');
 

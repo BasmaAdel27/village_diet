@@ -72,6 +72,6 @@ return [
         "The ability to view new content for individuals",
         "The ability to participate in written content and pictures",
         "The ability to share audio files", "Interaction with all members of the community",
-        'added_to_society' => 'You have been added to a new community under the auspices of Coach :trainer'
-    ]
+    ],
+    'added_to_society' => 'You have been added to a new community under the auspices of Coach :trainer',
 ];

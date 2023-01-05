@@ -40,12 +40,13 @@ class AppServiceProvider extends ServiceProvider
             $staticPages = StaticPage::WhereNotIn('slug', [
                 'About-Village-Diet',
                 'Our-Vision',
-                'Food-Recipes'
+                'Food-Recipes',
+                'advantages'
             ])
                 ->where('is_active', true)
-                ->where('is_show_in_app', false)
                 ->listsTranslations('title')
-                ->select('static_pages.id')->get();
+                ->select('static_pages.id')
+                ->get();
 
             View::share('staticPages', $staticPages);
         } catch (\Throwable $th) {
