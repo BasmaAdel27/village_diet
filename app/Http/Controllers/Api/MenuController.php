@@ -27,6 +27,7 @@ class MenuController extends Controller
                 'snapchat',
                 'tiktok',
                 'instagram',
+                'linkedin',
                 'latitude',
                 'longitude',
                 'address',

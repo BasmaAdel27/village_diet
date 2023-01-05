@@ -45,6 +45,7 @@ class SettingRequest extends FormRequest
             'snapchat' => 'nullable|string',
             'tiktok' => 'nullable|string',
             'instagram' => 'nullable|string',
+            'linkedin' => 'nullable|string',
             'android_url'=>'nullable',
             'ios_url'=>'nullable',
             'visit_store'=>'nullable',

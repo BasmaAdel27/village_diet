@@ -22,62 +22,56 @@
           @lang('start_now')
         </p>
         <ul class="socail-media">
-          @if($setting->facebook !=null)
-          <li>
-            <a href="{{ $setting->facebook }}" target="_blank">
-              <img src="{{ asset('website/assets/images/footer/facebook.svg') }}" loading="lazy" alt="" />
-            </a>
-          </li>
-          @endif
-          @if($setting->instagram !=null)
+
+          @if(isset($setting->twitter))
             <li>
-            <a href="{{ $setting->instagram }}" target="_blank">
-              <img src="{{ asset('website/assets/images/footer/instagram.svg') }}" loading="lazy" alt="" />
-            </a>
-          </li>
-          @endif
-          @if($setting->snapchat !=null)
-              <li>
-              <a href="{{ $setting->snapchat }}" target="_blank">
-                <img src="{{asset('website/assets/images/footer/snapchat.svg')}}" loading="lazy" alt="" />
-              </a>
-            </li>
-          @endif
-          @if($setting->twitter !=null)
-              <li>
               <a href="{{ $setting->twitter }}" target="_blank">
                 <img src="{{asset('website/assets/images/footer/twitter.svg')}}" loading="lazy" alt="" />
               </a>
             </li>
           @endif
-          @if($setting->tiktok !=null)
-              <li>
-              <a href="{{ $setting->tiktok }}" target="_blank">
-                <img src="{{asset('website/assets/images/footer/tik-tok.svg')}}" loading="lazy" alt="" />
-              </a>
-            </li>
-          @endif
-          @if($setting->youtube !=null)
-              <li>
-              <a href="{{ $setting->youtube }}" target="_blank">
-                <img src="{{asset('website/assets/images/footer/youtube.svg')}}" loading="lazy" alt="" />
-              </a>
-            </li>
-          @endif
-            @if($setting->linkedin !=null)
-              <li>
-              <a href="{{ $setting->linkedin }}" target="_blank">
-                <img src="{{asset('website/assets/images/footer/linkedin.svg')}}" loading="lazy" alt="" />
-              </a>
-            </li>
-          @endif
-
-
-
-
-
-
-
+            @if(isset($setting->instagram))
+          <li>
+            <a href="{{ $setting->instagram }}" target="_blank">
+              <img src="{{ asset('website/assets/images/footer/instagram.svg') }}" loading="lazy" alt="" />
+            </a>
+          </li>
+            @endif
+              @if(isset($setting->tiktok))
+          <li>
+            <a href="{{ $setting->tiktok }}" target="_blank">
+              <img src="{{asset('website/assets/images/footer/tik-tok.svg')}}" loading="lazy" alt="" />
+            </a>
+          </li>
+            @endif
+                @if(isset($setting->linkedin))
+          <li>
+            <a href="{{ $setting->linkedin }}" target="_blank">
+              <img src="{{asset('website/assets/images/footer/linkedin.svg')}}" loading="lazy" alt="" />
+            </a>
+          </li>
+            @endif
+                  @if(isset($setting->snapchat))
+          <li>
+            <a href="{{ $setting->snapchat }}" target="_blank">
+              <img src="{{asset('website/assets/images/footer/snapchat.svg')}}" loading="lazy" alt="" />
+            </a>
+          </li>
+            @endif
+            @if(isset($setting->facebook))
+          <li>
+            <a href="{{ $setting->facebook }}" target="_blank">
+              <img src="{{ asset('website/assets/images/footer/facebook.svg') }}" loading="lazy" alt="" />
+            </a>
+          </li>
+            @endif
+                      @if(isset($setting->youtube))
+          <li>
+            <a href="{{ $setting->youtube }}">
+              <img src="{{asset('website/assets/images/footer/youtube.svg')}}" loading="lazy" alt="" />
+            </a>
+          </li>
+              @endif
         </ul>
       </div>
     </div>

@@ -38,6 +38,7 @@ class SettingSeeder extends Seeder
             'snapchat' => 'https//www.snapchat.com',
             'tiktok' => 'https//www.tiktok.com',
             'instagram' => 'https//www.instagram.com',
+            'linkedin' => 'https//www.linkedin.com',
             'visit_store'=>'https//www.store.com',
              'android_url'=> 'https//www.android.com',
             'ios_url'=>'https//www.ios.com',

@@ -326,6 +326,7 @@
   "Store": "المتجر",
   "ordering": "الترتيب",
   "facebook": "فيس بوك",
+  "linkedin": "لينكدان",
   "snapchat": "سناب شات",
   "youtube": "يوتيوب",
   "tiktok": "تيك توك",
@@ -366,6 +367,5 @@
   "disable_in_website": "إخفاء في الموقع",
   "show_in_website": "عرض في الموقع",
   "url": "الرابط",
-  "linkedin": "لينكد إن",
   "lifestyle_link": "رابط (تطبيقات اسلوب الحياه)"
 }
