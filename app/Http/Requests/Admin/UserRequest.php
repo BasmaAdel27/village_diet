@@ -20,7 +20,7 @@ class UserRequest extends FormRequest
             'phone' => 'required',
             'date_of_birth' => 'required',
             'country_id' => 'required',
-            'state_id' => 'required',
+            'city' => 'nullable',
             'address' => 'required',
             'insta_link' => 'required',
         ];

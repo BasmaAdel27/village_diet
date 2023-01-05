@@ -8,6 +8,12 @@
 @endif
 @endsection
 @section('content')
+  <div class="card mt-5">
+    <div class="card-header d-flex justify-content-between">
+      <h2 class="mb-4"></h2>
+      <a href="{{ route('trainer.users.index')}}"
+         class="btn btn-outline-dark btn-lg font-weight-bold">@lang('back')</a>
+    </div>
 <div class="card chat-app">
   <div class="chat">
     <div class="chat-header clearfix">
@@ -105,6 +111,7 @@
 
   </div>
 </div>
+  </div>
 @endsection
 @section('scripts')
 <script src="{{ asset('adminPanel/js/trainerChat.js') }}"></script>

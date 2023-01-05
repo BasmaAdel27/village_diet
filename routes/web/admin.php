@@ -24,7 +24,8 @@ use App\Http\Controllers\Admin\{
     CustomerOpinionController,
     ServiceController,
     SubscriptionController,
-    FaqsController
+    FaqsController,
+    CountryController
 };
 use Illuminate\Support\Facades\Route;
 
@@ -79,3 +80,4 @@ Route::resource('services', ServiceController::class)->except('show');
 Route::post('services/show', [ServiceController::class, 'showSection'])->name('services.show');
 Route::post('services/disable', [ServiceController::class, 'disableSection'])->name('services.disable');
 Route::resource('common_questions', FaqsController::class);
+Route::resource('countries', CountryController::class)->except('show');

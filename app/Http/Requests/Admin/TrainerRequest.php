@@ -29,6 +29,7 @@ class TrainerRequest extends FormRequest
               'last_name' => 'required|min:2|max:255',
                 'phone'=>'required',
                 'countries'=>'required',
+                'city'=>'nullable',
                 'address'=>'required|string',
                 'current_job'=>'required|string',
                 'body_shape'=>'required',

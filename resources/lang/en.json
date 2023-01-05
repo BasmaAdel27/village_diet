@@ -362,5 +362,8 @@
   "renew": "renew",
   "store": "Store",
   "url": "Url",
-  "lifestyle_link": "Lifestyle Link"
+  "lifestyle_link": "Lifestyle Link",
+  "country_name": "Country Name",
+  "country_name_en": "Country Name in English",
+  "country_name_ar": "Country Name in Arabic"
 }

@@ -30,7 +30,7 @@ class AuthResource extends JsonResource
             "insta_link" => $this->insta_link,
             "twitter_link" => $this->twitter_link,
             "country" => $this->country?->name,
-            "state" => $this->state?->name,
+            "state" => $this->city,
             'created_at' => $this->created_at,
             'image' => $this->image,
             'subscription_day' => isset($day) ? DayResource::make($day) : null,

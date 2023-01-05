@@ -367,5 +367,8 @@
   "disable_in_website": "إخفاء في الموقع",
   "show_in_website": "عرض في الموقع",
   "url": "الرابط",
-  "lifestyle_link": "رابط (تطبيقات اسلوب الحياه)"
+  "lifestyle_link": "رابط (تطبيقات اسلوب الحياه)",
+  "country_name": "اسم الدوله",
+  "country_name_en": "اسم الدوله باللغه الانجليزيه",
+  "country_name_ar": "اسم الدوله باللغه العربيه"
 }

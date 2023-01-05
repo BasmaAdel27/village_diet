@@ -51,16 +51,11 @@
             </select>
           </div>
 
+
           <div class="form-group col-6">
-            <label>@lang('states')</label>
-            <select name="states" id='state1' class="form-control">
-              @foreach ($states as $id => $name)
-              <option value="{{$id}}" {{$id==$trainer->user->state_id ?'selected': '' }}>{{trans($name)}}</option>
-
-              @endforeach
-            </select>
+            <label>@lang("city")</label>
+            <input type="text" class="form-control" name='city' value="{{$trainer->user->city}}">
           </div>
-
           <div class="form-group col-6">
             <label>@lang("address")</label>
             <input type="text" class="form-control" name='address' value="{{$trainer->user->address}}">
@@ -166,28 +161,7 @@
 @endsection
 @section('scripts')
 <script>
-  $(document).ready(function () {
-      $('#country1').on('change', function () {
-      var country_id = this.value;
-      $("#state").html('');
-      $.ajax({
-        url: "{{ route('admin.states') }}",
-        type : "get",
-        data : {
-          'country_id' : country_id
-        },
-        success: function (result) {
-          $('#state').html('<option value="">اختر المدينة</option>');
-          $.each(result, function (key, value) {
-            $("#state").append('<option value="' + key + '">' + value + '</option>');
 
-          });
-
-        }
-
-      })
-    });
-    });
   $("#certificate").change(function () {
     var selected_option = $('#certificate').val();
     if (selected_option == 1) {
