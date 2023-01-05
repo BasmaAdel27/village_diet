@@ -19,7 +19,7 @@
         <div class="image-sheet-meals-content">
           <img src="{{ $page->image }}" loading="lazy" alt="" />
         </div>
-        {{ $page->content }}
+        {!! $page->content !!}
       </div>
     </div>
   </div>

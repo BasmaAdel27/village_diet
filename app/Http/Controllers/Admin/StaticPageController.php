@@ -33,7 +33,7 @@ class StaticPageController extends Controller
     public function store(StaticPageRequest $request, StaticPage $staticPage)
     {
         $data = $request->validated();
-        $data['slug']=str_slug($data['en']['title']);
+        $data['slug'] = str_slug($data['en']['title']);
         $staticPage->fill($data)->save();
 
         return redirect()->route('admin.static_pages.index')->with('success', trans('created_successfully'));
@@ -49,7 +49,10 @@ class StaticPageController extends Controller
     public function update(StaticPageRequest $request, StaticPage $staticPage)
     {
         $data = $request->validated();
-        $data['slug']=str_slug($data['en']['title']);
+        if (!in_array($staticPage->slug, ['about-village-diet', 'our-vision', 'food-recipes', 'advantages'])) {
+            $data['slug'] = str_slug($data['en']['title']);
+        }
+
         $staticPage->fill($data)->save();
 
         return redirect()->route('admin.static_pages.index')->with('success', trans('updated_successfully'));

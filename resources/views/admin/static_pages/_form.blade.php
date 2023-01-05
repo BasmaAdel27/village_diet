@@ -2,17 +2,12 @@
   @foreach ($locales as $locale)
   <div class="form-group col-6">
     <label>@lang("name_$locale")</label>
-  @if(isset($staticPage))
-    @if($staticPage->slug == 'Food-Recipes' || $staticPage->slug == 'Our-Vision' || $staticPage->slug =='About-Village-Diet')
-        <input type="text" class="form-control" placeholder='@lang("name_$locale")' name={{ $locale }}[title]
-          value='{{ $staticPage->translate($locale)?->title}}' readonly>
+    @if(isset($staticPage))
+    <input type="text" class="form-control" placeholder='@lang("name_$locale")' name={{ $locale }}[title]
+      value='{{ $staticPage->translate($locale)?->title}}'>
     @else
-        <input type="text" class="form-control" placeholder='@lang("name_$locale")' name={{ $locale }}[title]
-               value='{{ $staticPage->translate($locale)?->title}}'>
+    <input type="text" class="form-control" placeholder='@lang("name_$locale")' name={{ $locale }}[title]>
     @endif
-  @else
-      <input type="text" class="form-control" placeholder='@lang("name_$locale")' name={{ $locale }}[title]>
-  @endif
   </div>
   @endforeach
   @foreach ($locales as $locale)
@@ -33,10 +28,10 @@
     <label>@lang('status')</label>
     <select name="is_active" class="form-control">
       @if(isset($staticPage) && $staticPage->slug == 'food-recipes')
-        <option value="1" readonly="">@lang('active')</option>
+      <option value="1" readonly="">@lang('active')</option>
       @else
-        <option value="">@lang('select')</option>
-        <option value="1" {{ isset($staticPage) && $staticPage->is_active == '1' ? 'selected' : '' }}>@lang('active')
+      <option value="">@lang('select')</option>
+      <option value="1" {{ isset($staticPage) && $staticPage->is_active == '1' ? 'selected' : '' }}>@lang('active')
       </option>
       <option value="0" {{ isset($staticPage) && $staticPage->is_active == '0' ? 'selected' : '' }}>@lang('inactive')
       </option>

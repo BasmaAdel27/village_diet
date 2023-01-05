@@ -1,3 +1,7 @@
+@php
+$aboutUs = \App\Models\StaticPage\StaticPage::where('slug','about-village-diet')->first();
+@endphp
+
 <div class="container">
   <div class="contain">
     <div class="hamburger">
@@ -12,7 +16,7 @@
 
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a href="{{ route('website.home') }}#about-us" class="nav-link">@lang('about_us')</a>
+        <a href="{{ route('website.static_pages.show',$aboutUs->id) }}" class="nav-link">{{ $aboutUs->title }}</a>
       </li>
 
       <li class="nav-item">
@@ -28,6 +32,13 @@
       <li class="nav-item">
         <a href="{{ route('website.customers_opinions.index') }}" class="nav-link"> @lang('customer_opinions') </a>
       </li>
+
+      @foreach ($staticPages as $page)
+      <li class="nav-item">
+        <a href="{{ route('website.static_pages.show',$page->id) }}" class="nav-link"> {{ $page->title }} </a>
+      </li>
+      @endforeach
+
       <li class="nav-item">
         <a href="{{ route('website.contact_us.index') }}" class="nav-link"> @lang('contact us') </a>
       </li>
