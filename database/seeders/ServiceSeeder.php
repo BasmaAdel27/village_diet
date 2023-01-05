@@ -13,7 +13,7 @@ class ServiceSeeder extends Seeder
         // step 1
         $one = Service::create([
             'ar' => [
-                'title' => 'عميلة التسجيل',
+                'title' => 'عملية التسجيل',
                 'description' => 'سجل اشتراكك في المنصة أولا ومن ثم تابع مهامك',
             ],
             'en' => [

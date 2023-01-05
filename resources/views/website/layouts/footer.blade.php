@@ -22,44 +22,45 @@
           @lang('start_now')
         </p>
         <ul class="socail-media">
+
           @if(isset($setting->twitter))
             <li>
-              <a href="{{ $setting->twitter }}">
+              <a href="{{ $setting->twitter }}" target="_blank">
                 <img src="{{asset('website/assets/images/footer/twitter.svg')}}" loading="lazy" alt="" />
               </a>
             </li>
           @endif
             @if(isset($setting->instagram))
           <li>
-            <a href="{{ $setting->instagram }}">
+            <a href="{{ $setting->instagram }}" target="_blank">
               <img src="{{ asset('website/assets/images/footer/instagram.svg') }}" loading="lazy" alt="" />
             </a>
           </li>
             @endif
               @if(isset($setting->tiktok))
           <li>
-            <a href="{{ $setting->tiktok }}">
+            <a href="{{ $setting->tiktok }}" target="_blank">
               <img src="{{asset('website/assets/images/footer/tik-tok.svg')}}" loading="lazy" alt="" />
             </a>
           </li>
             @endif
                 @if(isset($setting->linkedin))
           <li>
-            <a href="{{ $setting->linkedin }}">
+            <a href="{{ $setting->linkedin }}" target="_blank">
               <img src="{{asset('website/assets/images/footer/linkedin.svg')}}" loading="lazy" alt="" />
             </a>
           </li>
             @endif
                   @if(isset($setting->snapchat))
           <li>
-            <a href="{{ $setting->snapchat }}">
+            <a href="{{ $setting->snapchat }}" target="_blank">
               <img src="{{asset('website/assets/images/footer/snapchat.svg')}}" loading="lazy" alt="" />
             </a>
           </li>
             @endif
             @if(isset($setting->facebook))
           <li>
-            <a href="{{ $setting->facebook }}">
+            <a href="{{ $setting->facebook }}" target="_blank">
               <img src="{{ asset('website/assets/images/footer/facebook.svg') }}" loading="lazy" alt="" />
             </a>
           </li>

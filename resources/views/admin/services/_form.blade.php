@@ -22,14 +22,6 @@
     </select>
   </div>
   <div class="form-group col-6">
-    <label>@lang('type')</label>
-    <select name="type" class="form-control">
-      <option value="">@lang('select')</option>
-      <option value="WorkWay" {{ $service?->type == 'WorkWay' ? 'selected' : '' }}>@lang('WorkWay')</option>
-      <option value="Store" {{ $service?->type == 'Store' ? 'selected' : '' }}>@lang('Store')</option>
-    </select>
-  </div>
-  <div class="form-group col-6">
     <label>@lang('select_image')</label>
     <div class="custom-file">
       <input type="file" class="custom-file-input" name="image">
@@ -40,6 +32,11 @@
     <label>@lang('ordering')</label>
     <input type="text" name="ordering" class="form-control" value="{{ $service?->ordering ?? old('ordering') }}">
   </div>
+    <div class="form-group col-6">
+    <label>@lang('url')</label>
+    <input type="text" name="url" class="form-control" value="{{ $service?->url ?? old('url') }}">
+  </div>
+  <input type="hidden" value="{{request()->query('type')}}">
 </div>
 <div class="row">
   <div class="form-group col-6">

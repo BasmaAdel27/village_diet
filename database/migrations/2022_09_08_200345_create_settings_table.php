@@ -50,12 +50,14 @@ class CreateSettingsTable extends Migration
             $table->string('tiktok')->nullable();
             $table->string('instagram')->nullable();
             $table->string('linkedin')->nullable();
-
+            $table->string('lifestyle_link')->nullable();
             $table->string('whatsapp_number')->nullable();
             $table->string('link_status')->nullable();
             $table->string('website_title')->nullable();
             $table->text('website_description')->nullable();
             $table->string('visit_store')->nullable();
+            $table->boolean('show_workWay')->default(true);
+            $table->boolean('show_store')->default(false);
             $table->timestamps();
         });
     }

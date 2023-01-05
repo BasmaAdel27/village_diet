@@ -1,3 +1,4 @@
+@if($setting->show_store==1)
 <section class="take-now">
   <div class="container general-pattern right-pattern">
     <div class="heading">
@@ -10,13 +11,17 @@
     <div class="row">
       @foreach ($products as $product)
       <div class="col-lg-3 col-12 mb-4 box-contain">
+        <a href="{{$product->url}}">
         <div class="box">
           <img src="{{ $product->image }}" loading="lazy" alt="" />
           <h2>{{ $product->title }}</h2>
           <p>{{ $product->description }}</p>
         </div>
+        </a>
       </div>
+
       @endforeach
+      @if(isset($setting->visit_store))
       <div class="col-12">
         <div class="button-contain">
           <a href="{{ $setting->visit_store }}" class="custom-btn">
@@ -24,6 +29,8 @@
           </a>
         </div>
       </div>
+        @endif
     </div>
   </div>
 </section>
+@endif

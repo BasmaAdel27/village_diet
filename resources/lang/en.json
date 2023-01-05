@@ -288,7 +288,7 @@
   "more_than": "More Than",
   "who_us": "Who Us",
   "about_us_brief": "Learn about the Village Diet in simple lines",
-  "work_way": "Work Way",
+  "work_way": "How It Works",
   "work_way_steps": "The steps in which the Village Diet application works, from subscription to follow-up",
   "register_in": "Register ",
   "website_title": "Website Title",
@@ -359,5 +359,8 @@
   "join_news_letters": "Subscribe to the Newsletter",
   "system_append_on_automatic_rejoin": "The system is based on automatic subscription renewal upon activation The application and that the subscription value will be deducted automatically every month",
   "messages_welcome": "This option is available to users already registered in the system to reactivate their subscription to the Village Diet",
-  "renew": "renew"
+  "renew": "renew",
+  "store": "Store",
+  "url": "Url",
+  "lifestyle_link": "Lifestyle Link"
 }
