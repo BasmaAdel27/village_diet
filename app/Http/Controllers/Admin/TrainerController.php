@@ -49,7 +49,7 @@ class TrainerController extends Controller
             'insta_link' => $request->instagram,
             'twitter_link' => $request->twitter,
             'country_id' => $request->countries,
-            'state_id' => $request->states,
+            'city' => $request->city,
             'address' => $request->address,
             'password' => $request->password,
             'email_verified_at' => Carbon::now()
@@ -105,7 +105,7 @@ class TrainerController extends Controller
             'insta_link' => $request->instagram,
             'twitter_link' => $request->twitter,
             'country_id' => $request->countries,
-            'state_id' => $request->states,
+            'city' => $request->city,
             'address' => $request->address,
             'password' => $request->password,
         ]);

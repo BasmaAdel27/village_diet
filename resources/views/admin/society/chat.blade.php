@@ -9,6 +9,12 @@
     <link rel="stylesheet" href={{ asset('adminPanel/css/chat_ar.css') }}>
   @endif
   @section('content')
+    <div class="card mt-5">
+      <div class="card-header d-flex justify-content-between">
+        <h2 class="mb-4"></h2>
+        <a href="{{ route('admin.societies.index')}}"
+           class="btn btn-outline-dark btn-lg font-weight-bold">@lang('back')</a>
+      </div>
     <div class="card chat-app">
       <div class="chat" style=" margin-left:0px;">
         <div class="chat-header clearfix">
@@ -106,6 +112,7 @@
           </div>
         </div>
       </div>
+    </div>
     </div>
 
   @endsection

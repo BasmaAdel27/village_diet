@@ -52,12 +52,9 @@
           </div>
 
           <div class="form-group col-6">
-            <label>@lang('states')</label>
-            <select name="states" id='state' class="form-control">
-
-            </select>
+            <label>@lang("city")</label>
+            <input type="text" class="form-control" name='city'>
           </div>
-
           <div class="form-group col-6">
             <label>@lang("address")</label>
             <input type="text" class="form-control" name='address'>
@@ -159,28 +156,6 @@
 @endsection
 @section('scripts')
 <script>
-  $(document).ready(function () {
-    $('#country').on('change', function () {
-      var country_id = this.value;
-      $("#state").html('');
-      $.ajax({
-        url: "{{ route('admin.states') }}",
-        type : "get",
-        data : {
-          'country_id' : country_id
-        },
-        success: function (result) {
-          $('#state').html('<option value="">اختر المدينة</option>');
-          $.each(result, function (key, value) {
-            $("#state").append('<option value="' + key + '">' + value + '</option>');
-
-          });
-
-        }
-
-      })
-    });
-  });
   $("#license_img").hide();
   $("#license").change(function () {
     var selected_option = $('#license').val();

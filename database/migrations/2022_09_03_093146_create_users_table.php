@@ -24,7 +24,7 @@ class CreateUsersTable extends Migration
             $table->integer('wrong_attemp_count')->default(0);
 
             $table->foreignId('country_id')->nullable()->constrained('countries')->nullOnDelete();
-            $table->foreignId('state_id')->nullable()->constrained('states')->nullOnDelete();
+            $table->string('city')->nullable();
             $table->foreignId('society_id')->nullable()->constrained('societies')->nullOnDelete();
 
             $table->timestamp('email_verified_at')->nullable();

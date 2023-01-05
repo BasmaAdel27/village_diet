@@ -287,6 +287,14 @@
       </a>
     </li>
     @endcan
+    @can('admin.countries.index')
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('admin.countries.index') }}">
+          <i class="mdi mdi-map menu-icon"></i>
+          <span class="menu-title">@lang('countries')</span>
+        </a>
+      </li>
+    @endcan
     @can('admin.settings.index')
     <li class="nav-item">
       <a class="nav-link" href="{{ route('admin.settings.index') }}">
@@ -295,6 +303,7 @@
       </a>
     </li>
     @endcan
+
 
 
   </ul>

@@ -35,6 +35,12 @@
   @include('admin.layout.helpers.inactive_script')
   @include('admin.layout.helpers.showSection_script')
   @include('admin.layout.helpers.diasbleSection_script')
+  <script>
+    $(document).ready(function(){
+      // Initialize select2
+      $("#country").select2();
+    });
+  </script>
 </body>
 
 </html>

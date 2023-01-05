@@ -35,13 +35,8 @@
     </select>
   </div>
   <div class="form-group col-6">
-    <label>@lang('states')</label>
-    <select name="state_id" id='state' class="form-control">
-      @foreach ($states as $id => $name)
-      <option value="{{$id}}" {{$id==(isset($user) ? ($user->state_id) : old('state_id')) ?'selected': '' }}>{{
-        trans($name) }}</option>
-      @endforeach
-    </select>
+    <label>@lang("city")</label>
+    <input type="text" class="form-control" name='city' value="{{ isset($user) ? $user->city : old('city')}}">
   </div>
   <div class="form-group col-6">
     <label>@lang("address")</label>

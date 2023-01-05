@@ -10,7 +10,7 @@ class CreateCountriesTable extends Migration
     {
         Schema::create('countries', function (Blueprint $table) {
             $table->id();
-            $table->string('phone_code');
+            $table->string('phone_code')->nullable();
 
             $table->timestamps();
         });
