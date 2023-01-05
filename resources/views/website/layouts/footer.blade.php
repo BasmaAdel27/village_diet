@@ -57,12 +57,13 @@
             </a>
           </li>
             @endif
-                    @if(isset($setting->facebook))
+            @if(isset($setting->facebook))
           <li>
             <a href="{{ $setting->facebook }}">
               <img src="{{ asset('website/assets/images/footer/facebook.svg') }}" loading="lazy" alt="" />
             </a>
           </li>
+            @endif
                       @if(isset($setting->youtube))
           <li>
             <a href="{{ $setting->youtube }}">
