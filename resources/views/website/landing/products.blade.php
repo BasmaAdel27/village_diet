@@ -21,6 +21,7 @@
       </div>
 
       @endforeach
+      @if(isset($setting->visit_store))
       <div class="col-12">
         <div class="button-contain">
           <a href="{{ $setting->visit_store }}" class="custom-btn">
@@ -28,6 +29,7 @@
           </a>
         </div>
       </div>
+        @endif
     </div>
   </div>
 </section>
