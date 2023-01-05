@@ -33,12 +33,26 @@ class NotiifcationController extends Controller
             $users = User::all();
         }
 
+        $title = 'Village Diet';
+        $content = $data['data']['content'];
+        $message = [
+            'title' => $data['data']['title'],
+            'title_ar' =>  $data['data']['title'],
+            'body' => $data['data']['content'],
+            'body_ar' => $data['data']['content'],
+            'type' => 'adminDashboard',
+        ];
+
         foreach ($users as $user) {
             DatabaseNotification::create($data + [
                 'notifiable_id' => $user->id,
                 'notifiable_type' => 'App\Models\User',
                 'id' => Str::uuid()
             ]);
+
+            if ($user->firebase_token) {
+                send_notification([$user->firebase_token], $content, $title, $message);
+            }
         }
 
         return redirect()->route('admin.notifications.index')->with('success', trans('created_successfully'));
