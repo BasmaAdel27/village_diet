@@ -13,6 +13,7 @@ class VideoDatatable extends DataTable
     {
         return datatables()
             ->eloquent($query)
+            ->addIndexColumn()
             ->editColumn('translations.title', function ($q) {
                 return $q->translate(app()->getLocale())?->title;
             })
@@ -53,8 +54,7 @@ class VideoDatatable extends DataTable
     protected function getColumns()
     {
         return [
-            Column::make('id')->title(trans('ID')),
-            Column::make('translations.title')->title(trans('title'))->orderable(false),
+            Column::make('DT_RowIndex')->name('DT_RowIndex')->title(trans('ID'))->orderable(false)->searchable(false),            Column::make('translations.title')->title(trans('title'))->orderable(false),
             Column::make('day.translations.title')->title(trans('show_day'))->orderable(false),
             Column::make('is_active')->title(trans('status')),
             Column::make('created_at')->title(trans('created_at')),

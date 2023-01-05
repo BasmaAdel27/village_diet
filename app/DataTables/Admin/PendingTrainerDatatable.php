@@ -19,6 +19,7 @@ class PendingTrainerDatatable extends DataTable
     {
         return datatables()
             ->eloquent($query)
+            ->addIndexColumn()
             ->editColumn('status', function ($query) {
                 return ($query->status == 'DONE') ? '<span class="btn btn-success">' . trans('active') . "</span>" : '<span class="btn btn-danger">' . trans('inactive') . "</span>";
             })->editColumn('Action', function ($query) {
@@ -56,8 +57,7 @@ class PendingTrainerDatatable extends DataTable
     protected function getColumns()
     {
         return [
-            Column::make('id')->title(trans('ID')),
-            Column::make('trainer_name')->name('users.first_name')->title(trans('name'))->orderable(false),
+            Column::make('DT_RowIndex')->name('DT_RowIndex')->title(trans('ID'))->orderable(false)->searchable(false),            Column::make('trainer_name')->name('users.first_name')->title(trans('name'))->orderable(false),
             Column::make('phone')->name('users.phone')->title(trans('phone'))->orderable(false),
             Column::make('status')->title(trans('status')),
             Column::make('created_at')->title(trans('created_at')),

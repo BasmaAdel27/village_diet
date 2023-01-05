@@ -14,7 +14,7 @@ class PostelNewsDatatable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-
+            ->addIndexColumn()
             ->editColumn('Action', function ($query) {
                 return view('admin.postel_news.datatable.action', compact('query'));
             });
@@ -48,8 +48,7 @@ class PostelNewsDatatable extends DataTable
     {
         return [
 
-            Column::make('id')->title(trans('ID')),
-            Column::make('email')->title(trans('email')),
+            Column::make('DT_RowIndex')->name('DT_RowIndex')->title(trans('ID'))->orderable(false)->searchable(false),            Column::make('email')->title(trans('email')),
             Column::make('created_at')->title(trans('created_at')),
             Column::make('Action')->title(trans('action'))->searchable(false)->orderable(false),
         ];

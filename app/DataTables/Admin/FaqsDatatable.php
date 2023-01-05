@@ -16,13 +16,15 @@ class FaqsDatatable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-              ->editColumn('translations.question', function ($query) {
-                  return $query->translate(app()->getLocale())->question;
-              }) ->editColumn('is_active', function ($query) {
-                  return ($query->is_active == 1) ?  '<span class="btn btn-success">' . trans('active') . "</span>" : '<span class="btn btn-danger">' .  trans('inactive') . "</span>";
-              })->editColumn('Action', function ($query) {
-                  return view('admin.faqs.datatable.action', compact('query'));
-              })->rawColumns(['Action','is_active']);    }
+            ->addIndexColumn()
+            ->editColumn('translations.question', function ($query) {
+                return $query->translate(app()->getLocale())->question;
+            })->editColumn('is_active', function ($query) {
+                return ($query->is_active == 1) ?  '<span class="btn btn-success">' . trans('active') . "</span>" : '<span class="btn btn-danger">' .  trans('inactive') . "</span>";
+            })->editColumn('Action', function ($query) {
+                return view('admin.faqs.datatable.action', compact('query'));
+            })->rawColumns(['Action', 'is_active']);
+    }
 
     public function query()
     {
@@ -33,29 +35,28 @@ class FaqsDatatable extends DataTable
     public function html()
     {
         return $this->builder()
-              ->columns($this->getColumns())
-              ->minifiedAjax()
-              ->dom('lBfrtip')
-              ->orderBy(1)
-              ->lengthMenu([7, 10, 25, 50, 75, 100])
-              ->buttons(
-                    Button::make('create'),
-                    Button::make('export'),
-                    Button::make('print'),
-                    Button::make('reset'),
-                    Button::make('reload')
-              );
+            ->columns($this->getColumns())
+            ->minifiedAjax()
+            ->dom('lBfrtip')
+            ->orderBy(1)
+            ->lengthMenu([7, 10, 25, 50, 75, 100])
+            ->buttons(
+                Button::make('create'),
+                Button::make('export'),
+                Button::make('print'),
+                Button::make('reset'),
+                Button::make('reload')
+            );
     }
 
 
     protected function getColumns()
     {
         return [
-              Column::make('id')->title(trans('ID')),
-              Column::make('translations.question')->title(trans('question'))->orderable(false),
-              Column::make('is_active')->title(trans('status')),
-              Column::make('created_at')->title(trans('created_at')),
-              Column::make('Action')->title(trans('action'))->searchable(false)->orderable(false),
+            Column::make('DT_RowIndex')->name('DT_RowIndex')->title(trans('ID'))->orderable(false)->searchable(false),              Column::make('translations.question')->title(trans('question'))->orderable(false),
+            Column::make('is_active')->title(trans('status')),
+            Column::make('created_at')->title(trans('created_at')),
+            Column::make('Action')->title(trans('action'))->searchable(false)->orderable(false),
         ];
     }
 

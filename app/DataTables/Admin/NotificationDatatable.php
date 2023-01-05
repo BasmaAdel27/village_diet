@@ -13,6 +13,7 @@ class NotificationDatatable extends DataTable
     {
         return datatables()
             ->eloquent($query)
+            ->addIndexColumn()
             ->editColumn('title', function ($q) {
                 return $q->data['title'] ?? '';
             })
@@ -49,8 +50,7 @@ class NotificationDatatable extends DataTable
     protected function getColumns()
     {
         return [
-            Column::make('id')->title(trans('ID')),
-            Column::make('title')->title(trans('title'))->orderable(false)->searchable(false),
+            Column::make('DT_RowIndex')->name('DT_RowIndex')->title(trans('ID'))->orderable(false)->searchable(false),            Column::make('title')->title(trans('title'))->orderable(false)->searchable(false),
             Column::make('type')->title(trans('type')),
             Column::make('created_at')->title(trans('created_at')),
             Column::make('Action')->title(trans('action'))->searchable(false)->orderable(false)
