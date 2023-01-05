@@ -23,8 +23,8 @@
         </p>
         <ul class="socail-media">
           <li>
-            <a href="{{ $setting->facebook }}">
-              <img src="{{ asset('website/assets/images/footer/facebook.svg') }}" loading="lazy" alt="" />
+            <a href="{{ $setting->twitter }}">
+              <img src="{{asset('website/assets/images/footer/twitter.svg')}}" loading="lazy" alt="" />
             </a>
           </li>
 
@@ -33,13 +33,6 @@
               <img src="{{ asset('website/assets/images/footer/instagram.svg') }}" loading="lazy" alt="" />
             </a>
           </li>
-
-          <li>
-            <a href="{{ $setting->snapchat }}">
-              <img src="{{asset('website/assets/images/footer/snapchat.svg')}}" loading="lazy" alt="" />
-            </a>
-          </li>
-
           <li>
             <a href="{{ $setting->tiktok }}">
               <img src="{{asset('website/assets/images/footer/tik-tok.svg')}}" loading="lazy" alt="" />
@@ -47,11 +40,20 @@
           </li>
 
           <li>
-            <a href="{{ $setting->twitter }}">
-              <img src="{{asset('website/assets/images/footer/twitter.svg')}}" loading="lazy" alt="" />
+            <a href="{{ $setting->linkedin }}">
+              <img src="{{asset('website/assets/images/footer/linkedin.svg')}}" loading="lazy" alt="" />
             </a>
           </li>
-
+          <li>
+            <a href="{{ $setting->snapchat }}">
+              <img src="{{asset('website/assets/images/footer/snapchat.svg')}}" loading="lazy" alt="" />
+            </a>
+          </li>
+          <li>
+            <a href="{{ $setting->facebook }}">
+              <img src="{{ asset('website/assets/images/footer/facebook.svg') }}" loading="lazy" alt="" />
+            </a>
+          </li>
           <li>
             <a href="{{ $setting->youtube }}">
               <img src="{{asset('website/assets/images/footer/youtube.svg')}}" loading="lazy" alt="" />
