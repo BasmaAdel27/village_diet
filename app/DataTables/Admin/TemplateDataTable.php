@@ -26,7 +26,7 @@ class TemplateDataTable extends DataTable
             ->editColumn('translations.content', function ($query) {
                 return $query->translate(app()->getLocale())->content;
             })
-            ->rawColumns(['is_active', 'Action']);
+            ->rawColumns(['is_active', 'Action', 'translations.content']);
     }
 
     public function query()

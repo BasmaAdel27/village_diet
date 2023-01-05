@@ -16,7 +16,8 @@ class PostalNewsRequest extends FormRequest
         return [
             "title" => "required|string|max:255",
             "template" => "required|exists:templates,id",
-            "emails" => "required|array|min:1"
+            "emails" => "required|array|min:1",
+            "emails.*" => "required|email"
         ];
     }
 }
