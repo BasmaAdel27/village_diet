@@ -2,7 +2,6 @@
 
 namespace App\Models\Slider;
 
-use App\Traits\HasAssetsTrait;
 use App\Traits\HasTimestampTrait;
 use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -12,7 +11,7 @@ use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 
 class Slider extends Model implements TranslatableContract
 {
-    use HasFactory, HasAssetsTrait, HasTimestampTrait, Translatable;
+    use HasFactory, HasTimestampTrait, Translatable;
 
     public $translatedAttributes = ['title', 'description'];
     protected $fillable = [
@@ -20,18 +19,4 @@ class Slider extends Model implements TranslatableContract
         'link',
         'is_show_in_app',
     ];
-    public $assets = ['image'];
-
-    public static function boot()
-    {
-        parent::boot();
-        static::saved(function ($model) {
-            $model->saveAssets($model, request());
-        });
-    }
-
-    public function getImageAttribute()
-    {
-        return $this->images()->where('option', 'image')->value('media');
-    }
 }
