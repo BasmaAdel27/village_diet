@@ -14,13 +14,6 @@
   </div>
   @endforeach
   <div class="form-group col-6">
-    <label>@lang('select_image')</label>
-    <div class="custom-file">
-      <input type="file" class="custom-file-input" name="image">
-      <label class="custom-file-label">Choose file</label>
-    </div>
-  </div>
-  <div class="form-group col-6">
     <label>@lang("link")</label>
     <input type="text" class="form-control" placeholder='@lang("link")' name="link"
       value="{{ isset($slider) ? $slider->link : old(" link")}}">

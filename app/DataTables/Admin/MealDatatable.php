@@ -14,19 +14,20 @@ class MealDatatable extends DataTable
     {
         return datatables()
             ->eloquent($query)
+            ->addIndexColumn()
             ->editColumn('translations.breakfast', function ($query) {
-              return  "<p style='white-space: nowrap; width: 100px; overflow: hidden; text-overflow: ellipsis;'>" .$query->translate(app()->getLocale())->breakfast."</p>";
+                return  "<p style='white-space: nowrap; width: 100px; overflow: hidden; text-overflow: ellipsis;'>" . $query->translate(app()->getLocale())->breakfast . "</p>";
             })->editColumn('translations.lunch', function ($query) {
-                  return  "<p style='white-space: nowrap; width: 100px; overflow: hidden; text-overflow: ellipsis;'>" .$query->translate(app()->getLocale())->lunch."</p>";
+                return  "<p style='white-space: nowrap; width: 100px; overflow: hidden; text-overflow: ellipsis;'>" . $query->translate(app()->getLocale())->lunch . "</p>";
             })->editColumn('translations.dinner', function ($query) {
-                  return  "<p style='white-space: nowrap; width: 100px; overflow: hidden; text-overflow: ellipsis;'>" .$query->translate(app()->getLocale())->dinner."</p>";
+                return  "<p style='white-space: nowrap; width: 100px; overflow: hidden; text-overflow: ellipsis;'>" . $query->translate(app()->getLocale())->dinner . "</p>";
             })->editColumn('day.translations.title', function ($query) {
                 return $query->day->translate(app()->getLocale())->title;
             })->editColumn('is_active', function ($query) {
                 return ($query->is_active == 1) ?  '<span class="btn btn-success">' . trans('active') . "</span>" : '<span class="btn btn-danger">' .  trans('inactive') . "</span>";
             })->editColumn('Action', function ($query) {
                 return view('admin.meals.datatable.action', compact('query'));
-            })->rawColumns(['translations.breakfast','translations.lunch','translations.dinner','is_active', 'Active']);
+            })->rawColumns(['translations.breakfast', 'translations.lunch', 'translations.dinner', 'is_active', 'Active']);
     }
 
 
@@ -61,7 +62,7 @@ class MealDatatable extends DataTable
     protected function getColumns()
     {
         return [
-            Column::make('id')->title(trans('ID')),
+            Column::make('DT_RowIndex')->name('DT_RowIndex')->title(trans('ID'))->orderable(false)->searchable(false),
             Column::make('translations.breakfast')->title(trans('breakfast'))->orderable(false),
             Column::make('translations.lunch')->title(trans('lunch'))->orderable(false),
             Column::make('translations.dinner')->title(trans('dinner'))->orderable(false),

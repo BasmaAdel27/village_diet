@@ -15,6 +15,7 @@ class ServiceDatatable extends DataTable
     {
         return datatables()
             ->eloquent($query)
+            ->addIndexColumn()
             ->editColumn('Action', function ($query) {
                 return view('admin.services.datatable.action', compact('query'));
             })
@@ -32,11 +33,10 @@ class ServiceDatatable extends DataTable
 
     public function query()
     {
-        if (\request()->query('type')=='Store'){
-        return Service::with('translations')->select('services.*')->where('type','Store')->newQuery();
-        }else{
-            return Service::with('translations')->select('services.*')->where('type','WorkWay')->newQuery();
-
+        if (\request()->query('type') == 'Store') {
+            return Service::with('translations')->select('services.*')->where('type', 'Store')->newQuery();
+        } else {
+            return Service::with('translations')->select('services.*')->where('type', 'WorkWay')->newQuery();
         }
     }
 
@@ -62,8 +62,7 @@ class ServiceDatatable extends DataTable
     protected function getColumns()
     {
         return [
-            Column::make('id')->title(trans('ID')),
-            Column::make('is_active')->title(trans('status')),
+            Column::make('DT_RowIndex')->name('DT_RowIndex')->title(trans('ID'))->orderable(false)->searchable(false),            Column::make('is_active')->title(trans('status')),
             Column::make('translations.title')->title(trans('title'))->orderable(true),
             Column::make('translations.description')->title(trans('description'))->orderable(false),
             Column::make('url')->title(trans('url'))->orderable(false),

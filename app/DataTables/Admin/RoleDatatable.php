@@ -13,6 +13,7 @@ class RoleDatatable extends DataTable
     {
         return datatables()
             ->eloquent($query)
+            ->addIndexColumn()
             ->editColumn('Action', function ($query) {
                 return view('admin.roles.datatable.action', compact('query'));
             })->editColumn('created_at', function ($q) {
@@ -46,8 +47,7 @@ class RoleDatatable extends DataTable
     protected function getColumns()
     {
         return [
-            Column::make('id')->title(trans('ID')),
-            Column::make('name')->title(trans('name')),
+            Column::make('DT_RowIndex')->name('DT_RowIndex')->title(trans('ID'))->orderable(false)->searchable(false),            Column::make('name')->title(trans('name')),
             Column::make('created_at')->title(trans('created_at')),
             Column::make('Action')->title(trans('action'))->searchable(false)->orderable(false)
         ];

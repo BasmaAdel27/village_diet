@@ -12,6 +12,7 @@ class ContactUsDatatable extends DataTable
     public function dataTable($query)
     {
         return datatables()
+            ->addIndexColumn()
             ->eloquent($query)
             ->editColumn('Action', function ($query) {
                 return view('admin.contact_us.datatable.action', compact('query'));
@@ -45,8 +46,7 @@ class ContactUsDatatable extends DataTable
     protected function getColumns()
     {
         return [
-            Column::make('id')->title(trans('ID')),
-            Column::make('full_name')->title(trans('name')),
+            Column::make('DT_RowIndex')->name('DT_RowIndex')->title(trans('ID'))->orderable(false)->searchable(false),            Column::make('full_name')->title(trans('name')),
             Column::make('email')->title(trans('email')),
             Column::make('user_type')->title(trans('user type')),
             Column::make('message_type')->title(trans('message type')),

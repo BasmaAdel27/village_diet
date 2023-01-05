@@ -371,5 +371,10 @@
   "country_name": "اسم الدوله",
   "country_name_en": "اسم الدوله باللغه الانجليزيه",
   "country_name_ar": "اسم الدوله باللغه العربيه",
-  "advantages_subscribe": "مزايا الاشتراك"
+  "advantages_subscribe": "مزايا الاشتراك",
+  "user_details": "تفاصيل المستخدم",
+  "subscription_info": "تفاصيل الاشتراك",
+  "payment_method": "طريقة الدفع",
+  "init_amount": "القيمة",
+  "transaction_id": "الرقم المرجعي"
 }

@@ -14,6 +14,7 @@ class UserDatatable extends DataTable
     {
         return datatables()
             ->eloquent($query)
+            ->addIndexColumn()
             ->editColumn('is_active', function ($query) {
                 return ($query->is_active == 1) ?  '<span class="btn btn-success">' . trans('active') . "</span>" : '<span class="btn btn-danger">' .  trans('inactive') . "</span>";
             })
@@ -35,17 +36,17 @@ class UserDatatable extends DataTable
             ->editColumn('Action', function ($query) {
                 return view('trainer.users.datatable.action', compact('query'));
             })->editColumn('messageCount', function ($query) {
-                  return ($query->messagesCountTrainer($query->id) > 0) ?  '<span class="btn btn-danger" style="margin: auto">' . $query->messagesCountTrainer($query->id) . "</span>" : '<span class="btn btn-success">' .  $query->messagesCountTrainer($query->id) . "</span>";
-              })
-              ->rawColumns(['currentSubscription.status', 'Action','messageCount']);
+                return ($query->messagesCountTrainer($query->id) > 0) ?  '<span class="btn btn-danger" style="margin: auto">' . $query->messagesCountTrainer($query->id) . "</span>" : '<span class="btn btn-success">' .  $query->messagesCountTrainer($query->id) . "</span>";
+            })
+            ->rawColumns(['currentSubscription.status', 'Action', 'messageCount']);
     }
 
     public function query()
     {
         return User::whereHas('roles', fn ($q) => $q->where('name', 'user'))
-             ->whereHas('society', fn ($q) => $q->where('trainer_id', auth()->id()))
+            ->whereHas('society', fn ($q) => $q->where('trainer_id', auth()->id()))
             ->select('users.*')
-              ->with('currentSubscription')->newQuery();
+            ->with('currentSubscription')->newQuery();
     }
 
     public function html()
@@ -68,7 +69,7 @@ class UserDatatable extends DataTable
     protected function getColumns()
     {
         return [
-            Column::make('id')->title(trans('ID')),
+            Column::make('DT_RowIndex')->name('DT_RowIndex')->title(trans('ID'))->orderable(false)->searchable(false),
             Column::make('first_name')->title(trans('name'))->orderable(false),
             Column::make('society')->title(trans('society_name'))->orderable(false)->searchable(false),
             Column::make('currentSubscription.created_at')->title(trans('subscription_date'))->searchable(false),

@@ -366,5 +366,10 @@
   "country_name": "Country Name",
   "country_name_en": "Country Name in English",
   "country_name_ar": "Country Name in Arabic",
-  "advantages_subscribe": "Subscription benefits"
+  "advantages_subscribe": "Subscription benefits",
+  "user_details": "User Details",
+  "subscription_info": "Subscription Details",
+  "payment_method": "Payment Method",
+  "init_amount": "Amount",
+  "transaction_id": "Transaction Reference"
 }

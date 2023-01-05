@@ -13,6 +13,7 @@ class AdminDatatable extends DataTable
     {
         return datatables()
             ->eloquent($query)
+            ->addIndexColumn()
             ->editColumn('Action', function ($query) {
                 return view('admin.admins.datatable.action', compact('query'));
             })
@@ -47,8 +48,7 @@ class AdminDatatable extends DataTable
     protected function getColumns()
     {
         return [
-            Column::make('id')->title(trans('ID')),
-            Column::make('first_name')->orderable(true)->title(trans('first_name')),
+            Column::make('DT_RowIndex')->name('DT_RowIndex')->title(trans('ID'))->orderable(false)->searchable(false),            Column::make('first_name')->orderable(true)->title(trans('first_name')),
             Column::make('last_name')->orderable(true)->title(trans('last_name')),
             Column::make('email')->orderable(true)->title(trans('email')),
             Column::make('created_at')->title(trans('created_at')),

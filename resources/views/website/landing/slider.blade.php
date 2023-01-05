@@ -1,7 +1,7 @@
 <header>
   <div class="container">
-    <div class="row">
-      <div class="col-lg-5 col-12 mb-4">
+    <div class="row" style="direction: rtl">
+      <div class="col-lg-5 col-12 mb-4" style="text-align:right;">
         <div class="swiper swiper-header">
           <div class="swiper-wrapper">
             @foreach ($sliders as $slide)
@@ -14,7 +14,7 @@
                 <p>
                   {{ $slide->description }}
                 </p>
-                <a href="{{ $slide->link }}" class="custom-btn secondary-color">
+                <a href="{{ $slide->link }}" class="custom-btn secondary-color" style="direction:ltr;">
                   <img src="{{asset('website/assets/images/icons/arrow.svg')}}" loading="lazy" alt="" />
                   <span>@lang('more_than')</span>
                 </a>

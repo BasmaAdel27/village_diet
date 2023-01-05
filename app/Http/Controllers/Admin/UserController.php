@@ -40,17 +40,22 @@ class UserController extends Controller
         return $userDatatable->render('admin.users.index');
     }
 
+    public function show(User $user)
+    {
+        return view('admin.users.show', compact('user'));
+    }
+
     public function create()
     {
         $countries = Country::join('country_translations', 'countries.id', 'country_translations.country_id')
-              ->where('locale', app()->getLocale())
-              ->select('name', 'countries.id')
-              ->pluck('name', 'id');
+            ->where('locale', app()->getLocale())
+            ->select('name', 'countries.id')
+            ->pluck('name', 'id');
 
         $states = State::join('state_translations', 'states.id', 'state_translations.state_id')
-              ->where('locale', app()->getLocale())
-              ->select('name', 'states.id')
-              ->pluck('name', 'id');
+            ->where('locale', app()->getLocale())
+            ->select('name', 'states.id')
+            ->pluck('name', 'id');
         $subscriptionStatus = Subscription::STATUSES;
 
         return view('admin.users.create', compact('countries', 'states', 'subscriptionStatus'));
@@ -66,13 +71,13 @@ class UserController extends Controller
         $user->save();
 
         Subscription::create([
-              'status' => Subscription::ACTIVE,
-              'status_ar' => trans(Subscription::ACTIVE),
-              'amount' => 0,
-              'total_amount' => 0,
-              'payment_method' => 'cash',
-              'user_id' => $user->id,
-              'end_date' => now()->addDays(30),
+            'status' => Subscription::ACTIVE,
+            'status_ar' => trans(Subscription::ACTIVE),
+            'amount' => 0,
+            'total_amount' => 0,
+            'payment_method' => 'cash',
+            'user_id' => $user->id,
+            'end_date' => now()->addDays(30),
         ]);
 
 
@@ -80,7 +85,7 @@ class UserController extends Controller
 
         if ($request->subscribe) {
             Subscriber::create([
-                  'email' => $user->email
+                'email' => $user->email
             ]);
         }
         DB::commit();
@@ -91,14 +96,14 @@ class UserController extends Controller
     public function edit(User $user)
     {
         $countries = Country::join('country_translations', 'countries.id', 'country_translations.country_id')
-              ->where('locale', app()->getLocale())
-              ->select('name', 'countries.id')
-              ->pluck('name', 'id');
+            ->where('locale', app()->getLocale())
+            ->select('name', 'countries.id')
+            ->pluck('name', 'id');
 
         $states = State::join('state_translations', 'states.id', 'state_translations.state_id')
-              ->where('locale', app()->getLocale())
-              ->select('name', 'states.id')
-              ->pluck('name', 'id');
+            ->where('locale', app()->getLocale())
+            ->select('name', 'states.id')
+            ->pluck('name', 'id');
         $subscriptionStatus = Subscription::STATUSES;
 
         return view('admin.users.edit', compact('countries', 'states', 'subscriptionStatus', 'user'));
@@ -112,7 +117,7 @@ class UserController extends Controller
 
         if ($request->subscribe && !in_array($user->email, Subscriber::pluck('email')->all())) {
             Subscriber::create([
-                  'email' => $user->email
+                'email' => $user->email
             ]);
         }
 
@@ -129,12 +134,12 @@ class UserController extends Controller
     public function statistics(User $user)
     {
         $data = HealthyInformation::select(['weight', 'sleep_hours', 'walk_duration', 'daily_cup_count', 'day_translations.title'])
-              ->join('day_translations', 'healthy_information.day_id', 'day_translations.day_id')
-              ->where('locale', app()->getLocale())
-              ->where('user_id', $user->id)
-              ->where('healthy_information.created_at', '>=', today()->startOfMonth())
-              ->where('healthy_information.created_at', '<=', today()->endOfMonth())
-              ->get();
+            ->join('day_translations', 'healthy_information.day_id', 'day_translations.day_id')
+            ->where('locale', app()->getLocale())
+            ->where('user_id', $user->id)
+            ->where('healthy_information.created_at', '>=', today()->startOfMonth())
+            ->where('healthy_information.created_at', '<=', today()->endOfMonth())
+            ->get();
         $cahrts['weights'] = $data->pluck('weight')->toArray();
         $cahrts['daily_cup_count'] = $data->pluck('daily_cup_count')->toArray();
         $cahrts['walk_duration'] = $data->pluck('walk_duration')->toArray();
@@ -146,15 +151,15 @@ class UserController extends Controller
 
     public function getFormData()
     {
-        $users = User::whereHas('roles', fn($q) => $q->where('name', 'user'))
-              ->doesntHave('entry')->pluck('first_name', 'id');
+        $users = User::whereHas('roles', fn ($q) => $q->where('name', 'user'))
+            ->doesntHave('entry')->pluck('first_name', 'id');
         $survey = Survey::where(
-              'name',
-              (app()->getLocale() == 'ar') ?
-                    'النموذج الصحي' :
-                    'Health Model'
+            'name',
+            (app()->getLocale() == 'ar') ?
+                'النموذج الصحي' :
+                'Health Model'
         )
-              ->first();
+            ->first();
 
         return view('admin.users.form_data', compact('survey', 'users'));
     }
@@ -162,8 +167,8 @@ class UserController extends Controller
     public function postFormData(Request $request, Survey $survey)
     {
         $answers = $this->validate($request, $survey->rules + [
-                    'user_id' => 'required|exists:users,id'
-              ]);
+            'user_id' => 'required|exists:users,id'
+        ]);
 
         $user = User::find($request->user_id);
         (new Entry())->for($survey)->by($user)->fromArray(collect($answers)->except('user_id')->all())->push();
@@ -177,12 +182,12 @@ class UserController extends Controller
         $user = User::find($userId);
 
         $messages = AdminMessage::with('sender', 'receiver')
-              ->where(function ($q) use ($userId, $adminId) {
-                  $q->where(fn($q) => $q->where('sender_id', $userId)->where('receiver_id', $adminId))
-                        ->orWhere(fn($q) => $q->where('sender_id', $adminId)->where('receiver_id', $userId));
-              })
-              ->oldest('id')
-              ->get();
+            ->where(function ($q) use ($userId, $adminId) {
+                $q->where(fn ($q) => $q->where('sender_id', $userId)->where('receiver_id', $adminId))
+                    ->orWhere(fn ($q) => $q->where('sender_id', $adminId)->where('receiver_id', $userId));
+            })
+            ->oldest('id')
+            ->get();
         foreach ($messages as $message) {
             if (\auth()->id() == $message->receiver_id) {
                 $message->read_at = now();
@@ -196,10 +201,10 @@ class UserController extends Controller
     public function sendMessage(SendMessageRequest $request, $userId)
     {
         $adminMessage = AdminMessage::create([
-              'message' => $request->message,
-              'sender_id' => auth()->id(),
-              'type' => 'TEXT',
-              'receiver_id' => $userId,
+            'message' => $request->message,
+            'sender_id' => auth()->id(),
+            'type' => 'TEXT',
+            'receiver_id' => $userId,
         ]);
 
         $receiver = User::find($userId);
@@ -208,11 +213,11 @@ class UserController extends Controller
         $title = 'Village Diet';
         $content = trans('u_receive_new_message');
         $message = [
-              'title' => 'village_diet',
-              'title_ar' => 'فيليج دايت',
-              'body' => 'You got a new Message',
-              'body_ar' => trans('u_receive_new_message'),
-              'type' => 'chat',
+            'title' => 'village_diet',
+            'title_ar' => 'فيليج دايت',
+            'body' => 'You got a new Message',
+            'body_ar' => trans('u_receive_new_message'),
+            'type' => 'chat',
         ];
         Notification::send($receiver, new SendAdminNewMessage($adminMessage));
         if ($receiver->firebase_token) {
@@ -225,10 +230,10 @@ class UserController extends Controller
     {
         $path = $request->file('message')->storePublicly('chats/media', "public");
         $adminMessage = AdminMessage::create([
-              'message' => "/storage/" . $path,
-              'sender_id' => auth()->id(),
-              'type' => 'AUDIO',
-              'receiver_id' => $request->receiver,
+            'message' => "/storage/" . $path,
+            'sender_id' => auth()->id(),
+            'type' => 'AUDIO',
+            'receiver_id' => $request->receiver,
         ]);
         $receiver = User::find($request->receiver);
 
@@ -236,11 +241,11 @@ class UserController extends Controller
         $title = 'Village Diet';
         $content = trans('u_receive_new_message');
         $message = [
-              'title' => 'village_diet',
-              'title_ar' => 'فيليج دايت',
-              'body' => 'You got a new Message',
-              'body_ar' => trans('u_receive_new_message'),
-              'type' => 'chat',
+            'title' => 'village_diet',
+            'title_ar' => 'فيليج دايت',
+            'body' => 'You got a new Message',
+            'body_ar' => trans('u_receive_new_message'),
+            'type' => 'chat',
         ];
         Notification::send($receiver, new SendAdminNewMessage($adminMessage));
         if ($receiver->firebase_token) {

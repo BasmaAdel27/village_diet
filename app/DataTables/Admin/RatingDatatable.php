@@ -13,6 +13,7 @@ class RatingDatatable extends DataTable
     {
         return datatables()
             ->eloquent($query)
+            ->addIndexColumn()
             ->editColumn('rating', function ($query) {
                 $text = '';
                 for ($i = 0; $i < $query->rating; $i++) {
@@ -58,7 +59,7 @@ class RatingDatatable extends DataTable
     protected function getColumns()
     {
         return [
-            Column::make('id')->title(trans('ID')),
+            Column::make('DT_RowIndex')->name('DT_RowIndex')->title(trans('ID'))->orderable(false)->searchable(false),
             Column::make('trainer_name')->name('trainers.first_name')->title(trans('trainer_name')),
             Column::make('rating')->title(trans('rating')),
             Column::make('user_name')->name('users.first_name')->title(trans('user_name')),

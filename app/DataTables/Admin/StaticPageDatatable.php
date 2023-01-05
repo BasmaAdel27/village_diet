@@ -13,6 +13,7 @@ class StaticPageDatatable extends DataTable
     {
         return datatables()
             ->eloquent($query)
+            ->addIndexColumn()
             ->editColumn('Action', function ($query) {
                 return view('admin.static_pages.datatable.action', compact('query'));
             })
@@ -57,8 +58,7 @@ class StaticPageDatatable extends DataTable
     protected function getColumns()
     {
         return [
-            Column::make('id')->title(trans('ID')),
-            Column::make('is_active')->title(trans('status')),
+            Column::make('DT_RowIndex')->name('DT_RowIndex')->title(trans('ID'))->orderable(false)->searchable(false),            Column::make('is_active')->title(trans('status')),
             Column::make('is_show_in_app')->title(trans('is_show_in_app')),
             Column::make('images.image')->title(trans('image'))->orderable(false)->searchable(false),
             Column::make('translations.title')->title(trans('title'))->orderable(false),

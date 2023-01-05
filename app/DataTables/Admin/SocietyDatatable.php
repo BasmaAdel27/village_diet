@@ -14,6 +14,7 @@ class SocietyDatatable extends DataTable
     {
         return datatables()
             ->eloquent($query)
+            ->addIndexColumn()
             ->editColumn('Action', function ($query) {
 
                 return view('admin.society.datatable.action', compact('query'));
@@ -29,8 +30,8 @@ class SocietyDatatable extends DataTable
             })->editColumn('translations.title', function ($query) {
                 return $query->translate(app()->getLocale())->title;
             })->editColumn('messageCount', function ($query) {
-                  return ($query->msgCount($query->id) > 0) ?  '<span class="btn btn-danger" style="margin: auto">' . $query->msgCount($query->id) . "</span>" : '<span class="btn btn-success">' .  $query->msgCount($query->id) . "</span>";
-              })->rawColumns(['Action', 'is_active','messageCount']);
+                return ($query->msgCount($query->id) > 0) ?  '<span class="btn btn-danger" style="margin: auto">' . $query->msgCount($query->id) . "</span>" : '<span class="btn btn-success">' .  $query->msgCount($query->id) . "</span>";
+            })->rawColumns(['Action', 'is_active', 'messageCount']);
     }
 
 
@@ -60,7 +61,7 @@ class SocietyDatatable extends DataTable
     protected function getColumns()
     {
         return [
-            Column::make('id')->title(trans('ID')),
+            Column::make('DT_RowIndex')->name('DT_RowIndex')->title(trans('ID'))->orderable(false)->searchable(false),
             Column::make('translations.title')->orderable(true)->title(trans('society_name'))->orderable(false),
             Column::make('users_count')->orderable(true)->title(trans('users_count'))->orderable(false)->searchable(false),
             Column::make('trainer.first_name')->orderable(true)->title(trans('trainer_name'))->orderable(false),

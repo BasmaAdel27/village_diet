@@ -13,6 +13,7 @@ class TemplateDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
+            ->addIndexColumn()
             ->editColumn('Action', function ($query) {
                 return view('admin.templates.datatable.action', compact('query'));
             })
@@ -25,7 +26,7 @@ class TemplateDataTable extends DataTable
             ->editColumn('translations.content', function ($query) {
                 return $query->translate(app()->getLocale())->content;
             })
-            ->rawColumns(['is_active', 'Action']);
+            ->rawColumns(['is_active', 'Action', 'translations.content']);
     }
 
     public function query()
@@ -54,8 +55,7 @@ class TemplateDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            Column::make('id')->title(trans('ID')),
-            Column::make('is_active')->title(trans('status')),
+            Column::make('DT_RowIndex')->name('DT_RowIndex')->title(trans('ID'))->orderable(false)->searchable(false),            Column::make('is_active')->title(trans('status')),
             Column::make('translations.subject')->title(trans('subject'))->orderable(false),
             Column::make('translations.content')->title(trans('content'))->orderable(false),
             Column::make('created_at')->title(trans('created_at')),

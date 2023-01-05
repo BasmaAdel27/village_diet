@@ -12,6 +12,7 @@ class ReportCouponDatatable extends DataTable
     public function dataTable($query)
     {
         return datatables()
+            ->addIndexColumn()
             ->eloquent($query);
     }
 
@@ -42,8 +43,7 @@ class ReportCouponDatatable extends DataTable
     protected function getColumns()
     {
         return [
-            Column::make('id')->title(trans('ID')),
-            Column::make('code')->title(trans('code')),
+            Column::make('DT_RowIndex')->name('DT_RowIndex')->title(trans('ID'))->orderable(false)->searchable(false),            Column::make('code')->title(trans('code')),
             Column::make('amount')->title(trans('amount')),
             Column::make('max_used')->title(trans('max_used')),
             Column::make('used_times')->title(trans('used_times')),
