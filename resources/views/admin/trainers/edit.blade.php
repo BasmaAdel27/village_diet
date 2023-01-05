@@ -4,6 +4,7 @@
 @endsection
 @section('title')@lang('trainers')@endsection
 @section('content')
+  {{dd($trainer->has("societies")->get()->isEmpty())}}
 
   <div class="card mt-5">
     <div class="card-header d-flex justify-content-between">
@@ -137,13 +138,6 @@
               <option value="">@lang('select')</option>
               <option value="1" {{ $trainer->show_inPage == 1 ?'selected': '' }} >@lang('active')</option>
               <option value="0" {{ $trainer->show_inPage == 0 ?'selected': '' }}>@lang('inactive')</option>
-            </select>
-          </div>
-          <div class="form-group col-6">
-            <label>@lang('status')</label>
-            <select name="status" class="form-control" disabled>
-              <option value="">@lang('select')</option>
-              <option value="DONE" {{ $trainer->status == 'DONE' ?'selected': '' }}>@lang('active')</option>
             </select>
           </div>
 
