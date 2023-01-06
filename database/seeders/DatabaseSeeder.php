@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
             'email' => config('permission.admin_user_name')
         ])->assignRole('admin');
 
-        User::factory(100)->create();
+        User::factory(5)->create();
         ContactUs::factory(50)->create();
         $this->call(DaySeeder::class);
         $this->call(SettingSeeder::class);
