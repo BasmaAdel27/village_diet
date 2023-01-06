@@ -17,14 +17,14 @@
     <label>@lang('status')</label>
     <select name="is_active" class="form-control">
       <option value="">@lang('select')</option>
-      <option value="1" {{ $service?->is_active == '1' ? 'selected' : '' }}>@lang('active')</option>
-      <option value="0" {{ $service?->is_active == '0' ? 'selected' : '' }}>@lang('inactive')</option>
+      <option value="1" {{ old('is_active',$service?->is_active) == '1' ? 'selected' : '' }}>@lang('active')</option>
+      <option value="0" {{ old('is_active',$service?->is_active) == '0' ? 'selected' : '' }}>@lang('inactive')</option>
     </select>
   </div>
   <div class="form-group col-6">
     <label>@lang('select_image')</label>
     <div class="custom-file">
-      <input type="file" class="custom-file-input" name="image">
+      <input type="file" class="custom-file-input" name="image" >
       <label class="custom-file-label">Choose file</label>
     </div>
   </div>

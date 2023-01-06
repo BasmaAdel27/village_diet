@@ -13,7 +13,7 @@
         <select name="user_id" class="form-control">
           <option value="">@lang('select')</option>
           @foreach ($users as $id => $name)
-          <option value="{{ $id }}">{{ $name }}</option>
+          <option value="{{ $id }}" {{$id==old('user_id') ?'selected':''}}>{{ $name }}</option>
           @endforeach
         </select>
       </div>

@@ -20,7 +20,7 @@
           <select name="template" class="form-control">
             <option value="">@lang('select')</option>
             @foreach ($templates as $id => $template)
-            <option value="{{ $id }}">{{ $template }}</option>
+            <option value="{{ $id }}" {{$id==old('template')?'selected':''}}>{{ $template }}</option>
             @endforeach
           </select>
         </div>
@@ -29,7 +29,7 @@
           <select name="emails[]" class="form-control js-example-basic-multiple" multiple>
             <option value="">@lang('select')</option>
             @foreach ($users as $email)
-            <option value="{{ $email }}">{{ $email }}</option>
+            <option value="{{ $email }}" {{ (collect(old('emails'))->contains($email)) ? 'selected':'' }}>{{ $email }}</option>
             @endforeach
           </select>
         </div>

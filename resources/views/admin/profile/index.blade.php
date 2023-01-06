@@ -11,11 +11,11 @@
         <div iv class="row">
           <div class="form-group col-6">
             <label>@lang('first_name')</label>
-            <input type="text" name="first_name" class="form-control" value="{{ $user->first_name }}">
+            <input type="text" name="first_name" class="form-control" value="{{old('first_name', $user->first_name) }}">
           </div>
           <div class="form-group col-6">
             <label>@lang('last_name')</label>
-            <input type="text" name="last_name" class="form-control" value="{{ $user->last_name }}">
+            <input type="text" name="last_name" class="form-control" value="{{ old('last_name',$user->last_name) }}">
           </div>
           @if ($user->isSuperAdmin())
           <div class="form-group col-6">
@@ -26,7 +26,7 @@
           @else
           <div class="form-group col-6">
             <label>@lang('email')</label>
-            <input type="text" name="email" class="form-control" value="{{ $user->email }}">
+            <input type="text" name="email" class="form-control" value="{{old('email', $user->email )}}">
           </div>
           @endif
           <div class="form-group col-6">

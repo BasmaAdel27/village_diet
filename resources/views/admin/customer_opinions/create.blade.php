@@ -17,11 +17,11 @@
         <div class="row">
           <div class="form-group col-6">
             <label>@lang("name")</label>
-            <input type="text" class="form-control" name='name'>
+            <input type="text" class="form-control" name='name' value="{{old('name')}}">
           </div>
           <div class="form-group col-6">
             <label>@lang('select_image')</label>
-            <input type="file" name="image" class="file-upload-default" id="image">
+            <input type="file" name="image" class="file-upload-default" id="image" value="{{old('image')}}">
             <div class="input-group col-xs-12">
               <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
               <span class="input-group-append">
@@ -31,7 +31,7 @@
           </div>
           <div class="form-group col-6">
             <label>@lang("content")</label>
-            <textarea class="form-control" name='content'></textarea>
+            <textarea class="form-control" name='content' >{{old('content')}}</textarea>
           </div>
 
         </div>
