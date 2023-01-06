@@ -18,7 +18,7 @@
           <div class="row">
             <div class="form-group col-6">
               <label>@lang("code")</label>
-              <input type="text" class="form-control" name='code' id="code1" value="{{$coupon->code}}">
+              <input type="text" class="form-control" name='code' id="code1" value="{{old('code',$coupon->code)}}">
             </div>
             <div class="form-group col-6">
               <span id="generate1" onclick="code1()"  class="btn btn-success" name='generate_code' style="margin: 32px;">@lang('generate code')</span>
@@ -26,30 +26,30 @@
             <div class="form-group col-6">
               <label for="date_from">@lang('activate_date')</label>
               <input type="date" class="form-control" id="date_from" name="activate_date"
-                     value="{{ date('Y-m-d', strtotime($coupon->activate_date))}}">
+                     value="{{ old('activate_date',date('Y-m-d', strtotime($coupon->activate_date)))}}">
             </div>
             <div class="form-group col-6">
               <label for=" date_to">@lang('end_date')</label>
               <div class="input-group">
                 <input type="date" class="form-control" id="date_to" name="end_date"
-                       value="{{date('Y-m-d', strtotime($coupon->end_date)) }}">
+                       value="{{old('end_date',date('Y-m-d', strtotime($coupon->end_date))) }}">
               </div>
             </div>
 
             <div class="form-group col-6">
               <label>@lang("amount")</label>
-              <input type="text" class="form-control" name='amount'  value="{{$coupon->amount}}">
+              <input type="text" class="form-control" name='amount'  value="{{old('amount',$coupon->amount)}}">
             </div>
             <div class="form-group col-6">
               <label>@lang('coupon_type')</label>
                 <select class="form-control" name="coupon_type">
-                  <option value="fixed" {{$coupon->coupon_type == 'fixed' ? 'selected' : ''}}>@lang('fixed')</option>
-                  <option value="percent" {{$coupon->coupon_type == 'percent' ? 'selected' : ''}}>@lang('percent')</option>
+                  <option value="fixed" {{old('coupon_type',$coupon->coupon_type )== 'fixed' ? 'selected' : ''}}>@lang('fixed')</option>
+                  <option value="percent" {{old('coupon_type',$coupon->coupon_type) == 'percent' ? 'selected' : ''}}>@lang('percent')</option>
                 </select>
             </div>
             <div class="form-group col-6">
               <label>@lang("max_used")</label>
-              <input type="text" class="form-control" name='max_used' value="{{$coupon->max_used}}">
+              <input type="text" class="form-control" name='max_used' value="{{old('max_used',$coupon->max_used)}}">
             </div>
 
 

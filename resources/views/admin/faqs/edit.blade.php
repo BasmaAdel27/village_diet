@@ -16,22 +16,22 @@
               <div class="form-group col-6">
                 <label>@lang("question_$locale")</label>
                 <textarea class="form-control" name={{ $locale }}[question]
-                          rows="10">{{$commonQuestion->translate($locale)->question}}</textarea>
+                          rows="10">{{old("$locale.question",$commonQuestion->translate($locale)->question)}}</textarea>
               </div>
             @endforeach
             @foreach ($locales as $locale)
               <div class="form-group col-6">
                 <label>@lang("answer_$locale")</label>
                 <textarea class="form-control" name={{ $locale }}[answer]
-                          rows="10">{{$commonQuestion->translate($locale)->answer}}</textarea>
+                          rows="10">{{old("$locale.answer",$commonQuestion->translate($locale)->answer)}}</textarea>
               </div>
             @endforeach
             <div class="form-group col-6">
               <label>@lang('status')</label>
               <select name="is_active" class="form-control">
                 <option value="">@lang('select')</option>
-                <option value="1" {{$commonQuestion->is_active == '1' ? 'selected' : '' }}>@lang('active')</option>
-                <option value="0" {{$commonQuestion->is_active == '0' ? 'selected' : '' }}>@lang('inactive')</option>
+                <option value="1" {{old('is_active',$commonQuestion->is_active) == '1' ? 'selected' : '' }}>@lang('active')</option>
+                <option value="0" {{old('is_active',$commonQuestion->is_active) == '0' ? 'selected' : '' }}>@lang('inactive')</option>
               </select>
             </div>
 

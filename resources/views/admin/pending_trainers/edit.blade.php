@@ -44,13 +44,9 @@
         </div>
 
         <div class="form-group col-6">
-          <label>@lang('states')</label>
-          <select name="states" id='state2' class="form-control" disabled>
-            @foreach ($states as $id => $name)
-            <option value="{{$id}}" {{$id==$trainer->user->state_id ?'selected': '' }}>{{trans($name)}}</option>
+          <label>@lang('city')</label>
+          <input type="text" name="city" class="form-control" value="{{old('city',$trainer->user->city)}}" disabled>
 
-            @endforeach
-          </select>
         </div>
 
         <div class="form-group col-6">

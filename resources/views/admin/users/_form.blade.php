@@ -2,27 +2,27 @@
   <div class="form-group col-6">
     <label>@lang("first_name")</label>
     <input type="text" class="form-control" placeholder='@lang("first_name")' name="first_name"
-      value="{{ isset($user) ? $user->first_name : old(" first_name")}}">
+      value="{{ isset($user) ? $user->first_name : old("first_name")}}">
   </div>
   <div class="form-group col-6">
     <label>@lang("last_name")</label>
     <input type="text" class="form-control" placeholder='@lang("last_name")' name="last_name"
-      value="{{ isset($user) ? $user->last_name : old(" last_name")}}">
+      value="{{ isset($user) ? $user->last_name : old("last_name")}}">
   </div>
   <div class="form-group col-6">
     <label>@lang("email")</label>
     <input type="email" class="form-control" placeholder='@lang("email")' name="email"
-      value="{{ isset($user) ? $user->email : old(" email")}}">
+      value="{{ isset($user) ? $user->email : old("email")}}">
   </div>
   <div class="form-group col-6">
     <label>@lang("phone")</label>
     <input type="text" class="form-control" placeholder='@lang("phone")' name="phone"
-      value="{{ isset($user) ? $user->phone : old(" phone")}}">
+      value="{{ isset($user) ? $user->phone : old("phone")}}">
   </div>
   <div class="form-group col-6">
     <label>@lang("date_of_birth")</label>
     <input type="date" class="form-control" placeholder='@lang("date_of_birth")' name="date_of_birth"
-      value="{{ isset($user) ? $user->date_of_birth : old(" date_of_birth")}}">
+      value="{{ isset($user) ? $user->date_of_birth : old("date_of_birth")}}">
   </div>
   <div class="form-group col-6">
     <label>@lang('countries')</label>
@@ -52,13 +52,13 @@
     <div class="form-check">
       <label class="form-check-label text-muted">
         <input class="form-check-input" type="radio" value="1" name="subscribe">
-        Yes
+        @lang('yes')
       </label>
     </div>
     <div class="form-check">
       <label class="form-check-label text-muted">
         <input class="form-check-input" type="radio" value="0" name="subscribe">
-        No
+        @lang('no')
       </label>
     </div>
   </div>

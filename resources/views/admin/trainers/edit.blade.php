@@ -4,7 +4,6 @@
 @endsection
 @section('title')@lang('trainers')@endsection
 @section('content')
-  {{dd($trainer->has("societies")->get()->isEmpty())}}
 
   <div class="card mt-5">
     <div class="card-header d-flex justify-content-between">
@@ -18,19 +17,19 @@
         <div class="row">
           <div class="form-group col-6">
             <label>@lang("first_name")</label>
-            <input type="text" class="form-control" name='first_name' value="{{$trainer->user->first_name}}">
+            <input type="text" class="form-control" name='first_name' value="{{old('first_name',$trainer->user->first_name)}}">
           </div>
           <div class="form-group col-6">
             <label>@lang("last_name")</label>
-            <input type="text" class="form-control" name='last_name' value="{{$trainer->user->last_name}}">
+            <input type="text" class="form-control" name='last_name' value="{{old('last_name',$trainer->user->last_name)}}">
           </div>
           <div class="form-group col-6">
             <label>@lang("phone")</label>
-            <input type="text" class="form-control" name='phone' value="{{$trainer->user->phone}}">
+            <input type="text" class="form-control" name='phone' value="{{old('phone',$trainer->user->phone)}}">
           </div>
           <div class="form-group col-6">
             <label>@lang("email")</label>
-            <input type="email" class="form-control" name='email' value="{{$trainer->user->email}}">
+            <input type="email" class="form-control" name='email' value="{{old('email',$trainer->user->email) }}">
           </div>
           <div class="form-group col-6">
             <label>@lang('select_image')</label>
@@ -47,7 +46,7 @@
             <select name="countries" id="country1" class="form-control">
               <option value="">@lang('select')</option>
               @foreach ($countries as $id => $name)
-              <option value="{{$id}}" {{$id==$trainer->user->country_id ?'selected': '' }}>{{trans($name)}}</option>
+              <option value="{{$id}}" {{$id== old('countries',$trainer->user->country_id) ?'selected': '' }}>{{trans($name)}}</option>
               @endforeach
             </select>
           </div>
@@ -55,59 +54,59 @@
 
           <div class="form-group col-6">
             <label>@lang("city")</label>
-            <input type="text" class="form-control" name='city' value="{{$trainer->user->city}}">
+            <input type="text" class="form-control" name='city' value="{{old('city',$trainer->user->city)}}">
           </div>
           <div class="form-group col-6">
             <label>@lang("address")</label>
-            <input type="text" class="form-control" name='address' value="{{$trainer->user->address}}">
+            <input type="text" class="form-control" name='address' value="{{old('address',$trainer->user->address)}}">
           </div>
 
           <div class="form-group col-6">
             <label>@lang("instagram")</label>
-            <input type="text" class="form-control" name='instagram' value="{{$trainer->user->insta_link}}">
+            <input type="text" class="form-control" name='instagram' value="{{old('instagram',$trainer->user->insta_link)}}">
           </div>
 
           <div class="form-group col-6">
             <label>@lang("twitter")</label>
-            <input type="text" class="form-control" name='twitter' value="{{$trainer->user->twitter_link}}">
+            <input type="text" class="form-control" name='twitter' value="{{old('twitter',$trainer->user->twitter_link)}}">
           </div>
 
           <div class="form-group col-6">
             <label>@lang("current job")</label>
-            <input type="text" class="form-control" name='current_job' value="{{$trainer->current_job}}">
+            <input type="text" class="form-control" name='current_job' value="{{old('current_job',$trainer->current_job)}}">
           </div>
 
           <div class="form-group col-6">
             <label>@lang('body shape')</label>
             <select name="body_shape" class="form-control" name="body_shape">
               <option value="">@lang('select')</option>
-              <option value="slim" {{'slim'==$trainer->body_shape ?'selected': '' }} >@lang('slim')</option>
-              <option value="sportsman" {{'sportsman'==$trainer->body_shape ?'selected': '' }}>@lang('sportsman')
+              <option value="slim" {{'slim'==old('body_shape',$trainer->body_shape) ?'selected': '' }} >@lang('slim')</option>
+              <option value="sportsman" {{'sportsman'==old('body_shape',$trainer->body_shape)  ?'selected': '' }}>@lang('sportsman')
               </option>
-              <option value="Stretchy muscles" {{'Stretchy muscles'==$trainer->body_shape ?'selected': ''
+              <option value="Stretchy muscles" {{'Stretchy muscles'==old('body_shape',$trainer->body_shape)  ?'selected': ''
                 }}>@lang('Stretchy_muscles')</option>
-              <option value="Medium build" {{'Medium build'==$trainer->body_shape ?'selected': '' }}>
+              <option value="Medium build" {{'Medium build'==old('body_shape',$trainer->body_shape)  ?'selected': '' }}>
                 @lang('Medium_build')</option>
-              <option value="Slightly overweight" {{'Slightly overweight'==$trainer->body_shape ?'selected': '' }}
+              <option value="Slightly overweight" {{'Slightly overweight'==old('body_shape',$trainer->body_shape)  ?'selected': '' }}
                 >@lang('Slightly_overweight')</option>
-              <option value="overweight" {{'overweight'==$trainer->body_shape ?'selected': '' }}>@lang('overweight')
+              <option value="overweight" {{'overweight'==old('body_shape',$trainer->body_shape)  ?'selected': '' }}>@lang('overweight')
               </option>
             </select>
           </div>
           <div class="form-group col-6">
             <label>@lang("reason to join us")</label>
-            <textarea class="form-control" name='join_request_reason'>{{$trainer->join_request_reason}}</textarea>
+            <textarea class="form-control" name='join_request_reason'>{{old('join_request_reason',$trainer->join_request_reason)}}</textarea>
           </div>
           <div class="form-group col-6">
             <label>@lang("bio")</label>
-            <textarea class="form-control" name='bio'>{{$trainer->bio}}</textarea>
+            <textarea class="form-control" name='bio'>{{old('bio',$trainer->bio)}}</textarea>
           </div>
           <div class="form-group col-6">
             <label>@lang('is licensed?')</label>
             <select name="is_certified" class="form-control" id="certificate">
               <option value="">@lang('select')</option>
-              <option value="1" {{$trainer->is_certified == 1 ?'selected':''}} >@lang('yes')</option>
-              <option value="0" {{$trainer->is_certified == 0 ?'selected':''}}>@lang('no')</option>
+              <option value="1" {{old('is_certified',$trainer->is_certified) == 1 ?'selected':''}} >@lang('yes')</option>
+              <option value="0" {{old('is_certified',$trainer->is_certified) == 0 ?'selected':''}}>@lang('no')</option>
             </select>
           </div>
           <div class="form-group col-6" id="licenseImg">
@@ -136,8 +135,8 @@
             <label>@lang('show in our trainer page')</label>
             <select name="show_inPage" class="form-control">
               <option value="">@lang('select')</option>
-              <option value="1" {{ $trainer->show_inPage == 1 ?'selected': '' }} >@lang('active')</option>
-              <option value="0" {{ $trainer->show_inPage == 0 ?'selected': '' }}>@lang('inactive')</option>
+              <option value="1" {{old('show_inPage', $trainer->show_inPage )== 1 ?'selected': '' }} >@lang('active')</option>
+              <option value="0" {{ old('show_inPage', $trainer->show_inPage ) == 0 ?'selected': '' }}>@lang('inactive')</option>
             </select>
           </div>
 

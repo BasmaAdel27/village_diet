@@ -25,7 +25,7 @@ class TrainerRequest extends FormRequest
               'instagram'=>'nullable|max:255',
               'join_request_reason'=>'required',
               'country_id'=>'required|exists:countries,id',
-              'state_id'=>'required|exists:states,id',
+              'city'=>'nullable',
               'address'=>'required|string',
               'current_job'=>'required|string',
               'body_shape'=>'required',

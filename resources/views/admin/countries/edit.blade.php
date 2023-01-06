@@ -20,7 +20,7 @@
             <div class="form-group col-6">
               <label>@lang("country_name_$locale")</label>
               <input class="form-control" name={{ $locale }}[name]
-                        value="{{$country->translate($locale)->name}}">
+                        value='{{old("$locale.name",$country->translate($locale)->name)}}'>
             </div>
           @endforeach
 
