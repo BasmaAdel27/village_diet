@@ -12,8 +12,8 @@ class SocietyDatatable extends DataTable
     public function dataTable($query)
     {
         return datatables()
-            ->addIndexColumn()
             ->eloquent($query)
+            ->addIndexColumn()
             ->editColumn('Action', function ($query) {
 
                 return view('trainer.society.datatable.action', compact('query'));
