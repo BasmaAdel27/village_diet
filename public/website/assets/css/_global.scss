@@ -24,9 +24,9 @@
 
     &::selection{
         background-color: #472B73;
-        color: #fff; 
+        color: #fff;
     }
-    
+
     &::-webkit-scrollbar {
         width: 8px;
     }
@@ -34,14 +34,14 @@
     &::-webkit-scrollbar-track {
         background-color: #ccc;
     }
-    
+
     &::-webkit-scrollbar-thumb {
-        background: #472B73; 
+        background: #472B73;
         border-radius: 8px;
     }
 
     &::-webkit-scrollbar-thumb:hover {
-        background: #BE64A7; 
+        background: #9B9DA0;
     }
 }
 

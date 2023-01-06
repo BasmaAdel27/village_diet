@@ -65,7 +65,7 @@ html[dir="ltr"] {
 
 :root {
   --primary-color: #472B73;
-  --secondary-color: #BE64A7;
+  --secondary-color: #9B9DA0;
   --dark-color: #000;
   --light-color: #fff;
   --gray-color: #A6A6A5;
@@ -151,13 +151,13 @@ html[dir="ltr"] {
     }
 
     &::before {
-      background: linear-gradient(90deg, #674495, #BE64A7);
+      background: linear-gradient(90deg, #674495, #9B9DA0);
     }
   }
 
   &.secondary-color {
     &::after {
-      background: linear-gradient(90deg, #674495, #BE64A7);
+      background: linear-gradient(90deg, #674495, #9B9DA0);
     }
 
     &::before {
@@ -171,7 +171,7 @@ html[dir="ltr"] {
     }
 
     &::before {
-      background: linear-gradient(90deg, #674495, #BE64A7);
+      background: linear-gradient(90deg, #674495, #9B9DA0);
     }
   }
 
@@ -201,7 +201,7 @@ html[dir="ltr"] {
   }
 
   &:hover {
-    box-shadow: 0px 0px 10px rgba($color: #BE64A7, $alpha: 0.05);
+    box-shadow: 0px 0px 10px rgba($color: #9B9DA0, $alpha: 0.05);
 
     img {
       animation: tada .3s linear both;
@@ -283,7 +283,7 @@ html[dir="ltr"] {
       .line{
         width: 30px;
         height: 3px;
-        background: linear-gradient(90deg, #472B73, #BE64A7);
+        background: linear-gradient(90deg, #472B73, #9B9DA0);
         display: block;
         margin: 8px auto;
         transition: all 0.3s ease-in-out;
@@ -504,7 +504,7 @@ header {
         justify-content: center;
         align-content: center;
         align-items: center;
-        background-color: rgba($color: #BE64A7, $alpha: 0.06);
+        background-color: rgba($color: #9B9DA0, $alpha: 0.06);
         border-radius: 6px;
         position: relative;
         z-index: 9;
@@ -561,7 +561,7 @@ header {
     position: relative;
     z-index: 9;
     border-radius: 6px;
-    border: 1px solid rgba($color: #BE64A7, $alpha: 0.10);
+    border: 1px solid rgba($color: #9B9DA0, $alpha: 0.10);
 
     &.show.active {
       animation: fadeInLeft .3s linear both;
@@ -654,7 +654,7 @@ header {
       position: absolute;
       width: 100%;
       height: 0px;
-      background: linear-gradient(180deg, #BE64A7, #BE64A7, #BE64A7, #674495);
+      background: linear-gradient(180deg, #9B9DA0, #9B9DA0, #9B9DA0, #674495);
       bottom: 0;
       left: 0;
       z-index: -1;
@@ -1684,7 +1684,7 @@ footer {
       border-radius: 30px;
       border: 0px;
       overflow: hidden;
-      background-color: rgba($color: #BE64A7, $alpha: 0.06);
+      background-color: rgba($color: #9B9DA0, $alpha: 0.06);
       display: flex;
       align-items: center;
       align-content: center;
@@ -1796,7 +1796,7 @@ footer {
     .message {
       width: 100%;
       padding: 19px 16px;
-      background-color: rgba($color: #BE64A7, $alpha: 0.06);
+      background-color: rgba($color: #9B9DA0, $alpha: 0.06);
       border-radius: 15px;
       display: flex;
       margin-top: 40px;
@@ -2030,7 +2030,7 @@ footer {
         padding: 15px 30px;
         display: flex;
         justify-content: center;
-        background-color: rgba($color: #BE64A7, $alpha: 0.06);
+        background-color: rgba($color: #9B9DA0, $alpha: 0.06);
         border-radius: 6px;
 
         img {
@@ -2171,7 +2171,7 @@ footer {
         margin-top: 20px;
         width: 100%;
         padding: 16px 20px;
-        background-color: rgba($color: #BE64A7, $alpha: 0.06);
+        background-color: rgba($color: #9B9DA0, $alpha: 0.06);
         border-radius: 6px;
         display: flex;
         align-items: center;

@@ -59,18 +59,12 @@
               </div>
 
               <div class="col-lg-6 col-12 px-2">
-                <div class="form-group phone">
-                  <div class="phone-drop">
-                    <div class="phone-contain">
-                      <img src="{{ asset('website/assets/images/form/suadia.png') }}" loading="lazy" alt="" />
+                <div class="form-group">
+                  <img src="{{ asset('website/assets/images/form/phone.svg') }}" class="icon" loading="lazy"
+                       alt=""/>
 
-                      <span>
-                        +966
-                      </span>
-                    </div>
-                  </div>
-
-                  <input type="text" class="form-control" placeholder="@lang('phone')" name="phone" value="{{old('phone')}}"/>
+                  <input type="tel" value="{{ old('phone') ?? '' }}" name="phone"
+                         class="form-control" placeholder="@lang('phone')"/>
                 </div>
               </div>
 
