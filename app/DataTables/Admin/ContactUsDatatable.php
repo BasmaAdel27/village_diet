@@ -12,8 +12,8 @@ class ContactUsDatatable extends DataTable
     public function dataTable($query)
     {
         return datatables()
-            ->addIndexColumn()
             ->eloquent($query)
+            ->addIndexColumn()
             ->editColumn('Action', function ($query) {
                 return view('admin.contact_us.datatable.action', compact('query'));
             });
