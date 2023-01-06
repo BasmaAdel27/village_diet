@@ -62,12 +62,12 @@ class SocietyController extends Controller
             'body_ar' => trans('you_had_added_to_society'),
             'type' => 'society',
         ];
-        foreach ($society->users->where('id', '<>', auth()->id()) as $user) {
-            \Notification::send($user, new AddToNewSociety($society));
-            if ($user->firebase_token) {
-                send_notification([$user->firebase_token], $content, $title, $message);
-            }
-        }
+//        foreach ($society->users->where('id', '<>', auth()->id()) as $user) {
+//            \Notification::send($user, new AddToNewSociety($society));
+//            if ($user->firebase_token) {
+//                send_notification([$user->firebase_token], $content, $title, $message);
+//            }
+//        }
 
         if ($data['is_active'] == 1) {
             $society->update(['date_from' => now()]);
