@@ -15,26 +15,33 @@ class AuthResource extends JsonResource
             $day = Day::where('number', $dayNumber)->first();
         }
 
+        if (auth()->user()->society()->doesntExist() || auth()->user()->society->is_active == 0) {
+            $society_status = false;
+        } else {
+            $society_status = true;
+        }
+
         return [
-            'token' => $this->token,
-            'firebase_token' => $this->firebase_token,
-            'id' => $this->id,
-            "first_name" => $this->first_name,
-            "last_name" => $this->last_name,
-            "email" => $this->email,
-            "user_number" => $this->user_number,
-            "phone" => $this->phone,
-            "date_of_birth" => $this->date_of_birth,
-            "is_active" => (bool) $this->is_active,
-            "address" => $this->address,
-            "insta_link" => $this->insta_link,
-            "twitter_link" => $this->twitter_link,
-            "country" => $this->country?->name,
-            "state" => $this->city,
-            'created_at' => $this->created_at,
-            'image' => $this->image,
-            'subscription_day' => isset($day) ? DayResource::make($day) : null,
-            'current_subscription' => LogsResource::make($this->currentSubscription)
+              'token' => $this->token,
+              'firebase_token' => $this->firebase_token,
+              'id' => $this->id,
+              "first_name" => $this->first_name,
+              "last_name" => $this->last_name,
+              "email" => $this->email,
+              "user_number" => $this->user_number,
+              "phone" => $this->phone,
+              "date_of_birth" => $this->date_of_birth,
+              "is_active" => (bool)$this->is_active,
+              "address" => $this->address,
+              "insta_link" => $this->insta_link,
+              "twitter_link" => $this->twitter_link,
+              "country" => $this->country?->name,
+              "state" => $this->city,
+              'created_at' => $this->created_at,
+              'image' => $this->image,
+              'subscription_day' => isset($day) ? DayResource::make($day) : null,
+              'current_subscription' => LogsResource::make($this->currentSubscription),
+              'society_status' => (bool)$society_status
         ];
     }
 }
