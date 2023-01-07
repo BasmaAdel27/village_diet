@@ -375,6 +375,8 @@
   "your_subscription_is_cancelled": "The subscription has been cancelled.. Your subscription will continue until the end of the month",
   "continue": "Continue",
   "account_is_active": "The account is already active and the subscription will be automatically renewed",
-  "account_is_hold": "",
-  "account_is_cancelled": ""
+  "account_is_hold": "Account is hold",
+  "account_is_cancelled": "Account is Cancelled",
+  "true": "Yes",
+  "false": "No"
 }

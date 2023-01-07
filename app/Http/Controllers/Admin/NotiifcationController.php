@@ -48,7 +48,6 @@ class NotiifcationController extends Controller
                         'notifiable_id' => $user->id,
                         'notifiable_type' => 'App\Models\User',
                         'id' => Str::uuid(),
-
                   ]);
 
             if ($user->firebase_token) {
