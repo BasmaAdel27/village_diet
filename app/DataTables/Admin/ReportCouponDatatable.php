@@ -12,8 +12,8 @@ class ReportCouponDatatable extends DataTable
     public function dataTable($query)
     {
         return datatables()
-            ->addIndexColumn()
-            ->eloquent($query);
+            ->eloquent($query)
+            ->addIndexColumn();
     }
 
     public function query()

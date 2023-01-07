@@ -24,6 +24,8 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, HasRoles, HasAssetsTrait, HasTimestampTrait, Rateable;
 
+    protected $dates = ['date_of_birth'];
+
     public $assets = ['image'];
     /**
      * The attributes that are mass assignable.
@@ -96,10 +98,10 @@ class User extends Authenticatable
     {
         if ($this->society()->exists()) {
             return $this->hasOne(Subscription::class)
-                ->whereIn('status', [Subscription::ACTIVE, Subscription::REQUEST_CANCEL ,Subscription::IN_ACTIVE])->latest('id');
+                ->whereIn('status', [Subscription::ACTIVE, Subscription::REQUEST_CANCEL, Subscription::IN_ACTIVE])->latest('id');
         }
 
-        return $this->hasOne(Subscription::class)->whereIn('status', [Subscription::ACTIVE,Subscription::IN_ACTIVE])->latest('id');
+        return $this->hasOne(Subscription::class)->whereIn('status', [Subscription::ACTIVE, Subscription::IN_ACTIVE])->latest('id');
     }
 
     public function isSubscriptionFinished()

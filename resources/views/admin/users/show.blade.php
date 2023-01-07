@@ -62,7 +62,7 @@ $subscription = \App\Models\Subscription::find(request('subscription_id'));
       </div>
       <div class="col-6 mt-4">
         <label><strong>@lang('date_of_birth') : </strong></label>
-        {{$user->date_of_birth?->format('Y-m-d')}}
+        {{ isset($user->date_of_birth) ? $user->date_of_birth?->format('Y-m-d') : '' }}
       </div>
       <div class="col-6 mt-4">
         <label><strong>@lang('created_at') : </strong></label>
@@ -126,7 +126,7 @@ $subscription = \App\Models\Subscription::find(request('subscription_id'));
       </div>
       <div class="col-6 mt-4">
         <label><strong>@lang('transaction_id') : </strong></label>
-        {{($subscription->coupon_id) ? 'True' : 'False'}}
+        {{ $subscription->transaction_id }}
       </div>
     </div>
   </div>
