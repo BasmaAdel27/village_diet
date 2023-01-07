@@ -74,4 +74,10 @@ return [
         "The ability to share audio files", "Interaction with all members of the community",
     ],
     'added_to_society' => 'You have been added to a new community under the auspices of Coach :trainer',
+    'subscription_status' => [
+        'active' => 'Subscription is Active',
+        'in_active' => 'Subscription is In Active',
+        'finished' => 'Subscription is Finished',
+        'canceled' => 'Subscription is Cancelled',
+    ]
 ];

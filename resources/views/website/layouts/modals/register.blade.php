@@ -63,34 +63,3 @@
   </div>
 </div>
 
-<div class="modal fade" id="suspended" tabindex="-1" aria-labelledby="suspended" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-body">
-        <div class="contain">
-          <div class="pop-icon red">
-            <img src="{{ asset('website/assets/images/popup/suspended.svg') }}" loading="lazy" alt="" />
-          </div>
-
-          <h1>
-            إشتراكك معطل
-          </h1>
-
-          <p>
-            تم إيقاف الحساب الخاص بك , برجاء التواصل مع الإدارة
-          </p>
-
-          <div class="button-contain">
-            <a href="data-model.html" class="custom-btn">
-              <img src="{{ asset('website/assets/images/icons/arrow.svg') }}" loading="lazy" alt="" />
-
-              <span>
-                الإستمرار
-              </span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>

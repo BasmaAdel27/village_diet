@@ -377,5 +377,9 @@
   "payment_method": "طريقة الدفع",
   "init_amount": "القيمة",
   "transaction_id": "الرقم المرجعي",
-  "your_subscription_is_cancelled": "تم الغاء الاشتراك .. سيستمر اشتراكك حتى نهاية الشهر'"
+  "your_subscription_is_cancelled": "تم الغاء الاشتراك .. سيستمر اشتراكك حتى نهاية الشهر'",
+  "continue": "الإستمرار",
+  "account_is_active": "الحساب جاري بالفعل وسيتم تجديد الاشتراك تلقائيا",
+  "account_is_hold": "تم إيقاف  الحساب الخاص بك برجاء التواصل مع الإدارة",
+  "account_is_cancelled": "حسابك معطل"
 }

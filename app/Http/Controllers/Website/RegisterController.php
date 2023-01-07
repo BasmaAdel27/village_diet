@@ -93,4 +93,33 @@ class RegisterController extends Controller
 
         return response(['url' => $redirectLink['invoiceURL']]);
     }
+
+    public function reactivateSubscription(Request $request)
+    {
+        $data = $request->validate([
+            'user_number' => 'required|string|size:6|exists:users,user_number'
+        ]);
+
+        $user = User::where('user_number', $data['user_number'])->first();
+
+        if ($user->currentSubscription?->status == Subscription::ACTIVE) {
+            return response()->json([
+                'message' => trans('account_is_active'),
+                'status'  => 'active',
+                'title'   => trans('site.subscription_status.active')
+            ]);
+        } elseif (in_array($user->currentSubscription?->status, [Subscription::REQUEST_CANCEL, Subscription::FINISHED])) {
+            return response()->json([
+                'message' => trans('account_is_cancelled'),
+                'status'  => 'finished',
+                'title'   => trans('site.subscription_status.finished')
+            ]);
+        } else {
+            return response()->json([
+                'message' => route('website.payment.form', $user),
+                'status'  => 'in_active',
+                'title'   => trans('site.subscription_status.finished')
+            ]);
+        }
+    }
 }
