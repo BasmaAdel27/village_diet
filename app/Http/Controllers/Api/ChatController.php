@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\ChatRequest;
 use App\Http\Requests\Api\SocietyMessageRequest;
 use App\Http\Requests\Api\StoreMessageRequest;
 use App\Http\Resources\Api\Chat\MessageResource;
@@ -16,6 +17,7 @@ use App\Models\User;
 use App\Notifications\SendAdminNewMessage;
 use App\Notifications\SendSocietyNewMessage;
 use App\Notifications\SendTrainerNewMessage;
+use http\Message;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Notifications\DatabaseNotification;
@@ -156,6 +158,33 @@ class ChatController extends Controller
             $path = $model->message->storePublicly('chats/media', "public");
             $model->update(['message' => "/storage/" . $path]);
         }
+    }
+
+
+    public function destroyMsgTrainer($message_id)
+    {
+        $message=TrainerMessage::findOrFail($message_id);
+            $message->delete();
+            return successResponse(null,message:trans('deleted_successfully'));
+
+
+    }
+
+    public function destroyMsgAdmin($message_id)
+    {
+        $message=AdminMessage::findOrFail($message_id);
+        $message->delete();
+        return successResponse(null,message:trans('deleted_successfully'));
+
+
+    }
+    public function destroyMsgSociety($message_id)
+    {
+        $message=SocietyChat::findOrFail($message_id);
+        $message->delete();
+        return successResponse(null,message:trans('deleted_successfully'));
+
+
     }
 
 }
