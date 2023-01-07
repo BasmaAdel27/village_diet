@@ -4,7 +4,6 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
   <title>@lang('admin-panel') - @yield('title')</title>
   @include('admin.layout.styles')
 </head>
