@@ -14,10 +14,10 @@ class HomeResource extends JsonResource
     {
         return [
             // 'slides' => SlideResource::collection($this->slides),
-            'health_info' => UserInfoResource::make($this->userInfo),
-            'meal'  => MealResource::make($this->meal),
-            'video'    => VideoResource::make($this->video),
-            'society' => $this->society,
+              'health_info' => UserInfoResource::make($this->userInfo),
+              'meal' => MealResource::make($this->meal),
+              'video' => VideoResource::collection($this->video),
+              'society' => $this->society,
         ];
     }
 }
