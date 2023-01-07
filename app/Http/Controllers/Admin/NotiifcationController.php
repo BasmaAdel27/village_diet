@@ -24,31 +24,31 @@ class NotiifcationController extends Controller
     public function store(NotificationRequest $notificationRequest, DatabaseNotification $notification)
     {
         $data = $notificationRequest->validated();
-
         if ($data['type'] == 'users') {
-            $users = User::whereHas('roles', fn ($q) => $q->where('name', 'user'))->get();
+            $users = User::whereHas('roles', fn($q) => $q->where('name', 'user'))->get();
         } elseif ($data['type'] == 'trainers') {
-            $users = User::whereHas('roles', fn ($q) => $q->where('name', 'trainer'))->get();
+            $users = User::whereHas('roles', fn($q) => $q->where('name', 'trainer'))->get();
         } else {
             $users = User::all();
         }
-
         $title = 'Village Diet';
         $content = $data['data']['content'];
         $message = [
-            'title' => $data['data']['title'],
-            'title_ar' =>  $data['data']['title'],
-            'body' => $data['data']['content'],
-            'body_ar' => $data['data']['content'],
-            'type' => 'adminDashboard',
+              'title' => $data['data']['title'],
+              'title_ar' => $data['data']['title'],
+              'body' => $data['data']['content'],
+              'body_ar' => $data['data']['content'],
+              'type' => 'adminDashboard',
         ];
 
         foreach ($users as $user) {
             DatabaseNotification::create($data + [
-                'notifiable_id' => $user->id,
-                'notifiable_type' => 'App\Models\User',
-                'id' => Str::uuid()
-            ]);
+                        'notifiable_id' => $user->id,
+                        'notifiable_type' => 'App\Models\User',
+                        'id' => Str::uuid(),
+                        'message_ar' => $data['data']['content'],
+                        'message_en' => $data['data']['content'],
+                  ]);
 
             if ($user->firebase_token) {
                 send_notification([$user->firebase_token], $content, $title, $message);
