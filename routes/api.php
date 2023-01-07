@@ -54,6 +54,9 @@ Route::middleware(['auth:sanctum', 'appLocale', \App\Http\Middleware\InActiveSta
         Route::post('store_messages', 'storeTrainerMessages');
         Route::post('store_admin_messages', 'storeAdminMessages');
         Route::post('store_society_messages', 'storeSocietyMessages');
+        Route::delete('destroy_trainer_message/{message_id}', 'destroyMsgTrainer');
+        Route::delete('destroy_admin_message/{message_id}', 'destroyMsgAdmin');
+        Route::delete('destroy_society_message/{message_id}', 'destroyMsgSociety');
     });
 });
 
