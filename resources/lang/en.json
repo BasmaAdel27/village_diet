@@ -371,5 +371,6 @@
   "subscription_info": "Subscription Details",
   "payment_method": "Payment Method",
   "init_amount": "Amount",
-  "transaction_id": "Transaction Reference"
+  "transaction_id": "Transaction Reference",
+  "your_subscription_is_cancelled": "The subscription has been cancelled.. Your subscription will continue until the end of the month"
 }

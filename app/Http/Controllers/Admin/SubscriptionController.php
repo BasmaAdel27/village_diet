@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Subscription;
 use App\Notifications\CancelSubscription;
 use Illuminate\Support\Facades\Notification;
+use Maatwebsite\Excel\Transactions\TransactionHandler;
 
 class SubscriptionController extends Controller
 {
@@ -39,7 +40,7 @@ class SubscriptionController extends Controller
         $firebase_id = $user->firebase_token;
 
         $title = 'Village Diet';
-        $content = trans('you_had_added_to_society');
+        $content = trans('your_subscription_is_cancelled');
         $message = [
             'title' => 'village_diet',
             'title_ar' => 'فيليج دايت',

@@ -37,7 +37,7 @@ class SubscriptionsController extends Controller
             $firebase_id = $user->firebase_token;
 
             $title = 'Village Diet';
-            $content = trans('you_had_added_to_society');
+            $content = trans('your_subscription_is_cancelled');
             $message = [
                 'title' => 'village_diet',
                 'title_ar' => 'فيليج دايت',
