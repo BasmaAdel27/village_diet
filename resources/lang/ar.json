@@ -376,5 +376,6 @@
   "subscription_info": "تفاصيل الاشتراك",
   "payment_method": "طريقة الدفع",
   "init_amount": "القيمة",
-  "transaction_id": "الرقم المرجعي"
+  "transaction_id": "الرقم المرجعي",
+  "your_subscription_is_cancelled": "تم الغاء الاشتراك .. سيستمر اشتراكك حتى نهاية الشهر'"
 }
