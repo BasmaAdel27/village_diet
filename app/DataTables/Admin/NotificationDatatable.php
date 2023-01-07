@@ -29,7 +29,7 @@ class NotificationDatatable extends DataTable
     {
         return DatabaseNotification::select('notifications.*')
             ->join('users', 'users.id', 'notifiable_id')
-            ->where('notifiable_type', 'App\Models\User')->newQuery();
+            ->where('notifiable_type', 'App\Models\User')->latest()->newQuery();
     }
 
     public function html()
