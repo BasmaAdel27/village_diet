@@ -38,6 +38,8 @@ class NotiifcationController extends Controller
               'title_ar' => $data['data']['title'],
               'body' => $data['data']['content'],
               'body_ar' => $data['data']['content'],
+              'message_ar' => $data['data']['content'],
+              'message_en' => $data['data']['content'],
               'type' => 'adminDashboard',
         ];
 
@@ -46,8 +48,7 @@ class NotiifcationController extends Controller
                         'notifiable_id' => $user->id,
                         'notifiable_type' => 'App\Models\User',
                         'id' => Str::uuid(),
-                        'message_ar' => $data['data']['content'],
-                        'message_en' => $data['data']['content'],
+
                   ]);
 
             if ($user->firebase_token) {
