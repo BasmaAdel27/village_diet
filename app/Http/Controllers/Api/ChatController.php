@@ -36,6 +36,8 @@ class ChatController extends Controller
 
         $trainerId = auth()->user()->society->trainer->id;
 
+        dd($trainerId);
+
         $messages = TrainerMessage::with('sender', 'receiver')
               ->where(function ($q) use ($userId, $trainerId) {
                   $q->where([['sender_id', $userId], ['receiver_id', $trainerId]])
