@@ -80,12 +80,7 @@ class UserController extends Controller
             'end_date' => now()->addDays(30),
         ]);
 
-
-<<<<<<< Updated upstream
         Mail::to($user->email)->send(new UserNumber($user));
-=======
-        // Mail::to($user->email)->send(new UserNumber($user));
->>>>>>> Stashed changes
 
         if ($request->subscribe) {
             Subscriber::create([
