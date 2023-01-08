@@ -33,13 +33,13 @@
         <a href="{{ route('website.customers_opinions.index') }}" class="nav-link"> @lang('customer_opinions') </a>
       </li>
 
-      @foreach ($staticPages as $page)
-        @if($page->slug != 'privacy-policy' || $page->slug != 'terms-of-use')
-          <li class="nav-item">
-            <a href="{{ route('website.static_pages.show',$page->id) }}" class="nav-link"> {{ $page->title }} </a>
-          </li>
-        @endif
-      @endforeach
+{{--      @foreach ($staticPages as $page)--}}
+{{--        @if($page->slug != 'privacy-policy' || $page->slug != 'terms-of-use')--}}
+{{--          <li class="nav-item">--}}
+{{--            <a href="{{ route('website.static_pages.show',$page->id) }}" class="nav-link"> {{ $page->title }} </a>--}}
+{{--          </li>--}}
+{{--        @endif--}}
+{{--      @endforeach--}}
 
       <li class="nav-item">
         <a href="{{ route('website.contact_us.index') }}" class="nav-link"> @lang('contact us') </a>
