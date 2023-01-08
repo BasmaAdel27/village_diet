@@ -1,5 +1,7 @@
 @php
   $aboutUs = \App\Models\StaticPage\StaticPage::where('slug','about-village-diet')->first();
+  $privacy = \App\Models\StaticPage\StaticPage::where('slug','privacy-policy')->first();
+  $terms = \App\Models\StaticPage\StaticPage::where('slug','terms-of-use')->first();
 @endphp
 
 <div class="container">
@@ -32,9 +34,9 @@
       <li class="nav-item">
         <a href="{{ route('website.customers_opinions.index') }}" class="nav-link"> @lang('customer_opinions') </a>
       </li>
-    @dd($staticPages)
+      @dd($staticPages)
       @foreach ($staticPages as $page)
-        @if($page->slug != 'privacy-policy' || $page->slug != 'terms-of-use')
+        @if( !in_array($page->id,[$terms->id,$privacy->id]))
           <li class="nav-item">
             <a href="{{ route('website.static_pages.show',$page->id) }}" class="nav-link"> {{ $page->title }} </a>
           </li>
