@@ -1,5 +1,5 @@
 @php
-$aboutUs = \App\Models\StaticPage\StaticPage::where('slug','about-village-diet')->first();
+  $aboutUs = \App\Models\StaticPage\StaticPage::where('slug','about-village-diet')->first();
 @endphp
 
 <div class="container">
@@ -11,7 +11,7 @@ $aboutUs = \App\Models\StaticPage\StaticPage::where('slug','about-village-diet')
     </div>
 
     <a href="/" class="brand-name">
-      <img src="{{ asset('storage/'.$setting->logo) }}" loading="lazy" alt="" />
+      <img src="{{ asset('storage/'.$setting->logo) }}" loading="lazy" alt=""/>
     </a>
 
     <ul class="navbar-nav">
@@ -34,9 +34,11 @@ $aboutUs = \App\Models\StaticPage\StaticPage::where('slug','about-village-diet')
       </li>
 
       @foreach ($staticPages as $page)
-      <li class="nav-item">
-        <a href="{{ route('website.static_pages.show',$page->id) }}" class="nav-link"> {{ $page->title }} </a>
-      </li>
+        @if($page->slug != 'privacy-policy' || $page->slug != 'terms-of-use')
+          <li class="nav-item">
+            <a href="{{ route('website.static_pages.show',$page->id) }}" class="nav-link"> {{ $page->title }} </a>
+          </li>
+        @endif
       @endforeach
 
       <li class="nav-item">
@@ -46,14 +48,14 @@ $aboutUs = \App\Models\StaticPage\StaticPage::where('slug','about-village-diet')
 
     <div class="button-contain">
       @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
-      @if ($localeCode != LaravelLocalization::getCurrentLocale())
-      <a href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}" class="lang">
-        <span> {{ $localeCode }}</span>
-      </a>
-      @endif
+        @if ($localeCode != LaravelLocalization::getCurrentLocale())
+          <a href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}" class="lang">
+            <span> {{ $localeCode }}</span>
+          </a>
+        @endif
       @endforeach
       <a href="{{ route('website.register') }}" class="custom-btn primary-color">
-        <img src="{{asset('website/assets/images/navbar/user.svg')}}" loading="lazy" alt="" />
+        <img src="{{asset('website/assets/images/navbar/user.svg')}}" loading="lazy" alt=""/>
         <span>@lang('register')</span>
       </a>
 
