@@ -34,7 +34,6 @@
       <li class="nav-item">
         <a href="{{ route('website.customers_opinions.index') }}" class="nav-link"> @lang('customer_opinions') </a>
       </li>
-      @dd($staticPages)
       @foreach ($staticPages as $page)
         @if( !in_array($page->id,[$terms->id,$privacy->id]))
           <li class="nav-item">
