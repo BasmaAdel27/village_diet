@@ -81,7 +81,7 @@ class UserController extends Controller
         ]);
 
 
-//        Mail::to($user->email)->send(new UserNumber($user));
+        Mail::to($user->email)->send(new UserNumber($user));
 
         if ($request->subscribe) {
             Subscriber::create([
