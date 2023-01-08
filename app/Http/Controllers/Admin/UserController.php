@@ -81,7 +81,11 @@ class UserController extends Controller
         ]);
 
 
+<<<<<<< Updated upstream
         Mail::to($user->email)->send(new UserNumber($user));
+=======
+        // Mail::to($user->email)->send(new UserNumber($user));
+>>>>>>> Stashed changes
 
         if ($request->subscribe) {
             Subscriber::create([
