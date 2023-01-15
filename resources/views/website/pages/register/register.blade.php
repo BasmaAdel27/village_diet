@@ -42,7 +42,7 @@
                 </h2>
 
                 <div class="row">
-                  <div class="col-lg-6 col-12 px-2">
+                  <div class="col-lg-6 col-12 px-2 py-3">
                     <div class="form-group">
                       <img src="{{ asset('website/assets/images/form/user.svg') }}" class="icon" loading="lazy"
                         alt="" />
@@ -58,7 +58,7 @@
                     </div>
                   </div>
 
-                  <div class="col-lg-6 col-12 px-2">
+                  <div class="col-lg-6 col-12 px-2 py-3">
                     <div class="form-group">
                       <img src="{{ asset('website/assets/images/form/user.svg') }}" class="icon" loading="lazy"
                         alt="" />
@@ -74,7 +74,7 @@
                     </div>
                   </div>
 
-                  <div class="col-lg-6 col-12 px-2">
+                  <div class="col-lg-6 col-12 px-2 py-3">
                     <div class="form-group">
                       <img src="{{ asset('website/assets/images/form/sms.svg') }}" class="icon" loading="lazy" alt="" />
                       <input type="text" name="email" value="{{ old('email') ?? '' }}"
@@ -87,7 +87,7 @@
                     </div>
                   </div>
 
-                  <div class="col-lg-6 col-12 px-2">
+                  <div class="col-lg-6 col-12 px-2 py-3">
                     <div class="form-group">
                       <img src="{{ asset('website/assets/images/form/sms.svg') }}" class="icon" loading="lazy" alt="" />
 
@@ -102,7 +102,7 @@
                     </div>
                   </div>
 
-                  <div class="col-lg-6 col-12 px-2">
+                  <div class="col-lg-6 col-12 px-2 py-3 py-3">
                     <div class="form-group">
                       <img src="{{ asset('website/assets/images/form/phone.svg') }}" class="icon" loading="lazy"
                         alt="" />
@@ -118,7 +118,7 @@
                     </div>
                   </div>
 
-                  <div class="col-lg-6 col-12 px-2">
+                  <div class="col-lg-6 col-12 px-2 py-3">
                     <div class="form-group">
                       <img src="{{ asset('website/assets/images/form/calendar.svg') }}" class="icon" loading="lazy"
                         alt="" />
@@ -139,7 +139,7 @@
                 </h2>
 
                 <div class="row">
-                  <div class="col-lg-6 col-12 px-2">
+                  <div class="col-lg-6 col-12 px-2 py-3">
                     <div class="form-group select">
                       <img src="{{ asset('website/assets/images/form/flag.svg') }}" class="icon" loading="lazy"
                         alt="" />
@@ -160,7 +160,7 @@
                       @enderror
                     </div>
                   </div>
-                  <div class="col-lg-6 col-12 px-2">
+                  <div class="col-lg-6 col-12 px-2 py-3">
                     <div class="form-group">
                       <img src="{{ asset('website/assets/images/form/location.svg') }}" class="icon" loading="lazy"
                         alt="" />
