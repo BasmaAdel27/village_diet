@@ -4,10 +4,10 @@
       <div class="row">
         <div class="col-lg-8 col-12">
           <div class="data">
-            <h1>
-              @lang('register_in')
-              <span>@lang('website_title')</span>
-            </h1>
+{{--            <h1>--}}
+{{--              @lang('register_in')--}}
+{{--              <span>@lang('website_title')</span>--}}
+{{--            </h1>--}}
             <p>
               @lang('register_brief')
             </p>
