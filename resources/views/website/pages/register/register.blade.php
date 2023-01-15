@@ -2,20 +2,6 @@
 
 @section('content')
 
-<section class="sub-header">
-  <div class="container general-pattern right-left-pattern">
-    <div class="heading">
-      <h1>
-        @lang('register_and_rejoin')
-      </h1>
-
-      <p>
-        @lang('register_if_you_donot_have_one')
-      </p>
-    </div>
-  </div>
-</section>
-
 <section class="form-page">
   <div class="conatiner">
     <div class="row">
@@ -108,13 +94,13 @@
                     <div class="form-group">
                       <img src="{{ asset('website/assets/images/form/calendar.svg') }}" class="icon" loading="lazy"
                         alt="" />
-                      <input type="date" name="date_of_birth" class="form-control"
-                        placeholder="@lang('date_of_birth')" />
+                      <input type="date" name="date_of_birth" class="form-control" placeholder="@lang('date_of_birth')"
+                        dir="rtl" />
                     </div>
                   </div>
                 </div>
 
-                <h2 class="sub-title section-contain">
+                <h2 class=" sub-title section-contain">
                   @lang('address_info')
                 </h2>
 
@@ -128,22 +114,18 @@
                           @lang('country')
                         </option>
                         @foreach ($countries as $id => $name)
-                        <option value="{{ $id }}" {{ $id==old('country_id') ? 'selected' : '' }}>{{ $name }}</option>
+                        <option value="{{ $id }}" {{ $id==old('country_id') ? 'selected' : '' }}>{{ $name }}
+                        </option>
                         @endforeach
                       </select>
                     </div>
                   </div>
-
                   <div class="col-lg-6 col-12 px-2">
-                    <div class="form-group select">
+                    <div class="form-group">
                       <img src="{{ asset('website/assets/images/form/location.svg') }}" class="icon" loading="lazy"
                         alt="" />
-
-                      <select class="form-control" value="{{ old('state_id') ?? '' }}" name="state_id" id="state">
-                        <option value="" hidden>
-                          @lang('city')
-                        </option>
-                      </select>
+                      <input type="text" value="{{ old('city') }}" name="city" class="form-control"
+                        placeholder="@lang('city')" />
                     </div>
                   </div>
 
@@ -258,27 +240,6 @@
 @section('scripts')
 <script>
   $(document).ready(function () {
-      $('#country').on('change', function () {
-        var country_id = this.value;
-        $("#state").html('');
-        $.ajax({
-          url: "{{ route('admin.states') }}",
-          type: "get",
-          data: {
-            'country_id': country_id
-          },
-          success: function (result) {
-            $('#state').html('<option value="">اختر المدينة</option>');
-            $.each(result, function (key, value) {
-              $("#state").append('<option value="' + key + '">' + value + '</option>');
-
-            });
-
-          }
-
-        })
-      });
-
       $('#submit_renew').on('click',function(){
         form = $(this).closest('form');
         $.ajax({

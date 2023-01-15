@@ -15,7 +15,7 @@ class RegisterRequest extends FormRequest
             'phone' => 'required|numeric',
             'date_of_birth' => 'required|date|date_format:Y-m-d|before:today',
             'country_id' => 'required|exists:countries,id',
-            'state_id' => 'required|exists:states,id',
+            'city' => 'required|string',
             'address' => 'required|string|max:255',
             'insta_link' => 'required|string',
             'is_postal' => 'nullable|in:1,0',
