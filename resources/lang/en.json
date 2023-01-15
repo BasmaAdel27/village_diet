@@ -381,5 +381,9 @@
   "false": "No",
   "communities": "Communities",
   "application": "App",
-  "visit_website": "Visit Website"
+  "visit_website": "Visit Website",
+  "join_request_reason": "Join Request Reason",
+  "bio": "Bio",
+  "cv": "CV",
+  "current_job": "Current Job"
 }

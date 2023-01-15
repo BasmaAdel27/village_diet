@@ -386,5 +386,9 @@
   "false": "لا",
   "communities": "مجتمعات",
   "application": "تطبيق",
-  "visit_website": "زياره الموقع"
+  "visit_website": "زياره الموقع",
+  "join_request_reason": "سبب طلب الانضمام",
+  "bio": "النبذة التعريفية",
+  "cv": "السيرة الذاتية",
+  "current_job": "الوظيفة الحالية"
 }
