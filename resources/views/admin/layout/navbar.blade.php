@@ -20,6 +20,9 @@
         @endforeach
       </select>
     </ul>
+    <ul class="navbar-nav">
+    <a class="btn btn-success" style="color: white" href="/">@lang('visit_website')</a>
+    </ul>
     {{-- @include('admin.layout.navbar.search') --}}
     <ul class="navbar-nav">
       {{-- @include('admin.layout.navbar.messages')

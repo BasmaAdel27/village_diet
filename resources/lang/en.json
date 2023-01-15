@@ -380,5 +380,6 @@
   "true": "Yes",
   "false": "No",
   "communities": "Communities",
-  "application": "App"
+  "application": "App",
+  "visit_website": "Visit Website"
 }
