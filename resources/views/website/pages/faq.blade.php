@@ -5,9 +5,9 @@
 <section class="sub-header">
   <div class="container general-pattern right-left-pattern">
     <div class="heading">
-      <h1>
-        @lang('faq')
-      </h1>
+{{--      <h1>--}}
+{{--        @lang('faq')--}}
+{{--      </h1>--}}
     </div>
   </div>
 </section>

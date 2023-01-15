@@ -10,7 +10,7 @@
       <div class="col-lg-7 col-12 mb-4 mobile-order-0">
         <div class="contain">
           <h1>
-            @lang('societies')
+            @lang('communities')
             <span> @lang('website_title')</span>
           </h1>
           <p>

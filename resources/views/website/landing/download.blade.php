@@ -3,7 +3,13 @@
     <div class="heading">
       <h1>
         @lang('download_app')
+        @if (app()->getLocale() == 'ar')
+          @lang('application')
+        @endif
         <span> @lang('website_title')</span>
+        @if (app()->getLocale() == 'en')
+        @lang('application')
+        @endif
         @lang('enjoy_website')
       </h1>
     </div>

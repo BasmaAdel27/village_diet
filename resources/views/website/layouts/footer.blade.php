@@ -1,5 +1,7 @@
 @php
 $aboutUs = \App\Models\StaticPage\StaticPage::where('slug','about-village-diet')->first();
+  $food_recipes= \App\Models\StaticPage\StaticPage::Where('slug', 'Food-Recipes')->first();
+
 @endphp
 
 <div class="container">
@@ -96,7 +98,7 @@ $aboutUs = \App\Models\StaticPage\StaticPage::where('slug','about-village-diet')
               <a href="{{ route('website.faqs') }}">@lang('faq')</a>
             </li>
             <li>
-              <a href="{{ route('website.food_recipes') }}"> @lang('food_recipes')</a>
+              <a href="{{ route('website.food_recipes') }}">{{$food_recipes->title}}</a>
             </li>
             <li>
               <a href=" {{ route('website.trainers.index') }}">@lang('our_trainers')</a>

@@ -253,7 +253,7 @@
   "trainers_desc": "Elite coaches on the Village Diet platform",
   "licensed": "Licensed",
   "not_licensed": "Unlicensed",
-  "customer_opinions": "Customer Opinions",
+  "customer_opinions": "Testimonials",
   "opinion_desc": "A group of distinguished opinions of our valued customers and the standard of our excellence and leadership",
   "empty_trainers": "There are no coaches currently",
   "empty_opinions": "There are currently no customer reviews",
@@ -294,7 +294,7 @@
   "website_title": "Village Diet",
   "register_brief": "Subscribe now to the Village Diet platform and enjoy all the benefits offered and start your diet",
   "register_now": "Register Now",
-  "download_app": "Download Application",
+  "download_app": "Download",
   "enjoy_website": "And enjoy more than wonderful features",
   "socitey_section_breif": "The platform seeks to become the new national breakthrough within the Saudi community in the world of health and fitness. By collecting and displaying all physical education trainers within the platform and providing online follow-up service through direct communication between the two parties",
   "product_breif": "Get the best store products",
@@ -378,5 +378,8 @@
   "account_is_hold": "Account is hold",
   "account_is_cancelled": "Account is Cancelled",
   "true": "Yes",
-  "false": "No"
+  "false": "No",
+  "communities": "Communities",
+  "application": "App",
+  "visit_website": "Visit Website"
 }
