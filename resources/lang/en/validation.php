@@ -158,6 +158,33 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'date_of_birth' => 'date of birth',
+        'country_id' => 'country',
+        'insta_link' => 'instagram link',
+        'q2' => 'What do you want to achieve in the next 4 weeks?',
+        'q4' => 'Daily stress level',
+        'q14' => 'Marital status',
+        'q16' => 'Do you have children? ',
+        'q18' => 'Sex',
+        'q19' => 'Do you exercise',
+        'q21' => 'What exercise equipment do you have?',
+        'q23' => 'Do you smoke?',
+        'q25' => 'Daily activity level',
+        'q28' => 'How often do you eat outside the home?',
+        'q30' => 'Do you enjoy eating breakfast early?',
+        'q32' => 'Are you allergic to certain foods? ?',
+        'q9' => 'average number of hours slept',
+        'q10' => 'current weight',
+        'q11' => 'Height',
+        'q12' => 'Occupation',
+        'q34' => 'Allergenic foods',
+        'q36' => 'Favourite foods',
+        'q37' => 'Upper arm In the middle between the elbow and the shoulder (cm)',
+        'q38' => 'the waist is 5 cm below the navel (cm)',
+        'q39' => 'the waist is 5 cm above the navel (cm)',
+        'q40' => 'Navel waist (cm)',
+        'q41' => 'upper leg midway between the knee and hip (cm)',
+    ],
 
 ];
