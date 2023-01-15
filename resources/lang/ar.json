@@ -57,7 +57,7 @@
   "updated_successfully": "تم التعديل بنجاح",
   "deleted_successfully": "تم الحذف بنجاح",
   "send_successfully": "تم الإرسال بنجاح",
-  "cancel_successfully": "سيتم إلغاء الاشتراك في نهاية الدورة بتاريخ :date ",
+  "cancel_successfully": "سيتم إلغاء الاشتراك بتاريخ :date ",
   "Are you sure?": "هل متأكد ؟",
   "You wont be able to revert this!": "لا يمكنك استرجاع ذلك !",
   "Yes, delete it!": "! نعم ، حذف ",
