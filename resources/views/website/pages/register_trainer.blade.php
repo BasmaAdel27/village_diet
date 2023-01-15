@@ -310,21 +310,13 @@
           processData: false,
           error: function(message,error)
           {
-            const Toast = Swal.mixin({
-              toast: true,
-              position: 'top-end',
-              showConfirmButton: false,
-              timer: 3000,
-              timerProgressBar: true,
-              didOpen: (toast) => {
-                toast.addEventListener('mouseenter', Swal.stopTimer)
-                toast.addEventListener('mouseleave', Swal.resumeTimer)
-              }
-            })
-
-            Toast.fire({
-              icon: 'error',
-              title: message.responseJSON.errors[0]
+            $.each(message.responseJSON.errors,function(field_name,error){
+              $(document).find('[name='+field_name+']')
+              .not('[type="radio"]')
+              .last()
+              .after('<span style="width: 100%;margin-top: 0.25rem;font-size: 80%;color: #dc3545;" role="alert"><strong>'
+                + error[0] +
+                '</strong></span>')
             })
 
           }
