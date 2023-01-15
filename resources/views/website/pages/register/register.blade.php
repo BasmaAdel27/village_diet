@@ -47,8 +47,14 @@
                       <img src="{{ asset('website/assets/images/form/user.svg') }}" class="icon" loading="lazy"
                         alt="" />
 
-                      <input type="text" name="first_name" value="{{ old('first_name') ?? '' }}" class="form-control"
+                      <input type="text" name="first_name" value="{{ old('first_name') ?? '' }}"
+                        class="form-control @error('first_name') is-invalid @enderror"
                         placeholder="@lang('first_name')" />
+                      @error('first_name')
+                      <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                      </span>
+                      @enderror
                     </div>
                   </div>
 
@@ -57,17 +63,27 @@
                       <img src="{{ asset('website/assets/images/form/user.svg') }}" class="icon" loading="lazy"
                         alt="" />
 
-                      <input type="text" name="last_name" value="{{ old('last_name') ?? '' }}" class="form-control"
+                      <input type="text" name="last_name" value="{{ old('last_name') ?? '' }}"
+                        class="form-control @error('first_name') is-invalid @enderror"
                         placeholder="@lang('last_name')" />
+                      @error('last_name')
+                      <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                      </span>
+                      @enderror
                     </div>
                   </div>
 
                   <div class="col-lg-6 col-12 px-2">
                     <div class="form-group">
                       <img src="{{ asset('website/assets/images/form/sms.svg') }}" class="icon" loading="lazy" alt="" />
-
-                      <input type="text" name="email" value="{{ old('email') ?? '' }}" class="form-control"
-                        placeholder="@lang('email')" />
+                      <input type="text" name="email" value="{{ old('email') ?? '' }}"
+                        class="form-control @error('email') is-invalid @enderror" placeholder="@lang('email')" />
+                      @error('email')
+                      <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                      </span>
+                      @enderror
                     </div>
                   </div>
 
@@ -76,7 +92,13 @@
                       <img src="{{ asset('website/assets/images/form/sms.svg') }}" class="icon" loading="lazy" alt="" />
 
                       <input type="text" value="{{ old('email_confirmation') ?? '' }}" name="email_confirmation"
-                        class="form-control" placeholder="@lang('email_confirmation')" />
+                        class="form-control @error('email_confirmation') is-invalid @enderror"
+                        placeholder="@lang('email_confirmation')" />
+                      @error('email_confirmation')
+                      <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                      </span>
+                      @enderror
                     </div>
                   </div>
 
@@ -85,8 +107,14 @@
                       <img src="{{ asset('website/assets/images/form/phone.svg') }}" class="icon" loading="lazy"
                         alt="" />
 
-                      <input type="tel" value="{{ old('phone') ?? '' }}" name="phone" class="form-control"
+                      <input type="tel" value="{{ old('phone') ?? '' }}" name="phone"
+                        class="form-control @error('email_confirmation') is-invalid @enderror"
                         placeholder="@lang('phone')" />
+                      @error('phone')
+                      <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                      </span>
+                      @enderror
                     </div>
                   </div>
 
@@ -94,8 +122,14 @@
                     <div class="form-group">
                       <img src="{{ asset('website/assets/images/form/calendar.svg') }}" class="icon" loading="lazy"
                         alt="" />
-                      <input type="date" name="date_of_birth" class="form-control" placeholder="@lang('date_of_birth')"
-                        dir="rtl" />
+                      <input type="date" name="date_of_birth"
+                        class="form-control @error('date_of_birth') is-invalid @enderror"
+                        placeholder="@lang('date_of_birth')" dir="rtl" />
+                      @error('date_of_birth')
+                      <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                      </span>
+                      @enderror
                     </div>
                   </div>
                 </div>
@@ -109,7 +143,8 @@
                     <div class="form-group select">
                       <img src="{{ asset('website/assets/images/form/flag.svg') }}" class="icon" loading="lazy"
                         alt="" />
-                      <select class="form-control" name="country_id" id="country">
+                      <select class="form-control @error('country_id') is-invalid @enderror" name="country_id"
+                        id="country">
                         <option value="" hidden>
                           @lang('country')
                         </option>
@@ -118,23 +153,38 @@
                         </option>
                         @endforeach
                       </select>
+                      @error('country_id')
+                      <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                      </span>
+                      @enderror
                     </div>
                   </div>
                   <div class="col-lg-6 col-12 px-2">
                     <div class="form-group">
                       <img src="{{ asset('website/assets/images/form/location.svg') }}" class="icon" loading="lazy"
                         alt="" />
-                      <input type="text" value="{{ old('city') }}" name="city" class="form-control"
-                        placeholder="@lang('city')" />
+                      <input type="text" value="{{ old('city') }}" name="city"
+                        class="form-control @error('city') is-invalid @enderror" placeholder="@lang('city')" />
+                      @error('city')
+                      <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                      </span>
+                      @enderror
                     </div>
                   </div>
 
                   <div class="col-12">
                     <div class="form-group text-area no-margin">
-                      <textarea name="address" class="form-control" placeholder="@lang('address')" id="" cols="30"
-                        rows="10">
+                      <textarea name="address" class="form-control @error('address') is-invalid @enderror"
+                        placeholder="@lang('address')" id="" cols="30" rows="10">
                       {{ old('address') ?? '' }}
                       </textarea>
+                      @error('address')
+                      <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                      </span>
+                      @enderror
                     </div>
                   </div>
                 </div>
@@ -147,8 +197,13 @@
                   <img src="{{ asset('website/assets/images/form/instagram_twotone.svg') }}" loading="lazy" alt=""
                     class="icon" />
 
-                  <input type="text" value="{{ old('insta_link') ?? '' }}" name="insta_link" class="form-control"
-                    placeholder="@lang('instagram')" />
+                  <input type="text" value="{{ old('insta_link') ?? '' }}" name="insta_link"
+                    class="form-control @error('insta_link') is-invalid @enderror" placeholder="@lang('instagram')" />
+                  @error('insta_link')
+                  <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                  </span>
+                  @enderror
                 </div>
 
                 <div class="section-seprate">
