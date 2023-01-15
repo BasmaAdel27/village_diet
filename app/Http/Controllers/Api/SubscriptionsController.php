@@ -18,10 +18,9 @@ class SubscriptionsController extends Controller
         $data = new stdClass();
         $user = auth()->user();
 
-        dd($user->currentSubscrip);
-
         $data->logs = $user->subscriptions()->where('id', '<>', $user->currentSubscription?->id)->get();
         $data->active_subscription = $user->currentSubscription;
+        dd($data);
         if ($user->currentSubscription->status == 'request_cancel' || ($user->currentSubscription->status == 'in_active' && $user->currentSubscription->end_date <= now())) {
             $user->currentSubscription->update(['status' => Subscription::FINISHED]);
         }
