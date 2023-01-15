@@ -24,7 +24,7 @@ class CancelSubscription extends Notification
         return [
             'type' => 'society',
             'title' => 'Subscription has been cancelled',
-            'title_ar' => 'تم ألغاء الاشتراك',
+            'title_ar' => 'تم الغاء الاشتراك',
             'message_ar' => $message_ar,
             'message_en' => $message_en
         ];
