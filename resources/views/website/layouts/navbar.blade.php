@@ -2,6 +2,7 @@
   $aboutUs = \App\Models\StaticPage\StaticPage::where('slug','about-village-diet')->first();
   $privacy = \App\Models\StaticPage\StaticPage::where('slug','privacy-policy')->first();
   $terms = \App\Models\StaticPage\StaticPage::where('slug','terms-of-use')->first();
+  $food_recipes= \App\Models\StaticPage\StaticPage::Where('slug', 'Food-Recipes')->first();
 @endphp
 
 <div class="container">
@@ -26,7 +27,7 @@
       </li>
 
       <li class="nav-item">
-        <a href="{{ route('website.food_recipes') }}" class="nav-link">@lang('food_recipes')</a>
+        <a href="{{ route('website.food_recipes') }}" class="nav-link">{{$food_recipes->title}}</a>
       </li>
       <li class="nav-item">
         <a href="{{ route('website.trainers.index') }}" class="nav-link"> @lang('trainers') </a>

@@ -5,13 +5,13 @@
 <section class="sub-header">
   <div class="container general-pattern right-left-pattern">
     <div class="heading">
-      <h1>
-        @lang("contact us")
-      </h1>
+{{--      <h1>--}}
+{{--        @lang("contact us")--}}
+{{--      </h1>--}}
 
-      <p>
-        @lang('contact_desc')
-      </p>
+{{--      <p>--}}
+{{--        @lang('contact_desc')--}}
+{{--      </p>--}}
     </div>
   </div>
 </section>
