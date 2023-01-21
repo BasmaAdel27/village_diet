@@ -65,7 +65,7 @@ class RegisterController extends Controller
 
     public function getPayment(Request $request, User $user)
     {
-        $data = Subscription::calculateSubscription($request);
+        $data = Subscription::calculateSubscription($request->code);
 
         return view('website.pages.register.payment', [
             'user' => $user,
