@@ -306,7 +306,6 @@
   "complete_your_data": "قم باستكمال بياناتك",
   "review": "الطلب قيد المراجعه وسيتم التواصل معك بواسطة الادارة",
   "basic_informations": "معلومات اساسية",
-  "current_job": "المهنة الحالية",
   "attach_image": "ارفق الصورة الشخضية",
   "attach_cv": "ارفق السيرة الذاتية",
   "write_about": "اكتب نبذه عنك",
@@ -388,8 +387,6 @@
   "application": "تطبيق",
   "visit_website": "زياره الموقع",
   "join_request_reason": "سبب طلب الانضمام",
-  "bio": "النبذة التعريفية",
-  "cv": "السيرة الذاتية",
   "current_job": "الوظيفة الحالية",
   "can_not_complete_process": "نأسف لعدم إكمال العملية"
 }
