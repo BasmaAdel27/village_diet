@@ -27,9 +27,10 @@
         <div class="form-group col-12">
           <label>@lang('users')</label>
           <select name="emails[]" class="form-control js-example-basic-multiple" multiple>
-            <option value="">@lang('select')</option>
+            <option value="all">@lang('select all')</option>
             @foreach ($users as $email)
-            <option value="{{ $email }}" {{ (collect(old('emails'))->contains($email)) ? 'selected':'' }}>{{ $email }}</option>
+            <option value="{{ $email }}" {{ (collect(old('emails'))->contains($email)) ? 'selected':'' }}>{{ $email }}
+            </option>
             @endforeach
           </select>
         </div>

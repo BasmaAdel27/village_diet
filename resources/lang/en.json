@@ -19,6 +19,7 @@
   "admin": "Admin",
   "trainer": "Trainer",
   "select": "Select",
+  "select all": "Select All",
   "roles": "Roles",
   "permissions": "Permissions",
   "user type": "User Type",

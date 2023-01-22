@@ -13,6 +13,15 @@ $(document).ready(function () {
     console.log(e.target.value);
     window.location = e.target.value;
   });
+
+  $('.js-example-basic-multiple').on('select2:select', function (e) {
+    var data = e.params.data.id;
+    if (data == 'all') {
+      $('.js-example-basic-multiple > option').prop('selected', 'selected');
+      $('.js-example-basic-multiple').trigger('change');
+    }
+  });
+
   $('#print').on('click', function () {
     $('#print_this').printThis();
   });
