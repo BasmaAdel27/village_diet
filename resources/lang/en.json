@@ -383,5 +383,6 @@
   "join_request_reason": "Join Request Reason",
   "bio": "Bio",
   "cv": "CV",
-  "current_job": "Current Job"
+  "current_job": "Current Job",
+  "can_not_complete_process": "Sorry, we can not complete the process"
 }
