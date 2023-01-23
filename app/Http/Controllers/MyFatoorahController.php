@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Mail\UserNumber;
 use App\Models\Subscription;
 use App\Models\User;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Mail;
 use MyFatoorah\Library\PaymentMyfatoorahApiV2;
 
@@ -84,8 +85,10 @@ class MyFatoorahController extends Controller
             'payment_method' => 'Visa',
             'end_date' => now()->addDays(30),
             'coupon_id' => $data['coupon']?->id,
-            'transaction_id' => $paymentId
+            'transaction_id' => $paymentId,
+            'invoice_id' => Cache::get('invoice_id')
         ]);
+        Cache::forget('invoice_id');
 
         $userNumber = generateUniqueCode(User::class, 'user_number', 6);
         $user->update(['step' => 3, 'user_number' => $userNumber]);

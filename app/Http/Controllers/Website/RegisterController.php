@@ -11,6 +11,7 @@ use App\Models\Subscriber;
 use App\Models\Subscription;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use MattDaneshvar\Survey\Models\Entry;
 use MattDaneshvar\Survey\Models\Survey;
 
@@ -90,6 +91,8 @@ class RegisterController extends Controller
             $paymentService->getPayLoadData($data, $user),
             $paymentMethodId
         );
+
+        Cache::add('invoice_id', $redirectLink['invoiceID']);
 
         return response(['url' => $redirectLink['invoiceURL']]);
     }
