@@ -7,18 +7,6 @@ use MyFatoorah\Library\PaymentMyfatoorahApiV2;
 
 class Payment
 {
-
-    public $mfObj, $data, $user;
-
-    public function __construct()
-    {
-        $this->mfObj = new PaymentMyfatoorahApiV2(
-              config('myfatoorah.api_key'),
-              config('myfatoorah.country_iso'),
-              config('myfatoorah.test_mode')
-        );
-    }
-
     public static function GetRecurringPayment()
     {
 //        $response = Http::withHeaders([

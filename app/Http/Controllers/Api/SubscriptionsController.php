@@ -40,14 +40,15 @@ class SubscriptionsController extends Controller
         $recurringId = 0;
         foreach ($GetRecurringPayment['Data']['RecurringPayment'] as $recurringPayment) {
             if (count($recurringPayment['RecurringInvoices']) > 0) {
-                // check if RecurringInvoices invoice id == $invoice_id;
-                // get $recurringId
+                foreach ($recurringPayment['RecurringInvoices'] as $RecurringInvoice) {
+                    if ($RecurringInvoice == $invoice_id) {
+                        $recurringId = $recurringPayment->RecurringId;
+                    }
+                }
             }
         }
-
 //        TODO:: use CancelRecurringPayment api to cancel it
-        Payment::CancelRecurringPayment($recurringId);
-
+              $recurringId != 0 ?? Payment::CancelRecurringPayment($recurringId);
 
         if ($user->currentSubscription->status == 'active' && $user->society()->exists()) {
             $currentSubscription = $user->currentSubscription;
