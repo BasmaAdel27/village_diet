@@ -15,6 +15,7 @@ use App\Http\Controllers\Api\{
     ChatController,
     SocietyController
 };
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('GrahamCampbell\Throttle\Http\Middleware\ThrottleMiddleware:3,1')->group(function () {
