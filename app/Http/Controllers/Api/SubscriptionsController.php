@@ -27,6 +27,8 @@ class SubscriptionsController extends Controller
 
     public function cancelSubscription()
     {
+//        TODO:: call GetRecurringPayment api to list all Recurring Payment
+//        TODO:: get incoive id from current Subscription and match it with GetRecurringPayment to get                        RecurringId then use CancelRecurringPayment api to cancel it
         $user = auth()->user();
         if ($user->currentSubscription->status == 'active' && $user->society()->exists()) {
             $currentSubscription = $user->currentSubscription;
