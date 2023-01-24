@@ -40,22 +40,24 @@ class SubscriptionController extends Controller
         $user = $subscription->user;
         $firebase_id = $user->firebase_token;
 
-
+//        TODO:: call GetRecurringPayment api to list all Recurring Payment
         $GetRecurringPayment = Payment::GetRecurringPayment();
 
-        //        TODO:: get invoice id from current Subscription and match it with GetRecurringPayment to get                        RecurringId
+//        TODO:: get invoice id from current Subscription and match it with GetRecurringPayment to get                        RecurringId
 
         $invoice_id = $user->currentSubscription->invoice_id;
         $recurringId = 0;
         foreach ($GetRecurringPayment['Data']['RecurringPayment'] as $recurringPayment) {
             if (count($recurringPayment['RecurringInvoices']) > 0) {
-                // check if RecurringInvoices invoice id == $invoice_id;
-                // get $recurringId
+                foreach ($recurringPayment['RecurringInvoices'] as $RecurringInvoice) {
+                    if ($RecurringInvoice == $invoice_id) {
+                        $recurringId = $recurringPayment->RecurringId;
+                    }
+                }
             }
         }
-
-        //        TODO:: use CancelRecurringPayment api to cancel it
-        Payment::CancelRecurringPayment($recurringId);
+//        TODO:: use CancelRecurringPayment api to cancel it
+              $recurringId != 0 ?? Payment::CancelRecurringPayment($recurringId);
 
 
         $title = 'Village Diet';
