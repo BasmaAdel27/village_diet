@@ -19,7 +19,7 @@
         The Village Diet Team
       </p>
 
-      <div class="align-content-center text-center">
+      <div>
         <img src="{{ $logo }}">
         <p>Connect with the Village Diet!</p>
         <ul class="socail-media">
@@ -67,7 +67,7 @@
         مع خالص التحيات,<br>
         فريق فيلج دايت
       </p>
-      <div class="align-content-center text-center">
+      <div>
         <img src="{{ $logo }}">
         <p>تواصلوا مع فيلج دايت!</p>
         <ul class="socail-media">
