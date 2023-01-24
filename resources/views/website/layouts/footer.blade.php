@@ -98,7 +98,7 @@ $food_recipes= \App\Models\StaticPage\StaticPage::Where('programing_name', 'Food
               <a href="{{ route('website.faqs') }}">@lang('faq')</a>
             </li>
             <li>
-              <a href="{{ route('website.food_recipes') }}">{{$food_recipes->title}}</a>
+              <a href="{{ route('website.static_pages.show',$food_recipes) }}">{{$food_recipes->title}}</a>
             </li>
             <li>
               <a href=" {{ route('website.trainers.index') }}">@lang('our_trainers')</a>
