@@ -9,12 +9,12 @@ class Payment
 {
     public static function GetRecurringPayment()
     {
-//        $response = Http::withHeaders([
-//              'Authorization' => 'bearer '.config('myfatoorah.api_key')
-//        ])->get('https://api-sa.myfatoorah.com/v2/GetRecurringPayment'); // live
         $response = Http::withHeaders([
-              'Authorization' => 'bearer '.config('myfatoorah.test_api_key')
-        ])->get('https://apitest.myfatoorah.com/v2/GetRecurringPayment'); // test
+              'Authorization' => 'bearer '.config('myfatoorah.api_key')
+        ])->get('https://api-sa.myfatoorah.com/v2/GetRecurringPayment'); // live
+//        $response = Http::withHeaders([
+//              'Authorization' => 'bearer '.config('myfatoorah.test_api_key')
+//        ])->get('https://apitest.myfatoorah.com/v2/GetRecurringPayment'); // test
         $jsonData = $response->json();
 
         return $jsonData;

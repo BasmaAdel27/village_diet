@@ -330,7 +330,7 @@
   "rates": "Ratings",
   "subscription_is_in_active": "Your Subscription is In active",
   "contact_with_village": "Contact With Village Diet",
-  "do_you_want_join_as_trainer": "Do You Want Join As Trainer",
+  "do_you_want_join_as_trainer": "Do you want to join as a trainer?",
   "example_videos": "Example For Our Trainers",
   "you_had_added_to_society": "You had added to a new society",
   "rating_success": "Done Rating",
@@ -385,5 +385,8 @@
   "bio": "Bio",
   "cv": "CV",
   "current_job": "Current Job",
-  "can_not_complete_process": "Sorry, we can not complete the process"
+  "can_not_complete_process": "Sorry, we can not complete the process",
+  "welcome_to_village_diet": "Welcome to Village Diet",
+  "login_number": "Your Login Number",
+  "login_number_has_sent_to_your_email": "Your Login Number has sent your your email"
 }

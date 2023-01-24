@@ -389,5 +389,8 @@
   "visit_website": "زياره الموقع",
   "join_request_reason": "سبب طلب الانضمام",
   "current_job": "الوظيفة الحالية",
-  "can_not_complete_process": "نأسف لعدم إكمال العملية"
+  "can_not_complete_process": "نأسف لعدم إكمال العملية",
+  "welcome_to_village_diet": "مرحبا بك في فيليج دايت",
+  "login_number": "رقمك التعريفي",
+  "login_number_has_sent_to_your_email": " تم ارسال ايميل به الرقم التعريفي الخاص بك لتفعيل التطبيق على بريدك الالكتروني"
 }
