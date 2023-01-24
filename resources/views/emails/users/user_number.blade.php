@@ -2,9 +2,6 @@
 @section('content')
   @php $setting = \App\Models\Setting::first(); @endphp
 
-
-
-
   @if(app()->getLocale() == 'en')
     <div dir="ltr">
       <p>
@@ -30,7 +27,7 @@
           @if(isset($setting->twitter))
             <li>
               <a href="{{ $setting->twitter }}" target="_blank">
-                <img src="{{ $message->embed(asset('website/assets/images/footer/twitter.svg'))}}" loading="lazy" alt=""/>
+                <img src="{{ asset('website/assets/images/footer/twitter.svg')}}" loading="lazy" alt=""/>
               </a>
             </li>
           @endif
@@ -59,10 +56,11 @@
         <br><br>
         رقم المستخدم الخاص بك لتطبيق فيلج دايت هو 123123
         <br><br>
-        يرجى تحميل تطبيق Village Diet لنظام iOS (متجر تطبيقات Apple) ولنظام  Android (متجر Google Play).
+        يرجى تحميل تطبيق Village Diet لنظام iOS (متجر تطبيقات Apple) ولنظام Android (متجر Google Play).
         <br><br>
         تأكد من إضافة <a href="mailto:info@thevillagediet.com">
-          info@thevillagediet.com </a> إلى جهات التواصل الخاصة بك حتى لا تفوتك أي من رسائل البريد الإلكتروني في المستقبل!
+          info@thevillagediet.com </a> إلى جهات التواصل الخاصة بك حتى لا تفوتك أي من رسائل البريد الإلكتروني في
+        المستقبل!
         <br>
         يمكنك أيضا الاتصال بفريق العمل على
         <a href="tel:00966557250398">00966557250398</a>.
@@ -77,7 +75,7 @@
           @if(isset($setting->twitter))
             <li>
               <a href="{{ $setting->twitter }}" target="_blank">
-                <img src="{{ $message->embed(asset('website/assets/images/footer/twitter.svg'))}}" loading="lazy" alt=""/>
+                <img src="{{ asset('website/assets/images/footer/twitter.svg') }}" loading="lazy" alt=""/>
               </a>
             </li>
           @endif
