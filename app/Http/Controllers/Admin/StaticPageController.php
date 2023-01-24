@@ -49,9 +49,7 @@ class StaticPageController extends Controller
     public function update(StaticPageRequest $request, StaticPage $staticPage)
     {
         $data = $request->validated();
-        if (!in_array($staticPage->programing_name, ['about-village-diet', 'our-vision', 'food-recipes', 'advantages'])) {
-            $data['slug'] = str_slug($data['en']['title']);
-        }
+        $data['slug'] = str_slug($data['en']['title']);
 
         $staticPage->fill($data)->save();
 
