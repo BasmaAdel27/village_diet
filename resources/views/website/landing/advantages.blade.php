@@ -1,5 +1,5 @@
 @php
-$page = \App\Models\StaticPage\StaticPage::where('slug','advantages')->first();
+$page = \App\Models\StaticPage\StaticPage::where('programing_name','advantages')->first();
 @endphp
 
 <section class="socaity">

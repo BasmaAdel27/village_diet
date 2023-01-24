@@ -5,9 +5,9 @@
 <section class="sub-header">
   <div class="container general-pattern right-left-pattern">
     <div class="heading">
-{{--      <h1>--}}
-{{--        {{ $staticPage->title }}--}}
-{{--      </h1>--}}
+      {{-- <h1>--}}
+        {{-- {{ $staticPage->title }}--}}
+        {{-- </h1>--}}
     </div>
   </div>
 </section>
@@ -16,7 +16,7 @@
   <div class="container">
     <div class="row">
       <div class="col-12 mb-4">
-        @if (!$staticPage->slug == 'about-village-diet')
+        @if (!$staticPage->programing_name == 'about-village-diet')
         <div class="image-sheet-meals-content">
           <img src="{{ $staticPage->image }}" loading="lazy" alt="" />
         </div>

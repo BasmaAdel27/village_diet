@@ -1,8 +1,8 @@
 @php
-  $aboutUs = \App\Models\StaticPage\StaticPage::where('slug','about-village-diet')->first();
-  $privacy = \App\Models\StaticPage\StaticPage::where('slug','privacy-policy')->first();
-  $terms = \App\Models\StaticPage\StaticPage::where('slug','terms-of-use')->first();
-  $food_recipes= \App\Models\StaticPage\StaticPage::Where('slug', 'Food-Recipes')->first();
+$aboutUs = \App\Models\StaticPage\StaticPage::where('programing_name','about-village-diet')->first();
+$privacy = \App\Models\StaticPage\StaticPage::where('programing_name','privacy-policy')->first();
+$terms = \App\Models\StaticPage\StaticPage::where('programing_name','terms-of-use')->first();
+$food_recipes= \App\Models\StaticPage\StaticPage::Where('programing_name', 'Food-Recipes')->first();
 @endphp
 
 <div class="container">
@@ -14,7 +14,7 @@
     </div>
 
     <a href="/" class="brand-name">
-      <img src="{{ asset('storage/'.$setting->logo) }}" loading="lazy" alt=""/>
+      <img src="{{ asset('storage/'.$setting->logo) }}" loading="lazy" alt="" />
     </a>
 
     <ul class="navbar-nav">
@@ -36,11 +36,11 @@
         <a href="{{ route('website.customers_opinions.index') }}" class="nav-link"> @lang('customer_opinions') </a>
       </li>
       @foreach ($staticPages as $page)
-        @if( !in_array($page->id,[$terms->id,$privacy->id]))
-          <li class="nav-item">
-            <a href="{{ route('website.static_pages.show',$page->id) }}" class="nav-link"> {{ $page->title }} </a>
-          </li>
-        @endif
+      @if( !in_array($page->id,[$terms->id,$privacy->id]))
+      <li class="nav-item">
+        <a href="{{ route('website.static_pages.show',$page->id) }}" class="nav-link"> {{ $page->title }} </a>
+      </li>
+      @endif
       @endforeach
 
       <li class="nav-item">
@@ -50,14 +50,14 @@
 
     <div class="button-contain">
       @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
-        @if ($localeCode != LaravelLocalization::getCurrentLocale())
-          <a href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}" class="lang">
-            <span> {{ $localeCode }}</span>
-          </a>
-        @endif
+      @if ($localeCode != LaravelLocalization::getCurrentLocale())
+      <a href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}" class="lang">
+        <span> {{ $localeCode }}</span>
+      </a>
+      @endif
       @endforeach
-      <a href="{{ route('website.register') }}" target="_blank" class="custom-btn primary-color">
-        <img src="{{asset('website/assets/images/navbar/user.svg')}}" loading="lazy" alt=""/>
+      <a href="{{ route('website.register') }}" class="custom-btn primary-color">
+        <img src="{{asset('website/assets/images/navbar/user.svg')}}" loading="lazy" alt="" />
         <span>@lang('register')</span>
       </a>
 

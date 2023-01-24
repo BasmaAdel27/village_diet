@@ -27,7 +27,7 @@
   <div class="form-group col-6">
     <label>@lang('status')</label>
     <select name="is_active" class="form-control">
-      @if(isset($staticPage) && $staticPage->slug == 'food-recipes')
+      @if(isset($staticPage) && $staticPage->programing_name == 'food-recipes')
       <option value="1" readonly="">@lang('active')</option>
       @else
       <option value="">@lang('select')</option>
