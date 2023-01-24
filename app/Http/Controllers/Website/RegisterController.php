@@ -19,7 +19,10 @@ class RegisterController extends Controller
 {
     public function getRegister()
     {
-        $countries = Country::listsTranslations('name')->pluck('name', 'id');
+        $firstCollection = Country::listsTranslations('name')->get();
+        $countries = $firstCollection->sort(function ($item) {
+            return $item->phone_code == 966 ? -1 : 1;
+        })->pluck('name', 'id')->values();
 
         return view('website.pages.register.register', compact('countries'));
     }
