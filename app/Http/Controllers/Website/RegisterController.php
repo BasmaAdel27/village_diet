@@ -22,7 +22,7 @@ class RegisterController extends Controller
         $firstCollection = Country::listsTranslations('name')->get();
         $countries = $firstCollection->sort(function ($item) {
             return $item->phone_code == 966 ? -1 : 1;
-        })->pluck('name', 'id')->values();
+        })->values();
 
         return view('website.pages.register.register', compact('countries'));
     }

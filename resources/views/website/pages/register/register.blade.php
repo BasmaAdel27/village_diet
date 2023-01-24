@@ -148,8 +148,9 @@
                         <option value="" hidden>
                           @lang('country')
                         </option>
-                        @foreach ($countries as $id => $name)
-                        <option value="{{ $id }}" {{ $id==old('country_id') ? 'selected' : '' }}>{{ $name }}
+                        @foreach ($countries as $country)
+                        <option value="{{ $country->id }}" {{ $country->id==old('country_id') ? 'selected' : '' }}>{{
+                          $country->name }}
                         </option>
                         @endforeach
                       </select>
