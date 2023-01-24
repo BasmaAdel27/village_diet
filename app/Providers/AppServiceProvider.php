@@ -46,6 +46,7 @@ class AppServiceProvider extends ServiceProvider
                 ->where('is_active', true)
                 ->listsTranslations('title')
                 ->select('static_pages.id')
+                ->addSelect('slug', 'programing_name')
                 ->get();
 
             View::share('staticPages', $staticPages);
