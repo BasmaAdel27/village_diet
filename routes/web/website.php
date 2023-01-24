@@ -11,6 +11,7 @@ use App\Http\Controllers\Website\{
 };
 use App\Models\Faq\Faq;
 use App\Models\StaticPage\StaticPage;
+use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -49,6 +50,6 @@ Route::get('callback/{user}/{code?}', [\App\Http\Controllers\MyFatoorahControlle
 
 
 Route::get('send-mail', function () {
-    Mail::to('m.karem456@gmail.com')->send(new \App\Mail\UserNumber());
+    Mail::to('m.karem456@gmail.com')->send(new \App\Mail\UserNumber(User::first()));
     return 'A message has been sent!';
 });
