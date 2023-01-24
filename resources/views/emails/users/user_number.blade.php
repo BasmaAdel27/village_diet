@@ -1,9 +1,6 @@
 @extends('emails.master')
 @section('content')
   @php $setting = \App\Models\Setting::first(); @endphp
-  <div class="align-content-center text-center">
-    <img src="{{ $logo }}"><br><br>
-  </div>
   @if(app()->getLocale() == 'en')
     <div dir="ltr">
       <p>
@@ -23,8 +20,8 @@
       </p>
 
       <div class="align-content-center text-center">
-        <img src="{{ $logo  }}"><br>
-        <p>Connect with the Village Diet!</p><br>
+        <img src="{{ $logo }}">
+        <p>Connect with the Village Diet!</p>
         <ul class="socail-media">
           @if(isset($setting->twitter))
             <li>
@@ -71,8 +68,8 @@
         فريق فيلج دايت
       </p>
       <div class="align-content-center text-center">
-        <img src="{{ $logo }}"><br>
-        <p>تواصلوا مع فيلج دايت!</p><br>
+        <img src="{{ $logo }}">
+        <p>تواصلوا مع فيلج دايت!</p>
         <ul class="socail-media">
           @if(isset($setting->twitter))
             <li>

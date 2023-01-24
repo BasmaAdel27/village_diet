@@ -438,6 +438,10 @@
       align-content: center;
     }
 
+    .socail-media ul {
+      list-style-type: none;
+    }
+
     .socail-media li {
       -webkit-margin-end: 10px;
       margin-inline-end: 10px;
@@ -449,9 +453,6 @@
     }
 
     .socail-media li a {
-      width: 40px;
-      height: 40px;
-      background-color: rgba(255, 255, 255, 0.15);
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -659,6 +660,10 @@
                       <tr>
                         <td align="center" valign="top" width="500" class="flexibleContainerCell">
                           <table border="0" cellpadding="30" cellspacing="0" width="100%">
+                            <div class="align-content-center text-center"
+                                 style=" display: block;margin-left: auto;margin-right: auto;">
+                              {{ asset('/website/assets/images/logo/icon.png')}}<br>
+                            </div>
                             <tr>
                               <td align="center" valign="top" class="textContent">
                                 <h1
