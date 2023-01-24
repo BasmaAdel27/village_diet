@@ -124,7 +124,9 @@ $food_recipes= \App\Models\StaticPage\StaticPage::Where('programing_name', 'Food
             <h1>@lang('important_links')</h1>
             <ul class="links">
               @foreach ($staticPages as $page)
+              @if(isset($page->slug))
               <li><a href="{{ route('website.static_pages.show',$page->slug) }}">{{ $page->title }}</a></li>
+              @endif
               @endforeach
             </ul>
           </div>
