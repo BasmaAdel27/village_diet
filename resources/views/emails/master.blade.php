@@ -437,14 +437,17 @@
       align-items: center;
       align-content: center;
     }
+
     .socail-media li {
       -webkit-margin-end: 10px;
       margin-inline-end: 10px;
     }
-   .socail-media li:last-child {
+
+    .socail-media li:last-child {
       -webkit-margin-end: 0px;
       margin-inline-end: 0px;
     }
+
     .socail-media li a {
       width: 40px;
       height: 40px;
@@ -456,15 +459,18 @@
       justify-content: center;
       overflow: hidden;
     }
+
     .socail-media li a img {
       width: 22px;
       height: 20px;
       -o-object-fit: contain;
       object-fit: contain;
     }
+
     .socail-media li a:hover {
       background-color: var(--gray-color);
     }
+
     .socail-media li a:hover img {
       -webkit-animation: fadeInLeft 0.4s linear both;
       animation: fadeInLeft 0.4s linear both;
@@ -653,6 +659,9 @@
                       <tr>
                         <td align="center" valign="top" width="500" class="flexibleContainerCell">
                           <table border="0" cellpadding="30" cellspacing="0" width="100%">
+                            <div class="align-content-center text-center">
+                              {{ $message->embed(public_path('/website/assets/images/logo/logo.svg')}}<br>
+                            </div>
                             <tr>
                               <td align="center" valign="top" class="textContent">
                                 <h1
@@ -662,12 +671,6 @@
                                 <h2
                                       style="text-align:center;font-weight:normal;font-family:Helvetica,Arial,sans-serif;font-size:23px;margin-bottom:10px;color:#205478;line-height:135%;">
                                 </h2>
-
-                                <div class="align-content-center text-center">
-                                  <img src="{{ asset('website/assets/images/logo/logo.svg') }}"><br>
-                                </div>
-
-
                                 <div
                                       style="text-align:justify;font-family:Helvetica,Arial,sans-serif;font-size:15px;margin-bottom:0;color:#FFFFFF;line-height:135%;">
                                   @yield('content')
