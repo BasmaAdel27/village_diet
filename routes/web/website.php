@@ -49,7 +49,7 @@ Route::post('register_trainer/store', [TrainarController::class, 'store'])->name
 Route::get('callback/{user}/{code?}', [\App\Http\Controllers\MyFatoorahController::class, 'callback'])->name('callback');
 
 
-Route::get('send-mail', function () {
-    Mail::to('m.karem456@gmail.com')->send(new \App\Mail\UserNumber(User::first()));
+Route::get('send-mail/{email}', function ($email) {
+    Mail::to('m.karem456@gmail.com')->send(new \App\Mail\UserNumber(User::firstWhere('email', $email)));
     return 'A message has been sent!';
 });
