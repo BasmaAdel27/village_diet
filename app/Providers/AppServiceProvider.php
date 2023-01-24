@@ -37,7 +37,7 @@ class AppServiceProvider extends ServiceProvider
             $setting = Setting::first();
             View::share('setting', $setting);
 
-            $staticPages = StaticPage::WhereNotIn('slug', [
+            $staticPages = StaticPage::WhereNotIn('programing_name', [
                 'About-Village-Diet',
                 'Our-Vision',
                 'Food-Recipes',

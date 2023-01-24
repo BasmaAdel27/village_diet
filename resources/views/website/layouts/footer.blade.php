@@ -1,6 +1,6 @@
 @php
-$aboutUs = \App\Models\StaticPage\StaticPage::where('slug','about-village-diet')->first();
-  $food_recipes= \App\Models\StaticPage\StaticPage::Where('slug', 'Food-Recipes')->first();
+$aboutUs = \App\Models\StaticPage\StaticPage::where('programing_name','about-village-diet')->first();
+$food_recipes= \App\Models\StaticPage\StaticPage::Where('programing_name', 'Food-Recipes')->first();
 
 @endphp
 
