@@ -6,6 +6,7 @@ use App\DataTables\Admin\SubscriptionDatatable;
 use App\Http\Controllers\Controller;
 use App\Models\Subscription;
 use App\Notifications\CancelSubscription;
+use App\Services\Payment;
 use Illuminate\Support\Facades\Notification;
 use Maatwebsite\Excel\Transactions\TransactionHandler;
 
@@ -38,6 +39,24 @@ class SubscriptionController extends Controller
         ]);
         $user = $subscription->user;
         $firebase_id = $user->firebase_token;
+
+
+        $GetRecurringPayment = Payment::GetRecurringPayment();
+
+        //        TODO:: get invoice id from current Subscription and match it with GetRecurringPayment to get                        RecurringId
+
+        $invoice_id = $user->currentSubscription->invoice_id;
+        $recurringId = 0;
+        foreach ($GetRecurringPayment['Data']['RecurringPayment'] as $recurringPayment) {
+            if (count($recurringPayment['RecurringInvoices']) > 0) {
+                // check if RecurringInvoices invoice id == $invoice_id;
+                // get $recurringId
+            }
+        }
+
+        //        TODO:: use CancelRecurringPayment api to cancel it
+        Payment::CancelRecurringPayment($recurringId);
+
 
         $title = 'Village Diet';
         $content = trans('your_subscription_is_cancelled');
