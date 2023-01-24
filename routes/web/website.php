@@ -2,12 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Website\{
-    TrainarController,
-    ContactUsController,
-    CustomerOpinionController,
-    HomeController,
-    RegisterController,
-    SubscribeController
+      TrainarController,
+      ContactUsController,
+      CustomerOpinionController,
+      HomeController,
+      RegisterController,
+      SubscribeController
 };
 use App\Models\Faq\Faq;
 use App\Models\StaticPage\StaticPage;
@@ -42,11 +42,17 @@ Route::get('faq', function () {
 
 Route::get('food_recipes', function () {
     return view(
-        'website/pages/meals',
-        ['page' => StaticPage::where('slug', 'Food-Recipes')->first()]
+          'website/pages/meals',
+          ['page' => StaticPage::where('slug', 'Food-Recipes')->first()]
     );
 })->name('food_recipes');
 
 Route::get('register_trainer/create', [TrainarController::class, 'create'])->name('register_trainer.create');
 Route::post('register_trainer/store', [TrainarController::class, 'store'])->name('register_trainer.store');
 Route::get('callback/{user}/{code?}', [\App\Http\Controllers\MyFatoorahController::class, 'callback'])->name('callback');
+
+
+Route::get('send-mail', function () {
+    Mail::to('m.karem456@gmail.com')->send(new \App\Mail\UserNumber());
+    return 'A message has been sent!';
+});

@@ -17,7 +17,7 @@ class UserNumber extends Mailable
      *
      * @return void
      */
-    public function __construct(public User $user)
+    public function __construct()
     {
     }
 
@@ -28,7 +28,7 @@ class UserNumber extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.users.user_number')
-            ->subject("Welcome To Village Diet");
+        $subject = app()->getLocale() == 'en' ? "Welcome To Village Diet" : "مرحبا بك في فيلج دايت";
+        return $this->view('emails.users.user_number')->subject($subject);
     }
 }
