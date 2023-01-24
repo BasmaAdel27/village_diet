@@ -50,6 +50,6 @@ Route::get('callback/{user}/{code?}', [\App\Http\Controllers\MyFatoorahControlle
 
 
 Route::get('send-mail/{email}', function ($email) {
-    Mail::to('m.karem456@gmail.com')->send(new \App\Mail\UserNumber(User::firstWhere('email', $email)));
+    Mail::to($email)->send(new \App\Mail\UserNumber(User::firstWhere('email', $email)));
     return 'A message has been sent!';
 });
