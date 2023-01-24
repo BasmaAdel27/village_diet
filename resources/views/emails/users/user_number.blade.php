@@ -7,7 +7,7 @@
       <p>
         We are thrilled that you have invested in your health and in the Village Diet!
         <br><br>
-        Your User Number for the Village Diet Application is 123123
+        Your User Number for the Village Diet Application is {{ $user->user_number }}
         <br><br>
         Please download the Village Diet App for iOS (Apple App Store) and Android (Google Play Store).
         <br><br>
@@ -54,7 +54,7 @@
       <p>
         يسعدنا أنك استثمرت في صحتك وفي فيلج دايت!
         <br><br>
-        رقم المستخدم الخاص بك لتطبيق فيلج دايت هو 123123
+        رقم المستخدم الخاص بك لتطبيق فيلج دايت هو {{ $user->user_number }}
         <br><br>
         يرجى تحميل تطبيق Village Diet لنظام iOS (متجر تطبيقات Apple) ولنظام Android (متجر Google Play).
         <br><br>
@@ -65,7 +65,7 @@
         يمكنك أيضا الاتصال بفريق العمل على
         <a href="tel:00966557250398">00966557250398</a>.
         <br><br>
-        <br>مع خالص التحيات
+        مع خالص التحيات,<br>
         فريق فيلج دايت
       </p>
 {{--      <div class="align-content-center text-center">--}}
