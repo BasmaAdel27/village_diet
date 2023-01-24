@@ -12,8 +12,8 @@ class CreateStaticPagesTable extends Migration
             $table->id();
             $table->boolean('is_active');
             $table->string('slug');
+            $table->string('programing_name');
             $table->boolean('is_show_in_app');
-
             $table->timestamps();
         });
 
