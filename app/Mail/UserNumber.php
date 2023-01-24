@@ -28,7 +28,7 @@ class UserNumber extends Mailable
      */
     public function build()
     {
-        $logo = asset('website/assets/images/logo/logo.svg');
+        $logo = asset('website/assets/images/logo/icon.png');
         $twitter = asset('website/assets/images/footer/twitter.svg');
         $insta = asset('website/assets/images/footer/instagram.svg');
         $tiktok = asset('website/assets/images/footer/tik-tok.svg');
