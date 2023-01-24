@@ -21,27 +21,27 @@
   </p>
 
   <div class="align-content-center text-center">
-    <img src="{{ asset('website/assets/images/logo/logo.svg') }}"><br>
+    <img src="{{ $logo  }}"><br>
     <p>Connect with the Village Diet!</p><br>
     <ul class="socail-media">
       @if(isset($setting->twitter))
       <li>
         <a href="{{ $setting->twitter }}" target="_blank">
-          <img src="{{ asset('website/assets/images/footer/twitter.svg')}}" loading="lazy" alt="" />
+          <img src="{{ $twitter }}" loading="lazy" alt="" />
         </a>
       </li>
       @endif
       @if(isset($setting->instagram))
       <li>
         <a href="{{ $setting->instagram }}" target="_blank">
-          <img src="{{ asset('website/assets/images/footer/instagram.svg')}}" loading="lazy" alt="" />
+          <img src="{{ $instagram }}" loading="lazy" alt="" />
         </a>
       </li>
       @endif
       @if(isset($setting->tiktok))
       <li>
         <a href="{{ $setting->tiktok }}" target="_blank">
-          <img src="{{ asset('website/assets/images/footer/tik-tok.svg')}}" loading="lazy" alt="" />
+          <img src="{{ $tiktok }}" loading="lazy" alt="" />
         </a>
       </li>
       @endif
@@ -69,27 +69,27 @@
     فريق فيلج دايت
   </p>
   <div class="align-content-center text-center">
-    <img src="{{ asset('website/assets/images/logo/logo.svg')}}"><br>
+    <img src="{{ $logo }}"><br>
     <p>تواصلوا مع فيلج دايت!</p><br>
     <ul class="socail-media">
       @if(isset($setting->twitter))
       <li>
         <a href="{{ $setting->twitter }}" target="_blank">
-          <img src="{{ asset('website/assets/images/footer/twitter.svg') }}" loading="lazy" alt="" />
+          <img src="{{ $twitter  }}" loading="lazy" alt="" />
         </a>
       </li>
       @endif
       @if(isset($setting->instagram))
       <li>
         <a href="{{ $setting->instagram }}" target="_blank">
-          <img src="{{ asset('website/assets/images/footer/instagram.svg')}}" loading="lazy" alt="" />
+          <img src="{{ $instagram }}" loading="lazy" alt="" />
         </a>
       </li>
       @endif
       @if(isset($setting->tiktok))
       <li>
         <a href="{{ $setting->tiktok }}" target="_blank">
-          <img src="{{ asset('website/assets/images/footer/tik-tok.svg')}}" loading="lazy" alt="" />
+          <img src="{{ $tiktok }}" loading="lazy" alt="" />
         </a>
       </li>
       @endif

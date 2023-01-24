@@ -28,8 +28,19 @@ class UserNumber extends Mailable
      */
     public function build()
     {
+        $logo = asset('website/assets/images/logo/logo.svg');
+        $twitter = asset('website/assets/images/footer/twitter.svg');
+        $insta = asset('website/assets/images/footer/instagram.svg');
+        $tiktok = asset('website/assets/images/footer/tik-tok.svg');
+
         $subject = app()->getLocale() == 'en' ? "Welcome To Village Diet" : "مرحبا بك في فيلج دايت";
-        return $this->view('emails.users.user_number', ['user' => $this->user])
+        return $this->view('emails.users.user_number', [
+            'user' => $this->user,
+            'logo' => $logo,
+            'twitter' => $twitter,
+            'instagram' => $insta,
+            'tiktok' => $tiktok,
+        ])
             ->with(['message' => $this])
             ->from("info@thevillagediet.com", "Village Diet")
             ->subject($subject);
