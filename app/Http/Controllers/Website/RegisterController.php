@@ -19,7 +19,7 @@ class RegisterController extends Controller
 {
     public function getRegister()
     {
-        $firstCollection = Country::listsTranslations('name')->get();
+        $firstCollection = Country::listsTranslations('name')->addSelect('phone_code')->get();
         $countries = $firstCollection->sort(function ($item) {
             return $item->phone_code == 966 ? -1 : 1;
         })->values();
