@@ -37,12 +37,15 @@ class AppServiceProvider extends ServiceProvider
             $setting = Setting::first();
             View::share('setting', $setting);
 
-            $staticPages = StaticPage::WhereNotIn('programing_name', [
-                'About-Village-Diet',
-                'Our-Vision',
-                'Food-Recipes',
-                'advantages'
-            ])
+            $staticPages = StaticPage::where(function ($q) {
+                $q->whereNull('programing_name')
+                    ->orWhereNotIn('programing_name', [
+                        'About-Village-Diet',
+                        'Our-Vision',
+                        'Food-Recipes',
+                        'advantages'
+                    ]);
+            })
                 ->where('is_active', true)
                 ->listsTranslations('title')
                 ->select('static_pages.id')
