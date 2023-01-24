@@ -535,6 +535,8 @@
     }
   </style>
 
+  <link rel="stylesheet" href="{{ asset('website/assets/css/style.css') }}" />
+
 </head>
 
 <body bgcolor="#E1E1E1" leftmargin="0" marginwidth="0" topmargin="0" marginheight="0" offset="0">
@@ -656,7 +658,7 @@
 
                                 <div
                                       style="font-family:Helvetica,Arial,sans-serif;font-size:13px;color:#9281f1;text-align:center;line-height:120%;">
-                                  <div>Copyright &#169; {{now('Y')}}. All rights reserved.</div>
+                                  <div>Copyright &#169; {{ date('Y') }}. All rights reserved.</div>
                                 </div>
                               </td>
                             </tr>

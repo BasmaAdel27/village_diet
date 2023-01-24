@@ -3,6 +3,10 @@
   @php $setting = \App\Models\Setting::first(); @endphp
   @if(app()->getLocale() == 'en')
 
+    <div class="align-content-center text-center">
+      <img src="https://thevillagediet.com/website/assets/images/logo/logo.svg"><br>
+    </div>
+
     <div dir="ltr">
       <p>
         We are thrilled that you have invested in your health and in the Village Diet!
@@ -21,28 +25,27 @@
       </p>
 
       <div class="align-content-center text-center">
-        <img src="{{ asset('website/assets/images/logo/logo.svg') }}"><br>
+        <img src="https://thevillagediet.com/website/assets/images/logo/logo.svg"><br>
         <p>Connect with the Village Diet!</p><br>
         <ul class="socail-media">
-
           @if(isset($setting->twitter))
             <li>
               <a href="{{ $setting->twitter }}" target="_blank">
-                <img src="{{asset('website/assets/images/footer/twitter.svg')}}" loading="lazy" alt=""/>
+                <img src="https://thevillagediet.com/website/assets/images/footer/twitter.svg" loading="lazy" alt=""/>
               </a>
             </li>
           @endif
           @if(isset($setting->instagram))
             <li>
               <a href="{{ $setting->instagram }}" target="_blank">
-                <img src="{{ asset('website/assets/images/footer/instagram.svg') }}" loading="lazy" alt=""/>
+                <img src="https://thevillagediet.com/website/assets/images/footer/instagram.svg" loading="lazy" alt=""/>
               </a>
             </li>
           @endif
           @if(isset($setting->tiktok))
             <li>
               <a href="{{ $setting->tiktok }}" target="_blank">
-                <img src="{{asset('website/assets/images/footer/tik-tok.svg')}}" loading="lazy" alt=""/>
+                <img src="https://thevillagediet.com/website/assets/images/footer/tik-tok.svg" loading="lazy" alt=""/>
               </a>
             </li>
           @endif
@@ -57,11 +60,10 @@
         <br><br>
         رقم المستخدم الخاص بك لتطبيق فيلج دايت هو 123123
         <br><br>
-        يرجى تحميل تطبيق Village Diet لنظام iOS (متجر تطبيقات Apple) ولنظام Android (متجر Google Play).
+        يرجى تحميل تطبيق Village Diet لنظام iOS (متجر تطبيقات Apple) ولنظام  Android (متجر Google Play).
         <br><br>
         تأكد من إضافة <a href="mailto:info@thevillagediet.com">
-          info@thevillagediet.com </a> إلى جهات التواصل الخاصة بك حتى لا تفوتك أي من رسائل البريد الإلكتروني في
-        المستقبل!
+          info@thevillagediet.com </a> إلى جهات التواصل الخاصة بك حتى لا تفوتك أي من رسائل البريد الإلكتروني في المستقبل!
         <br>
         يمكنك أيضا الاتصال بفريق العمل على
         <a href="tel:00966557250398">00966557250398</a>.
@@ -70,27 +72,27 @@
         فريق فيلج دايت
       </p>
       <div class="align-content-center text-center">
-        <img src="/website/assets/images/logo/logo.svg"><br>
+        <img src="https://thevillagediet.com/website/assets/images/logo/logo.svg"><br>
         <p>تواصلوا مع فيلج دايت!</p><br>
         <ul class="socail-media">
           @if(isset($setting->twitter))
             <li>
               <a href="{{ $setting->twitter }}" target="_blank">
-                <img src="/website/assets/images/footer/twitter.svg" loading="lazy" alt=""/>
+                <img src="https://thevillagediet.com/website/assets/images/footer/twitter.svg" loading="lazy" alt=""/>
               </a>
             </li>
           @endif
           @if(isset($setting->instagram))
             <li>
               <a href="{{ $setting->instagram }}" target="_blank">
-                <img src="/website/assets/images/footer/instagram.svg" loading="lazy" alt=""/>
+                <img src="https://thevillagediet.com/website/assets/images/footer/instagram.svg" loading="lazy" alt=""/>
               </a>
             </li>
           @endif
           @if(isset($setting->tiktok))
             <li>
               <a href="{{ $setting->tiktok }}" target="_blank">
-                <img src="/website/assets/images/footer/tik-tok.svg" loading="lazy" alt=""/>
+                <img src="https://thevillagediet.com/website/assets/images/footer/tik-tok.svg" loading="lazy" alt=""/>
               </a>
             </li>
           @endif
