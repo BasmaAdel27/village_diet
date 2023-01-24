@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Mail\UserNumber;
 use App\Models\Subscription;
 use App\Models\User;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Mail;
 use MyFatoorah\Library\PaymentMyfatoorahApiV2;
 
@@ -59,7 +60,7 @@ class MyFatoorahController extends Controller
             if ($paymentData->InvoiceStatus == 'Paid') {
                 $userNumber = $this->afterSuccessPay($user, $data, request('paymentId'));
 
-                return redirect()->route('website.home')->with('done_subscribed', $userNumber);
+                return redirect()->route('website.home')->with('done_subscribed', $userNumber[0])->with('email', $userNumber[1]);
             } else if ($paymentData->InvoiceStatus == 'Failed') {
                 $msg = 'Invoice is not paid due to ' . $paymentData->InvoiceError;
 
@@ -84,8 +85,10 @@ class MyFatoorahController extends Controller
             'payment_method' => 'Visa',
             'end_date' => now()->addDays(30),
             'coupon_id' => $data['coupon']?->id,
-            'transaction_id' => $paymentId
+            'transaction_id' => $paymentId,
+            'invoice_id' => Cache::get('invoice_id')
         ]);
+        Cache::forget('invoice_id');
 
         $userNumber = generateUniqueCode(User::class, 'user_number', 6);
         $user->update(['step' => 3, 'user_number' => $userNumber]);
@@ -93,6 +96,6 @@ class MyFatoorahController extends Controller
         Mail::to($user->email)->send(new UserNumber($user));
         if ($data['coupon']) $data['coupon']->increment('used_times');
 
-        return $userNumber;
+        return [$userNumber, $user->email];
     }
 }

@@ -4,23 +4,24 @@
       <div class="modal-body">
         <div class="contain">
           <div class="pop-icon red">
-            <img src="{{ asset('website/assets/images/popup/suspended.svg') }}" loading="lazy" alt="" />
+            <img src="{{ asset('website/assets/images/popup/suspended.svg') }}" loading="lazy" alt=""/>
           </div>
 
           <h1>
-            نأسف لعدم إكمال العملية
+            @lang('can_not_complete_process')
+            <br>
             {{ session('error_subscribed') }}
           </h1>
 
-          <div class="button-contain">
-            <a href="#" class="custom-btn">
-              <img src="{{ asset('website/assets/images/icons/arrow.svg') }}" loading="lazy" alt="" />
+          {{--          <div class="button-contain">--}}
+          {{--            <a href="#" class="custom-btn">--}}
+          {{--              <img src="{{ asset('website/assets/images/icons/arrow.svg') }}" loading="lazy" alt="" />--}}
+          {{--              <span>--}}
+          {{--                إعادة المحاولة--}}
+          {{--              </span>--}}
+          {{--            </a>--}}
+          {{--          </div>--}}
 
-              <span>
-                إعادة المحاولة
-              </span>
-            </a>
-          </div>
         </div>
       </div>
     </div>
@@ -28,7 +29,7 @@
 </div>
 
 @if (session('error_subscribed'))
-<script>
-  $('#suspendedModal').modal('show');
-</script>
+  <script>
+      $('#suspendedModal').modal('show');
+  </script>
 @endif

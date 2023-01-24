@@ -33,7 +33,7 @@
               @lang('basic_informations')
             </h2>
             <div class="row">
-              <div class="col-lg-6 col-12 px-2">
+              <div class="col-lg-6 col-12 px-2 py-3">
                 <div class="form-group">
                   <img src="{{ asset('website/assets/images/form/user.svg') }}" class="icon" loading="lazy" alt="" />
 
@@ -41,21 +41,21 @@
                     value="{{old('first_name')}}" name="first_name" />
                 </div>
               </div>
-              <div class="col-lg-6 col-12 px-2">
+              <div class="col-lg-6 col-12 px-2 py-3">
                 <div class="form-group">
                   <img src="{{ asset('website/assets/images/form/user.svg') }}" class="icon" loading="lazy" alt="" />
                   <input type="text" class="form-control" placeholder="@lang('last_name')" name="last_name"
                     value="{{old('last_name')}}" />
                 </div>
               </div>
-              <div class="col-lg-6 col-12 px-2">
+              <div class="col-lg-6 col-12 px-2 py-3">
                 <div class="form-group">
                   <img src="{{ asset('website/assets/images/form/sms.svg') }}" class="icon" loading="lazy" alt="" />
                   <input type="text" class="form-control" placeholder="@lang('email')" name="email"
                     value="{{old('email')}}" />
                 </div>
               </div>
-              <div class="col-lg-6 col-12 px-2">
+              <div class="col-lg-6 col-12 px-2 py-3">
                 <div class="form-group">
                   <img src="{{ asset('website/assets/images/form/phone.svg') }}" class="icon" loading="lazy" alt="" />
                   <input type="tel" value="{{ old('phone') ?? '' }}" name="phone" class="form-control"
@@ -69,7 +69,7 @@
                     value="{{old('current_job')}}" />
                 </div>
               </div>
-              <div class="col-lg-6 col-12 px-2">
+              <div class="col-lg-6 col-12 px-2 py-3">
                 <div class="form-data">
                   <label for="">
                     @lang('image')
@@ -88,7 +88,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-lg-6 col-12 px-2">
+              <div class="col-lg-6 col-12 px-2 py-3">
                 <div class="form-data">
                   <label for="">
                     @lang('cv')
@@ -118,7 +118,7 @@
               @lang('location_information')
             </h2>
             <div class="row">
-              <div class="col-lg-6 col-12 px-2">
+              <div class="col-lg-6 col-12 px-2 py-3">
                 <div class="form-group select">
                   <img src="{{ asset('website/assets/images/form/flag.svg') }}" class="icon" loading="lazy" alt="" />
                   <select class="form-control" name="country_id" id="country">
@@ -131,7 +131,7 @@
                   </select>
                 </div>
               </div>
-              <div class="col-lg-6 col-12 px-2">
+              <div class="col-lg-6 col-12 px-2 py-3">
                 <div class="form-group  state">
                   <img src="{{ asset('website/assets/images/form/location.svg') }}" class="icon" loading="lazy"
                     alt="" />
@@ -151,7 +151,7 @@
               @lang('social_media_accounts')
             </h2>
             <div class="row">
-              <div class="col-lg-6 col-12 px-2">
+              <div class="col-lg-6 col-12 px-2 py-3">
                 <div class="form-group">
                   <img src="{{ asset('website/assets/images/form/instagram_twotone.svg') }}" loading="lazy" alt=""
                     class="icon" />
@@ -159,7 +159,7 @@
                     value="{{old('instagram')}}" />
                 </div>
               </div>
-              <div class="col-lg-6 col-12 px-2">
+              <div class="col-lg-6 col-12 px-2 py-3">
                 <div class="form-group">
                   <img src="{{ asset('website/assets/images/form/twitter.svg') }}" loading="lazy" alt="" class="icon" />
 

@@ -11,6 +11,7 @@ use App\Models\Subscriber;
 use App\Models\Subscription;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use MattDaneshvar\Survey\Models\Entry;
 use MattDaneshvar\Survey\Models\Survey;
 
@@ -18,7 +19,10 @@ class RegisterController extends Controller
 {
     public function getRegister()
     {
-        $countries = Country::listsTranslations('name')->pluck('name', 'id');
+        $firstCollection = Country::listsTranslations('name')->addSelect('phone_code')->get();
+        $countries = $firstCollection->sort(function ($item) {
+            return $item->phone_code == 966 ? -1 : 1;
+        })->values();
 
         return view('website.pages.register.register', compact('countries'));
     }
@@ -65,7 +69,7 @@ class RegisterController extends Controller
 
     public function getPayment(Request $request, User $user)
     {
-        $data = Subscription::calculateSubscription($request);
+        $data = Subscription::calculateSubscription($request->code);
 
         return view('website.pages.register.payment', [
             'user' => $user,
@@ -90,6 +94,8 @@ class RegisterController extends Controller
             $paymentService->getPayLoadData($data, $user),
             $paymentMethodId
         );
+
+        Cache::add('invoice_id', $redirectLink['invoiceID']);
 
         return response(['url' => $redirectLink['invoiceURL']]);
     }

@@ -40,8 +40,8 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $hidden = [
-        'password',
-        'remember_token',
+          'password',
+          'remember_token',
     ];
 
     /**
@@ -50,7 +50,7 @@ class User extends Authenticatable
      * @var array<string, string>
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
+          'email_verified_at' => 'datetime',
     ];
 
     public function isSuperAdmin(): bool
@@ -90,18 +90,23 @@ class User extends Authenticatable
         }
 
         return in_array($this->entry?->gender, ['Male', 'ذكر', null]) ?
-            asset('adminPanel/images/faces/male.webp') :
-            asset('adminPanel/images/faces/female');
+              asset('adminPanel/images/faces/male.webp') :
+              asset('adminPanel/images/faces/female');
     }
 
     public function currentSubscription()
     {
         if ($this->society()->exists()) {
             return $this->hasOne(Subscription::class)
-                ->whereIn('status', [Subscription::ACTIVE, Subscription::REQUEST_CANCEL, Subscription::IN_ACTIVE])->latest('id');
+                  ->whereIn('status', [Subscription::ACTIVE, Subscription::REQUEST_CANCEL, Subscription::IN_ACTIVE])->latest('id');
         }
 
         return $this->hasOne(Subscription::class)->whereIn('status', [Subscription::ACTIVE, Subscription::IN_ACTIVE])->latest('id');
+    }
+
+    public function currentSubscrip()
+    {
+        return $this->hasOne(Subscription::class)->latestOfMany();
     }
 
     public function isSubscriptionFinished()
@@ -128,7 +133,7 @@ class User extends Authenticatable
     public function entry()
     {
         return $this->hasOne(Entry::class, 'participant_id')
-            ->whereHas('survey', fn ($q) => $q->where('name', (app()->getLocale() == 'ar' ? 'النموذج الصحي' : 'Health Model')));
+              ->whereHas('survey', fn($q) => $q->where('name', (app()->getLocale() == 'ar' ? 'النموذج الصحي' : 'Health Model')));
     }
 
     public function country()
@@ -155,6 +160,7 @@ class User extends Authenticatable
     {
         return $this->hasOne(AdminMessage::class, 'receiver_id')->latestOfMany();
     }
+
     #endregion relationship
 
     public function messagesCount($user_id)

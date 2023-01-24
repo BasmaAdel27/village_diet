@@ -52,7 +52,7 @@ class TrainarController extends Controller
             'body_shape' => 'required',
             'is_certified' => 'required|in:0,1',
             'image' => 'required|image|max:2048',
-            'email' => 'required|min:2|max:255|unique:users,email',
+            'email' => 'required|email|min:2|max:255|unique:users,email',
             'cv' => 'required|mimes:pdf,doc,docx|max:2048',
         ];
         if ($arrayRequest['is_certified'] == 1) {

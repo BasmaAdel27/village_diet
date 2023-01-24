@@ -8,14 +8,13 @@
           </div>
 
           <h1>
-            Village Diet مرحبا بك في
+            @lang('welcome_to_village_diet')
           </h1>
 
           <p>
-            تم ارسال ايميل به الرقم الشخصي الخاص بك لتفعيل التطبيق على إيميلك
-
-            <a href="#">
-              Info@gmail.com
+            @lang('login_number_has_sent_to_your_email')
+            <a href="#" id="user_email">
+              {{ session('email') }}
             </a>
           </p>
 
@@ -28,7 +27,7 @@
               </h2>
 
               <p>
-                رقمك التعريفي
+                @lang('login_number')
               </p>
             </div>
           </div>
