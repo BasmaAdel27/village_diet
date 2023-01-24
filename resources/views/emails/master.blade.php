@@ -657,11 +657,17 @@
                               <td align="center" valign="top" class="textContent">
                                 <h1
                                       style="color:#FFFFFF;line-height:100%;font-family:Helvetica,Arial,sans-serif;font-size:35px;font-weight:normal;margin-bottom:5px;text-align:center;">
-                                  Village Diet
+                                  {{ app()->getLocale() == 'en' ? "Village Diet" : "فيلج دايت"}}
                                 </h1>
                                 <h2
                                       style="text-align:center;font-weight:normal;font-family:Helvetica,Arial,sans-serif;font-size:23px;margin-bottom:10px;color:#205478;line-height:135%;">
                                 </h2>
+
+                                <div class="align-content-center text-center">
+                                  <img src="{{ asset('website/assets/images/logo/logo.svg') }}"><br>
+                                </div>
+
+
                                 <div
                                       style="text-align:justify;font-family:Helvetica,Arial,sans-serif;font-size:15px;margin-bottom:0;color:#FFFFFF;line-height:135%;">
                                   @yield('content')

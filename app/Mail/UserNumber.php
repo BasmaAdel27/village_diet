@@ -31,6 +31,7 @@ class UserNumber extends Mailable
         $subject = app()->getLocale() == 'en' ? "Welcome To Village Diet" : "مرحبا بك في فيلج دايت";
         return $this->view('emails.users.user_number')
               ->with(['message' => $this])
+              ->from("info@thevillagediet.com", "Village Diet")
               ->subject($subject);
     }
 }

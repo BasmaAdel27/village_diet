@@ -1,8 +1,11 @@
 @extends('emails.master')
 @section('content')
   @php $setting = \App\Models\Setting::first(); @endphp
-  @if(app()->getLocale() == 'en')
 
+
+
+
+  @if(app()->getLocale() == 'en')
     <div dir="ltr">
       <p>
         We are thrilled that you have invested in your health and in the Village Diet!
@@ -34,14 +37,14 @@
           @if(isset($setting->instagram))
             <li>
               <a href="{{ $setting->instagram }}" target="_blank">
-                <img src="{{ $message->embed(asset('website/assets/images/footer/instagram.svg')) }}" loading="lazy" alt=""/>
+                <img src="{{ asset('website/assets/images/footer/instagram.svg')}}" loading="lazy" alt=""/>
               </a>
             </li>
           @endif
           @if(isset($setting->tiktok))
             <li>
               <a href="{{ $setting->tiktok }}" target="_blank">
-                <img src="{{ $message->embed(asset('website/assets/images/footer/tik-tok.svg'))}}" loading="lazy" alt=""/>
+                <img src="{{ asset('website/assets/images/footer/tik-tok.svg')}}" loading="lazy" alt=""/>
               </a>
             </li>
           @endif
@@ -68,7 +71,7 @@
         فريق فيلج دايت
       </p>
       <div class="align-content-center text-center">
-        <img src="{{ $message->embed(asset('website/assets/images/logo/logo.svg')) }}"><br>
+        <img src="{{ asset('website/assets/images/logo/logo.svg')}}"><br>
         <p>تواصلوا مع فيلج دايت!</p><br>
         <ul class="socail-media">
           @if(isset($setting->twitter))
@@ -81,14 +84,14 @@
           @if(isset($setting->instagram))
             <li>
               <a href="{{ $setting->instagram }}" target="_blank">
-                <img src="{{ $message->embed(asset('website/assets/images/footer/instagram.svg')) }}" loading="lazy" alt=""/>
+                <img src="{{ asset('website/assets/images/footer/instagram.svg')}}" loading="lazy" alt=""/>
               </a>
             </li>
           @endif
           @if(isset($setting->tiktok))
             <li>
               <a href="{{ $setting->tiktok }}" target="_blank">
-                <img src="{{ $message->embed(asset('website/assets/images/footer/tik-tok.svg'))}}" loading="lazy" alt=""/>
+                <img src="{{ asset('website/assets/images/footer/tik-tok.svg')}}" loading="lazy" alt=""/>
               </a>
             </li>
           @endif
