@@ -29,20 +29,20 @@ class UserNumber extends Mailable
     public function build()
     {
         $logo = asset('website/assets/images/logo/icon.png');
-        $twitter = asset('website/assets/images/footer/twitter.svg');
-        $insta = asset('website/assets/images/footer/instagram.svg');
-        $tiktok = asset('website/assets/images/footer/tik-tok.svg');
+        $twitter = asset('website/assets/images/socials/twitter.png');
+        $insta = asset('website/assets/images/socials/instagram.png');
+        $tiktok = asset('website/assets/images/socials/tiktok.png');
 
         $subject = app()->getLocale() == 'en' ? "Welcome To Village Diet" : "مرحبا بك في فيلج دايت";
         return $this->view('emails.users.user_number', [
-            'user' => $this->user,
-            'logo' => $logo,
-            'twitter' => $twitter,
-            'instagram' => $insta,
-            'tiktok' => $tiktok,
+              'user' => $this->user,
+              'logo' => $logo,
+              'twitter' => $twitter,
+              'instagram' => $insta,
+              'tiktok' => $tiktok,
         ])
-            ->with(['message' => $this])
-            ->from("info@thevillagediet.com", "Village Diet")
-            ->subject($subject);
+              ->with(['message' => $this])
+              ->from("info@thevillagediet.com", "Village Diet")
+              ->subject($subject);
     }
 }
