@@ -92,7 +92,7 @@ $food_recipes= \App\Models\StaticPage\StaticPage::Where('programing_name', 'Food
               <a href="{{ route('website.home') }}">@lang('home')</a>
             </li>
             <li>
-              <a href="{{ route('website.static_pages.show',$aboutUs->id) }}">{{ $aboutUs->title }}</a>
+              <a href="{{ route('website.static_pages.show',$aboutUs) }}">{{ $aboutUs->title }}</a>
             </li>
             <li>
               <a href="{{ route('website.faqs') }}">@lang('faq')</a>
@@ -124,7 +124,7 @@ $food_recipes= \App\Models\StaticPage\StaticPage::Where('programing_name', 'Food
             <h1>@lang('important_links')</h1>
             <ul class="links">
               @foreach ($staticPages as $page)
-              <li><a href="{{ route('website.static_pages.show',$page->id) }}">{{ $page->title }}</a></li>
+              <li><a href="{{ route('website.static_pages.show',$page) }}">{{ $page->title }}</a></li>
               @endforeach
             </ul>
           </div>

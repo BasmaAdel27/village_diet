@@ -19,7 +19,7 @@ $food_recipes= \App\Models\StaticPage\StaticPage::Where('programing_name', 'Food
 
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a href="{{ route('website.static_pages.show',$aboutUs->id) }}" class="nav-link">{{ $aboutUs->title }}</a>
+        <a href="{{ route('website.static_pages.show',$aboutUs) }}" class="nav-link">{{ $aboutUs->title }}</a>
       </li>
 
       <li class="nav-item">
@@ -27,7 +27,7 @@ $food_recipes= \App\Models\StaticPage\StaticPage::Where('programing_name', 'Food
       </li>
 
       <li class="nav-item">
-        <a href="{{ route('website.food_recipes') }}" class="nav-link">{{$food_recipes->title}}</a>
+        <a href="{{ route('website.static_pages.show',$food_recipes) }}" class="nav-link">{{$food_recipes->title}}</a>
       </li>
       <li class="nav-item">
         <a href="{{ route('website.trainers.index') }}" class="nav-link"> @lang('trainers') </a>
@@ -38,7 +38,7 @@ $food_recipes= \App\Models\StaticPage\StaticPage::Where('programing_name', 'Food
       @foreach ($staticPages as $page)
       @if( !in_array($page->id,[$terms->id,$privacy->id]))
       <li class="nav-item">
-        <a href="{{ route('website.static_pages.show',$page->id) }}" class="nav-link"> {{ $page->title }} </a>
+        <a href="{{ route('website.static_pages.show',$page) }}" class="nav-link"> {{ $page->title }} </a>
       </li>
       @endif
       @endforeach

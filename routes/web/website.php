@@ -11,6 +11,7 @@ use App\Http\Controllers\Website\{
 };
 use App\Models\Faq\Faq;
 use App\Models\StaticPage\StaticPage;
+use Illuminate\Support\Facades\Mail;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::controller(RegisterController::class)->prefix('register')->group(function () {
@@ -32,20 +33,13 @@ Route::get('/customers_opinions', [CustomerOpinionController::class, 'index'])->
 
 
 Route::post('subscribe', [SubscribeController::class, 'subscribe'])->name('subscribe');
-Route::get('static_pages/{staticPage}', function (StaticPage $staticPage) {
+Route::get('static_pages/{staticPage:slug}', function (StaticPage $staticPage) {
     return view('website/pages/static_page', ['staticPage' => $staticPage]);
 })->name('static_pages.show');
 
 Route::get('faq', function () {
     return view('website/pages/faq', ['faqs' => Faq::where('is_active', true)->get()]);
 })->name('faqs');
-
-Route::get('food_recipes', function () {
-    return view(
-        'website/pages/meals',
-        ['page' => StaticPage::where('programing_name', 'Food-Recipes')->first()]
-    );
-})->name('food_recipes');
 
 Route::get('register_trainer/create', [TrainarController::class, 'create'])->name('register_trainer.create');
 Route::post('register_trainer/store', [TrainarController::class, 'store'])->name('register_trainer.store');
