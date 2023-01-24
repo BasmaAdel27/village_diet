@@ -1,6 +1,7 @@
 @extends('emails.master')
 @section('content')
   @php $setting = \App\Models\Setting::first(); @endphp
+  <img src="{{ asset('/website/assets/images/logo/icon.png')}}" style=" display: block;margin-left: auto;margin-right: auto;" alt="">
   @if(app()->getLocale() == 'en')
     <div dir="ltr">
       <p>

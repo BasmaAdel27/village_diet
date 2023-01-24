@@ -648,8 +648,6 @@
                       <tr>
                         <td align="center" valign="top" width="500" class="flexibleContainerCell">
                           <table border="0" cellpadding="30" cellspacing="0" width="100%">
-                            <img src="{{ asset('/website/assets/images/logo/icon.png')}}"
-                                 style=" display: block;margin-left: auto;margin-right: auto;" alt="">
                             <tr>
                               <td align="center" valign="top" class="textContent">
                                 <h1
