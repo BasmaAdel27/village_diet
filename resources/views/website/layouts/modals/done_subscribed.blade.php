@@ -14,7 +14,7 @@
           <p>
             @lang('login_number_has_sent_to_your_email')
             <a href="#">
-              {{ auth()->user()->email }}
+              {{ auth()->user()?->email }}
             </a>
           </p>
 
