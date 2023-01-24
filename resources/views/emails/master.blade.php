@@ -431,6 +431,45 @@
       text-align: center;
     }
 
+
+    .socail-media {
+      display: flex;
+      align-items: center;
+      align-content: center;
+    }
+    .socail-media li {
+      -webkit-margin-end: 10px;
+      margin-inline-end: 10px;
+    }
+   .socail-media li:last-child {
+      -webkit-margin-end: 0px;
+      margin-inline-end: 0px;
+    }
+    .socail-media li a {
+      width: 40px;
+      height: 40px;
+      background-color: rgba(255, 255, 255, 0.15);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      align-content: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .socail-media li a img {
+      width: 22px;
+      height: 20px;
+      -o-object-fit: contain;
+      object-fit: contain;
+    }
+    .socail-media li a:hover {
+      background-color: var(--gray-color);
+    }
+    .socail-media li a:hover img {
+      -webkit-animation: fadeInLeft 0.4s linear both;
+      animation: fadeInLeft 0.4s linear both;
+    }
+
     .buttonContent a {
       color: #FFFFFF;
       display: block;
@@ -534,8 +573,6 @@
       }
     }
   </style>
-
-  <link rel="stylesheet" href="{{ asset('website/assets/css/style.css') }}" />
 
 </head>
 
