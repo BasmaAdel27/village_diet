@@ -171,21 +171,12 @@
     dl,
     menu,
     ol,
-    ul {
-      margin: 1em 0
-    }
-
     dd {
       margin: 0 0 0 40px
     }
 
     menu,
     ol,
-    ul {
-      padding: 0 0 0 40px
-    }
-
-    nav ul,
     nav ol {
       list-style: none;
       list-style-image: none
@@ -436,9 +427,6 @@
       display: flex;
       align-items: center;
       align-content: center;
-    }
-
-    .socail-media ul {
       list-style-type: none;
     }
 
@@ -662,7 +650,7 @@
                           <table border="0" cellpadding="30" cellspacing="0" width="100%">
                             <div class="align-content-center text-center"
                                  style=" display: block;margin-left: auto;margin-right: auto;">
-                              {{ asset('/website/assets/images/logo/icon.png')}}<br>
+                              <img src="{{ asset('/website/assets/images/logo/icon.png')}}" alt="">
                             </div>
                             <tr>
                               <td align="center" valign="top" class="textContent">
