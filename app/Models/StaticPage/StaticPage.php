@@ -31,9 +31,4 @@ class StaticPage extends Model implements Translatable
             asset($this->images()->whereOption('image')->value('media')) :
             asset('website/assets/images/logo/logo.svg');
     }
-
-    public function getRouteKeyName()
-    {
-        return 'slug';
-    }
 }
