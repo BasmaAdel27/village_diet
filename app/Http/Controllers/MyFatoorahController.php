@@ -60,7 +60,7 @@ class MyFatoorahController extends Controller
             if ($paymentData->InvoiceStatus == 'Paid') {
                 $userNumber = $this->afterSuccessPay($user, $data, request('paymentId'));
 
-                return redirect()->route('website.home')->with('done_subscribed', $userNumber);
+                return redirect()->route('website.home')->with('done_subscribed', $userNumber[0])->with('email', $userNumber[1]);
             } else if ($paymentData->InvoiceStatus == 'Failed') {
                 $msg = 'Invoice is not paid due to ' . $paymentData->InvoiceError;
 
@@ -96,6 +96,6 @@ class MyFatoorahController extends Controller
         Mail::to($user->email)->send(new UserNumber($user));
         if ($data['coupon']) $data['coupon']->increment('used_times');
 
-        return $userNumber;
+        return [$userNumber, $user->email];
     }
 }

@@ -13,8 +13,8 @@
 
           <p>
             @lang('login_number_has_sent_to_your_email')
-            <a href="#">
-              {{ auth()->user()?->email }}
+            <a href="#" id="user_email">
+              {{ session('email') }}
             </a>
           </p>
 
