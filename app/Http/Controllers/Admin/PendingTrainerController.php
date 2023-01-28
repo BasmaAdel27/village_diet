@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Mail\DeclinePendingTrainer;
 use App\Mail\SubmitPendingTrainer;
 use App\Models\Country\Country;
+use App\Models\OldTrainer;
 use App\Models\State\State;
 use App\Models\Trainer;
 use Illuminate\Http\Request;
@@ -21,7 +22,7 @@ class PendingTrainerController extends Controller
         $this->middleware('permission:admin.pending-trainers.index')->only(['index']);
         $this->middleware('permission:admin.pending-trainers.update')->only(['update']);
     }
-    
+
     public function index(PendingTrainerDatatable $pendingTrainerDatatable)
     {
         return $pendingTrainerDatatable->render('admin.pending_trainers.index');
@@ -81,6 +82,13 @@ class PendingTrainerController extends Controller
         Mail::to($trainer->user->email)->send(new DeclinePendingTrainer($trainer, $reason));
         $trainer->status = "DECLINED";
         $trainer->save();
+
+        OldTrainer::create([
+            'trainers' => array_merge($trainer->user->toArray(), $trainer->toArray())
+        ]);
+        $trainer->delete();
+        $trainer->user()->delete();
+
         return redirect()->route('admin.pending-trainers.index')->with('success', trans('submitted_successfully'));
     }
 }
