@@ -47,12 +47,12 @@ class RegisterController extends Controller
     public function getHealthyForm(User $user)
     {
         $survey = Survey::where(
-            'name',
-            (app()->getLocale() == 'ar') ?
-                'النموذج الصحي' :
-                'Health Model'
+              'name',
+              (app()->getLocale() == 'ar') ?
+                    'النموذج الصحي' :
+                    'Health Model'
         )
-            ->first();
+              ->first();
 
 
         return view('website.pages.register.form', compact('user', 'survey'));
@@ -72,11 +72,11 @@ class RegisterController extends Controller
         $data = Subscription::calculateSubscription($request->code);
 
         return view('website.pages.register.payment', [
-            'user' => $user,
-            'netSubscription' => $data['amount'],
-            'taxAmount' => $data['tax_amount'],
-            'discount' => $data['discount'],
-            'total' => $data['total']
+              'user' => $user,
+              'netSubscription' => $data['amount'],
+              'taxAmount' => $data['tax_amount'],
+              'discount' => $data['discount'],
+              'total' => $data['total']
         ]);
     }
 
@@ -91,11 +91,12 @@ class RegisterController extends Controller
         $paymentMethodId = 0;
         $paymentService = (new MyFatoorahController())->index();
         $redirectLink = $paymentService->mfObj->getInvoiceURL(
-            $paymentService->getPayLoadData($data, $user),
-            $paymentMethodId
+              $paymentService->getPayLoadData($data, $user),
+              $paymentMethodId
         );
-
-        Cache::add('invoice_id', $redirectLink['invoiceID']);
+        if ($redirectLink['invoiceID']) {
+            Cache::add('invoice_id', $redirectLink['invoiceID']);
+        }
 
         return response(['url' => $redirectLink['invoiceURL']]);
     }
@@ -103,28 +104,28 @@ class RegisterController extends Controller
     public function reactivateSubscription(Request $request)
     {
         $data = $request->validate([
-            'user_number' => 'required|string|size:6|exists:users,user_number'
+              'user_number' => 'required|string|size:6|exists:users,user_number'
         ]);
 
         $user = User::where('user_number', $data['user_number'])->first();
 
         if ($user->currentSubscription?->status == Subscription::ACTIVE) {
             return response()->json([
-                'message' => trans('account_is_active'),
-                'status'  => 'active',
-                'title'   => trans('site.subscription_status.active')
+                  'message' => trans('account_is_active'),
+                  'status' => 'active',
+                  'title' => trans('site.subscription_status.active')
             ]);
         } elseif (in_array($user->currentSubscription?->status, [Subscription::REQUEST_CANCEL, Subscription::FINISHED])) {
             return response()->json([
-                'message' => trans('account_is_cancelled'),
-                'status'  => 'finished',
-                'title'   => trans('site.subscription_status.finished')
+                  'message' => trans('account_is_cancelled'),
+                  'status' => 'finished',
+                  'title' => trans('site.subscription_status.finished')
             ]);
         } else {
             return response()->json([
-                'message' => route('website.payment.form', $user),
-                'status'  => 'in_active',
-                'title'   => trans('site.subscription_status.finished')
+                  'message' => route('website.payment.form', $user),
+                  'status' => 'in_active',
+                  'title' => trans('site.subscription_status.finished')
             ]);
         }
     }
