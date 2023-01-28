@@ -17,9 +17,9 @@ class MyFatoorahController extends Controller
     public function __construct()
     {
         $this->mfObj = new PaymentMyfatoorahApiV2(
-            config('myfatoorah.api_key'),
-            config('myfatoorah.country_iso'),
-            config('myfatoorah.test_mode')
+              config('myfatoorah.api_key'),
+              config('myfatoorah.country_iso'),
+              config('myfatoorah.test_mode')
         );
     }
 
@@ -33,22 +33,22 @@ class MyFatoorahController extends Controller
     {
         $callbackURL = route('website.callback', ['user' => $user, 'code' => @$data['code']]);
         return [
-            'CustomerName' => $user->first_name . ' ' . $user->last_name,
-            'InvoiceValue' => $data['total'],
-            'DisplayCurrencyIso' => 'SAR',
-            'CurrencyIso' => 'SAR',
-            'NotificationOption' => 'All',
-            'CustomerEmail' => $user->email,
-            'CallBackUrl' => $callbackURL,
-            'ErrorUrl' => $callbackURL,
-            'MobileCountryCode' => '+966',
-            'CustomerMobile' => $user->phone,
-            'Language' => 'ar',
-            'CustomerReference' => $user->id,
-            'SourceInfo' => 'VillageDiet - My Fatoorah ' . MYFATOORAH_LARAVEL_PACKAGE_VERSION,
-            'RecurringModel' => [
-                'RecurringType' => 'Monthly',
-            ],
+              'CustomerName' => $user->first_name . ' ' . $user->last_name,
+              'InvoiceValue' => $data['total'],
+              'DisplayCurrencyIso' => 'SAR',
+              'CurrencyIso' => 'SAR',
+              'NotificationOption' => 'All',
+              'CustomerEmail' => $user->email,
+              'CallBackUrl' => $callbackURL,
+              'ErrorUrl' => $callbackURL,
+              'MobileCountryCode' => $user->country?->phone_code ?? '966',
+              'CustomerMobile' => $user->phone,
+              'Language' => 'ar',
+              'CustomerReference' => $user->id,
+              'SourceInfo' => 'VillageDiet - My Fatoorah ' . MYFATOORAH_LARAVEL_PACKAGE_VERSION,
+              'RecurringModel' => [
+                    'RecurringType' => 'Monthly',
+              ],
         ];
     }
 
@@ -78,15 +78,15 @@ class MyFatoorahController extends Controller
     private function afterSuccessPay($user, $data, $paymentId)
     {
         $user->subscriptions()->create([
-            'status' => Subscription::ACTIVE,
-            'amount' => $data['amount'],
-            'tax_amount' => $data['tax_amount'],
-            'total_amount' => $data['total'],
-            'payment_method' => 'Visa',
-            'end_date' => now()->addDays(30),
-            'coupon_id' => $data['coupon']?->id,
-            'transaction_id' => $paymentId,
-            'invoice_id' => Cache::get('invoice_id')
+              'status' => Subscription::ACTIVE,
+              'amount' => $data['amount'],
+              'tax_amount' => $data['tax_amount'],
+              'total_amount' => $data['total'],
+              'payment_method' => 'Visa',
+              'end_date' => now()->addDays(30),
+              'coupon_id' => $data['coupon']?->id,
+              'transaction_id' => $paymentId,
+              'invoice_id' => Cache::get('invoice_id')
         ]);
         Cache::forget('invoice_id');
 

@@ -12,7 +12,7 @@ class RegisterRequest extends FormRequest
             'first_name' => 'required|max:255|min:2|string',
             'last_name' => 'required|max:255|min:3|string',
             'email' => 'required|email|confirmed|unique:users,email,' . $this->id . ',id,step,3',
-            'phone' => 'required|string|max:11|starts_with:05',
+            'phone' => 'required|string',
             'date_of_birth' => 'required|date|date_format:Y-m-d|before:today',
             'country_id' => 'required|exists:countries,id',
             'city' => 'required|string',
