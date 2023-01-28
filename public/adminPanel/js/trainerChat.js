@@ -5,7 +5,7 @@ var gumStream;
 var rec;
 //Recorder.js object
 var input;
-audioContext
+var audioContext;
 //MediaStreamAudioSourceNode we'll be recording
 // shim for AudioContext when it's not avb.
 var AudioContext = window.AudioContext || window.webkitAudioContext;
