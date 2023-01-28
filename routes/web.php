@@ -22,7 +22,7 @@ Route::group(
           Route::group([
                 'as' => 'admin.',
                 'prefix' => 'admin',
-                'middleware' => ['auth'],
+                'middleware' => ['auth','role:admin'],
           ], function () {
               require('web/admin.php');
           });
@@ -30,7 +30,7 @@ Route::group(
           Route::group([
                 'as' => 'trainer.',
                 'prefix' => 'trainer',
-                'middleware' => ['auth'],
+                'middleware' => ['auth','role:trainer'],
           ], function () {
               require('web/trainer.php');
           });
