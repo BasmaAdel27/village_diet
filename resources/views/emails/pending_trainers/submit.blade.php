@@ -71,7 +71,7 @@
 
       <div>
         <img src="{{ $logo }}">
-        <p>Connect with the Village Diet!</p>
+        <p>تواصلوا مع فيلج دايت!</p>
         <ul class="socail-media">
           @if(isset($setting->twitter))
             <li>
