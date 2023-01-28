@@ -40,6 +40,9 @@ Route::get('dashboard', [HomeController::class, 'home'])->name('dashboard');
 Route::get('users-form-data', [UserController::class, 'getFormData'])->name('users.form_data');
 Route::post('users-form-data/{survey}', [UserController::class, 'postFormData'])->name('users.post_data');
 Route::get('users-charts/{user}', [UserController::class, 'statistics'])->name('users.statistics');
+Route::post('pending-trainers/submit/{id}', [PendingTrainerController::class, 'submit'])->name('pending-trainers.submit');
+Route::post('pending-trainers/declined/{id}', [PendingTrainerController::class, 'declined'])->name('pending-trainers.declined');
+
 Route::resource('users', UserController::class);
 Route::resource('notifications', NotiifcationController::class)->except(['edit', 'update', 'show']);
 Route::resource('roles', RoleController::class)->except('show');
@@ -53,7 +56,7 @@ Route::get('ratings', RatingController::class)->name('ratings.index');
 Route::resource('settings', SettingController::class)->only('index', 'update');
 Route::resource('meals', MealController::class);
 Route::resource('trainers', TrainerController::class)->except('show');
-Route::resource('pending-trainers', PendingTrainerController::class)->except('show', 'destroy', 'store');
+Route::resource('pending-trainers', PendingTrainerController::class)->only('index', 'edit');
 Route::resource('coupons', CouponController::class)->except('show');
 Route::resource('postel_news', PostelNewsController::class)->except(['show', 'update', 'edit']);
 
@@ -67,9 +70,6 @@ Route::get('users-report', [ReportController::class, 'usersReport'])->name('repo
 Route::get('trainers-report', [ReportController::class, 'trainersReport'])->name('reports.trainers');
 Route::get('copouns-report', [ReportController::class, 'copounsReport'])->name('reports.copouns');
 #endregion reports
-
-Route::post('pending-trainers/submit/{id}', [PendingTrainerController::class, 'submit'])->name('pending-trainers.submit');
-Route::post('pending-trainers/declined/{id}', [PendingTrainerController::class, 'declined'])->name('pending-trainers.declined');
 
 Route::resource('templates', TemplateController::class)->except('show');
 Route::resource('opinions', CustomerOpinionController::class);
