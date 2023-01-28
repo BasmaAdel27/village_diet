@@ -94,10 +94,7 @@ class RegisterController extends Controller
               $paymentService->getPayLoadData($data, $user),
               $paymentMethodId
         );
-        if ($redirectLink['invoiceID']) {
-            Cache::add('invoice_id', $redirectLink['invoiceID']);
-        }
-
+        Cache::add('invoice_id', $redirectLink['invoiceId']);
         return response(['url' => $redirectLink['invoiceURL']]);
     }
 
