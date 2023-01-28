@@ -254,7 +254,7 @@
               </div>
             </div>
             <div class="form-group text-area">
-              <textarea name="join_request_reason" class="form-control" placeholder=" @lang(" reason to join
+              <textarea name="join_request_reason" class="form-control" placeholder=" @lang("reason to join
                 us").... " id="" cols=" 30" rows="10">{{old('join_request_reason')}}</textarea>
             </div>
 
