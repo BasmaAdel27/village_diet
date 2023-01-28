@@ -33,10 +33,18 @@
           <span class="nav-profile-name">{{ auth()->user()->first_name . ' ' . auth()->user()->last_name }}</span>
         </a>
         <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+          @role('trainer')
+          <a class="dropdown-item" href="{{ route('trainer.profile.index') }}">
+            <i class="mdi mdi-settings text-primary"></i>
+            @lang('profile')
+          </a>
+          @endrole
+          @role('admin')
           <a class="dropdown-item" href="{{ route('admin.profile.index') }}">
             <i class="mdi mdi-settings text-primary"></i>
             @lang('profile')
           </a>
+          @endrole
           <a class="dropdown-item" href="{{ route('logout') }}"
              onclick="event.preventDefault();document.getElementById('logout-form').submit();">
             <i class="mdi mdi-logout text-primary"></i>

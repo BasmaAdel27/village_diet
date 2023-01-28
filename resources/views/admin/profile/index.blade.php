@@ -7,7 +7,13 @@
       <h2 class="mb-4">@lang('profile')</h2>
     </div>
     <div class="card-body table-responsive">
-      <form action="{{ route('admin.profile.store') }}" method="post">@csrf
+      @role('trainer')
+      <form action="{{ route('trainer.profile.store') }}" method="post">
+      @endrole
+      @role('admin')
+      <form action="{{ route('admin.profile.store') }}" method="post">
+      @endrole
+        @csrf
         <div iv class="row">
           <div class="form-group col-6">
             <label>@lang('first_name')</label>

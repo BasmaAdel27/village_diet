@@ -11,7 +11,7 @@ class ProfileController extends Controller
     {
         $user = auth()->user();
 
-        return view('trainer.profile.index', compact('user'));
+        return view('admin.profile.index', compact('user'));
     }
 
     public function store(ProfileRequest $request)
