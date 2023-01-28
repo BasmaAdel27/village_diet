@@ -52,6 +52,7 @@ return [
     'admin.meals.index' => 'سجل (الوجبات)',
     'admin.meals.store' => 'حفظ (الوجبات)',
     'admin.meals.update' => 'تعديل (الوجبات)',
+    'admin.meals.show' => 'عرض (الوجبات)',
     'admin.meals.destroy' => 'حذف (الوجبات)',
     'admin.trainers.index' => 'سجل (المدربين)',
     'admin.trainers.store' => 'حفظ (المدربين)',
@@ -87,12 +88,18 @@ return [
     'admin.services.index' => 'سجل (الخدمات)',
     'admin.services.store' => 'حفظ (الخدمات)',
     'admin.services.update' => 'تعديل (الخدمات)',
+    'admin.services.show' => 'عرض (الخدمات)',
+    'admin.services.disable' => 'إيقاف (الخدمات)',
     'admin.services.destroy' => 'حذف (الخدمات)',
     'admin.common_questions.index' => 'سجل (الاسئله الشائعه)',
     'admin.common_questions.store' => 'حفظ (الاسئله الشائعه)',
     'admin.common_questions.update' => 'تعديل (الاسئله الشائعه)',
     'admin.common_questions.show' => 'عرض (الاسئله الشائعه)',
     'admin.common_questions.destroy' => 'حذف (الاسئله الشائعه)',
+    'admin.countries.index'=>'سجل (الدول)',
+    'admin.countries.store'=>'حفظ (الدول)',
+    'admin.countries.update'=>'تعديل (الدول)',
+    'admin.countries.destroy'=>'حذف (الدول)',
 
 
 
