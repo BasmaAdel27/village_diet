@@ -33,6 +33,7 @@ class SettingRequest extends FormRequest
             'website_title' => 'required|string|min:5|max:200',
             'website_description' => 'required|string|min:5|max:200',
             'logo' => 'nullable|image|mimes:png,jpg,jpeg,svg',
+            'footer' => 'required',
             'latitude' => 'required',
             'longitude' => 'required',
             'address' => 'required',
