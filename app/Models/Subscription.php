@@ -56,7 +56,7 @@ class Subscription extends Model
         $netSubscription = $setting->net_subscription;
         $taxAmount = $setting->tax_amount;
         $coupon = Coupon::whereColumn('used_times', '<', 'max_used')
-            ->where('end_date', '>=', now()->endOfDay())
+            ->where('end_date', '>=', now()->addDay()->endOfDay())
             ->where('code', $code)->first();
 
         $subTotal = $netSubscription + $taxAmount;
